@@ -11,6 +11,7 @@ public:
 
 signals:
 
+
 };
 
 #endif // MODEL_H

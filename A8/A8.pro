@@ -57,6 +57,7 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     main.cpp \
     model.cpp \
+    scenewidget.cpp \
     view.cpp
 
 HEADERS += \
@@ -108,6 +109,7 @@ HEADERS += \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
     model.h \
+    scenewidget.h \
     view.h
 
 FORMS += \
