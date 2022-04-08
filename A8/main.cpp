@@ -1,11 +1,13 @@
 #include "view.h"
+#include "model.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    View w;
+    Model m;
+    View w(m);
     w.show();
     return a.exec();
 }
