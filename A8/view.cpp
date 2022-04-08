@@ -1,7 +1,8 @@
 #include "view.h"
+#include "model.h"
 #include "ui_view.h"
 
-View::View(QWidget *parent)
+View::View(Model &model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::View)
 {
