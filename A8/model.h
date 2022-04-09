@@ -48,6 +48,14 @@ enum class FreshWaterFish{
     FWF_NeonTetra
 };
 
+// For screen transition
+enum class CurrentScreen{
+    CS_Start,
+    CS_Fishing,
+    CS_Journal,
+    CS_FishInfo
+};
+
 class Model : public QObject
 {
     Q_OBJECT
