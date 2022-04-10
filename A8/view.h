@@ -16,6 +16,8 @@ public:
     View(Model &model, QWidget *parent = nullptr);
     ~View();
 
+private slots:
+
 private:
     Ui::View *ui;
 };
