@@ -1,12 +1,11 @@
 #include "scenewidget.h"
-
 #include <QPainter>
 #include <QDebug>
 
 SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     world(b2Vec2(0.0f, 10.0f)),
     timer(this),
-    image("../../../alien.png") // Make a resource file - mac executables are in a hidden folder
+    image(":/fish1.png")
 {
     // Define the ground body.
     b2BodyDef groundBodyDef;
@@ -55,24 +54,26 @@ SceneWidget::SceneWidget(QWidget *parent) : QWidget(parent),
     timer.start(50);
 }
 
+//Overiding the paint event, so when call update it does somehting
 void SceneWidget::paintEvent(QPaintEvent *) {
     // Create a painter
     QPainter painter(this);
     b2Vec2 position = body->GetPosition();
     float angle = body->GetAngle();
 
-//    printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+    //printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 
+    //Scaling
     painter.drawImage((int)(position.x*20), (int)(position.y*20), image);
     painter.drawImage(200, 200, image);
-//    qDebug() << image;
+    //qDebug() << image;
     painter.end();
-   }
+}
 
 void SceneWidget::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
     world.Step(1.0/60.0, 6, 2);
 
-    update();
+    update(); // repaint on the widget
 }
 

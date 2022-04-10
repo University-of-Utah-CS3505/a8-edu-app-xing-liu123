@@ -2,7 +2,7 @@
 #define SCENEWIDGET_H
 
 #include <QWidget>
-#include <box2d/box2d.h>
+#include <Box2D/Box2D.h>
 #include <QTimer>
 
 class SceneWidget : public QWidget
