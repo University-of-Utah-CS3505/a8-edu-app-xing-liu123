@@ -781,7 +781,8 @@ qrc_Images.cpp: ../A8/Images.qrc \
 		../../../../Qt/6.2.3/macos/libexec/rcc \
 		../A8/fish1.png \
 		../A8/fish3.jpg \
-		../A8/fish2.png
+		../A8/fish2.png \
+		../A8/spear.png
 	/Users/xingliu/Qt/6.2.3/macos/libexec/rcc -name Images ../A8/Images.qrc -o qrc_Images.cpp
 
 compiler_moc_header_make_all: moc_model.cpp moc_scenewidget.cpp moc_view.cpp

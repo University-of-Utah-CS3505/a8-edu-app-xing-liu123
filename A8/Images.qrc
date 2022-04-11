@@ -3,5 +3,6 @@
         <file>fish1.png</file>
         <file>fish2.png</file>
         <file>fish3.jpg</file>
+        <file>spear.png</file>
     </qresource>
 </RCC>

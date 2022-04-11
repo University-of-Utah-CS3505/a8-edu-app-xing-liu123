@@ -1,4 +1,5 @@
 #include "model.h"
+#include <iostream>
 
 
 Model::Model(QObject *parent)
@@ -18,7 +19,7 @@ void Model::setUpWorld(){
     // Construct a world object, which will hold and simulate the rigid bodies.
     world = new b2World(gravity);
     //Call to initialize the fishes (bodies)
-    spearX = 0;
+    spearX = 400;
     spearY = 0;
     initFish1();
     initFish2();
@@ -141,25 +142,25 @@ void Model::initFish3(){
 void Model::initSpear(){
     b2BodyDef bodySpearDef;
     bodySpearDef.type = b2_dynamicBody;
-    bodySpearDef.position.Set(3.0f, 0.0f);
+    bodySpearDef.position.Set(4.0f, 0.0f);
     spear = world->CreateBody(&bodySpearDef);
 
-    b2Vec2 velocity(0.0f, 1.0f);
+    b2Vec2 velocity(0.0f, 5.0f);
     spear->SetLinearVelocity(velocity);
 
     // Define another box shape for our dynamic body.
-    b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(1.0f, 1.0f);
+    b2PolygonShape dynamicSpear;
+    dynamicSpear.SetAsBox(1.0f, 1.0f);
 
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
 
-    fixtureDef.shape = &dynamicFish;
+    fixtureDef.shape = &dynamicSpear;
 
 
     // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 0.1f;
+    fixtureDef.density = 1.0f;
 
     // Override the default friction.
     fixtureDef.friction = 0.3f;
@@ -186,8 +187,8 @@ void Model::updateFish1(){
 
 
     //When the position of the fish is outside our window it will start again
-    if(fish1->GetPosition().y > 9){
-        b2Vec2 pos(3.0f, -1.0f);
+    if(fish1->GetPosition().x > 9){
+        b2Vec2 pos(-1.0f, 3.0f);
         fish1->SetTransform(pos,fish1->GetAngle());
     }
 
@@ -210,8 +211,8 @@ void Model::updateFish2(){
     world->Step(timeStep, velocityIterations, positionIterations);
 
     //When the position of the fish is outside our window it will start again
-    if(fish2->GetPosition().y > 9){
-        b2Vec2 pos(4.0f, -1.0f);
+    if(fish2->GetPosition().x > 9){
+        b2Vec2 pos(-1.0f, 4.0f);
         fish2->SetTransform(pos,fish2->GetAngle());
     }
 
@@ -234,8 +235,8 @@ void Model::updateFish3(){
     world->Step(timeStep, velocityIterations, positionIterations);
 
     //When the position of the fish is outside our window it will start again
-    if(fish3->GetPosition().y > 9){
-        b2Vec2 pos(5.0f, -1.0f);
+    if(fish3->GetPosition().x > 9){
+        b2Vec2 pos(-1.0f, 5.0f);
         fish3->SetTransform(pos,fish3->GetAngle());
     }
 
@@ -247,12 +248,14 @@ void Model::updateFish3(){
 void Model::startTimer(){
     QTimer *timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, &Model::updateSpear);
-        timer->start(50);
+        timer->start(100);
 }
 
 void Model::updateSpear(){
+
     int initX = spearX;
     int initY = spearY;
+
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
     // in most game scenarios.
@@ -265,9 +268,11 @@ void Model::updateSpear(){
     world->Step(timeStep, velocityIterations, positionIterations);
 
     // Now print the position and angle of the body.
-    b2Vec2 position = spear->GetPosition();
-    spearX = position.x*100;
-    spearY = position.y*100;
+    b2Vec2 finalPos = spear->GetPosition();
+    spearX= finalPos.x*100;
+    spearY = finalPos.y*100;
+
+    std::cout << "Initial: " << initX << " " << initY <<" Final: "<< spearX <<" " << spearY << std::endl;
 
     emit setUpSpear(initX, initY, spearX, spearY);
 }

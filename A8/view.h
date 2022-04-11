@@ -7,6 +7,7 @@
 #include <QPainter>
 #include "model.h"
 #include <QMouseEvent>
+#include <QHoverEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class View; }
@@ -19,8 +20,10 @@ class View : public QMainWindow
 public:
     View(Model &model, QWidget *parent = nullptr);
     ~View();
-    void hoverMoveEvent(QHoverEvent *event);
-    void mousePressEvent(QMouseEvent *event);
+
+    void mouseMoveEvent(QMouseEvent *event) override;
+
+    void mousePressEvent(QMouseEvent *event) override;
 
 signals:
     void newPositiontValue(int height, int width);

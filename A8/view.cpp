@@ -8,8 +8,8 @@ View::View(Model &model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::View)
 {
+
     ui->setupUi(this);
-    this->centralWidget()->setMouseTracking(true);
     this->setMouseTracking(true);
 
 
@@ -19,9 +19,9 @@ View::View(Model &model, QWidget *parent)
     QPixmap pix2;
     pix2.load(":/fish2.png");
 
-//    QPixmap spearPix;
-//    spearPix.load(":/spear.png");
-//    ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
+    QPixmap spearPix;
+    spearPix.load(":/spear.png");
+    ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
 
     ui->stackedWidget->setCurrentIndex(0);
     time = new QTimer(this);
@@ -120,20 +120,26 @@ void View::displayFish3(int x, int y){
 void View::displaySpear(int x1, int y1, int x2, int y2){
 
         QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
-        animation->setDuration(50);
+        animation->setDuration(100);
         animation->setStartValue(QPoint(x1,y1));
         animation->setEndValue(QPoint(x2,y2));
         animation->setEasingCurve(QEasingCurve::Linear);
         animation->start();
 }
 
-void View::hoverMoveEvent(QHoverEvent *event){
+void View::mouseMoveEvent(QMouseEvent *event){
     QPoint point = event->pos();
-    QString s("X: ");
-    s.append(QString::number(point.x()));
-    s.append(" Y: ");
-    s.append(QString::number(point.y()));
-    ui->locationLabel->setText(s);
+
+
+    if(point.x() <= this->size().width() && point.y() <= this->size().height()
+            && point.x() > 0 && point.y() > 0 ){
+//        std::cout << point.x() <<" " << point.y() << std::endl;
+        QString s("X: ");
+        s.append(QString::number(point.x()));
+        s.append(" Y: ");
+        s.append(QString::number(point.y()));
+        ui->locationLabel->setText(s);
+    }
 }
 
 void View::mousePressEvent(QMouseEvent *event){
