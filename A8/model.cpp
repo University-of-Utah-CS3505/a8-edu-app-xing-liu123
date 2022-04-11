@@ -18,9 +18,12 @@ void Model::setUpWorld(){
     // Construct a world object, which will hold and simulate the rigid bodies.
     world = new b2World(gravity);
     //Call to initialize the fishes (bodies)
+    spearX = 0;
+    spearY = 0;
     initFish1();
     initFish2();
     initFish3();
+    initSpear();
     emit startTime();
 }
 
@@ -30,12 +33,35 @@ void Model::initFish1(){
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef1;
     bodyDef1.type = b2_dynamicBody;
-    bodyDef1.position.Set(3.0f, 0.0f); //-> Starting position of the fish
+    bodyDef1.position.Set(0.0f, 3.0f); //-> Starting position of the fish
     fish1 = world->CreateBody(&bodyDef1);
 
     //Give velocity to body (Slow)
-    b2Vec2 velocity1(0.0f, 4.0f);
+    b2Vec2 velocity1(4.0f, 0.0f);
     fish1->SetLinearVelocity(velocity1);
+
+    // Define another box shape for our dynamic body.
+    b2PolygonShape dynamicFish;
+    dynamicFish.SetAsBox(1.0f, 0.1f);
+
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDefFish;
+
+    fixtureDefFish.shape = &dynamicFish;
+
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDefFish.density = 0.1f;
+
+    // Override the default friction.
+    fixtureDefFish.friction = 0.3f;
+
+    // Set the bounciness
+    fixtureDefFish.restitution = 0.0f;
+
+    // Add the shape to the body.
+    fish1->CreateFixture(&fixtureDefFish);
 
 }
 
@@ -45,12 +71,35 @@ void Model::initFish2(){
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef2;
     bodyDef2.type = b2_dynamicBody;
-    bodyDef2.position.Set(4.0f, 0.0f); //-> Starting position of the fish
+    bodyDef2.position.Set(0.0f, 4.0f); //-> Starting position of the fish
     fish2 = world->CreateBody(&bodyDef2);
 
     //Give velocity to body (Medium)
-    b2Vec2 velocity2(0.0f, 6.0f);
+    b2Vec2 velocity2(6.0f, 0.0f);
     fish2->SetLinearVelocity(velocity2);
+
+    // Define another box shape for our dynamic body.
+    b2PolygonShape dynamicFish;
+    dynamicFish.SetAsBox(1.0f, 0.1f);
+
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDefFish;
+
+    fixtureDefFish.shape = &dynamicFish;
+
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDefFish.density = 0.1f;
+
+    // Override the default friction.
+    fixtureDefFish.friction = 0.3f;
+
+    // Set the bounciness
+    fixtureDefFish.restitution = 0.0f;
+
+    // Add the shape to the body.
+    fish2->CreateFixture(&fixtureDefFish);
 }
 
 //Initialize the fish to be at the buttom with the fastest velocity..
@@ -58,12 +107,68 @@ void Model::initFish3(){
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef3;
     bodyDef3.type = b2_dynamicBody;
-    bodyDef3.position.Set(5.0f, 0.0f); //-> Starting position of the fish
+    bodyDef3.position.Set(0.0f, 5.0f); //-> Starting position of the fish
     fish3 = world->CreateBody(&bodyDef3);
 
     //Give velocity to body (Fast)
-    b2Vec2 velocity3(0.0f, 8.0f);
+    b2Vec2 velocity3(8.0f, 0.0f);
     fish3->SetLinearVelocity(velocity3);
+
+    // Define another box shape for our dynamic body.
+    b2PolygonShape dynamicFish;
+    dynamicFish.SetAsBox(1.0f, 0.1f);
+
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDefFish;
+
+    fixtureDefFish.shape = &dynamicFish;
+
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDefFish.density = 0.1f;
+
+    // Override the default friction.
+    fixtureDefFish.friction = 0.3f;
+
+    // Set the bounciness
+    fixtureDefFish.restitution = 0.0f;
+
+    // Add the shape to the body.
+    fish3->CreateFixture(&fixtureDefFish);
+}
+
+void Model::initSpear(){
+    b2BodyDef bodySpearDef;
+    bodySpearDef.type = b2_dynamicBody;
+    bodySpearDef.position.Set(3.0f, 0.0f);
+    spear = world->CreateBody(&bodySpearDef);
+
+    b2Vec2 velocity(0.0f, 1.0f);
+    spear->SetLinearVelocity(velocity);
+
+    // Define another box shape for our dynamic body.
+    b2PolygonShape dynamicFish;
+    dynamicFish.SetAsBox(1.0f, 1.0f);
+
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+
+    fixtureDef.shape = &dynamicFish;
+
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDef.density = 0.1f;
+
+    // Override the default friction.
+    fixtureDef.friction = 0.3f;
+
+    // Set the bounciness
+    fixtureDef.restitution = 0.0f;
+
+    // Add the shape to the body.
+    spear->CreateFixture(&fixtureDef);
 }
 
 
@@ -137,4 +242,32 @@ void Model::updateFish3(){
     // Now print the position and angle of the body.
     b2Vec2 position = fish3->GetPosition();
     emit setUpFish3(position.x, position.y);
+}
+
+void Model::startTimer(){
+    QTimer *timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, &Model::updateSpear);
+        timer->start(50);
+}
+
+void Model::updateSpear(){
+    int initX = spearX;
+    int initY = spearY;
+    // Prepare for simulation. Typically we use a time step of 1/60 of a
+    // second (60Hz) and 10 iterations. This provides a high quality simulation
+    // in most game scenarios.
+    float32 timeStep = 1.0f / 60.0f;
+    int32 velocityIterations = 6;
+    int32 positionIterations = 2;
+
+    // Instruct the world to perform a single step of simulation.
+    // It is generally best to keep the time step and iterations fixed.
+    world->Step(timeStep, velocityIterations, positionIterations);
+
+    // Now print the position and angle of the body.
+    b2Vec2 position = spear->GetPosition();
+    spearX = position.x*100;
+    spearY = position.y*100;
+
+    emit setUpSpear(initX, initY, spearX, spearY);
 }

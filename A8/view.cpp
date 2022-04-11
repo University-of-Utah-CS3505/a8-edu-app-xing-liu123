@@ -1,17 +1,27 @@
 #include "view.h"
 #include "model.h"
 #include "ui_view.h"
+#include <iostream>
+#include <QPropertyAnimation>
 
 View::View(Model &model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::View)
 {
     ui->setupUi(this);
+    this->centralWidget()->setMouseTracking(true);
+    this->setMouseTracking(true);
+
+
     //ui->widget->show();
     QPixmap pix;
     pix.load(":/fish1.png");
     QPixmap pix2;
     pix2.load(":/fish2.png");
+
+//    QPixmap spearPix;
+//    spearPix.load(":/spear.png");
+//    ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
 
     ui->stackedWidget->setCurrentIndex(0);
     time = new QTimer(this);
@@ -19,6 +29,8 @@ View::View(Model &model, QWidget *parent)
     ui->fish1Label->setPixmap(pix.scaled(ui->fish1Label->width(), ui->fish1Label->height()));
     ui->fish2Label->setPixmap(pix2.scaled(ui->fish2Label->width(), ui->fish2Label->height()));
     ui->fish3Label->setPixmap(pix.scaled(ui->fish3Label->width(), ui->fish3Label->height()));
+
+
 
     //Connections to set up first
     connect(ui->startButton,
@@ -56,6 +68,16 @@ View::View(Model &model, QWidget *parent)
             this,
             &View::startTime);
 
+    // connects for spear
+    connect(this,
+            &View::shootSpear,
+            &model,
+            &Model::startTimer);
+    connect(&model,
+            &Model::setUpSpear,
+            this,
+            &View::displaySpear);
+
 }
 
 
@@ -81,18 +103,39 @@ void View::on_startButton_clicked()
 
 //Display the fish labels into their new position
 void View::displayFish1(int x, int y){
-    ui->fish1Label->setGeometry(y * 100, x * 100,
+    ui->fish1Label->setGeometry(x * 100, y * 100,
                                 ui->fish1Label->width(), ui->fish1Label->height());
 }
 void View::displayFish2(int x, int y){
-    ui->fish2Label->setGeometry(y * 100, x * 100,
+    ui->fish2Label->setGeometry(x * 100, y * 100,
                                 ui->fish2Label->width(), ui->fish2Label->height());
 
 }
 void View::displayFish3(int x, int y){
-    ui->fish3Label->setGeometry(y * 100, x * 100,
+    ui->fish3Label->setGeometry(x * 100, y * 100,
                                 ui->fish3Label->width(), ui->fish3Label->height());
 
 }
 
+void View::displaySpear(int x1, int y1, int x2, int y2){
 
+        QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
+        animation->setDuration(50);
+        animation->setStartValue(QPoint(x1,y1));
+        animation->setEndValue(QPoint(x2,y2));
+        animation->setEasingCurve(QEasingCurve::Linear);
+        animation->start();
+}
+
+void View::hoverMoveEvent(QHoverEvent *event){
+    QPoint point = event->pos();
+    QString s("X: ");
+    s.append(QString::number(point.x()));
+    s.append(" Y: ");
+    s.append(QString::number(point.y()));
+    ui->locationLabel->setText(s);
+}
+
+void View::mousePressEvent(QMouseEvent *event){
+    emit shootSpear();
+}

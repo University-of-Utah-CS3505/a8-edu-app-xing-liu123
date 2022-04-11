@@ -69,6 +69,7 @@ signals:
     void setUpFish1(int x, int y);
     void setUpFish2(int x, int y);
     void setUpFish3(int x, int y);
+    void setUpSpear(int x1, int y1, int x2, int y2);
     void startTime();
 
 
@@ -79,6 +80,8 @@ public slots:
     void updateFish1();
     void updateFish2();
     void updateFish3();
+    void updateSpear();
+    void startTimer();
 
 
 private:
@@ -86,10 +89,15 @@ private:
     b2Body* fish1;
     b2Body* fish2;
     b2Body* fish3;
+    b2Body* spear;
+    int spearX;
+    int spearY;
     QTimer timer;
     void initFish1();
     void initFish2();
     void initFish3();
+    void initSpear();
+
 
 };
 

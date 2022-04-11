@@ -100,7 +100,10 @@ SOURCES       = ../A8/Box2D/Collision/Shapes/b2ChainShape.cpp \
 		../A8/Box2D/Rope/b2Rope.cpp \
 		../A8/main.cpp \
 		../A8/model.cpp \
-		../A8/view.cpp moc_model.cpp \
+		../A8/scenewidget.cpp \
+		../A8/view.cpp qrc_Images.cpp \
+		moc_model.cpp \
+		moc_scenewidget.cpp \
 		moc_view.cpp
 OBJECTS       = b2ChainShape.o \
 		b2CircleShape.o \
@@ -150,8 +153,11 @@ OBJECTS       = b2ChainShape.o \
 		b2Rope.o \
 		main.o \
 		model.o \
+		scenewidget.o \
 		view.o \
+		qrc_Images.o \
 		moc_model.o \
+		moc_scenewidget.o \
 		moc_view.o
 DIST          = ../A8/Box2D/Box2DConfig.cmake \
 		../A8/Box2D/CMakeLists.txt \
@@ -266,6 +272,7 @@ DIST          = ../A8/Box2D/Box2DConfig.cmake \
 		../../../../Qt/6.2.3/macos/mkspecs/features/qt_config.prf \
 		../../../../Qt/6.2.3/macos/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/6.2.3/macos/mkspecs/features/spec_post.prf \
+		../A8/.qmake.stash \
 		../../../../Qt/6.2.3/macos/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/6.2.3/macos/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/6.2.3/macos/mkspecs/features/toolchain.prf \
@@ -342,6 +349,7 @@ DIST          = ../A8/Box2D/Box2DConfig.cmake \
 		../A8/Box2D/Dynamics/b2WorldCallbacks.h \
 		../A8/Box2D/Rope/b2Rope.h \
 		../A8/model.h \
+		../A8/scenewidget.h \
 		../A8/view.h ../A8/Box2D/Collision/Shapes/b2ChainShape.cpp \
 		../A8/Box2D/Collision/Shapes/b2CircleShape.cpp \
 		../A8/Box2D/Collision/Shapes/b2EdgeShape.cpp \
@@ -390,6 +398,7 @@ DIST          = ../A8/Box2D/Box2DConfig.cmake \
 		../A8/Box2D/Rope/b2Rope.cpp \
 		../A8/main.cpp \
 		../A8/model.cpp \
+		../A8/scenewidget.cpp \
 		../A8/view.cpp
 QMAKE_TARGET  = A8
 DESTDIR       = 
@@ -399,7 +408,7 @@ TARGET        = A8.app/Contents/MacOS/A8
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 12.3
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Library/Developer/CommandLineTools
-EXPORT__QMAKE_STASH_ = 
+EXPORT__QMAKE_STASH_ = /Users/xingliu/Documents/GitHub/a8-edu-app-xing-liu123/build-A8-Qt_6_2_3_for_macOS-Debug/.qmake.stash
 EXPORT_VALID_ARCHS = x86_64 arm64
 EXPORT_DEFAULT_ARCHS = arm64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -526,6 +535,7 @@ Makefile: ../A8/A8.pro ../../../../Qt/6.2.3/macos/mkspecs/macx-clang/qmake.conf 
 		../../../../Qt/6.2.3/macos/mkspecs/features/qt_config.prf \
 		../../../../Qt/6.2.3/macos/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/6.2.3/macos/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/6.2.3/macos/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/6.2.3/macos/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/6.2.3/macos/mkspecs/features/toolchain.prf \
@@ -555,6 +565,7 @@ Makefile: ../A8/A8.pro ../../../../Qt/6.2.3/macos/mkspecs/macx-clang/qmake.conf 
 		../../../../Qt/6.2.3/macos/mkspecs/features/yacc.prf \
 		../../../../Qt/6.2.3/macos/mkspecs/features/lex.prf \
 		../A8/A8.pro \
+		../A8/Images.qrc \
 		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl \
 		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Resources/QtGui.prl \
 		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Resources/QtCore.prl
@@ -670,6 +681,7 @@ Makefile: ../A8/A8.pro ../../../../Qt/6.2.3/macos/mkspecs/macx-clang/qmake.conf 
 ../../../../Qt/6.2.3/macos/mkspecs/features/qt_config.prf:
 ../../../../Qt/6.2.3/macos/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt/6.2.3/macos/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/6.2.3/macos/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/6.2.3/macos/mkspecs/features/mac/sdk.prf:
 ../../../../Qt/6.2.3/macos/mkspecs/features/toolchain.prf:
@@ -699,6 +711,7 @@ Makefile: ../A8/A8.pro ../../../../Qt/6.2.3/macos/mkspecs/macx-clang/qmake.conf 
 ../../../../Qt/6.2.3/macos/mkspecs/features/yacc.prf:
 ../../../../Qt/6.2.3/macos/mkspecs/features/lex.prf:
 ../A8/A8.pro:
+../A8/Images.qrc:
 ../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl:
 ../../../../Qt/6.2.3/macos/lib/QtGui.framework/Resources/QtGui.prl:
 ../../../../Qt/6.2.3/macos/lib/QtCore.framework/Resources/QtCore.prl:
@@ -731,8 +744,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../A8/Box2D/Box2D.h ../A8/Box2D/Collision/Shapes/b2ChainShape.h ../A8/Box2D/Collision/Shapes/b2CircleShape.h ../A8/Box2D/Collision/Shapes/b2EdgeShape.h ../A8/Box2D/Collision/Shapes/b2PolygonShape.h ../A8/Box2D/Collision/Shapes/b2Shape.h ../A8/Box2D/Collision/b2BroadPhase.h ../A8/Box2D/Collision/b2Collision.h ../A8/Box2D/Collision/b2Distance.h ../A8/Box2D/Collision/b2DynamicTree.h ../A8/Box2D/Collision/b2TimeOfImpact.h ../A8/Box2D/Common/b2BlockAllocator.h ../A8/Box2D/Common/b2Draw.h ../A8/Box2D/Common/b2GrowableStack.h ../A8/Box2D/Common/b2Math.h ../A8/Box2D/Common/b2Settings.h ../A8/Box2D/Common/b2StackAllocator.h ../A8/Box2D/Common/b2Timer.h ../A8/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h ../A8/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h ../A8/Box2D/Dynamics/Contacts/b2CircleContact.h ../A8/Box2D/Dynamics/Contacts/b2Contact.h ../A8/Box2D/Dynamics/Contacts/b2ContactSolver.h ../A8/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h ../A8/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h ../A8/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h ../A8/Box2D/Dynamics/Contacts/b2PolygonContact.h ../A8/Box2D/Dynamics/Joints/b2DistanceJoint.h ../A8/Box2D/Dynamics/Joints/b2FrictionJoint.h ../A8/Box2D/Dynamics/Joints/b2GearJoint.h ../A8/Box2D/Dynamics/Joints/b2Joint.h ../A8/Box2D/Dynamics/Joints/b2MotorJoint.h ../A8/Box2D/Dynamics/Joints/b2MouseJoint.h ../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.h ../A8/Box2D/Dynamics/Joints/b2PulleyJoint.h ../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.h ../A8/Box2D/Dynamics/Joints/b2RopeJoint.h ../A8/Box2D/Dynamics/Joints/b2WeldJoint.h ../A8/Box2D/Dynamics/Joints/b2WheelJoint.h ../A8/Box2D/Dynamics/b2Body.h ../A8/Box2D/Dynamics/b2ContactManager.h ../A8/Box2D/Dynamics/b2Fixture.h ../A8/Box2D/Dynamics/b2Island.h ../A8/Box2D/Dynamics/b2TimeStep.h ../A8/Box2D/Dynamics/b2World.h ../A8/Box2D/Dynamics/b2WorldCallbacks.h ../A8/Box2D/Rope/b2Rope.h ../A8/model.h ../A8/view.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../A8/Box2D/Collision/Shapes/b2ChainShape.cpp ../A8/Box2D/Collision/Shapes/b2CircleShape.cpp ../A8/Box2D/Collision/Shapes/b2EdgeShape.cpp ../A8/Box2D/Collision/Shapes/b2PolygonShape.cpp ../A8/Box2D/Collision/b2BroadPhase.cpp ../A8/Box2D/Collision/b2CollideCircle.cpp ../A8/Box2D/Collision/b2CollideEdge.cpp ../A8/Box2D/Collision/b2CollidePolygon.cpp ../A8/Box2D/Collision/b2Collision.cpp ../A8/Box2D/Collision/b2Distance.cpp ../A8/Box2D/Collision/b2DynamicTree.cpp ../A8/Box2D/Collision/b2TimeOfImpact.cpp ../A8/Box2D/Common/b2BlockAllocator.cpp ../A8/Box2D/Common/b2Draw.cpp ../A8/Box2D/Common/b2Math.cpp ../A8/Box2D/Common/b2Settings.cpp ../A8/Box2D/Common/b2StackAllocator.cpp ../A8/Box2D/Common/b2Timer.cpp ../A8/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.cpp ../A8/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.cpp ../A8/Box2D/Dynamics/Contacts/b2CircleContact.cpp ../A8/Box2D/Dynamics/Contacts/b2Contact.cpp ../A8/Box2D/Dynamics/Contacts/b2ContactSolver.cpp ../A8/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.cpp ../A8/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.cpp ../A8/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.cpp ../A8/Box2D/Dynamics/Contacts/b2PolygonContact.cpp ../A8/Box2D/Dynamics/Joints/b2DistanceJoint.cpp ../A8/Box2D/Dynamics/Joints/b2FrictionJoint.cpp ../A8/Box2D/Dynamics/Joints/b2GearJoint.cpp ../A8/Box2D/Dynamics/Joints/b2Joint.cpp ../A8/Box2D/Dynamics/Joints/b2MotorJoint.cpp ../A8/Box2D/Dynamics/Joints/b2MouseJoint.cpp ../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.cpp ../A8/Box2D/Dynamics/Joints/b2PulleyJoint.cpp ../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp ../A8/Box2D/Dynamics/Joints/b2RopeJoint.cpp ../A8/Box2D/Dynamics/Joints/b2WeldJoint.cpp ../A8/Box2D/Dynamics/Joints/b2WheelJoint.cpp ../A8/Box2D/Dynamics/b2Body.cpp ../A8/Box2D/Dynamics/b2ContactManager.cpp ../A8/Box2D/Dynamics/b2Fixture.cpp ../A8/Box2D/Dynamics/b2Island.cpp ../A8/Box2D/Dynamics/b2World.cpp ../A8/Box2D/Dynamics/b2WorldCallbacks.cpp ../A8/Box2D/Rope/b2Rope.cpp ../A8/main.cpp ../A8/model.cpp ../A8/view.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../A8/Images.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../A8/Box2D/Box2D.h ../A8/Box2D/Collision/Shapes/b2ChainShape.h ../A8/Box2D/Collision/Shapes/b2CircleShape.h ../A8/Box2D/Collision/Shapes/b2EdgeShape.h ../A8/Box2D/Collision/Shapes/b2PolygonShape.h ../A8/Box2D/Collision/Shapes/b2Shape.h ../A8/Box2D/Collision/b2BroadPhase.h ../A8/Box2D/Collision/b2Collision.h ../A8/Box2D/Collision/b2Distance.h ../A8/Box2D/Collision/b2DynamicTree.h ../A8/Box2D/Collision/b2TimeOfImpact.h ../A8/Box2D/Common/b2BlockAllocator.h ../A8/Box2D/Common/b2Draw.h ../A8/Box2D/Common/b2GrowableStack.h ../A8/Box2D/Common/b2Math.h ../A8/Box2D/Common/b2Settings.h ../A8/Box2D/Common/b2StackAllocator.h ../A8/Box2D/Common/b2Timer.h ../A8/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h ../A8/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h ../A8/Box2D/Dynamics/Contacts/b2CircleContact.h ../A8/Box2D/Dynamics/Contacts/b2Contact.h ../A8/Box2D/Dynamics/Contacts/b2ContactSolver.h ../A8/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h ../A8/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h ../A8/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h ../A8/Box2D/Dynamics/Contacts/b2PolygonContact.h ../A8/Box2D/Dynamics/Joints/b2DistanceJoint.h ../A8/Box2D/Dynamics/Joints/b2FrictionJoint.h ../A8/Box2D/Dynamics/Joints/b2GearJoint.h ../A8/Box2D/Dynamics/Joints/b2Joint.h ../A8/Box2D/Dynamics/Joints/b2MotorJoint.h ../A8/Box2D/Dynamics/Joints/b2MouseJoint.h ../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.h ../A8/Box2D/Dynamics/Joints/b2PulleyJoint.h ../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.h ../A8/Box2D/Dynamics/Joints/b2RopeJoint.h ../A8/Box2D/Dynamics/Joints/b2WeldJoint.h ../A8/Box2D/Dynamics/Joints/b2WheelJoint.h ../A8/Box2D/Dynamics/b2Body.h ../A8/Box2D/Dynamics/b2ContactManager.h ../A8/Box2D/Dynamics/b2Fixture.h ../A8/Box2D/Dynamics/b2Island.h ../A8/Box2D/Dynamics/b2TimeStep.h ../A8/Box2D/Dynamics/b2World.h ../A8/Box2D/Dynamics/b2WorldCallbacks.h ../A8/Box2D/Rope/b2Rope.h ../A8/model.h ../A8/scenewidget.h ../A8/view.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../A8/Box2D/Collision/Shapes/b2ChainShape.cpp ../A8/Box2D/Collision/Shapes/b2CircleShape.cpp ../A8/Box2D/Collision/Shapes/b2EdgeShape.cpp ../A8/Box2D/Collision/Shapes/b2PolygonShape.cpp ../A8/Box2D/Collision/b2BroadPhase.cpp ../A8/Box2D/Collision/b2CollideCircle.cpp ../A8/Box2D/Collision/b2CollideEdge.cpp ../A8/Box2D/Collision/b2CollidePolygon.cpp ../A8/Box2D/Collision/b2Collision.cpp ../A8/Box2D/Collision/b2Distance.cpp ../A8/Box2D/Collision/b2DynamicTree.cpp ../A8/Box2D/Collision/b2TimeOfImpact.cpp ../A8/Box2D/Common/b2BlockAllocator.cpp ../A8/Box2D/Common/b2Draw.cpp ../A8/Box2D/Common/b2Math.cpp ../A8/Box2D/Common/b2Settings.cpp ../A8/Box2D/Common/b2StackAllocator.cpp ../A8/Box2D/Common/b2Timer.cpp ../A8/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.cpp ../A8/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.cpp ../A8/Box2D/Dynamics/Contacts/b2CircleContact.cpp ../A8/Box2D/Dynamics/Contacts/b2Contact.cpp ../A8/Box2D/Dynamics/Contacts/b2ContactSolver.cpp ../A8/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.cpp ../A8/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.cpp ../A8/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.cpp ../A8/Box2D/Dynamics/Contacts/b2PolygonContact.cpp ../A8/Box2D/Dynamics/Joints/b2DistanceJoint.cpp ../A8/Box2D/Dynamics/Joints/b2FrictionJoint.cpp ../A8/Box2D/Dynamics/Joints/b2GearJoint.cpp ../A8/Box2D/Dynamics/Joints/b2Joint.cpp ../A8/Box2D/Dynamics/Joints/b2MotorJoint.cpp ../A8/Box2D/Dynamics/Joints/b2MouseJoint.cpp ../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.cpp ../A8/Box2D/Dynamics/Joints/b2PulleyJoint.cpp ../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.cpp ../A8/Box2D/Dynamics/Joints/b2RopeJoint.cpp ../A8/Box2D/Dynamics/Joints/b2WeldJoint.cpp ../A8/Box2D/Dynamics/Joints/b2WheelJoint.cpp ../A8/Box2D/Dynamics/b2Body.cpp ../A8/Box2D/Dynamics/b2ContactManager.cpp ../A8/Box2D/Dynamics/b2Fixture.cpp ../A8/Box2D/Dynamics/b2Island.cpp ../A8/Box2D/Dynamics/b2World.cpp ../A8/Box2D/Dynamics/b2WorldCallbacks.cpp ../A8/Box2D/Rope/b2Rope.cpp ../A8/main.cpp ../A8/model.cpp ../A8/scenewidget.cpp ../A8/view.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../A8/view.ui $(DISTDIR)/
 
 
@@ -743,6 +757,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r A8.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -759,20 +774,158 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_Images.cpp
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_model.cpp moc_view.cpp
+	-$(DEL_FILE) qrc_Images.cpp
+qrc_Images.cpp: ../A8/Images.qrc \
+		../../../../Qt/6.2.3/macos/libexec/rcc \
+		../A8/fish1.png \
+		../A8/fish3.jpg \
+		../A8/fish2.png
+	/Users/xingliu/Qt/6.2.3/macos/libexec/rcc -name Images ../A8/Images.qrc -o qrc_Images.cpp
+
+compiler_moc_header_make_all: moc_model.cpp moc_scenewidget.cpp moc_view.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_model.cpp moc_view.cpp
+	-$(DEL_FILE) moc_model.cpp moc_scenewidget.cpp moc_view.cpp
 moc_model.cpp: ../A8/model.h \
 		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QObject \
 		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qobject.h \
+		../A8/Box2D/Box2D.h \
+		../A8/Box2D/Common/b2Settings.h \
+		../A8/Box2D/Common/b2Draw.h \
+		../A8/Box2D/Common/b2Math.h \
+		../A8/Box2D/Common/b2Timer.h \
+		../A8/Box2D/Collision/Shapes/b2CircleShape.h \
+		../A8/Box2D/Collision/Shapes/b2Shape.h \
+		../A8/Box2D/Common/b2BlockAllocator.h \
+		../A8/Box2D/Collision/b2Collision.h \
+		../A8/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../A8/Box2D/Collision/Shapes/b2ChainShape.h \
+		../A8/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../A8/Box2D/Collision/b2BroadPhase.h \
+		../A8/Box2D/Collision/b2DynamicTree.h \
+		../A8/Box2D/Common/b2GrowableStack.h \
+		../A8/Box2D/Collision/b2Distance.h \
+		../A8/Box2D/Collision/b2TimeOfImpact.h \
+		../A8/Box2D/Dynamics/b2Body.h \
+		../A8/Box2D/Dynamics/b2Fixture.h \
+		../A8/Box2D/Dynamics/b2WorldCallbacks.h \
+		../A8/Box2D/Dynamics/b2TimeStep.h \
+		../A8/Box2D/Dynamics/b2World.h \
+		../A8/Box2D/Common/b2StackAllocator.h \
+		../A8/Box2D/Dynamics/b2ContactManager.h \
+		../A8/Box2D/Dynamics/Contacts/b2Contact.h \
+		../A8/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2Joint.h \
+		../A8/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qtimer.h \
 		../../../../Qt/6.2.3/macos/libexec/moc
 	/Users/xingliu/Qt/6.2.3/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=1 -D__clang_patchlevel__=6 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/xingliu/Qt/6.2.3/macos/mkspecs/macx-clang -I/Users/xingliu/Documents/GitHub/a8-edu-app-xing-liu123/A8 -I/Users/xingliu/Qt/6.2.3/macos/lib/QtWidgets.framework/Headers -I/Users/xingliu/Qt/6.2.3/macos/lib/QtGui.framework/Headers -I/Users/xingliu/Qt/6.2.3/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/xingliu/Qt/6.2.3/macos/lib ../A8/model.h -o moc_model.cpp
+
+moc_scenewidget.cpp: ../A8/scenewidget.h \
+		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../A8/Box2D/Box2D.h \
+		../A8/Box2D/Common/b2Settings.h \
+		../A8/Box2D/Common/b2Draw.h \
+		../A8/Box2D/Common/b2Math.h \
+		../A8/Box2D/Common/b2Timer.h \
+		../A8/Box2D/Collision/Shapes/b2CircleShape.h \
+		../A8/Box2D/Collision/Shapes/b2Shape.h \
+		../A8/Box2D/Common/b2BlockAllocator.h \
+		../A8/Box2D/Collision/b2Collision.h \
+		../A8/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../A8/Box2D/Collision/Shapes/b2ChainShape.h \
+		../A8/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../A8/Box2D/Collision/b2BroadPhase.h \
+		../A8/Box2D/Collision/b2DynamicTree.h \
+		../A8/Box2D/Common/b2GrowableStack.h \
+		../A8/Box2D/Collision/b2Distance.h \
+		../A8/Box2D/Collision/b2TimeOfImpact.h \
+		../A8/Box2D/Dynamics/b2Body.h \
+		../A8/Box2D/Dynamics/b2Fixture.h \
+		../A8/Box2D/Dynamics/b2WorldCallbacks.h \
+		../A8/Box2D/Dynamics/b2TimeStep.h \
+		../A8/Box2D/Dynamics/b2World.h \
+		../A8/Box2D/Common/b2StackAllocator.h \
+		../A8/Box2D/Dynamics/b2ContactManager.h \
+		../A8/Box2D/Dynamics/Contacts/b2Contact.h \
+		../A8/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2Joint.h \
+		../A8/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qtimer.h \
+		../../../../Qt/6.2.3/macos/libexec/moc
+	/Users/xingliu/Qt/6.2.3/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=1 -D__clang_patchlevel__=6 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/xingliu/Qt/6.2.3/macos/mkspecs/macx-clang -I/Users/xingliu/Documents/GitHub/a8-edu-app-xing-liu123/A8 -I/Users/xingliu/Qt/6.2.3/macos/lib/QtWidgets.framework/Headers -I/Users/xingliu/Qt/6.2.3/macos/lib/QtGui.framework/Headers -I/Users/xingliu/Qt/6.2.3/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/xingliu/Qt/6.2.3/macos/lib ../A8/scenewidget.h -o moc_scenewidget.cpp
 
 moc_view.cpp: ../A8/view.h \
 		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../A8/Box2D/Box2D.h \
+		../A8/Box2D/Common/b2Settings.h \
+		../A8/Box2D/Common/b2Draw.h \
+		../A8/Box2D/Common/b2Math.h \
+		../A8/Box2D/Common/b2Timer.h \
+		../A8/Box2D/Collision/Shapes/b2CircleShape.h \
+		../A8/Box2D/Collision/Shapes/b2Shape.h \
+		../A8/Box2D/Common/b2BlockAllocator.h \
+		../A8/Box2D/Collision/b2Collision.h \
+		../A8/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../A8/Box2D/Collision/Shapes/b2ChainShape.h \
+		../A8/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../A8/Box2D/Collision/b2BroadPhase.h \
+		../A8/Box2D/Collision/b2DynamicTree.h \
+		../A8/Box2D/Common/b2GrowableStack.h \
+		../A8/Box2D/Collision/b2Distance.h \
+		../A8/Box2D/Collision/b2TimeOfImpact.h \
+		../A8/Box2D/Dynamics/b2Body.h \
+		../A8/Box2D/Dynamics/b2Fixture.h \
+		../A8/Box2D/Dynamics/b2WorldCallbacks.h \
+		../A8/Box2D/Dynamics/b2TimeStep.h \
+		../A8/Box2D/Dynamics/b2World.h \
+		../A8/Box2D/Common/b2StackAllocator.h \
+		../A8/Box2D/Dynamics/b2ContactManager.h \
+		../A8/Box2D/Dynamics/Contacts/b2Contact.h \
+		../A8/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2Joint.h \
+		../A8/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qtimer.h \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/QPainter \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/qpainter.h \
+		../A8/model.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/QMouseEvent \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/qevent.h \
 		../../../../Qt/6.2.3/macos/libexec/moc
 	/Users/xingliu/Qt/6.2.3/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=1 -D__clang_patchlevel__=6 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/xingliu/Qt/6.2.3/macos/mkspecs/macx-clang -I/Users/xingliu/Documents/GitHub/a8-edu-app-xing-liu123/A8 -I/Users/xingliu/Qt/6.2.3/macos/lib/QtWidgets.framework/Headers -I/Users/xingliu/Qt/6.2.3/macos/lib/QtGui.framework/Headers -I/Users/xingliu/Qt/6.2.3/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/xingliu/Qt/6.2.3/macos/lib ../A8/view.h -o moc_view.cpp
 
@@ -795,7 +948,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -1342,23 +1495,210 @@ b2Rope.o: ../A8/Box2D/Rope/b2Rope.cpp ../A8/Box2D/Rope/b2Rope.h \
 main.o: ../A8/main.cpp ../A8/view.h \
 		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../A8/Box2D/Box2D.h \
+		../A8/Box2D/Common/b2Settings.h \
+		../A8/Box2D/Common/b2Draw.h \
+		../A8/Box2D/Common/b2Math.h \
+		../A8/Box2D/Common/b2Timer.h \
+		../A8/Box2D/Collision/Shapes/b2CircleShape.h \
+		../A8/Box2D/Collision/Shapes/b2Shape.h \
+		../A8/Box2D/Common/b2BlockAllocator.h \
+		../A8/Box2D/Collision/b2Collision.h \
+		../A8/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../A8/Box2D/Collision/Shapes/b2ChainShape.h \
+		../A8/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../A8/Box2D/Collision/b2BroadPhase.h \
+		../A8/Box2D/Collision/b2DynamicTree.h \
+		../A8/Box2D/Common/b2GrowableStack.h \
+		../A8/Box2D/Collision/b2Distance.h \
+		../A8/Box2D/Collision/b2TimeOfImpact.h \
+		../A8/Box2D/Dynamics/b2Body.h \
+		../A8/Box2D/Dynamics/b2Fixture.h \
+		../A8/Box2D/Dynamics/b2WorldCallbacks.h \
+		../A8/Box2D/Dynamics/b2TimeStep.h \
+		../A8/Box2D/Dynamics/b2World.h \
+		../A8/Box2D/Common/b2StackAllocator.h \
+		../A8/Box2D/Dynamics/b2ContactManager.h \
+		../A8/Box2D/Dynamics/Contacts/b2Contact.h \
+		../A8/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2Joint.h \
+		../A8/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qtimer.h \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/QPainter \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/qpainter.h \
+		../A8/model.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/QMouseEvent \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/qevent.h \
 		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/QApplication \
 		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../A8/main.cpp
 
 model.o: ../A8/model.cpp ../A8/model.h \
 		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QObject \
-		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qobject.h
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qobject.h \
+		../A8/Box2D/Box2D.h \
+		../A8/Box2D/Common/b2Settings.h \
+		../A8/Box2D/Common/b2Draw.h \
+		../A8/Box2D/Common/b2Math.h \
+		../A8/Box2D/Common/b2Timer.h \
+		../A8/Box2D/Collision/Shapes/b2CircleShape.h \
+		../A8/Box2D/Collision/Shapes/b2Shape.h \
+		../A8/Box2D/Common/b2BlockAllocator.h \
+		../A8/Box2D/Collision/b2Collision.h \
+		../A8/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../A8/Box2D/Collision/Shapes/b2ChainShape.h \
+		../A8/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../A8/Box2D/Collision/b2BroadPhase.h \
+		../A8/Box2D/Collision/b2DynamicTree.h \
+		../A8/Box2D/Common/b2GrowableStack.h \
+		../A8/Box2D/Collision/b2Distance.h \
+		../A8/Box2D/Collision/b2TimeOfImpact.h \
+		../A8/Box2D/Dynamics/b2Body.h \
+		../A8/Box2D/Dynamics/b2Fixture.h \
+		../A8/Box2D/Dynamics/b2WorldCallbacks.h \
+		../A8/Box2D/Dynamics/b2TimeStep.h \
+		../A8/Box2D/Dynamics/b2World.h \
+		../A8/Box2D/Common/b2StackAllocator.h \
+		../A8/Box2D/Dynamics/b2ContactManager.h \
+		../A8/Box2D/Dynamics/Contacts/b2Contact.h \
+		../A8/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2Joint.h \
+		../A8/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qtimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o ../A8/model.cpp
+
+scenewidget.o: ../A8/scenewidget.cpp ../A8/scenewidget.h \
+		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../A8/Box2D/Box2D.h \
+		../A8/Box2D/Common/b2Settings.h \
+		../A8/Box2D/Common/b2Draw.h \
+		../A8/Box2D/Common/b2Math.h \
+		../A8/Box2D/Common/b2Timer.h \
+		../A8/Box2D/Collision/Shapes/b2CircleShape.h \
+		../A8/Box2D/Collision/Shapes/b2Shape.h \
+		../A8/Box2D/Common/b2BlockAllocator.h \
+		../A8/Box2D/Collision/b2Collision.h \
+		../A8/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../A8/Box2D/Collision/Shapes/b2ChainShape.h \
+		../A8/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../A8/Box2D/Collision/b2BroadPhase.h \
+		../A8/Box2D/Collision/b2DynamicTree.h \
+		../A8/Box2D/Common/b2GrowableStack.h \
+		../A8/Box2D/Collision/b2Distance.h \
+		../A8/Box2D/Collision/b2TimeOfImpact.h \
+		../A8/Box2D/Dynamics/b2Body.h \
+		../A8/Box2D/Dynamics/b2Fixture.h \
+		../A8/Box2D/Dynamics/b2WorldCallbacks.h \
+		../A8/Box2D/Dynamics/b2TimeStep.h \
+		../A8/Box2D/Dynamics/b2World.h \
+		../A8/Box2D/Common/b2StackAllocator.h \
+		../A8/Box2D/Dynamics/b2ContactManager.h \
+		../A8/Box2D/Dynamics/Contacts/b2Contact.h \
+		../A8/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2Joint.h \
+		../A8/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qtimer.h \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/QPainter \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/qpainter.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scenewidget.o ../A8/scenewidget.cpp
 
 view.o: ../A8/view.cpp ../A8/view.h \
 		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/6.2.3/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		ui_view.h
+		../A8/Box2D/Box2D.h \
+		../A8/Box2D/Common/b2Settings.h \
+		../A8/Box2D/Common/b2Draw.h \
+		../A8/Box2D/Common/b2Math.h \
+		../A8/Box2D/Common/b2Timer.h \
+		../A8/Box2D/Collision/Shapes/b2CircleShape.h \
+		../A8/Box2D/Collision/Shapes/b2Shape.h \
+		../A8/Box2D/Common/b2BlockAllocator.h \
+		../A8/Box2D/Collision/b2Collision.h \
+		../A8/Box2D/Collision/Shapes/b2EdgeShape.h \
+		../A8/Box2D/Collision/Shapes/b2ChainShape.h \
+		../A8/Box2D/Collision/Shapes/b2PolygonShape.h \
+		../A8/Box2D/Collision/b2BroadPhase.h \
+		../A8/Box2D/Collision/b2DynamicTree.h \
+		../A8/Box2D/Common/b2GrowableStack.h \
+		../A8/Box2D/Collision/b2Distance.h \
+		../A8/Box2D/Collision/b2TimeOfImpact.h \
+		../A8/Box2D/Dynamics/b2Body.h \
+		../A8/Box2D/Dynamics/b2Fixture.h \
+		../A8/Box2D/Dynamics/b2WorldCallbacks.h \
+		../A8/Box2D/Dynamics/b2TimeStep.h \
+		../A8/Box2D/Dynamics/b2World.h \
+		../A8/Box2D/Common/b2StackAllocator.h \
+		../A8/Box2D/Dynamics/b2ContactManager.h \
+		../A8/Box2D/Dynamics/Contacts/b2Contact.h \
+		../A8/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2Joint.h \
+		../A8/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2GearJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MotorJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2MouseJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2RopeJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WeldJoint.h \
+		../A8/Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qtimer.h \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/QPainter \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/qpainter.h \
+		../A8/model.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/QMouseEvent \
+		../../../../Qt/6.2.3/macos/lib/QtGui.framework/Headers/qevent.h \
+		ui_view.h \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		../../../../Qt/6.2.3/macos/lib/QtCore.framework/Headers/qpropertyanimation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o view.o ../A8/view.cpp
+
+qrc_Images.o: qrc_Images.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_Images.o qrc_Images.cpp
 
 moc_model.o: moc_model.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_model.o moc_model.cpp
+
+moc_scenewidget.o: moc_scenewidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_scenewidget.o moc_scenewidget.cpp
 
 moc_view.o: moc_view.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_view.o moc_view.cpp
