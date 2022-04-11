@@ -14,44 +14,102 @@
    <string>View</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="fish1Label">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>230</y>
-      <width>141</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>fish1</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="fish2Label">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>380</y>
-      <width>71</width>
-      <height>61</height>
+      <y>10</y>
+      <width>771</width>
+      <height>551</height>
      </rect>
     </property>
-    <property name="text">
-     <string>fish2</string>
+    <property name="currentIndex">
+     <number>1</number>
     </property>
-   </widget>
-   <widget class="QLabel" name="fish3Label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>450</y>
-      <width>141</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>fish3</string>
-    </property>
+    <widget class="QWidget" name="MainMenuPage">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>411</width>
+        <height>261</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="startButton">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>190</y>
+        <width>80</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="FishingPage">
+     <widget class="QLabel" name="fish1Label">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>300</y>
+        <width>111</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fish 1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="fish2Label">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>390</y>
+        <width>111</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fish 2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="fish3Label">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>480</y>
+        <width>111</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fish 3</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="JournalPage">
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>10</y>
+        <width>451</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -2,6 +2,8 @@
 #define MODEL_H
 
 #include <QObject>
+#include <Box2D/Box2D.h>
+#include <QTimer>
 
 enum class TypeOfWater{
     TOW_FreshWater,
@@ -48,14 +50,46 @@ enum class FreshWaterFish{
     FWF_NeonTetra
 };
 
+// For screen transition
+enum class CurrentScreen{
+    CS_Start,
+    CS_Fishing,
+    CS_Journal,
+    CS_FishInfo
+};
+
 class Model : public QObject
 {
     Q_OBJECT
 public:
     explicit Model(QObject *parent = nullptr);
+    ~Model();
 
 signals:
+    void setUpFish1(int x, int y);
+    void setUpFish2(int x, int y);
+    void setUpFish3(int x, int y);
+    void startTime();
 
+
+
+//Discuss with TEAM why private not working
+public slots:
+    void setUpWorld();
+    void updateFish1();
+    void updateFish2();
+    void updateFish3();
+
+
+private:
+    b2World *world;
+    b2Body* fish1;
+    b2Body* fish2;
+    b2Body* fish3;
+    QTimer timer;
+    void initFish1();
+    void initFish2();
+    void initFish3();
 
 };
 
