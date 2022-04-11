@@ -14,12 +14,11 @@ View::View(Model &model, QWidget *parent)
     pix2.load(":/fish2.png");
 
     ui->stackedWidget->setCurrentIndex(0);
+    time = new QTimer(this);
 
     ui->fish1Label->setPixmap(pix.scaled(ui->fish1Label->width(), ui->fish1Label->height()));
     ui->fish2Label->setPixmap(pix2.scaled(ui->fish2Label->width(), ui->fish2Label->height()));
     ui->fish3Label->setPixmap(pix.scaled(ui->fish3Label->width(), ui->fish3Label->height()));
-
-    time->start(200);
 
     //Connections to set up first
     connect(ui->startButton,
@@ -69,7 +68,7 @@ View::~View()
 
 //Start timer.
 void View::startTime(){
-    time->start(50);
+    time->start(75);
 }
 
 
