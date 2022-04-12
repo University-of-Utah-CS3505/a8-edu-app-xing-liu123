@@ -1,5 +1,5 @@
 QT       += core gui
-QT       += multimedia
+#QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -56,6 +56,7 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
+    hitlistener.cpp \
     main.cpp \
     model.cpp \
     scenewidget.cpp \
@@ -109,6 +110,7 @@ HEADERS += \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
+    hitlistener.h \
     model.h \
     scenewidget.h \
     view.h

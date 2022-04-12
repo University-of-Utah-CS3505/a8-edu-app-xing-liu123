@@ -3,8 +3,9 @@
 
 #include <QObject>
 #include <Box2D/Box2D.h>
-#include <QAudio>
+//#include <QAudio>
 #include <QTimer>
+#include "hitlistener.h"
 
 enum class TypeOfWater{
     TOW_FreshWater,
@@ -98,6 +99,8 @@ private:
     void initFish2();
     void initFish3();
     void initSpear();
+    HitListener *contactListener;
+
 
 
 };

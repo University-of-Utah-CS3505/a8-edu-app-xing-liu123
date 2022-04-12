@@ -18,6 +18,9 @@ void Model::setUpWorld(){
     b2Vec2 gravity(0.0f, 0.0f);
     // Construct a world object, which will hold and simulate the rigid bodies.
     world = new b2World(gravity);
+    // Create contact listener
+    contactListener = new HitListener();
+    world->SetContactListener(contactListener);
     //Call to initialize the fishes (bodies)
     spearX = 400;
     spearY = 0;
