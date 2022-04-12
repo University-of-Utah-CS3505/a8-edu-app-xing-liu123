@@ -11,6 +11,7 @@ View::View(Model &model, QWidget *parent)
 
     ui->setupUi(this);
     this->setMouseTracking(true);
+    spearImage.load(":/spear.png");
 
     // Audios
         // Uncomment this when working on audios
@@ -142,22 +143,57 @@ void View::displaySpear(int x1, int y1, int x2, int y2){
 }
 
 void View::mouseMoveEvent(QMouseEvent *event){
+
+//    if(point.x() <= this->size().width() && point.y() <= this->size().height()
+//            && point.x() > 0 && point.y() > 0 ){
+//        QString s("X: ");
+//        s.append(QString::number(point.x()));
+//        s.append(" Y: ");
+//        s.append(QString::number(point.y()));
+//        ui->locationLabel->setText(s);
+//    }
+
     QPoint point = event->pos();
+    QImage rotated;
+    QPixmap spearPix;
 
+    if(point.y() > 75){
+        double deltaX = point.x() - 400;
+        double deltaY = point.y() - 75;
+        double radian = -atan(deltaX/deltaY);
+        double angle = radian*180 / M_PI;
 
-    if(point.x() <= this->size().width() && point.y() <= this->size().height()
-            && point.x() > 0 && point.y() > 0 ){
-//        std::cout << point.x() <<" " << point.y() << std::endl;
-        QString s("X: ");
-        s.append(QString::number(point.x()));
-        s.append(" Y: ");
-        s.append(QString::number(point.y()));
-        ui->locationLabel->setText(s);
+        rotated = spearImage.transformed(QTransform().rotate(angle));
+        spearPix = QPixmap::fromImage(rotated.scaled(150*(sin(abs(radian)) + cos(abs(radian))),150*(sin(abs(radian)) + cos(abs(radian)))));
     }
+    else if(point.x() <= 400){
+        rotated = spearImage.transformed(QTransform().rotate(90));
+        spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
+    }
+    else{
+        rotated = spearImage.transformed(QTransform().rotate(-90));
+        spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
+    }
+
+    ui->spearLabel->setAlignment(Qt::AlignCenter);
+
+    ui->spearLabel->setPixmap(spearPix);
 }
 
 void View::mousePressEvent(QMouseEvent *event){
-    emit shootSpear();
+
+    QPoint point = event->pos();
+    if(point.y() > 75){
+        float x = point.x() - 400;
+        float y = point.y() - 75;
+        emit shootSpear(x, y);
+    }
+    else if(point.x() <= 400){
+        emit shootSpear(-1, 0);
+    }
+    else{
+        emit shootSpear(1, 0);
+    }
 }
 
     // Uncomment this when working on audios

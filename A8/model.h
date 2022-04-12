@@ -84,7 +84,7 @@ public slots:
     void updateFish2();
     void updateFish3();
     void updateSpear();
-    void startTimer();
+    void startTimer(float x, float y);
 
 
 private:

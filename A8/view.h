@@ -32,7 +32,7 @@ public:
 
 signals:
     void newPositiontValue(int height, int width);
-    void shootSpear();
+    void shootSpear(float x, float y);
 
 private slots:
     void displayFish1(int x, int y);
@@ -48,6 +48,7 @@ private slots:
 private:
     Ui::View *ui;
     QTimer * time;
+    QImage spearImage;
 
     // Uncomment this when working on audios
 //    QMediaPlayer* bgmPlayer = new QMediaPlayer;
