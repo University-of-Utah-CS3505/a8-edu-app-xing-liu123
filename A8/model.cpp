@@ -1,5 +1,7 @@
 #include "model.h"
 #include <iostream>
+#include <QFile>
+#include <QTextStream>
 
 
 Model::Model(QObject *parent)
@@ -278,4 +280,63 @@ void Model::updateSpear(){
     std::cout << "Initial: " << initX << " " << initY <<" Final: "<< spearX <<" " << spearY << std::endl;
 
     emit setUpSpear(initX, initY, spearX, spearY);
+}
+
+void Model::loadInfoQ(){
+    QFile inputFile(QString(":/fishQuestionAnswers.txt"));
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+
+       int count = 0;
+       QString line;
+       QString currentFish;
+       QMap<QString,QString> test;
+       while (!in.atEnd())
+       {
+           line = in.readLine();
+          if(count == 0)
+          {
+              currentFish = line;
+              count++;
+          }
+
+          else if(line.contains("What is my Name?"))
+          {
+              line = line.trimmed().split(":")[1];
+              test.insert("What is my Name?", line);
+              count++;
+          }
+          else if(line.contains("How big can I get?"))
+          {
+              line = line.trimmed().split(":")[1];
+              test.insert("How big can I get?", line);
+              count++;
+          }
+          else if(line.contains("Where can you find me?"))
+          {
+              line = line.trimmed().split(":")[1];
+              test.insert("Where can you find me?", line);
+              count++;
+          }
+          else if(line.contains("Am I an endangered species?"))
+          {
+              line = line.trimmed().split(":")[1];
+              test.insert("Am I an endangered species?", line);
+              fishQA.insert(currentFish, test);
+              count = 0;
+              test.clear();
+          }
+       }
+
+       inputFile.close();
+    }
+
+    //for testing purposes
+//    for(QMap<QString,QString> str: fishQA.values())
+//    {
+//        std::cout << str.value("What is my Name?").toStdString() << std::endl;
+//        std::cout << str.value("How big can I get?").toStdString() << std::endl;
+//        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
+//    }
 }

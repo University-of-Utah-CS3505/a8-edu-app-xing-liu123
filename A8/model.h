@@ -5,6 +5,7 @@
 #include <Box2D/Box2D.h>
 //#include <QAudio>
 #include <QTimer>
+#include <QMap>
 #include "hitlistener.h"
 
 enum class TypeOfWater{
@@ -102,6 +103,10 @@ private:
     HitListener *contactListener;
 
 
+    //testing question info
+    QMultiMap<QString, QMap<QString, QString> > fishQA;
+
+    void loadInfoQ();
 
 };
 
