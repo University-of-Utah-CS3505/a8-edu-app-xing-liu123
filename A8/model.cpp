@@ -7,6 +7,7 @@
 Model::Model(QObject *parent)
     : QObject{parent}
 {
+    loadInfoQ();
 
 }
 
@@ -323,6 +324,12 @@ void Model::loadInfoQ(){
           {
               line = line.trimmed().split(":")[1];
               test.insert("Am I an endangered species?", line);
+
+          }
+          else if(line.contains("filepath"))
+          {
+              line = line.trimmed().split(" ")[1];
+              test.insert("filepath", line);
               fishQA.insert(currentFish, test);
               count = 0;
               test.clear();
@@ -333,10 +340,13 @@ void Model::loadInfoQ(){
     }
 
     //for testing purposes
-//    for(QMap<QString,QString> str: fishQA.values())
-//    {
+    int count = 1;
+    for(QMap<QString,QString> str: fishQA.values())
+    {
+        std::cout << count++ << std::endl;
 //        std::cout << str.value("What is my Name?").toStdString() << std::endl;
 //        std::cout << str.value("How big can I get?").toStdString() << std::endl;
 //        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
-//    }
+        std::cout << str.value("filepath").toStdString() <<std::endl;
+    }
 }
