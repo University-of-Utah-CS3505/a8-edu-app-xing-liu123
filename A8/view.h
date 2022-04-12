@@ -9,6 +9,11 @@
 #include <QMouseEvent>
 #include <QHoverEvent>
 
+    // Uncomment this when working on audios
+//#include <QMediaPlayer>
+//#include <QAudioOutput>
+//#include <QAudioDevice>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class View; }
 QT_END_NAMESPACE
@@ -35,6 +40,8 @@ private slots:
     void displayFish3(int x, int y);
     void displaySpear(int x1, int y1, int x2, int y2);
     void startTime();
+    // Uncomment this when working on audios
+//    void playmedia(QMediaPlayer::MediaStatus status);
 
     void on_startButton_clicked();
 
@@ -42,6 +49,11 @@ private:
     Ui::View *ui;
     QTimer * time;
 
+    // Uncomment this when working on audios
+//    QMediaPlayer* bgmPlayer = new QMediaPlayer;
+//    QAudioOutput* bgmOutput = new QAudioOutput;
+//    QAudioOutput* soundEffectOutput = new QAudioOutput;
+//    QAudioDevice* audioDevice = new QAudioDevice;
 };
 #endif // VIEW_H
 

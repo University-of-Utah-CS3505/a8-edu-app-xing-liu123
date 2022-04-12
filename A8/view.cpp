@@ -12,8 +12,16 @@ View::View(Model &model, QWidget *parent)
     ui->setupUi(this);
     this->setMouseTracking(true);
 
+    // Audios
+        // Uncomment this when working on audios
+//    bgmPlayer->setAudioOutput(bgmOutput);
+//    bgmPlayer->setSource(QUrl("qrc:/new/audio/Water_Churning.mp3"));
+//    bgmOutput->setVolume(50);
+//    connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playmedia);
 
-    //ui->widget->show();
+
+
+    // ui->widget->show();
     QPixmap pix;
     pix.load(":/fish1.png");
     QPixmap pix2;
@@ -85,6 +93,12 @@ View::~View()
 {
     delete ui;
     delete time;
+
+    // Uncomment this when working on audios
+//    delete bgmPlayer;
+//    delete bgmOutput;
+//    delete soundEffectOutput;
+//    delete audioDevice;
 }
 
 
@@ -145,3 +159,13 @@ void View::mouseMoveEvent(QMouseEvent *event){
 void View::mousePressEvent(QMouseEvent *event){
     emit shootSpear();
 }
+
+    // Uncomment this when working on audios
+//void View::playmedia(QMediaPlayer::MediaStatus status){
+//    if (bgmPlayer->hasAudio()){
+//        bgmPlayer->play();
+//    }
+//    else{
+//        std::cout << "No media found" << std::endl;
+//    }
+//}
