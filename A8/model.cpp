@@ -2,14 +2,16 @@
 #include <iostream>
 #include <QFile>
 #include <QTextStream>
+#include <QImage>
+#include <QPixmap>
 
 
 Model::Model(QObject *parent)
     : QObject{parent}
 {
     loadInfoQ();
-
-
+    spearImage.load(":/spear.png");
+    isShot = false;
 }
 
 Model::~Model(){
@@ -138,7 +140,6 @@ void Model::initFish3(){
     b2PolygonShape dynamicFish;
     dynamicFish.SetAsBox(1.0f, 0.1f);
 
-
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDefFish;
 
@@ -164,18 +165,14 @@ void Model::initSpear(){
     bodySpearDef.position.Set(4.00f, 0.75f);
     spear = world->CreateBody(&bodySpearDef);
 
-
-
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
     dynamicSpear.SetAsBox(1.0f, 1.0f);
-
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
 
     fixtureDef.shape = &dynamicSpear;
-
 
     // Set the box density to be non-zero, so it will be dynamic.
     fixtureDef.density = 1.0f;
@@ -202,7 +199,6 @@ void Model::updateFish1(){
     // Instruct the world to perform a single step of simulation.
     // It is generally best to keep the time step and iterations fixed.
     world->Step(timeStep, velocityIterations, positionIterations);
-
 
     //When the position of the fish is outside our window it will start again
     if(fish1->GetPosition().x > 9){
@@ -263,9 +259,33 @@ void Model::updateFish3(){
     emit setUpFish3(position.x, position.y);
 }
 
-void Model::startTimer(float x, float y){
-    b2Vec2 velocity(x*sqrt(50/(pow(x,2)+pow(y,2))), y*sqrt(50/(pow(x,2)+pow(y,2))));
+void Model::startTimer(int x, int y){
+    isShot = true;
+    float velocityX = 0;
+    float velocityY = 0;
+    float angle = 0;
+
+    if(y > 75){
+        velocityX = x - 400;
+        velocityY = y - 75;
+        angle = -atan(x/y)*180 / M_PI;
+    }
+    else if(x <= 400){
+        velocityX = -1;
+        velocityY = 0;
+        angle = 90;
+    }
+    else{
+        velocityX = 1;
+        velocityY = 0;
+        angle = -90;
+    }
+
+    // normolize the velocity
+    b2Vec2 velocity(velocityX*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))));
     spear->SetLinearVelocity(velocity);
+    spear->SetTransform(spear->GetPosition(), angle);
+
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateSpear);
     timer->start(100);
@@ -277,7 +297,6 @@ void Model::notifyCollision()
 }
 
 void Model::updateSpear(){
-
     int initX = spearX - 75;
     int initY = spearY - 75;
 
@@ -300,6 +319,32 @@ void Model::updateSpear(){
     emit setUpSpear(initX, initY, spearX - 75, spearY - 75);
 }
 
+void Model::setSpearLabel(int x, int y){
+    if(!isShot){
+        QImage rotated;
+        QPixmap spearPix;
+
+        if(y > 75){
+            double deltaX = x - 400;
+            double deltaY = y - 75;
+            double radian = -atan(deltaX/deltaY);
+            double angle = radian*180 / M_PI;
+
+            rotated = spearImage.transformed(QTransform().rotate(angle));
+            spearPix = QPixmap::fromImage(rotated.scaled(150*(sin(abs(radian)) + cos(abs(radian))),150*(sin(abs(radian)) + cos(abs(radian)))));
+        }
+        else if(x <= 400){
+            rotated = spearImage.transformed(QTransform().rotate(90));
+            spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
+        }
+        else{
+            rotated = spearImage.transformed(QTransform().rotate(-90));
+            spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
+        }
+
+        emit sendSpearLabel(spearPix);
+    }
+}
 
 void Model::loadInfoQ(){
     QFile inputFile(QString(":/fishQuestionAnswers.txt"));

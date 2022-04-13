@@ -22,8 +22,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>771</width>
-      <height>551</height>
+      <width>800</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="mouseTracking">
@@ -179,6 +179,7 @@
        <string>Spear</string>
       </property>
      </widget>
+<<<<<<< HEAD
      <widget class="QLabel" name="locationLabel">
       <property name="geometry">
        <rect>
@@ -208,6 +209,8 @@
        <string>Catch</string>
       </property>
      </widget>
+=======
+>>>>>>> a7533555ce08046270f3affccce1cadec4fd1b3b
     </widget>
     <widget class="QWidget" name="JournalPage">
      <property name="mouseTracking">

@@ -8,6 +8,7 @@
 #include "model.h"
 #include <QMouseEvent>
 #include <QHoverEvent>
+#include <QPixmap>
 
     // Uncomment this when working on audios
 //#include <QMediaPlayer>
@@ -33,10 +34,11 @@ public:
 signals:
     void newPositiontValue(int height, int width);
 
-    void updateWorld(QString water);
-    void shootSpear(float x, float y);
-    void collisionWithFish(); //Change in future
 
+    void updateWorld(QString water);
+    void collisionWithFish(); //Change in future
+    void shootSpear(int x, int y);
+    void sendPosition(int x, int y);
 
 private slots:
     void displayFish1(int x, int y);
@@ -46,6 +48,7 @@ private slots:
     void notifyCollision();
     void startTime();
 
+    void updateSpearLabel(QPixmap map);
     // Uncomment this when working on audios
 //    void playmedia(QMediaPlayer::MediaStatus status);
 
@@ -68,9 +71,11 @@ private:
     Ui::View *ui;
     QTimer * time;
 
+
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
 
     QImage spearImage;
+
 
 
     // Uncomment this when working on audios
