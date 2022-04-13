@@ -77,6 +77,8 @@ signals:
     void setUpSpear(int x1, int y1, int x2, int y2);
     void startTime();
     void sendSpearLabel(QPixmap map);
+    void sendCollision();
+
 
 
 //Discuss with TEAM why private not working
@@ -88,6 +90,7 @@ public slots:
     void updateSpear();
     void startTimer(int x, int y);
     void setSpearLabel(int x, int y);
+    void notifyCollision();
 
 
 private:

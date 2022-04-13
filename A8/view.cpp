@@ -4,7 +4,7 @@
 #include <iostream>
 #include <QPropertyAnimation>
 
-View::View(Model &model, QWidget *parent)
+View::View(Model &model,  QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::View)
 {
@@ -95,6 +95,10 @@ View::View(Model &model, QWidget *parent)
             this,
             &View::updateSpearLabel);
 
+    connect(&model,
+            &Model::sendCollision,
+            this,
+            &View::notifyCollision);
 
 }
 
@@ -127,6 +131,7 @@ void View::on_startButton_clicked()
 
 //Display the fish labels into their new position
 void View::displayFish1(int x, int y){
+    std::cout << "hit " << std::endl;
     ui->fish1Label->setGeometry(x * 100, y * 100,
                                 ui->fish1Label->width(), ui->fish1Label->height());
 }
@@ -151,6 +156,11 @@ void View::displaySpear(int x1, int y1, int x2, int y2){
         animation->start();
 }
 
+void View::notifyCollision(){
+    ui->stackedWidget->setCurrentIndex(4);
+
+}
+
 void View::mouseMoveEvent(QMouseEvent *event){
     QPoint point = event->pos();
     emit sendPosition(point.x(), point.y());
@@ -165,6 +175,8 @@ void View::mousePressEvent(QMouseEvent *event){
     QPoint point = event->pos();
     emit shootSpear(point.x(), point.y());
 }
+
+
 
     // Uncomment this when working on audios
 //void View::playmedia(QMediaPlayer::MediaStatus status){

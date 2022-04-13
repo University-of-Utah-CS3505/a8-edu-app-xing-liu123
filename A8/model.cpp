@@ -27,6 +27,10 @@ void Model::setUpWorld(){
     // Create contact listener
     contactListener = new HitListener();
     world->SetContactListener(contactListener);
+    connect(contactListener,
+            &HitListener::sendCollision,
+            this,
+            &Model::notifyCollision);
     //Call to initialize the fishes (bodies)
     spearX = 400;
     spearY = 75;
@@ -275,8 +279,13 @@ void Model::startTimer(int x, int y){
     spear->SetTransform(spear->GetPosition(), angle);
 
     QTimer *timer = new QTimer(this);
-        connect(timer, &QTimer::timeout, this, &Model::updateSpear);
-        timer->start(100);
+    connect(timer, &QTimer::timeout, this, &Model::updateSpear);
+    timer->start(100);
+}
+
+void Model::notifyCollision()
+{
+    emit sendCollision();
 }
 
 void Model::updateSpear(){
