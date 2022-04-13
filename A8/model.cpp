@@ -7,6 +7,8 @@
 Model::Model(QObject *parent)
     : QObject{parent}
 {
+    loadInfoQ();
+
 
 }
 
@@ -31,9 +33,13 @@ void Model::setUpWorld(QString water){
     // Create contact listener
     contactListener = new HitListener();
     world->SetContactListener(contactListener);
+    connect(contactListener,
+            &HitListener::sendCollision,
+            this,
+            &Model::notifyCollision);
     //Call to initialize the fishes (bodies)
     spearX = 400;
-    spearY = 0;
+    spearY = 75;
     initFish1();
     initFish2();
     initFish3();
@@ -155,11 +161,10 @@ void Model::initFish3(){
 void Model::initSpear(){
     b2BodyDef bodySpearDef;
     bodySpearDef.type = b2_dynamicBody;
-    bodySpearDef.position.Set(4.0f, 0.0f);
+    bodySpearDef.position.Set(4.00f, 0.75f);
     spear = world->CreateBody(&bodySpearDef);
 
-    b2Vec2 velocity(0.0f, 5.0f);
-    spear->SetLinearVelocity(velocity);
+
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
@@ -258,16 +263,23 @@ void Model::updateFish3(){
     emit setUpFish3(position.x, position.y);
 }
 
-void Model::startTimer(){
+void Model::startTimer(float x, float y){
+    b2Vec2 velocity(x*sqrt(50/(pow(x,2)+pow(y,2))), y*sqrt(50/(pow(x,2)+pow(y,2))));
+    spear->SetLinearVelocity(velocity);
     QTimer *timer = new QTimer(this);
-        connect(timer, &QTimer::timeout, this, &Model::updateSpear);
-        timer->start(100);
+    connect(timer, &QTimer::timeout, this, &Model::updateSpear);
+    timer->start(100);
+}
+
+void Model::notifyCollision()
+{
+    emit sendCollision();
 }
 
 void Model::updateSpear(){
 
-    int initX = spearX;
-    int initY = spearY;
+    int initX = spearX - 75;
+    int initY = spearY - 75;
 
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
@@ -285,10 +297,9 @@ void Model::updateSpear(){
     spearX= finalPos.x*100;
     spearY = finalPos.y*100;
 
-    std::cout << "Initial: " << initX << " " << initY <<" Final: "<< spearX <<" " << spearY << std::endl;
-
-    emit setUpSpear(initX, initY, spearX, spearY);
+    emit setUpSpear(initX, initY, spearX - 75, spearY - 75);
 }
+
 
 void Model::loadInfoQ(){
     QFile inputFile(QString(":/fishQuestionAnswers.txt"));
@@ -335,6 +346,12 @@ void Model::loadInfoQ(){
           {
               line = line.trimmed().split(":")[1];
               test.insert("Am I an endangered species?", line);
+
+          }
+          else if(line.contains("filepath"))
+          {
+              line = line.trimmed().split(" ")[1];
+              test.insert("filepath", line);
               fishQA.insert(currentFish, test);
               count = -1;
               test.clear();
@@ -345,11 +362,14 @@ void Model::loadInfoQ(){
     }
 
     //for testing purposes
+    int count = 1;
     for(QMap<QString,QString> str: fishQA.values())
     {
-        std::cout << str.value("What is my Name?").toStdString() << std::endl;
-        std::cout << str.value("How big can I get?").toStdString() << std::endl;
-        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
+        std::cout << count++ << std::endl;
+//        std::cout << str.value("What is my Name?").toStdString() << std::endl;
+//        std::cout << str.value("How big can I get?").toStdString() << std::endl;
+//        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
+        std::cout << str.value("filepath").toStdString() <<std::endl;
     }
 }
 

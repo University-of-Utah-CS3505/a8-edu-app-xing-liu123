@@ -4,6 +4,39 @@
         <file>fish2.png</file>
         <file>fish3.jpg</file>
         <file>spear.png</file>
+<<<<<<< HEAD
         <file>fishPic.jpg</file>
+=======
+        <file>fishPics/AlligatorGar.jfif</file>
+        <file>fishPics/AmericanPaddlefish.jpg</file>
+        <file>fishPics/Angelfish.jpg</file>
+        <file>fishPics/Arapaima.jpg</file>
+        <file>fishPics/BelugaSturgeon.jpg</file>
+        <file>fishPics/Betta.jpg</file>
+        <file>fishPics/BullShark.jpg</file>
+        <file>fishPics/DesignerClownfish.jpg</file>
+        <file>fishPics/EmperorAngleFish.jpg</file>
+        <file>fishPics/FlameAngelfish.jpg</file>
+        <file>fishPics/GiantFreshwaterStringray.jpeg</file>
+        <file>fishPics/GoldenDwarfBarb.jpg</file>
+        <file>fishPics/Goldfish.jpg</file>
+        <file>fishPics/Guppy.jpg</file>
+        <file>fishPics/HarlequinTusk.jpg</file>
+        <file>fishPics/LineatusFairyWrasse.jpg</file>
+        <file>fishPics/Lionfish.jpg</file>
+        <file>fishPics/LyretailAnthias.jpg</file>
+        <file>fishPics/MarineBetta.jpg</file>
+        <file>fishPics/MekongGiantCatfish.jpg</file>
+        <file>fishPics/Molly.jpg</file>
+        <file>fishPics/NilePerch.jpg</file>
+        <file>fishPics/OceanSunfish.jpg</file>
+        <file>fishPics/Platies.jpg</file>
+        <file>fishPics/Rainbowfish.jpg</file>
+        <file>fishPics/RedSeaPurpleTang.jpg</file>
+        <file>fishPics/SargassumTriggerfish.jpg</file>
+        <file>fishPics/Taimen.jpg</file>
+        <file>fishPics/Tetra.jpg</file>
+        <file>fishPics/ZebraDanios.png</file>
+>>>>>>> 2e6c49c1889a134d6e8f90aa7812688e8caee945
     </qresource>
 </RCC>

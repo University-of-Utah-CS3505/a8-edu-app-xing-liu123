@@ -20,8 +20,8 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
+      <x>0</x>
+      <y>0</y>
       <width>771</width>
       <height>551</height>
      </rect>
@@ -124,6 +124,9 @@
         <height>81</height>
        </rect>
       </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
       <property name="text">
        <string>Fish 1</string>
       </property>
@@ -136,6 +139,9 @@
         <width>111</width>
         <height>71</height>
        </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
       </property>
       <property name="text">
        <string>Fish 2</string>
@@ -150,6 +156,9 @@
         <height>61</height>
        </rect>
       </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
       <property name="text">
        <string>Fish 3</string>
       </property>
@@ -157,11 +166,14 @@
      <widget class="QLabel" name="spearLabel">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>325</x>
         <y>0</y>
-        <width>61</width>
-        <height>101</height>
+        <width>150</width>
+        <height>150</height>
        </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
       </property>
       <property name="text">
        <string>Spear</string>
@@ -175,6 +187,9 @@
         <width>131</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
       </property>
       <property name="text">
        <string>X: Y:</string>
@@ -459,7 +474,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

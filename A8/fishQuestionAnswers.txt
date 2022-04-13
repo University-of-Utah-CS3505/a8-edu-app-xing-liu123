@@ -4,6 +4,7 @@ Weight : 0.004 ounces(.13 grams)
 How big can I get?: 2.2 cm ( .86 in)
 Where can you find me?: Southeastern Colombia, Eastern Peru, Western Brazil. 
 Am I an endangered species?: No, I am not endangered
+filepath :/fishPics/Tetra.jpg
 
 Guppies
 What is my Name?: Guppies
@@ -11,6 +12,7 @@ Weight: .07 gram to .13 grams
 How big can I get?: 1.2 to 2.4 inches
 Where can you find me?: Guppies are native to Antigua and Barbuda, Barbados, Suriname, Guyana, Trinidad and Tobago, and Venezuela. 
 Am I an endangered species?: No, I am not endangered
+filepath :/fishPics/Guppy.jpg
 
 Mollies
 What is my Name?: Mollies 
@@ -18,6 +20,7 @@ Weight: .23-.48 grams
 How big can I get?: 3.5-4.5 inches
 Where can you find me?: Molly fish are found in parts of Central America, like Mexico, and the southern United States.
 Am I an endangered species?: No, I am not endangered
+filepath :/fishPics/Molly.jpg
 
 Betta Fish
 What is my Name?: Betta Fish
@@ -25,17 +28,16 @@ Weight: 2-3 grams
 How big can I get?: 2.4 – 3.1 in 
 Where can you find me?: Can be found in Cambodia, Laos, Vietnam, Brazil, Colombia, Indonesia, Malaysia, Singapore, and the Dominican Republic.
 Am I an endangered species?: no
-Receipt: none
-Image of fish: in folder
+filepath :/fishPics/Betta.jpg
 
 Goldfish 
 What is my Name?: Goldfish 
 Weight: 5-9 lbs
 How big can I get?: 2-10 inches
 Can eat: yes (if it is poisonous: no)
-Where can you find me?:
-The wild ancestors of these fish lived in slow-moving waters. They thrived even in areas with low oxygen and muddy water. This is why these fish adjust easily to living in manmade ponds. They also prefer habitats with aquatic vegetation to eat. (https://animals.net/goldfish/)
+Where can you find me?:The wild ancestors of these fish lived in slow-moving waters. They thrived even in areas with low oxygen and muddy water. This is why these fish adjust easily to living in manmade ponds. They also prefer habitats with aquatic vegetation to eat. (https://animals.net/goldfish/)
 Am I an endangered species?: no
+filepath :/fishPics/Goldfish.jpg
 
 Angelfish 
 What is my Name?: Angelfish 
@@ -44,6 +46,7 @@ How big can I get?: 6 in (with a height of 8 inches)
 Can eat? yes (if it is poisonous: no)
 Where can you find me?: Throughout Peru, Brazil, and Colombia.  
 Am I an endangered species?: no
+filepath :/fishPics/Angelfish.jpg
 
 Golden Dwarf Barbs
 What is my Name?: Golden Dwarf Barbs
@@ -52,6 +55,7 @@ How big can I get?: 4.5cm (1.8 in)
 Can eat? (if it is poisonous)
 Where can you find me?: In India, Bangladesh, and Nepal 
 Am I an endangered species?: no 
+filepath :/fishPics/GoldenDwarfBarb.jpg
 
 Rainbowfish
 What is my Name?: Rainbowfish
@@ -60,6 +64,7 @@ How big can I get?: 4.5 inches (11.5cm)
 Can eat? (n/a) (if it is poisonous: no)
 Where can you find me?: In Australia, Papua New Guinea and parts of Indonesia.
 Am I an endangered species?: no  
+filepath :/fishPics/Rainbowfish.jpg
 
 Zebra Danios
 What is my Name?: Zebra Danios
@@ -68,6 +73,7 @@ How big can I get?: 2-2.5 in
 Can eat? (n/a) (if it is poisonous: no)
 Where can you find me?: In India, Bhutan, and Bangladesh. 
 Am I an endangered species?: no  
+filepath :/fishPics/ZebraDanios.png
 
 Platies
 What is my Name?: Platies
@@ -76,6 +82,7 @@ How big can I get?: 2-3 inches (5-7 cm)
 Can eat? (n/a) (if it is poisonous: no)
 Where can you find me?:  In Central and South America, in the region from Vera Cruz (Mexico) to Belize. 
 Am I an endangered species?: no  
+filepath :/fishPics/Platies.jpg
 
 Volitan Lionfish
 What is my Name?: Volitan Lionfish 
@@ -84,15 +91,16 @@ How big can I get?: 15 in
 Can eat? yes (if it is poisonous: no, but it is venomous)
 Where can you find me?: In water depths from 1 to 300 feet on hard bottom, mangrove, seagrass, coral, and artificial reefs (like shipwrecks).
 Am I an endangered species?: no  
+filepath :/fishPics/Lionfish.jpg
 
 Marine Betta
 What is my Name?: Marine Betta
 Weight: (n/a)
 How big can I get?: 8 in
 Can eat? (n/a) (if it is poisonous: no)
-Where can you find me?:
-In the Indo-Pacific, in the Red Sea, then from East Africa to the Line Islands.  
+Where can you find me?: In the Indo-Pacific, in the Red Sea, then from East Africa to the Line Islands.
 Am I an endangered species?: no  
+filepath :/fishPics/MarineBetta.jpg
 
 Harlequin Tusk
 What is my Name?: Harlequin Tusk
@@ -101,6 +109,7 @@ How big can I get?: 10 inches
 Can eat? (n/a) (if it is poisonous: no)
 Where can you find me?: In the Western Pacific and can be found from Southern Japan to Australia. 
 Am I an endangered species?: no  
+filepath :/fishPics/HarlequinTusk.jpg
 
 Emperor Angelfish
 What is my Name?: Emperor Angelfish
@@ -109,6 +118,7 @@ How big can I get?: 15 inches
 Can eat? yes (if it is poisonous: no)
 Where can you find me?:  Throughout much of the Indo-Central Pacific.
 Am I an endangered species?: yes 
+filepath :/fishPics/EmperorAngleFish.jpg
 
 Flame Angelfish
 What is my Name?: Flame Angelfish
@@ -116,6 +126,7 @@ How big can I get?: 4 inches
 Can eat? (n/a) (if it is poisonous: no)
 Where can you find me?: In the Society Islands in the Pacific but has been seen in tropical waters across the Western Pacific including Belau, the Hawaiian, Marquesas, and Ducie Islands, and the Great Barrier Reef and the Pitcairn group of Islands. 
 Am I an endangered species?: no  
+filepath :/fishPics/FlameAngelfish.jpg
 
 Lyretail Anthias
 What is my Name?: Lyretail Anthias
@@ -124,15 +135,16 @@ How big can I get?: 5 inches
 Can eat? (n/a) (if it is poisonous: no)
 Where can you find me?: Found throughout the tropical Indian Ocean, as well as the western Pacific Ocean 
 Am I an endangered species?: no 
+filepath :/fishPics/LyretailAnthias.jpg
 
 Lineatus Fairy Wrasse
 What is my Name?: Lineatus Fairy Wrasse
 Weight: (n/a)
 How big can I get?: 5 inches 
 Can eat? (n/a) (if it is poisonous: no)
-Where can you find me?:
- Australia, Coral Sea, Great Barrier Reef
+Where can you find me?: Australia, Coral Sea, Great Barrier Reef
 Am I an endangered species?: no  
+filepath :/fishPics/LineatusFairyWrasse.jpg
 
 Sargassum Triggerfish
 What is my Name?: Sargassum Triggerfish
@@ -141,6 +153,7 @@ How big can I get?: 10 inches
 Can eat? (n/a) (if it is poisonous: no)
 Where can you find me?: Four species are represented in Indo-Pacific waters, yet Xanthichthys ringens is known only from the Atlantic Ocean. Specimens have been collected from as far north as South Carolina and extending as far south as Brazil. St. Lucia, Florida and Cuba all have healthy populations.
 Am I an endangered species?: no  
+filepath :/fishPics/SargassumTriggerfish.jpg
 
 Red Sea Purple Tang
 What is my Name?: Red Sea Purple Tang
@@ -149,6 +162,7 @@ How big can I get?: 10 inches
 Can eat? (n/a) (if it is poisonous: no)
 Where can you find me?:  It has been historically noted that purple tangs are only found in the Red Sea, but it has now been understood that this is not completely true. Purple tangs have now been found in the Gulf of Aden, Persian Gulf, and the Arabian Sea. 
 Am I an endangered species?: no  
+filepath :/fishPics/RedSeaPurpleTang.jpg
 
 Designer Clownfish
 What is my Name?: Designer Clownfish
@@ -157,6 +171,7 @@ How big can I get?: 6 inches
 Can eat? No, you cannot and should not eat clownfish. The mucus coating they produce hasn’t been studied enough to know whether it’s deemed safe for human consumption or not. On top of that, they’re scaly, bony, and would cost an arm and a leg to make a meal out of.  (if it is poisonous: no)
 Where can you find me?: Many variety of clownfish exist. In fact, there are about 30 recognized species across two genera (one in the genus Premnas, the rest in the genus Amphiprion). All of these clowns are spread out over a pretty wide natural zone, with some of them occurring over an expansive range and others being limited to a specific, small area. Specifically, clownfish are found in the Indian Ocean – they don’t exist in the Atlantic. Here, they occur, among other places, in the Red Sea, the Pacific and the famous Australian Great Barrier reef. In many cases, they can be spotted while diving, because they favor shallow reef areas. That’s where they find their natural hosts: a few specific species of anemone. 
 Am I an endangered species?: no  
+filepath :/fishPics/DesignerClownfish.jpg
 
 Ocean Sunfish
 What is my Name?: Ocean Sunfish 
@@ -165,6 +180,7 @@ How big can I get?: 5.9 ft
 Can eat? yes (if it is poisonous: no)
 Where can you find me?: Pacific, Indian, Atlantic oceans, Mediterranean and North Seas 
 Am I an endangered species?: no, but by IUCN they are listed as Vulnerable. 
+filepath :/fishPics/OceanSunfish.jpg
 
 Giant Freshwater Stingray
 What is my Name?: Giant Freshwater Stingray
@@ -173,6 +189,7 @@ How big can I get?: 8 ft
 Can eat? Yes (if it is poisonous: no)
 Where can you find me?: Northern Australia, and southeast asia, the Mekong river, southeast Thailand. 
 Am I an endangered species?: yes  
+filepath :/fishPics/GiantFreshwaterStringray.jpeg
 
 Bull Shark
 What is my Name?: Bull Shark
@@ -181,6 +198,7 @@ How big can I get?: 7 to 11.5 ft
 Can eat? yes  (if it is poisonous: no)
 Where can you find me?: Bull sharks are found in coastal waters all over the world. In the United States they are found off the East Coast and in the Gulf of Mexico. Unlike most sharks, bull sharks can survive in freshwater for long periods of time. They have even been found in the Mississippi and Amazon Rivers. 
 Am I an endangered species?: no, but they are near threatened 
+filepath :/fishPics/BullShark.jpg
 
 Nile Perch
 What is my Name?: Nile Perch
@@ -189,6 +207,7 @@ How big can I get?: 6 ft
 Can eat? Yes (if it is poisonous: no)
 Where can you find me?: Native Range: Much of central, western and eastern Africa:  Nile River (below Murchison Falls), as well as the Congo, Niger, Volga, Senegal rivers and lakes Chad and Turkana (Greenwood 1966).  Also present in the brackish Lake Mariot near Alexandria, Egypt 
 Am I an endangered species?: no 
+filepath :/fishPics/NilePerch.jpg
 
 Taimen
 What is my Name?: Taimen
@@ -197,6 +216,7 @@ How big can I get?: 6 ft
 Can eat? Yes, As these are basically a big trout, we can eat them like trout. Baking, broiling, grilling, smoking and pan frying all work well for Taimen. The fish is so large, though, that steaks are usually more readily available. (if it is poisonous: no)
 Where can you find me?: The taimen is distributed from the Volga and Pechora River basins east to the Yana River in the north to the Amur River in the south. On a larger scale, this includes parts of the Caspian and Arctic drainages in Eurasia and portions of the Pacific drainage in Mongolia and Russia (the Amur River). In Mongolia, the taimen is found in both the Arctic and Pacific drainages, specifically the Yenisei/Selenga, the Lena, and the Amur River Basins. The taimen lives in flowing water and is only occasionally found in lakes, usually near the mouth of a tributary. 
 Am I an endangered species?: yes (vulnerable) 
+filepath :/fishPics/Taimen.jpg
 
 Arapaima
 What is my Name?: Arapaima
@@ -205,6 +225,7 @@ How big can I get?: 10  ft
 Can eat? Yes (if it is poisonous: no)
 Where can you find me?: The Arapaima is native to the Amazon River system of Brazil, southern Colombia, Amazonian Ecuador, and northeastern Peru; the Rio Tocantins basin in central Brazil; and the Essequibo River of Guyana  
 Am I an endangered species?: yes  
+filepath :/fishPics/Arapaima.jpg
 
 Mekong Giant Catfish
 What is my Name?: Mekong Giant Catfish
@@ -213,6 +234,7 @@ How big can I get?: 9 ft
 Can eat? Yes (if it is poisonous: no)
 Where can you find me?: Historically, the fish's natural range reached from the lower Mekong in Vietnam (above the tidally influenced brackish water of the river's delta) all the way to the northern reaches of the river in the Yunnan Province of China, spanning almost the entire 4,800 km (3,000 mi) length of the river.[11] Due to threats, this species no longer inhabits the majority of its original habitat. It is now believed to only exist in small, isolated populations in the middle Mekong region.  
 Am I an endangered species?: yes ( it is now illegal to buy this fish or catch) 
+filepath :/fishPics/MekongGiantCatfish.jpg
 
 Beluga Sturgeon
 What is my Name?: Beluga Sturgeon
@@ -221,6 +243,7 @@ How big can I get?: 24 ft
 Can eat? Yes (if it is poisonous: no)
 Where can you find me?: The beluga sturgeon, Huso huso, is endemic to the Ponto-Caspian Sea re¬gion that in-cludes the Caspian Sea (the largest in¬land body of water in the world) as well as the Sea of Azov and the Black Sea (Bemis & Ky¬nard 1997, Berg 1948). 
 Am I an endangered species?: yes  
+filepath :/fishPics/BelugaSturgeon.jpg
 
 Alligator Gar
 What is my Name?: Alligator Gar
@@ -229,6 +252,7 @@ How big can I get?: 79 in
 Can eat? Yes (if it is poisonous: no)
 Where can you find me?: Alligator gar are present in the Gulf coastal plain from the Econfina River in Florida west and south to Veracruz, Mexico. The historic range extends north in the Mississippi River basin to the lower reaches of the Missouri and Ohio rivers. In Texas, alligator gar may be found in large rivers and reservoirs, as well as in coastal bays. Recent surveys indicate the species is declining or has disappeared in many areas of the southeastern United States. 
 Am I an endangered species?: no 
+filepath :/fishPics/AlligatorGar.jfif
 
 American Paddlefish
 What is my Name?: American Paddlefish
@@ -237,3 +261,4 @@ How big can I get?: 7.3 ft
 Can eat? Yes (if it is poisonous: no)
 Where can you find me?: American paddlefish are native to the Mississippi River basin from New York to Montana and south to the Gulf of Mexico.[22] They have been found in several Gulf Slope drainages in medium to large rivers with long, deep sluggish pools, as well as in backwater lakes and bayous.[3] In Texas, paddlefish occurred historically in the Angelina River, Big Cypress Bayou, Neches River, Red River tributaries, Sabine River, San Jacinto River, Sulphur River, and Trinity River.[22] Their historical range also included occurrences in Canada in Lake Huron and Lake Helen, and in 26–27 states in the United States. 
 Am I an endangered species?: yes
+filepath :/fishPics/AmericanPaddlefish.jpg

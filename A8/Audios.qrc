@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/audio">
+        <file>Water_Churning.mp3</file>
+    </qresource>
+</RCC>

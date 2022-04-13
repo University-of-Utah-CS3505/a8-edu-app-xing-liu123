@@ -74,11 +74,15 @@ signals:
     void setUpFish3(int x, int y);
     void setUpSpear(int x1, int y1, int x2, int y2);
     void startTime();
+
     void updateQuiz(QString question, QString answer, QString randAnswer1,
                    QString randAnswer2, QString fishPic );
     void updateInformation(QString q1,QString a1, QString q2, QString a2,
                            QString q3, QString a3, QString q4, QString a4,
                            QString fish);
+
+    void sendCollision();
+
 
 
 
@@ -89,8 +93,11 @@ public slots:
     void updateFish2();
     void updateFish3();
     void updateSpear();
-    void startTimer();
     void getFish();
+
+    void startTimer(float x, float y);
+    void notifyCollision();
+
 
 
 private:
