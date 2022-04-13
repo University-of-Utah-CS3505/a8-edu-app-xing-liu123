@@ -1,0 +1,12 @@
+
+*.stash
+*.exe
+*.o
+*.cpp
+*.h
+*.Debug
+*.Release
+build-A8-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/usersbrifuappdatalocaltemptmp8p8fap
+build-A8-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/ui_view.h
+build-A8-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/Makefile
+build-A8-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/ui_view.h
