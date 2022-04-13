@@ -379,19 +379,23 @@ void Model::loadInfoQ(){
 //Once the Spear has crashed with a fish, the you call this method
 void Model::getFish(){
     loadInfoQ();
-    //TODO
-    QString fishPic; //??????????????????
+
+    //Set up a randum number for the fish
     int randNum = rand()%10;
     //Assign a random fish to our current fish depending on the water we are at
    if(waterType == TypeOfWater::TOW_FreshWater){
-        currFish = saltFish[randNum];
+        currFish = freshFish[randNum];
    }
    else if(waterType == TypeOfWater::TOW_SmoothWater){
-        currFish = saltFish[randNum];
+        currFish = smoothFish[randNum];
    }
    else if(waterType == TypeOfWater::TOW_SaltWater){
         currFish = saltFish[randNum];
    }
+
+    //Read the picture file
+    QString fishPic = fishQA.value(currFish).value("filepath");
+
 
     //Check if is in the list of catched fish
     if(catchedFish.contains(currFish)){
@@ -404,18 +408,10 @@ void Model::getFish(){
         //update the value
         catchedFish[currFish]++;
 
-        //TEST
-        question = "What is my Name?";
-
-        QMap<QString,QString> str =  fishQA.value(currFish);
-        answer = str.value(question);
-
         //Get the question and aswer
         switch(questionNum){
         case 0:
             question = "What is my Name?";
-
-            //answer = fishQA[currFish][question];
             answer = fishQA.value(currFish).value(question);
             break;
         case 1:
@@ -435,12 +431,13 @@ void Model::getFish(){
         //send to method to get two other random values of fish
         QString randAsnw1 = getRandAnswers(questionNum,question, answer);
         QString randAsnw2 = getRandAnswers(questionNum, question, answer);
-        emit updateQuiz(question, answer, randAsnw1, randAsnw2,  fishPic);
+        emit updateQuiz(question, answer, randAsnw1, randAsnw2,  fishPic, currFish);
     }
     //If it is not catched
     else{
         catchedFish.insert(currFish, 1);
        //send all infomation of the fish
+        //TODO: send picture of fish file name
         QString question1 = "What is my Name?";
         QString answer1 = fishQA.value(currFish).value(question1);
 
@@ -455,7 +452,7 @@ void Model::getFish(){
 
         emit updateInformation(question1, answer1, question2, answer2,
                                question3, answer3, question4, answer4,
-                               currFish);
+                               currFish, fishPic);
 
         }
 

@@ -94,7 +94,7 @@ View::View(Model &model,  QWidget *parent)
 
 
     //Ctach, Quiz and info window
-    //TODO: Changed this one with Gon code
+    //TODO: Remove Button and its Code
     connect(ui->catchButton,
             &QPushButton::clicked,
             &model,
@@ -234,7 +234,6 @@ void View::mousePressEvent(QMouseEvent *event){
 
 void View::on_freshWaterButton_clicked()
 {
-    //TODO: Maybe change?
     ui->stackedWidget->setCurrentIndex(1);
 
     emit updateWorld(ui->freshWaterButton->text());
@@ -243,7 +242,6 @@ void View::on_freshWaterButton_clicked()
 
 void View::on_smoothWaterButton_clicked()
 {
-    //TODO: Maybe change?
     ui->stackedWidget->setCurrentIndex(1);
 
      emit updateWorld(ui->smoothWaterButton->text());
@@ -252,7 +250,6 @@ void View::on_smoothWaterButton_clicked()
 
 void View::on_saltWaterButton_clicked()
 {
-    //TODO: Maybe change?
     ui->stackedWidget->setCurrentIndex(1);
 
      emit updateWorld(ui->saltWaterButton->text());
@@ -260,10 +257,11 @@ void View::on_saltWaterButton_clicked()
 
 
 void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
-                     QString randAnswer2, QString fishPic){
+                     QString randAnswer2, QString fishPic, QString fishName){
 
-    //TODO: Maybe change?
     ui->stackedWidget->setCurrentIndex(4);
+    ui->quizFishName->setText(fishName);
+
 
     //TODO: Randomize the result of buttons
     ui->quizQ1Label->setText(question);
@@ -273,19 +271,17 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
 
     //TODO Set up the actual fish picture
     QPixmap pix;
-    pix.load(":/fishPic.jpg");
-    ui->fishPicLabel->setPixmap(pix.scaled(ui->fish1Label->width(), ui->fish1Label->height()));
+    pix.load(fishPic);
+    ui->fishPicLabel->setPixmap(pix.scaled(ui->fishPicLabel->width(), ui->fishPicLabel->height()));
 
 }
 
 
 void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
                QString q3, QString a3, QString q4, QString a4,
-                     QString fish){
+                     QString fish, QString fishPic){
 
-    //TODO: Maybe change?
     ui->stackedWidget->setCurrentIndex(3);
-
     ui->fishNameLabel->setText(fish);
 
       ui->infoQ1Label->setText(q1);
@@ -301,7 +297,7 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
 
       //TODO Set up the actual fish picture
       QPixmap pix;
-      pix.load(":/fishPic.jpg");
+      pix.load(fishPic);
       ui->inforFishPicLabel->setPixmap(pix.scaled(ui->inforFishPicLabel->width(), ui->inforFishPicLabel->height()));
 
 

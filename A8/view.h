@@ -52,10 +52,10 @@ private slots:
 
     void on_startButton_clicked();
     void setUpQuiz(QString question, QString answer, QString randAnswer1,
-                   QString randAnswer2, QString fishPic);
+                   QString randAnswer2, QString fishPic, QString fishName);
     void setUpInfo(QString q1,QString a1, QString q2, QString a2,
                    QString q3, QString a3, QString q4, QString a4,
-                   QString fish);
+                   QString fishName, QString fishPic);
 
     void on_freshWaterButton_clicked();
 

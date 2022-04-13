@@ -4,9 +4,7 @@
         <file>fish2.png</file>
         <file>fish3.jpg</file>
         <file>spear.png</file>
-<<<<<<< HEAD
         <file>fishPic.jpg</file>
-=======
         <file>fishPics/AlligatorGar.jfif</file>
         <file>fishPics/AmericanPaddlefish.jpg</file>
         <file>fishPics/Angelfish.jpg</file>
@@ -37,6 +35,5 @@
         <file>fishPics/Taimen.jpg</file>
         <file>fishPics/Tetra.jpg</file>
         <file>fishPics/ZebraDanios.png</file>
->>>>>>> 2e6c49c1889a134d6e8f90aa7812688e8caee945
     </qresource>
 </RCC>

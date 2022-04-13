@@ -60,6 +60,7 @@ public:
     QPushButton *answ1Button_2;
     QPushButton *answ1Button_3;
     QLabel *fishPicLabel;
+    QLabel *quizFishName;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -121,10 +122,10 @@ public:
         locationLabel = new QLabel(FishingPage);
         locationLabel->setObjectName(QString::fromUtf8("locationLabel"));
         locationLabel->setGeometry(QRect(580, 10, 131, 16));
+        locationLabel->setMouseTracking(true);
         catchButton = new QPushButton(FishingPage);
         catchButton->setObjectName(QString::fromUtf8("catchButton"));
         catchButton->setGeometry(QRect(590, 70, 80, 18));
-        locationLabel->setMouseTracking(true);
         stackedWidget->addWidget(FishingPage);
         JournalPage = new QWidget();
         JournalPage->setObjectName(QString::fromUtf8("JournalPage"));
@@ -174,7 +175,6 @@ public:
         QuizTitleLabel = new QLabel(QuizInfoPage);
         QuizTitleLabel->setObjectName(QString::fromUtf8("QuizTitleLabel"));
         QuizTitleLabel->setGeometry(QRect(336, 30, 101, 41));
-
         QFont font1;
         font1.setPointSize(16);
         font1.setBold(true);
@@ -198,12 +198,14 @@ public:
         fishPicLabel = new QLabel(QuizInfoPage);
         fishPicLabel->setObjectName(QString::fromUtf8("fishPicLabel"));
         fishPicLabel->setGeometry(QRect(520, 20, 211, 241));
+        quizFishName = new QLabel(QuizInfoPage);
+        quizFishName->setObjectName(QString::fromUtf8("quizFishName"));
+        quizFishName->setGeometry(QRect(266, 80, 211, 31));
         stackedWidget->addWidget(QuizInfoPage);
         View->setCentralWidget(centralwidget);
         menubar = new QMenuBar(View);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 800, 17));
-
         View->setMenuBar(menubar);
         statusbar = new QStatusBar(View);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -211,8 +213,7 @@ public:
 
         retranslateUi(View);
 
-        stackedWidget->setCurrentIndex(3);
-
+        stackedWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(View);
@@ -233,7 +234,6 @@ public:
         locationLabel->setText(QCoreApplication::translate("View", "X: Y:", nullptr));
         catchButton->setText(QCoreApplication::translate("View", "Catch", nullptr));
         label_2->setText(QString());
-
         CongratsLabel->setText(QCoreApplication::translate("View", "Congratulations! You have catch", nullptr));
         fishNameLabel->setText(QCoreApplication::translate("View", "TextLabel", nullptr));
         inforFishPicLabel->setText(QCoreApplication::translate("View", "TextLabel", nullptr));
@@ -251,6 +251,7 @@ public:
         answ1Button_2->setText(QCoreApplication::translate("View", "PushButton", nullptr));
         answ1Button_3->setText(QCoreApplication::translate("View", "PushButton", nullptr));
         fishPicLabel->setText(QCoreApplication::translate("View", "TextLabel", nullptr));
+        quizFishName->setText(QCoreApplication::translate("View", "fish Name", nullptr));
     } // retranslateUi
 
 };
