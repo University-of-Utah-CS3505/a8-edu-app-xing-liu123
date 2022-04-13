@@ -8,6 +8,7 @@
 #include "model.h"
 #include <QMouseEvent>
 #include <QHoverEvent>
+#include <QPixmap>
 
     // Uncomment this when working on audios
 //#include <QMediaPlayer>
@@ -32,7 +33,8 @@ public:
 
 signals:
     void newPositiontValue(int height, int width);
-    void shootSpear(float x, float y);
+    void shootSpear(int x, int y);
+    void sendPosition(int x, int y);
 
 private slots:
     void displayFish1(int x, int y);
@@ -40,6 +42,7 @@ private slots:
     void displayFish3(int x, int y);
     void displaySpear(int x1, int y1, int x2, int y2);
     void startTime();
+    void updateSpearLabel(QPixmap map);
     // Uncomment this when working on audios
 //    void playmedia(QMediaPlayer::MediaStatus status);
 
@@ -48,7 +51,7 @@ private slots:
 private:
     Ui::View *ui;
     QTimer * time;
-    QImage spearImage;
+
 
     // Uncomment this when working on audios
 //    QMediaPlayer* bgmPlayer = new QMediaPlayer;

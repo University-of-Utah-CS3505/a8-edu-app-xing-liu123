@@ -22,8 +22,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>771</width>
-      <height>551</height>
+      <width>800</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="mouseTracking">
@@ -129,22 +129,6 @@
       </property>
       <property name="text">
        <string>Spear</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="locationLabel">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>10</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="text">
-       <string>X: Y:</string>
       </property>
      </widget>
     </widget>
