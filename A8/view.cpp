@@ -33,10 +33,11 @@ View::View(Model &model, QWidget *parent)
 
 
     //Connections to set up first
-    connect(ui->startButton,
-            &QPushButton::clicked,
+    connect(this,
+            &View::updateWorld,
             &model,
             &Model::setUpWorld);
+
     //Connection for timer
     connect(time,
             &QTimer::timeout,
@@ -77,6 +78,23 @@ View::View(Model &model, QWidget *parent)
             &Model::setUpSpear,
             this,
             &View::displaySpear);
+
+
+    //Ctach, Quiz and info window
+    //TODO: Changed this one with Gon code
+    connect(ui->catchButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::getFish);
+
+    connect(&model,
+            &Model::updateInformation,
+            this,
+            &View::setUpInfo);
+    connect(&model,
+            &Model::updateQuiz,
+            this,
+            &View::setUpQuiz);
 
 }
 
@@ -142,6 +160,85 @@ void View::mouseMoveEvent(QMouseEvent *event){
     }
 }
 
+
+
 void View::mousePressEvent(QMouseEvent *event){
     emit shootSpear();
 }
+
+void View::on_freshWaterButton_clicked()
+{
+    //TODO: Maybe change?
+    ui->stackedWidget->setCurrentIndex(1);
+
+    emit updateWorld(ui->freshWaterButton->text());
+}
+
+
+void View::on_smoothWaterButton_clicked()
+{
+    //TODO: Maybe change?
+    ui->stackedWidget->setCurrentIndex(1);
+
+     emit updateWorld(ui->smoothWaterButton->text());
+}
+
+
+void View::on_saltWaterButton_clicked()
+{
+    //TODO: Maybe change?
+    ui->stackedWidget->setCurrentIndex(1);
+
+     emit updateWorld(ui->saltWaterButton->text());
+}
+
+
+void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
+                     QString randAnswer2, QString fishPic){
+
+    //TODO: Maybe change?
+    ui->stackedWidget->setCurrentIndex(4);
+
+    //TODO: Randomize the result of buttons
+    ui->quizQ1Label->setText(question);
+    ui->answ1Button->setText(answer);
+    ui->answ1Button_2->setText(randAnswer1);
+    ui->answ1Button_3->setText(randAnswer2);
+
+    //TODO Set up the actual fish picture
+    QPixmap pix;
+    pix.load(":/fishPic.jpg");
+    ui->fishPicLabel->setPixmap(pix.scaled(ui->fish1Label->width(), ui->fish1Label->height()));
+
+}
+
+
+void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
+               QString q3, QString a3, QString q4, QString a4,
+                     QString fish){
+
+    //TODO: Maybe change?
+    ui->stackedWidget->setCurrentIndex(3);
+
+    ui->fishNameLabel->setText(fish);
+
+      ui->infoQ1Label->setText(q1);
+      ui->infoQ2Label->setText(q2);
+      ui->infoQ3Label->setText(q3);
+      ui->infoQ4Label->setText(q4);
+
+
+      ui->infoA1Label->setText(a1);
+      ui->infoA2Label->setText(a2);
+      ui->infoA3Label->setText(a3);
+      ui->infoA4Label->setText(a4);
+
+      //TODO Set up the actual fish picture
+      QPixmap pix;
+      pix.load(":/fishPic.jpg");
+      ui->inforFishPicLabel->setPixmap(pix.scaled(ui->inforFishPicLabel->width(), ui->inforFishPicLabel->height()));
+
+
+}
+
+

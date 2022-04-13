@@ -74,17 +74,23 @@ signals:
     void setUpFish3(int x, int y);
     void setUpSpear(int x1, int y1, int x2, int y2);
     void startTime();
+    void updateQuiz(QString question, QString answer, QString randAnswer1,
+                   QString randAnswer2, QString fishPic );
+    void updateInformation(QString q1,QString a1, QString q2, QString a2,
+                           QString q3, QString a3, QString q4, QString a4,
+                           QString fish);
 
 
 
 //Discuss with TEAM why private not working
 public slots:
-    void setUpWorld();
+    void setUpWorld(QString water);
     void updateFish1();
     void updateFish2();
     void updateFish3();
     void updateSpear();
     void startTimer();
+    void getFish();
 
 
 private:
@@ -100,7 +106,48 @@ private:
     void initFish2();
     void initFish3();
     void initSpear();
+    QString getRandAnswers(int questionNum, QString question, QString answer);
+
     HitListener *contactListener;
+    QString currFish;
+    SmoothWaterFish smoothCurrFish; //default 0
+    SaltWaterFish saltCurrFish; //default 0
+    FreshWaterFish freshCurrFish; //default 0
+    TypeOfWater waterType;
+    QMap<QString, int> catchedFish;
+    QString smoothFish[10] = {"Ocean Sunfish",
+                              "Giant Freshwater Stingray",
+                              "Bull Shark",
+                              "Nile Perch",
+                              "Taimen",
+                             "Arapaima",
+                              "Mekong Giant Catfish",
+                              "Beluga Sturgeon",
+                             "Alligator Gar",
+                              "American Paddlefish"};
+
+    QString saltFish[10] = {"Designer Clownfish",
+                            "Red Sea Purple Tang",
+                            "Sargassum Triggerfish",
+                            "Lineatus Fairy Wrasse",
+                            "Lyretail Anthias",
+                            "Flame Angelfish",
+                            "Emperor Angelfish",
+                            "Harlequin Tusk",
+                             "Marine Betta",
+                            "Volitan Lionfish"};
+
+    QString freshFish[10] = {"Neon Tetra",
+                             "Guppies",
+                             "Mollies",
+                             "Betta Fish",
+                             "Goldfish",
+                             "Angelfish",
+                             "Golden Dwarf Barbs",
+                             "Rainbowfish",
+                             "Zebra Danios",
+                             "Platies"};
+
 
 
     //testing question info

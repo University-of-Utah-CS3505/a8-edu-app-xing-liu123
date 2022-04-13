@@ -28,6 +28,7 @@ public:
 signals:
     void newPositiontValue(int height, int width);
     void shootSpear();
+    void updateWorld(QString water);
 
 private slots:
     void displayFish1(int x, int y);
@@ -35,12 +36,26 @@ private slots:
     void displayFish3(int x, int y);
     void displaySpear(int x1, int y1, int x2, int y2);
     void startTime();
+    //void displayQuiz();
 
     void on_startButton_clicked();
+    void setUpQuiz(QString question, QString answer, QString randAnswer1,
+                   QString randAnswer2, QString fishPic);
+    void setUpInfo(QString q1,QString a1, QString q2, QString a2,
+                   QString q3, QString a3, QString q4, QString a4,
+                   QString fish);
+
+    void on_freshWaterButton_clicked();
+
+    void on_smoothWaterButton_clicked();
+
+    void on_saltWaterButton_clicked();
+
 
 private:
     Ui::View *ui;
     QTimer * time;
+    void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
 
 };
 #endif // VIEW_H

@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -49,17 +49,65 @@
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="startButton">
+     <widget class="QPushButton" name="freshWaterButton">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>190</y>
+        <x>20</x>
+        <y>150</y>
         <width>161</width>
         <height>81</height>
        </rect>
       </property>
       <property name="text">
-       <string>Start</string>
+       <string>Fresh Water</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="smoothWaterButton">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>270</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Smooth Water</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="saltWaterButton">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>150</y>
+        <width>161</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Salt Water</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>80</y>
+        <width>271</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Select were would you like to navegate!</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -132,6 +180,19 @@
        <string>X: Y:</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="catchButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>70</y>
+        <width>80</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Catch</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="JournalPage">
      <property name="mouseTracking">
@@ -151,7 +212,151 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="FishInfoPage"/>
+    <widget class="QWidget" name="FishInfoPage">
+     <widget class="QLabel" name="CongratsLabel">
+      <property name="geometry">
+       <rect>
+        <x>256</x>
+        <y>40</y>
+        <width>271</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Congratulations! You have catch</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="fishNameLabel">
+      <property name="geometry">
+       <rect>
+        <x>286</x>
+        <y>70</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="inforFishPicLabel">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>30</y>
+        <width>261</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="infoQ1Label">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>140</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>q1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="infoQ2Label">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>220</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>q2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="infoQ3Label">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>310</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>q3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="infoQ4Label">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>400</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>q4</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="infoA1Label">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>180</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>a1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="infoA2Label">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>270</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>a2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="infoA3Label">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>360</y>
+        <width>721</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>a3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="infoA4Label">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>450</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>a4</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="QuizInfoPage">
      <widget class="QLabel" name="QuizTitleLabel">
       <property name="geometry">
@@ -175,7 +380,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="question1Label">
+     <widget class="QLabel" name="quizQ1Label">
       <property name="geometry">
        <rect>
         <x>50</x>
