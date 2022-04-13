@@ -7,6 +7,8 @@
 #include <QTimer>
 #include <QMap>
 #include "hitlistener.h"
+#include <QImage>
+#include <QPixmap>
 
 enum class TypeOfWater{
     TOW_FreshWater,
@@ -74,6 +76,8 @@ signals:
     void setUpFish3(int x, int y);
     void setUpSpear(int x1, int y1, int x2, int y2);
     void startTime();
+    void sendSpearLabel(QPixmap map);
+    void sendCollision();
 
 
 
@@ -84,7 +88,9 @@ public slots:
     void updateFish2();
     void updateFish3();
     void updateSpear();
-    void startTimer(float x, float y);
+    void startTimer(int x, int y);
+    void setSpearLabel(int x, int y);
+    void notifyCollision();
 
 
 private:
@@ -101,6 +107,8 @@ private:
     void initFish3();
     void initSpear();
     HitListener *contactListener;
+    QImage spearImage;
+    bool isShot;
 
 
     //testing question info
