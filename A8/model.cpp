@@ -9,6 +9,7 @@ Model::Model(QObject *parent)
 {
     loadInfoQ();
 
+
 }
 
 Model::~Model(){
@@ -22,8 +23,12 @@ void Model::setUpWorld(){
     // Construct a world object, which will hold and simulate the rigid bodies.
     world = new b2World(gravity);
     // Create contact listener
-//    contactListener = new HitListener();
-//    world->SetContactListener(&contactListener);
+    contactListener = new HitListener();
+    world->SetContactListener(contactListener);
+    connect(contactListener,
+            &HitListener::sendCollision,
+            this,
+            &Model::notifyCollision);
     //Call to initialize the fishes (bodies)
     spearX = 400;
     spearY = 75;
@@ -254,8 +259,13 @@ void Model::startTimer(float x, float y){
     b2Vec2 velocity(x*sqrt(50/(pow(x,2)+pow(y,2))), y*sqrt(50/(pow(x,2)+pow(y,2))));
     spear->SetLinearVelocity(velocity);
     QTimer *timer = new QTimer(this);
-        connect(timer, &QTimer::timeout, this, &Model::updateSpear);
-        timer->start(100);
+    connect(timer, &QTimer::timeout, this, &Model::updateSpear);
+    timer->start(100);
+}
+
+void Model::notifyCollision()
+{
+    emit sendCollision();
 }
 
 void Model::updateSpear(){

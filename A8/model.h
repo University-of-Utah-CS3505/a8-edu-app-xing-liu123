@@ -74,6 +74,7 @@ signals:
     void setUpFish3(int x, int y);
     void setUpSpear(int x1, int y1, int x2, int y2);
     void startTime();
+    void sendCollision();
 
 
 
@@ -85,6 +86,7 @@ public slots:
     void updateFish3();
     void updateSpear();
     void startTimer(float x, float y);
+    void notifyCollision();
 
 
 private:

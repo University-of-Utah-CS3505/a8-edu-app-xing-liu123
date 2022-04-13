@@ -39,6 +39,7 @@ private slots:
     void displayFish2(int x, int y);
     void displayFish3(int x, int y);
     void displaySpear(int x1, int y1, int x2, int y2);
+    void notifyCollision();
     void startTime();
     // Uncomment this when working on audios
 //    void playmedia(QMediaPlayer::MediaStatus status);
