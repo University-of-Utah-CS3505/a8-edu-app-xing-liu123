@@ -30,16 +30,16 @@ Where can you find me?: Can be found in Cambodia, Laos, Vietnam, Brazil, Colombi
 Am I an endangered species?: no
 filepath :/fishPics/Betta.jpg
 
-Goldfish 
+Goldfish
 What is my Name?: Goldfish 
 Weight: 5-9 lbs
 How big can I get?: 2-10 inches
 Can eat: yes (if it is poisonous: no)
-Where can you find me?:The wild ancestors of these fish lived in slow-moving waters. They thrived even in areas with low oxygen and muddy water. This is why these fish adjust easily to living in manmade ponds. They also prefer habitats with aquatic vegetation to eat. (https://animals.net/goldfish/)
+Where can you find me?: The wild ancestors of these fish lived in slow-moving waters. They thrived even in areas with low oxygen and muddy water. This is why these fish adjust easily to living in manmade ponds. They also prefer habitats with aquatic vegetation to eat. (https://animals.net/goldfish/)
 Am I an endangered species?: no
 filepath :/fishPics/Goldfish.jpg
 
-Angelfish 
+Angelfish
 What is my Name?: Angelfish 
 Weight: 1 to 2 pounds
 How big can I get?: 6 in (with a height of 8 inches)

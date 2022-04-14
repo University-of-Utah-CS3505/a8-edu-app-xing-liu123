@@ -69,6 +69,8 @@ private slots:
     // goback to fishing screen
     void on_nextButton_clicked();
 
+    void on_nextButtonFI_clicked();
+
 private:
     Ui::View *ui;
     QTimer * time;

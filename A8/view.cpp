@@ -364,7 +364,6 @@ void View::showResult(bool result){
 
 void View::on_nextButton_clicked(){
     ui->stackedWidget->setCurrentIndex(1);
-
 }
 
 
@@ -377,4 +376,10 @@ void View::on_nextButton_clicked(){
 //        std::cout << "No media found" << std::endl;
 //    }
 //}
+
+
+void View::on_nextButtonFI_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
 

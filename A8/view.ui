@@ -469,6 +469,19 @@
        <string>a4</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="nextButtonFI">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>480</y>
+        <width>91</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="QuizInfoPage">
      <widget class="QLabel" name="QuizTitleLabel">
@@ -617,7 +630,7 @@
       <property name="geometry">
        <rect>
         <x>650</x>
-        <y>490</y>
+        <y>480</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -635,7 +648,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
