@@ -10,7 +10,7 @@
 #include <QHoverEvent>
 #include <QPixmap>
 
-    // Uncomment this when working on audios
+// Uncomment this when working on audios
 //#include <QMediaPlayer>
 //#include <QAudioOutput>
 //#include <QAudioDevice>
@@ -28,15 +28,11 @@ public:
     ~View();
 
     void mouseMoveEvent(QMouseEvent *event) override;
-
     void mousePressEvent(QMouseEvent *event) override;
 
 signals:
     void newPositiontValue(int height, int width);
-
-
     void updateWorld(QString water);
-    void collisionWithFish(); //Change in future
     void shootSpear(int x, int y);
     void sendPosition(int x, int y);
 
@@ -45,44 +41,38 @@ private slots:
     void displayFish2(int x, int y);
     void displayFish3(int x, int y);
     void displaySpear(int x1, int y1, int x2, int y2);
-    void notifyCollision();
     void startTime();
-
     void updateSpearLabel(QPixmap map);
     // Uncomment this when working on audios
-//    void playmedia(QMediaPlayer::MediaStatus status);
+    //    void playmedia(QMediaPlayer::MediaStatus status);
 
-
-    void on_startButton_clicked();
     void setUpQuiz(QString question, QString answer, QString randAnswer1,
                    QString randAnswer2, QString fishPic, QString fishName);
     void setUpInfo(QString q1,QString a1, QString q2, QString a2,
                    QString q3, QString a3, QString q4, QString a4,
                    QString fishName, QString fishPic);
 
+    void on_startButton_clicked();
     void on_freshWaterButton_clicked();
-
     void on_smoothWaterButton_clicked();
-
     void on_saltWaterButton_clicked();
 
 
 private:
     Ui::View *ui;
     QTimer * time;
-
+    QImage spearImage;
 
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
 
-    QImage spearImage;
 
 
 
     // Uncomment this when working on audios
-//    QMediaPlayer* bgmPlayer = new QMediaPlayer;
-//    QAudioOutput* bgmOutput = new QAudioOutput;
-//    QAudioOutput* soundEffectOutput = new QAudioOutput;
-//    QAudioDevice* audioDevice = new QAudioDevice;
+    //    QMediaPlayer* bgmPlayer = new QMediaPlayer;
+    //    QAudioOutput* bgmOutput = new QAudioOutput;
+    //    QAudioOutput* soundEffectOutput = new QAudioOutput;
+    //    QAudioDevice* audioDevice = new QAudioDevice;
 };
 #endif // VIEW_H
 

@@ -14,31 +14,40 @@ View::View(Model &model,  QWidget *parent)
 
 
     // Audios
-        // Uncomment this when working on audios
-//    bgmPlayer->setAudioOutput(bgmOutput);
-//    bgmPlayer->setSource(QUrl("qrc:/new/audio/Water_Churning.mp3"));
-//    bgmOutput->setVolume(50);
-//    connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playmedia);
+    // Uncomment this when working on audios
+    //    bgmPlayer->setAudioOutput(bgmOutput);
+    //    bgmPlayer->setSource(QUrl("qrc:/new/audio/Water_Churning.mp3"));
+    //    bgmOutput->setVolume(50);
+    //    connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playmedia);
 
 
 
     // ui->widget->show();
-    QPixmap pix;
-    pix.load(":/fish1.png");
-    QPixmap pix2;
-    pix2.load(":/fish2.png");
+
+    //Set up labels
+    QPixmap water;
+    water.load(":/water/freshW.jpg");
+    ui->freshPicLabel->setPixmap(water.scaled(ui->freshPicLabel->width(), ui->freshPicLabel->height()));
+    water.load(":/water/smoothW.jpg");
+    ui->smoothPicLabel->setPixmap(water.scaled(ui->smoothPicLabel->width(), ui->smoothPicLabel->height()));
+    water.load(":/water/saltW1.jpg");
+    ui->saltPicLabel->setPixmap(water.scaled(ui->saltPicLabel->width(), ui->saltPicLabel->height()));
+
+    QPixmap animatedFish;
+    animatedFish.load(":/fish1.png");
+    ui->fish1Label->setPixmap(animatedFish.scaled(ui->fish1Label->width(), ui->fish1Label->height()));
+    ui->fish3Label->setPixmap(animatedFish.scaled(ui->fish3Label->width(), ui->fish3Label->height()));
+    animatedFish.load(":/fish2.png");
+    ui->fish2Label->setPixmap(animatedFish.scaled(ui->fish2Label->width(), ui->fish2Label->height()));
+
 
     QPixmap spearPix;
     spearPix.load(":/spear.png");
     ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
 
+    //Set up the initial Widget
     ui->stackedWidget->setCurrentIndex(0);
     time = new QTimer(this);
-
-    ui->fish1Label->setPixmap(pix.scaled(ui->fish1Label->width(), ui->fish1Label->height()));
-    ui->fish2Label->setPixmap(pix2.scaled(ui->fish2Label->width(), ui->fish2Label->height()));
-    ui->fish3Label->setPixmap(pix.scaled(ui->fish3Label->width(), ui->fish3Label->height()));
-
 
 
     //Connections to set up first
@@ -96,21 +105,10 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::updateSpearLabel);
 
-    connect(&model,
-            &Model::sendCollision,
-            this,
-            &View::notifyCollision);
-
 
     //Ctach, Quiz and info window
-    //TODO: Remove Button and its Code
     connect(ui->catchButton,
             &QPushButton::clicked,
-            &model,
-            &Model::getFish);
-
-    connect(this,
-            &View::collisionWithFish,
             &model,
             &Model::getFish);
 
@@ -132,10 +130,10 @@ View::~View()
     delete time;
 
     // Uncomment this when working on audios
-//    delete bgmPlayer;
-//    delete bgmOutput;
-//    delete soundEffectOutput;
-//    delete audioDevice;
+    //    delete bgmPlayer;
+    //    delete bgmOutput;
+    //    delete soundEffectOutput;
+    //    delete audioDevice;
 }
 
 
@@ -171,19 +169,14 @@ void View::displayFish3(int x, int y){
 
 void View::displaySpear(int x1, int y1, int x2, int y2){
 
-        QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
-        animation->setDuration(100);
-        animation->setStartValue(QPoint(x1,y1));
-        animation->setEndValue(QPoint(x2,y2));
-        animation->setEasingCurve(QEasingCurve::Linear);
-        animation->start();
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
+    animation->setDuration(100);
+    animation->setStartValue(QPoint(x1,y1));
+    animation->setEndValue(QPoint(x2,y2));
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->start();
 }
 
-//Maybe change such that is directly call in model
-void View::notifyCollision(){
-    emit collisionWithFish();
-
-}
 
 void View::mouseMoveEvent(QMouseEvent *event){
     QPoint point = event->pos();
@@ -214,7 +207,7 @@ void View::on_smoothWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 
-     emit updateWorld(ui->smoothWaterButton->text());
+    emit updateWorld(ui->smoothWaterButton->text());
 }
 
 
@@ -222,7 +215,7 @@ void View::on_saltWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 
-     emit updateWorld(ui->saltWaterButton->text());
+    emit updateWorld(ui->saltWaterButton->text());
 }
 
 
@@ -231,15 +224,33 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
 
     ui->stackedWidget->setCurrentIndex(4);
     ui->quizFishName->setText(fishName);
-
-
-    //TODO: Randomize the result of buttons
     ui->quizQ1Label->setText(question);
-    ui->answ1Button->setText(answer);
-    ui->answ1Button_2->setText(randAnswer1);
-    ui->answ1Button_3->setText(randAnswer2);
 
-    //TODO Set up the actual fish picture
+    //TODO: Get the answers of the buttons to wrap up if necesary
+
+
+    //Randomize the result of buttons
+    int randNum = rand() % 3;
+    switch (randNum) {
+    case 0:
+        ui->answ1Button->setText(answer);
+        ui->answ1Button_2->setText(randAnswer1);
+        ui->answ1Button_3->setText(randAnswer2);
+        break;
+    case 1:
+        ui->answ1Button->setText(randAnswer1);
+        ui->answ1Button_2->setText(answer);
+        ui->answ1Button_3->setText(randAnswer2);
+        break;
+    case 2:
+        ui->answ1Button->setText(randAnswer1);
+        ui->answ1Button_2->setText(randAnswer2);
+        ui->answ1Button_3->setText(answer);
+        break;
+    }
+
+
+    //Display the fish picture
     QPixmap pix;
     pix.load(fishPic);
     ui->fishPicLabel->setPixmap(pix.scaled(ui->fishPicLabel->width(), ui->fishPicLabel->height()));
@@ -248,27 +259,29 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
 
 
 void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
-               QString q3, QString a3, QString q4, QString a4,
+                     QString q3, QString a3, QString q4, QString a4,
                      QString fish, QString fishPic){
 
     ui->stackedWidget->setCurrentIndex(3);
     ui->fishNameLabel->setText(fish);
 
-      ui->infoQ1Label->setText(q1);
-      ui->infoQ2Label->setText(q2);
-      ui->infoQ3Label->setText(q3);
-      ui->infoQ4Label->setText(q4);
+    ui->infoQ1Label->setText(q1);
+    ui->infoQ2Label->setText(q2);
+    ui->infoQ3Label->setText(q3);
+    ui->infoQ4Label->setText(q4);
 
 
-      ui->infoA1Label->setText(a1);
-      ui->infoA2Label->setText(a2);
-      ui->infoA3Label->setText(a3);
-      ui->infoA4Label->setText(a4);
+    ui->infoA1Label->setText(a1);
+    ui->infoA2Label->setText(a2);
+    //Make the label to wrap up text
+    ui->infoA3Label->setWordWrap(true);
+    ui->infoA3Label->setText(a3);
+    ui->infoA4Label->setText(a4);
 
-      //TODO Set up the actual fish picture
-      QPixmap pix;
-      pix.load(fishPic);
-      ui->inforFishPicLabel->setPixmap(pix.scaled(ui->inforFishPicLabel->width(), ui->inforFishPicLabel->height()));
+     //Display the fish picture
+    QPixmap pix;
+    pix.load(fishPic);
+    ui->inforFishPicLabel->setPixmap(pix.scaled(ui->inforFishPicLabel->width(), ui->inforFishPicLabel->height()));
 
 
 }
@@ -277,7 +290,7 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
 
 
 
-    // Uncomment this when working on audios
+// Uncomment this when working on audios
 //void View::playmedia(QMediaPlayer::MediaStatus status){
 //    if (bgmPlayer->hasAudio()){
 //        bgmPlayer->play();

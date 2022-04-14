@@ -78,19 +78,19 @@ signals:
     void startTime();
 
     void updateQuiz(QString question, QString answer, QString randAnswer1,
-                   QString randAnswer2, QString fishPic, QString fishName );
+                    QString randAnswer2, QString fishPic, QString fishName );
     void updateInformation(QString q1,QString a1, QString q2, QString a2,
                            QString q3, QString a3, QString q4, QString a4,
                            QString fishName, QString fishPic);
 
     void sendSpearLabel(QPixmap map);
 
-    void sendCollision();
+    //void sendCollision();
 
 
 
 
-//Discuss with TEAM why private not working
+    //Discuss with TEAM why private not working
 public slots:
     void setUpWorld(QString water);
     void updateFish1();
@@ -102,7 +102,7 @@ public slots:
 
     void startTimer(int x, int y);
     void setSpearLabel(int x, int y);
-    void notifyCollision();
+    //void notifyCollision();
 
 
 
@@ -119,7 +119,7 @@ private:
     void initFish2();
     void initFish3();
     void initSpear();
-    QString getRandAnswers(int questionNum, QString question, QString answer);
+    QString getRandAnswer(int questionNum, QString question, QString answer);
 
     HitListener *contactListener;
 
@@ -134,10 +134,10 @@ private:
                               "Bull Shark",
                               "Nile Perch",
                               "Taimen",
-                             "Arapaima",
+                              "Arapaima",
                               "Mekong Giant Catfish",
                               "Beluga Sturgeon",
-                             "Alligator Gar",
+                              "Alligator Gar",
                               "American Paddlefish"};
 
     QString saltFish[10] = {"Designer Clownfish",
@@ -148,7 +148,7 @@ private:
                             "Flame Angelfish",
                             "Emperor Angelfish",
                             "Harlequin Tusk",
-                             "Marine Betta",
+                            "Marine Betta",
                             "Volitan Lionfish"};
 
     QString freshFish[10] = {"Neon Tetra",
@@ -170,7 +170,7 @@ private:
 
     //testing question info
     QMultiMap<QString, QMap<QString, QString> > fishQA;
-
+    QString getRandFish();
     void loadInfoQ();
 
 };
