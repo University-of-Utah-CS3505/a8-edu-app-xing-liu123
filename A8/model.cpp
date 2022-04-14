@@ -12,6 +12,8 @@ Model::Model(QObject *parent)
     loadInfoQ();
     spearImage.load(":/spear.png");
     isShot = false;
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &Model::updateSpear);
 }
 
 Model::~Model(){
@@ -65,7 +67,7 @@ void Model::initFish1(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(1.0f, 0.1f);
+    dynamicFish.SetAsBox(0.05f, 0.05f);
 
 
     // Define the dynamic body fixture.
@@ -103,7 +105,7 @@ void Model::initFish2(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(1.0f, 0.1f);
+    dynamicFish.SetAsBox(0.05f, 0.05f);
 
 
     // Define the dynamic body fixture.
@@ -139,7 +141,7 @@ void Model::initFish3(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(1.0f, 0.1f);
+    dynamicFish.SetAsBox(0.05f, 0.05f);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDefFish;
@@ -168,7 +170,7 @@ void Model::initSpear(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
-    dynamicSpear.SetAsBox(1.0f, 1.0f);
+    dynamicSpear.SetAsBox(0.05f, 0.05f);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
@@ -287,8 +289,7 @@ void Model::startTimer(int x, int y){
     spear->SetLinearVelocity(velocity);
     spear->SetTransform(spear->GetPosition(), angle);
 
-    QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &Model::updateSpear);
+
     timer->start(100);
 }
 
@@ -312,7 +313,23 @@ void Model::updateSpear(){
     spearX= finalPos.x*100;
     spearY = finalPos.y*100;
 
-    emit setUpSpear(initX, initY, spearX - 75, spearY - 75);
+
+    if(spearX <= 925 && spearX >= -125 && spearY <= 725 && spearY >= -125 ){
+        std::cout << "X: " << spearX << " Y: " << spearY << std::endl;
+        emit setUpSpear(initX, initY, spearX - 75, spearY - 75);
+    }
+    else{
+        timer->stop();
+
+        initSpear();
+        spearX = 400;
+        spearY = 75;
+        QPixmap spearPix = QPixmap::fromImage(spearImage.scaled(150, 150));;
+
+        emit resetSpear(spearPix);
+        isShot = false;
+        std::cout << "over" << std::endl;
+    }
 }
 
 void Model::setSpearLabel(int x, int y){
@@ -339,6 +356,7 @@ void Model::setSpearLabel(int x, int y){
         }
 
         emit sendSpearLabel(spearPix);
+        std::cout << "back" << std::endl;
     }
 }
 
@@ -405,11 +423,11 @@ void Model::loadInfoQ(){
     int count = 1;
     for(QMap<QString,QString> str: fishQA.values())
     {
-        std::cout << count++ << std::endl;
+//        std::cout << count++ << std::endl;
         //        std::cout << str.value("What is my Name?").toStdString() << std::endl;
         //        std::cout << str.value("How big can I get?").toStdString() << std::endl;
         //        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
-        std::cout << str.value("filepath").toStdString() <<std::endl;
+//        std::cout << str.value("filepath").toStdString() <<std::endl;
     }
 }
 

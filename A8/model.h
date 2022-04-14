@@ -84,6 +84,7 @@ signals:
                            QString fishName, QString fishPic);
 
     void sendSpearLabel(QPixmap map);
+    void resetSpear(QPixmap map);
 
     //void sendCollision();
 
@@ -114,7 +115,7 @@ private:
     b2Body* spear;
     int spearX;
     int spearY;
-    QTimer timer;
+    QTimer *timer;
     void initFish1();
     void initFish2();
     void initFish3();

@@ -104,7 +104,10 @@ View::View(Model &model,  QWidget *parent)
             &Model::sendSpearLabel,
             this,
             &View::updateSpearLabel);
-
+    connect(&model,
+            &Model::resetSpear,
+            this,
+            &View::resetSpearLabel);
 
     //Ctach, Quiz and info window
     connect(ui->catchButton,
@@ -152,7 +155,7 @@ void View::on_startButton_clicked()
 
 //Display the fish labels into their new position
 void View::displayFish1(int x, int y){
-    std::cout << "hit " << std::endl;
+//    std::cout << "hit " << std::endl;
     ui->fish1Label->setGeometry(x * 100, y * 100,
                                 ui->fish1Label->width(), ui->fish1Label->height());
 }
@@ -168,7 +171,8 @@ void View::displayFish3(int x, int y){
 }
 
 void View::displaySpear(int x1, int y1, int x2, int y2){
-
+//    ui->spearLabel->setGeometry(x2 , y2,
+//                                ui->spearLabel->width(), ui->spearLabel->height());
     QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
     animation->setDuration(100);
     animation->setStartValue(QPoint(x1,y1));
@@ -180,10 +184,18 @@ void View::displaySpear(int x1, int y1, int x2, int y2){
 
 void View::mouseMoveEvent(QMouseEvent *event){
     QPoint point = event->pos();
+    std::cout << "moved" << std::endl;
     emit sendPosition(point.x(), point.y());
+
 }
 
 void View::updateSpearLabel(QPixmap map){
+    ui->spearLabel->setAlignment(Qt::AlignCenter);
+    ui->spearLabel->setPixmap(map);
+}
+
+void View::resetSpearLabel(QPixmap map){
+    ui->spearLabel->setGeometry(325, 0, 150, 150);
     ui->spearLabel->setAlignment(Qt::AlignCenter);
     ui->spearLabel->setPixmap(map);
 }

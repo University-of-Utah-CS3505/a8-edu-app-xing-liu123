@@ -43,6 +43,7 @@ private slots:
     void displaySpear(int x1, int y1, int x2, int y2);
     void startTime();
     void updateSpearLabel(QPixmap map);
+    void resetSpearLabel(QPixmap map);
     // Uncomment this when working on audios
     //    void playmedia(QMediaPlayer::MediaStatus status);
 
