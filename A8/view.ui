@@ -179,7 +179,6 @@
        <string>Spear</string>
       </property>
      </widget>
-<<<<<<< HEAD
      <widget class="QLabel" name="locationLabel">
       <property name="geometry">
        <rect>
@@ -209,8 +208,6 @@
        <string>Catch</string>
       </property>
      </widget>
-=======
->>>>>>> a7533555ce08046270f3affccce1cadec4fd1b3b
     </widget>
     <widget class="QWidget" name="JournalPage">
      <property name="mouseTracking">
@@ -481,6 +478,47 @@
        <string>fish Name</string>
       </property>
      </widget>
+     <widget class="QLabel" name="resultLabel">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>160</y>
+        <width>441</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>26</pointsize>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nextButton">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>490</y>
+        <width>91</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -490,7 +528,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

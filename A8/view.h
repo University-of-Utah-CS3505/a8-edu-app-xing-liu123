@@ -40,6 +40,9 @@ signals:
     void shootSpear(int x, int y);
     void sendPosition(int x, int y);
 
+    //answer
+    void checkUserAnswer(QString question, QString answer);
+
 private slots:
     void displayFish1(int x, int y);
     void displayFish2(int x, int y);
@@ -66,6 +69,14 @@ private slots:
 
     void on_saltWaterButton_clicked();
 
+    //correct answer
+    void on_answerButton1_clicked();
+    void on_answerButton2_clicked();
+    void on_answerButton3_clicked();
+    void showResult(bool result);
+
+    // goback to fishing screen
+    void on_nextButton_clicked();
 
 private:
     Ui::View *ui;

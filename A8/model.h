@@ -87,6 +87,9 @@ signals:
 
     void sendCollision();
 
+    //check answer
+    void answerResult(bool result); //result is true if answer is correct
+
 
 
 
@@ -104,6 +107,8 @@ public slots:
     void setSpearLabel(int x, int y);
     void notifyCollision();
 
+    //Check answer from user
+    void checkAnswer(QString question, QString answer);
 
 
 private:

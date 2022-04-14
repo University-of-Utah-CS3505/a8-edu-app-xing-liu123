@@ -40,7 +40,6 @@ View::View(Model &model,  QWidget *parent)
     ui->fish3Label->setPixmap(pix.scaled(ui->fish3Label->width(), ui->fish3Label->height()));
 
 
-
     //Connections to set up first
     connect(this,
             &View::updateWorld,
@@ -122,6 +121,28 @@ View::View(Model &model,  QWidget *parent)
             &Model::updateQuiz,
             this,
             &View::setUpQuiz);
+
+    //Checking Answer Buttons
+    connect(ui->answ1Button,
+            &QPushButton::clicked,
+            this,
+            &View::on_answerButton1_clicked);
+    connect(ui->answ1Button_2,
+            &QPushButton::clicked,
+            this,
+            &View::on_answerButton2_clicked);
+    connect(ui->answ1Button_3,
+            &QPushButton::clicked,
+            this,
+            &View::on_answerButton3_clicked);
+    connect(this,
+            &View::checkUserAnswer,
+            &model,
+            &Model::checkAnswer);
+    connect(&model,
+            &Model::answerResult,
+            this,
+            &View::showResult);
 
 }
 
@@ -244,6 +265,17 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
     pix.load(fishPic);
     ui->fishPicLabel->setPixmap(pix.scaled(ui->fishPicLabel->width(), ui->fishPicLabel->height()));
 
+    //results label
+    ui->resultLabel->setVisible(false);
+
+    //enable buttons
+    ui->answ1Button->setDisabled(false);
+    ui->answ1Button_2->setDisabled(false);
+    ui->answ1Button_3->setDisabled(false);
+
+    //setVisible button
+    ui->nextButton->setVisible(false);
+
 }
 
 
@@ -273,8 +305,54 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
 
 }
 
+//Answer Buttons
+void View::on_answerButton1_clicked(){
 
+    QString question = ui->quizQ1Label->text();
+    QString answer = ui->answ1Button->text();
+    emit checkUserAnswer(question,answer);
 
+    //disable buttons after selecting once
+    ui->answ1Button->setDisabled(true);
+    ui->answ1Button_2->setDisabled(true);
+    ui->answ1Button_3->setDisabled(true);
+}
+void View::on_answerButton2_clicked(){
+
+    QString question = ui->quizQ1Label->text();
+    QString answer = ui->answ1Button_2->text();
+    emit checkUserAnswer(question,answer);
+
+    //disable buttons after selecting once
+    ui->answ1Button->setDisabled(true);
+    ui->answ1Button_2->setDisabled(true);
+    ui->answ1Button_3->setDisabled(true);
+}
+void View::on_answerButton3_clicked(){
+    QString question = ui->quizQ1Label->text();
+    QString answer = ui->answ1Button_3->text();
+    emit checkUserAnswer(question,answer);
+
+    //disable buttons after selecting once
+    ui->answ1Button->setDisabled(true);
+    ui->answ1Button_2->setDisabled(true);
+    ui->answ1Button_3->setDisabled(true);
+}
+
+void View::showResult(bool result){
+
+    if(result)
+        ui->resultLabel->setText("You are Correct!");
+    else
+        ui->resultLabel->setText("You are incorrect, try again");
+    ui->resultLabel->setVisible(true);
+    ui->nextButton->setVisible(true);
+}
+
+void View::on_nextButton_clicked(){
+    ui->stackedWidget->setCurrentIndex(1);
+
+}
 
 
     // Uncomment this when working on audios

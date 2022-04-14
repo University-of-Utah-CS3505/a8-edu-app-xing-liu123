@@ -536,4 +536,14 @@ QString Model::getRandAnswers(int questionNum, QString question,  QString answer
     return randAnsw;
 }
 
+//Checks user answer
+void Model::checkAnswer(QString question, QString userAnswer){
+
+    QString correctAnswer = fishQA.value(currFish).value(question);
+
+    if(correctAnswer == userAnswer)
+        emit answerResult(true);
+    else
+        emit answerResult(false);
+}
 
