@@ -532,6 +532,16 @@ QString Model::getRandAnswer(int questionNum, QString question,  QString answer)
     return randAnsw != answer? randAnsw: getRandAnswer(questionNum, question, answer);
 }
 
+//Checks user answer
+void Model::checkAnswer(QString question, QString userAnswer){
+
+    QString correctAnswer = fishQA.value(currFish).value(question);
+
+    if(correctAnswer == userAnswer)
+        emit answerResult(true);
+    else
+        emit answerResult(false);
+}
 
 //Helper method to get a random fish from the water type we are currently in
 QString Model::getRandFish(){
