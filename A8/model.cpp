@@ -35,10 +35,11 @@ void Model::setUpWorld(QString water){
     // Create contact listener
     contactListener = new HitListener();
     world->SetContactListener(contactListener);
+    //NOTE: Call get fish directly, rather than going to the vew to send it to the model again
     connect(contactListener,
             &HitListener::sendCollision,
             this,
-            &Model::notifyCollision);
+            &Model::getFish);
     //Call to initialize the fishes (bodies)
     spearX = 400;
     spearY = 75;
@@ -291,11 +292,6 @@ void Model::startTimer(int x, int y){
     timer->start(100);
 }
 
-void Model::notifyCollision()
-{
-    emit sendCollision();
-}
-
 void Model::updateSpear(){
     int initX = spearX - 75;
     int initY = spearY - 75;
@@ -350,60 +346,59 @@ void Model::loadInfoQ(){
     QFile inputFile(QString(":/fishQuestionAnswers.txt"));
     if (inputFile.open(QIODevice::ReadOnly))
     {
-       QTextStream in(&inputFile);
+        QTextStream in(&inputFile);
 
-       int count = 0;
-       QString line;
-       QString currentFish;
-       QMap<QString,QString> test;
-       while (!in.atEnd())
-       {
-           line = in.readLine();
-           //Changed this since it was reading white space
-          if(count == -1){
-               count++;
-           }
-          else if(count == 0)
-          {
-              currentFish = line;
-              count++;
-          }
+        int count = 0;
+        QString line;
+        QString currentFish;
+        QMap<QString,QString> test;
+        while (!in.atEnd())
+        {
+            line = in.readLine();
+            if(count == -1){
+                count++;
+            }
+            else if(count == 0)
+            {
+                currentFish = line;
+                count++;
+            }
 
-          else if(line.contains("What is my Name?"))
-          {
-              line = line.trimmed().split(":")[1];
-              test.insert("What is my Name?", line);
-              count++;
-          }
-          else if(line.contains("How big can I get?"))
-          {
-              line = line.trimmed().split(":")[1];
-              test.insert("How big can I get?", line);
-              count++;
-          }
-          else if(line.contains("Where can you find me?"))
-          {
-              line = line.trimmed().split(":")[1];
-              test.insert("Where can you find me?", line);
-              count++;
-          }
-          else if(line.contains("Am I an endangered species?"))
-          {
-              line = line.trimmed().split(":")[1];
-              test.insert("Am I an endangered species?", line);
+            else if(line.contains("What is my Name?"))
+            {
+                line = line.trimmed().split(":")[1];
+                test.insert("What is my Name?", line);
+                count++;
+            }
+            else if(line.contains("How big can I get?"))
+            {
+                line = line.trimmed().split(":")[1];
+                test.insert("How big can I get?", line);
+                count++;
+            }
+            else if(line.contains("Where can you find me?"))
+            {
+                line = line.trimmed().split(":")[1];
+                test.insert("Where can you find me?", line);
+                count++;
+            }
+            else if(line.contains("Am I an endangered species?"))
+            {
+                line = line.trimmed().split(":")[1];
+                test.insert("Am I an endangered species?", line);
 
-          }
-          else if(line.contains("filepath"))
-          {
-              line = line.trimmed().split(" ")[1];
-              test.insert("filepath", line);
-              fishQA.insert(currentFish, test);
-              count = -1;
-              test.clear();
-          }
-       }
+            }
+            else if(line.contains("filepath"))
+            {
+                line = line.trimmed().split(" ")[1];
+                test.insert("filepath", line);
+                fishQA.insert(currentFish, test);
+                count = -1;
+                test.clear();
+            }
+        }
 
-       inputFile.close();
+        inputFile.close();
     }
 
     //for testing purposes
@@ -411,9 +406,9 @@ void Model::loadInfoQ(){
     for(QMap<QString,QString> str: fishQA.values())
     {
         std::cout << count++ << std::endl;
-//        std::cout << str.value("What is my Name?").toStdString() << std::endl;
-//        std::cout << str.value("How big can I get?").toStdString() << std::endl;
-//        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
+        //        std::cout << str.value("What is my Name?").toStdString() << std::endl;
+        //        std::cout << str.value("How big can I get?").toStdString() << std::endl;
+        //        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
         std::cout << str.value("filepath").toStdString() <<std::endl;
     }
 }
@@ -425,18 +420,7 @@ void Model::loadInfoQ(){
 void Model::getFish(){
     loadInfoQ();
 
-    //Set up a randum number for the fish
-    int randNum = rand()%10;
-    //Assign a random fish to our current fish depending on the water we are at
-   if(waterType == TypeOfWater::TOW_FreshWater){
-        currFish = freshFish[randNum];
-   }
-   else if(waterType == TypeOfWater::TOW_SmoothWater){
-        currFish = smoothFish[randNum];
-   }
-   else if(waterType == TypeOfWater::TOW_SaltWater){
-        currFish = saltFish[randNum];
-   }
+    currFish = getRandFish();
 
     //Read the picture file
     QString fishPic = fishQA.value(currFish).value("filepath");
@@ -474,15 +458,14 @@ void Model::getFish(){
         }
 
         //send to method to get two other random values of fish
-        QString randAsnw1 = getRandAnswers(questionNum,question, answer);
-        QString randAsnw2 = getRandAnswers(questionNum, question, answer);
+        QString randAsnw1 = getRandAnswer(questionNum,question, answer);
+        QString randAsnw2 = getRandAnswer(questionNum, question, answer);
         emit updateQuiz(question, answer, randAsnw1, randAsnw2,  fishPic, currFish);
     }
     //If it is not catched
     else{
         catchedFish.insert(currFish, 1);
-       //send all infomation of the fish
-        //TODO: send picture of fish file name
+        //send all infomation of the fish
         QString question1 = "What is my Name?";
         QString answer1 = fishQA.value(currFish).value(question1);
 
@@ -499,26 +482,19 @@ void Model::getFish(){
                                question3, answer3, question4, answer4,
                                currFish, fishPic);
 
-        }
+    }
 
 }
 
 
 //Helper method that gets a random answer based on the question
-QString Model::getRandAnswers(int questionNum, QString question,  QString answer){
-   int randNum = rand()%10;
-   QString randFish;
-   QString randAnsw;
+QString Model::getRandAnswer(int questionNum, QString question,  QString answer){
+    //get a random fish
+    QString randFish = getRandFish();
+    QString randAnsw;
 
-   //TODO: check that is not the same fish
-    if(waterType == TypeOfWater::TOW_SaltWater)
-       randFish = saltFish[randNum];
-    else if(waterType == TypeOfWater::TOW_SmoothWater)
-       randFish = smoothFish[randNum];
-    else if(waterType == TypeOfWater::TOW_FreshWater)
-       randFish = freshFish[randNum];
-
-
+    //Based on our question number (The question we did)
+    //We will get the answer of
     switch(questionNum){
     case 0:
         randAnsw = fishQA.value(randFish).value(question);
@@ -527,13 +503,15 @@ QString Model::getRandAnswers(int questionNum, QString question,  QString answer
         randAnsw = fishQA.value(randFish).value(question);
         break;
     case 2:
-       randAnsw = fishQA.value(randFish).value(question);
+        randAnsw = fishQA.value(randFish).value(question);
         break;
     case 3:
         randAnsw = fishQA.value(randFish).value(question);
         break;
     }
-    return randAnsw;
+
+    //if my answer is the same as my current answer, then repeat method
+    return randAnsw != answer? randAnsw: getRandAnswer(questionNum, question, answer);
 }
 
 //Checks user answer
@@ -547,3 +525,18 @@ void Model::checkAnswer(QString question, QString userAnswer){
         emit answerResult(false);
 }
 
+//Helper method to get a random fish from the water type we are currently in
+QString Model::getRandFish(){
+    int randNum = rand()%10;
+    QString randFish;
+
+    if(waterType == TypeOfWater::TOW_SaltWater)
+        randFish = saltFish[randNum];
+    else if(waterType == TypeOfWater::TOW_SmoothWater)
+        randFish = smoothFish[randNum];
+    else if(waterType == TypeOfWater::TOW_FreshWater)
+        randFish = freshFish[randNum];
+
+    //if my fish is the same as my current fish, then repeat method
+    return randFish != currFish? randFish: getRandFish();
+}

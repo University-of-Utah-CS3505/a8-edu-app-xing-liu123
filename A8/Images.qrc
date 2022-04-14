@@ -35,5 +35,8 @@
         <file>fishPics/Taimen.jpg</file>
         <file>fishPics/Tetra.jpg</file>
         <file>fishPics/ZebraDanios.png</file>
+        <file>water/freshW.jpg</file>
+        <file>water/saltW1.jpg</file>
+        <file>water/smoothW.jpg</file>
     </qresource>
 </RCC>
