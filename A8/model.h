@@ -83,6 +83,11 @@ signals:
                            QString q3, QString a3, QString q4, QString a4,
                            QString fishName, QString fishPic);
 
+    void updateJournal(int fishNum, QString waterLetter,
+                       QString a1, QString a2,
+                       QString a3, QString a4,
+                       QString fishName, QString fishPic);
+
     void sendSpearLabel(QPixmap map);
     void resetSpear(QPixmap map);
 
@@ -180,7 +185,6 @@ private:
 
     QImage spearImage;
     bool isShot;
-
 
 
     //testing question info

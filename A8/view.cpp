@@ -128,6 +128,11 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::showResult);
 
+    //Journal
+    connect(&model,
+            &Model::updateJournal,
+            this,
+            &View::setUpJournal);
 
     //Testing Code for quiz and info window
     connect(ui->nextFishTestButton,
@@ -336,11 +341,17 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
 }
 
 
-void View::updateJournal(int fishNum, QString waterLetter,
+void View::setUpJournal(int fishNum, QString waterLetter,
                          QString a1, QString a2,
                          QString a3, QString a4,
                          QString fishName, QString fishPic){
 
+    QString pageNum = QString::number((fishNum%2) + 1);
+    QString labelNum = QString::number((fishNum%5) + 1);
+    QString labelInfoName = waterLetter + "JP_" + pageNum + "InfoLabel_" + labelNum;
+    QString labelPictureName =  waterLetter + "JP_" + pageNum + "PicLabel_" + labelNum;
+
+    QString infoInLabel = fishName + a1 + "\n" + a2 + "\n" + a3 + "\n" + a4;
 
 
 

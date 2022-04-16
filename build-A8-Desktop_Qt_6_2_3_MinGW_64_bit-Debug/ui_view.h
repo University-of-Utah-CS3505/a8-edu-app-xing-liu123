@@ -211,15 +211,15 @@ public:
         FishingPage->setMouseTracking(true);
         fish1Label = new QLabel(FishingPage);
         fish1Label->setObjectName(QString::fromUtf8("fish1Label"));
-        fish1Label->setGeometry(QRect(40, 300, 111, 81));
+        fish1Label->setGeometry(QRect(0, 260, 110, 80));
         fish1Label->setMouseTracking(true);
         fish2Label = new QLabel(FishingPage);
         fish2Label->setObjectName(QString::fromUtf8("fish2Label"));
-        fish2Label->setGeometry(QRect(30, 390, 111, 71));
+        fish2Label->setGeometry(QRect(0, 360, 110, 80));
         fish2Label->setMouseTracking(true);
         fish3Label = new QLabel(FishingPage);
         fish3Label->setObjectName(QString::fromUtf8("fish3Label"));
-        fish3Label->setGeometry(QRect(30, 480, 111, 61));
+        fish3Label->setGeometry(QRect(0, 460, 110, 80));
         fish3Label->setMouseTracking(true);
         spearLabel = new QLabel(FishingPage);
         spearLabel->setObjectName(QString::fromUtf8("spearLabel"));
@@ -623,15 +623,15 @@ public:
         View->setCentralWidget(centralwidget);
         menubar = new QMenuBar(View);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 22));
+        menubar->setGeometry(QRect(0, 0, 800, 28));
         View->setMenuBar(menubar);
         statusbar = new QStatusBar(View);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         View->setStatusBar(statusbar);
 
         retranslateUi(View);
-        stackedWidget->setCurrentIndex(3);
 
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(View);
