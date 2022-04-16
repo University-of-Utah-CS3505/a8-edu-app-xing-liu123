@@ -540,3 +540,95 @@ QString Model::getRandFish(){
     //if my fish is the same as my current fish, then repeat method
     return randFish != currFish? randFish: getRandFish();
 }
+
+//*********** Code for Testing *********************
+
+//TESTING Code for quiz and Information WIndow
+//INFORMATION TESTING
+void Model::getTestInfoFish(){
+    QString fish;
+    QString fishPic = fishQA.value(currFish).value("filepath");
+    if(waterType == TypeOfWater::TOW_SaltWater)
+        fish = saltFish[currInfo];
+    else if(waterType == TypeOfWater::TOW_SmoothWater)
+        fish = smoothFish[currInfo];
+    else if(waterType == TypeOfWater::TOW_FreshWater)
+        fish = freshFish[currInfo];
+
+
+    //send all infomation of the fish
+    QString question1 = "What is my Name?";
+    QString answer1 = fishQA.value(fish).value(question1);
+
+    QString question2  = "How big can I get?";
+    QString answer2 = fishQA.value(fish).value(question2);
+
+    QString question3  = "Where can you find me?";
+    QString answer3 = fishQA.value(fish).value(question3);
+
+    QString question4  = "Am I an endangered species?";
+    QString answer4 = fishQA.value(fish).value(question4);
+
+    if(currInfo < 10)
+        currInfo++;
+    else
+        currInfo = 0;
+
+    emit updateInformation(question1, answer1, question2, answer2,
+                           question3, answer3, question4, answer4,
+                           fish, fishPic);
+}
+
+
+//QUIZ TESTING
+void Model::getTestQuizInfo(){
+    QString question;
+    QString answer;
+    QString fish;
+    if(waterType == TypeOfWater::TOW_SaltWater)
+        fish = saltFish[currQuiz];
+    else if(waterType == TypeOfWater::TOW_SmoothWater)
+        fish = smoothFish[currQuiz];
+    else if(waterType == TypeOfWater::TOW_FreshWater)
+        fish = freshFish[currQuiz];
+    QString fishPic = fishQA.value(fish).value("filepath");
+
+    //Get the question and aswer
+    switch(qNum){
+    case 0:
+        question = "What is my Name?";
+        answer = fishQA.value(fish).value(question);
+        break;
+    case 1:
+        question = "How big can I get?";
+        answer = fishQA.value(fish).value(question);
+        break;
+    case 2:
+        question = "Where can you find me?";
+        answer = fishQA.value(fish).value(question);
+        break;
+    case 3:
+        question = "Am I an endangered species?";
+        answer = fishQA.value(fish).value(question);
+        break;
+    }
+
+    //send to method to get two other random values of fish
+    QString randAsnw1 = getRandAnswer(qNum,question, answer);
+    QString randAsnw2 = getRandAnswer(qNum, question, answer);
+
+
+    //Counter of questions
+    if(qNum < 3)
+        qNum++;
+    else
+        qNum = 0;
+    //COunter of fish
+    if(currQuiz < 10 && qNum ==0)
+        currQuiz++;
+    else if(currQuiz >= 10 && qNum == 0)
+        currQuiz = 0;
+
+    emit updateQuiz(question, answer, randAsnw1, randAsnw2,  fishPic, fish);
+
+}

@@ -69,10 +69,24 @@ private slots:
     // goback to fishing screen
     void on_nextButton_clicked();
 
+    //display on Journal
+    void updateJournal(int fishNum, QString waterLetter,
+                       QString a1, QString a2,
+                       QString a3, QString a4,
+                       QString fishName, QString fishPic);
+
+
+
 private:
     Ui::View *ui;
     QTimer * time;
     QImage spearImage;
+    int const startPage = 0;
+    int const fishingPage = 1;
+    int const InfoPage = 3;
+    int const quizPage = 4;
+    int const journalPage1 = 5;
+
 
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
 

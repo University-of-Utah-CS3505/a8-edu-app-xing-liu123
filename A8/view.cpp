@@ -24,6 +24,7 @@ View::View(Model &model,  QWidget *parent)
 
     // ui->widget->show();
 
+
     //Set up labels
     QPixmap water;
     water.load(":/water/freshW.jpg");
@@ -141,6 +142,21 @@ View::View(Model &model,  QWidget *parent)
             &Model::answerResult,
             this,
             &View::showResult);
+
+
+    //Testing Code for quiz and info window
+    connect(ui->nextFishTestButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::getTestInfoFish);
+    connect(ui->nextQuestionButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::getTestQuizInfo);
+    connect(ui->goToQuizButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::getTestQuizInfo);
 
 }
 
@@ -315,8 +331,21 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
     pix.load(fishPic);
     ui->inforFishPicLabel->setPixmap(pix.scaled(ui->inforFishPicLabel->width(), ui->inforFishPicLabel->height()));
 
+}
+
+
+void View::updateJournal(int fishNum, QString waterLetter,
+                         QString a1, QString a2,
+                         QString a3, QString a4,
+                         QString fishName, QString fishPic){
+
+
+
 
 }
+
+
+
 
 //Answer Buttons
 void View::on_answerButton1_clicked(){
@@ -377,4 +406,6 @@ void View::on_nextButton_clicked(){
 //        std::cout << "No media found" << std::endl;
 //    }
 //}
+
+
 

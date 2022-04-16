@@ -111,6 +111,11 @@ public slots:
     void checkAnswer(QString question, QString answer);
 
 
+    //TESTING slots for Info and quiz
+    void getTestInfoFish();
+    void getTestQuizInfo();
+
+
 private:
     b2World *world;
     b2Body* fish1;
@@ -177,6 +182,11 @@ private:
     QMultiMap<QString, QMap<QString, QString> > fishQA;
     QString getRandFish();
     void loadInfoQ();
+
+    //TESTING Variable: slots for Info and quiz
+    int currInfo = 0;
+    int currQuiz = 0;
+    int qNum = 0;
 
 };
 
