@@ -454,10 +454,24 @@ void Model::loadInfoQ(){
 //***********Quiz************************
 //Once the Spear has crashed with a fish, the you call this method
 void Model::getFish(){
-    loadInfoQ();
+    //loadInfoQ();
 
-    currFish = getRandFish();
+    int randNum = rand()%10;
+    QString currFish;
+    QString waterL;
 
+    if(waterType == TypeOfWater::TOW_SaltWater){
+        currFish = saltFish[randNum];
+        waterL = "s";
+    }
+    else if(waterType == TypeOfWater::TOW_SmoothWater){
+        currFish = smoothFish[randNum];
+         waterL = "r";
+    }
+    else if(waterType == TypeOfWater::TOW_FreshWater){
+        currFish = freshFish[randNum];
+         waterL = "p";
+    }
     //Read the picture file
     QString fishPic = fishQA.value(currFish).value("filepath");
 
@@ -517,6 +531,11 @@ void Model::getFish(){
         emit updateInformation(question1, answer1, question2, answer2,
                                question3, answer3, question4, answer4,
                                currFish, fishPic);
+
+        //Information to set up journal
+         emit updateJournal(randNum, waterL, answer1, answer2,
+                            answer3, answer4, currFish, fishPic);
+
 
     }
 
@@ -583,14 +602,13 @@ QString Model::getRandFish(){
 //INFORMATION TESTING
 void Model::getTestInfoFish(){
     QString fish;
-    QString fishPic = fishQA.value(currFish).value("filepath");
     if(waterType == TypeOfWater::TOW_SaltWater)
         fish = saltFish[currInfo];
     else if(waterType == TypeOfWater::TOW_SmoothWater)
         fish = smoothFish[currInfo];
     else if(waterType == TypeOfWater::TOW_FreshWater)
         fish = freshFish[currInfo];
-
+    QString fishPic = fishQA.value(fish).value("filepath");
 
     //send all infomation of the fish
     QString question1 = "What is my Name?";
@@ -605,7 +623,7 @@ void Model::getTestInfoFish(){
     QString question4  = "Am I an endangered species?";
     QString answer4 = fishQA.value(fish).value(question4);
 
-    if(currInfo < 10)
+    if(currInfo < 9)
         currInfo++;
     else
         currInfo = 0;

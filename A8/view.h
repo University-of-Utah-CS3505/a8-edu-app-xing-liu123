@@ -70,7 +70,7 @@ private slots:
     void on_nextButton_clicked();
 
     //display on Journal
-    void updateJournal(int fishNum, QString waterLetter,
+    void setUpJournal(int fishNum, QString waterLetter,
                        QString a1, QString a2,
                        QString a3, QString a4,
                        QString fishName, QString fishPic);

@@ -1,4 +1,5 @@
 QT       += core gui
+#Uncomment this when working on audios
 #QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -128,6 +129,7 @@ DISTFILES += \
     Box2D/CMakeLists.txt
 
 RESOURCES += \
+    Audio.qrc \
     Images.qrc \
     Text.qrc
 

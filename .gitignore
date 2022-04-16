@@ -11,3 +11,9 @@ build-A8-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/ui_view.h
 build-A8-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/Makefile
 *.idx
 *.json
+*.plist
+build-A8-Qt_6_2_3_for_macOS-Debug/A8.app/Contents/MacOS/A8
+build-A8-Qt_6_2_3_for_macOS-Debug/A8.app/Contents/PkgInfo
+*.lproj
+build-A8-Qt_6_2_3_for_macOS-Debug/Makefile
+.DS_Store
