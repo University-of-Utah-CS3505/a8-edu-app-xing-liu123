@@ -9,6 +9,7 @@
 #include "hitlistener.h"
 #include <QImage>
 #include <QPixmap>
+#include <vector>
 
 enum class TypeOfWater{
     TOW_FreshWater,

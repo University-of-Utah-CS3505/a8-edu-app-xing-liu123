@@ -5,7 +5,6 @@
 #include <QImage>
 #include <QPixmap>
 
-
 Model::Model(QObject *parent)
     : QObject{parent}
 {
@@ -19,7 +18,6 @@ Model::Model(QObject *parent)
 Model::~Model(){
     delete world;
 }
-
 
 void Model::setUpWorld(QString water){
 
@@ -66,6 +64,7 @@ void Model::initFish1(){
     bodyDef1.type = b2_dynamicBody;
     bodyDef1.position.Set(0.55f, 3.0f); //-> Starting position of the fish
     fish1 = world->CreateBody(&bodyDef1);
+    fish1->SetUserData((void*)1);
 
     //Give velocity to body (Slow)
     b2Vec2 velocity1(4.0f, 0.0f);
@@ -90,6 +89,7 @@ void Model::initFish1(){
 
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
+    fixtureDefFish.userData = (void*) 1;
 
     // Add the shape to the body.
     fish1->CreateFixture(&fixtureDefFish);
@@ -119,7 +119,6 @@ void Model::initFish2(){
 
     fixtureDefFish.shape = &dynamicFish;
 
-
     // Set the box density to be non-zero, so it will be dynamic.
     fixtureDefFish.density = 0.1f;
 
@@ -128,6 +127,8 @@ void Model::initFish2(){
 
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
+    fixtureDefFish.userData = (void*) 2;
+
 
     // Add the shape to the body.
     fish2->CreateFixture(&fixtureDefFish);
@@ -163,6 +164,8 @@ void Model::initFish3(){
 
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
+    fixtureDefFish.userData = (void*) 3;
+
 
     // Add the shape to the body.
     fish3->CreateFixture(&fixtureDefFish);
@@ -174,9 +177,11 @@ void Model::initSpear(){
     bodySpearDef.position.Set(4.00f, 0.75f);
     spear = world->CreateBody(&bodySpearDef);
 
+
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
     dynamicSpear.SetAsBox(0.01f, 0.575f);
+
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
@@ -191,9 +196,11 @@ void Model::initSpear(){
 
     // Set the bounciness
     fixtureDef.restitution = 0.0f;
+    fixtureDef.userData = (void*) 4;
 
     // Add the shape to the body.
     spear->CreateFixture(&fixtureDef);
+
 }
 
 
@@ -269,6 +276,7 @@ void Model::updateSpear(){
 
     if(spearX <= 925 && spearX >= -125 && spearY <= 725 && spearY >= -125 ){
         emit setUpSpear(initXSpear, initYSpear, spearX - 75, spearY - 75);
+
     }
     else{
         emit setUpSpear(325, 0, 325, 0);
