@@ -71,11 +71,10 @@ public:
     ~Model();
 
 signals:
-    void setUpFish1(int x, int y);
-    void setUpFish2(int x, int y);
-    void setUpFish3(int x, int y);
+    void setUpFish1(int x1, int y1, int x2, int y2);
+    void setUpFish2(int x1, int y1, int x2, int y2);
+    void setUpFish3(int x1, int y1, int x2, int y2);
     void setUpSpear(int x1, int y1, int x2, int y2);
-    void startTime();
 
     void updateQuiz(QString question, QString answer, QString randAnswer1,
                     QString randAnswer2, QString fishPic, QString fishName );
@@ -97,14 +96,12 @@ signals:
     //Discuss with TEAM why private not working
 public slots:
     void setUpWorld(QString water);
-    void updateFish1();
-    void updateFish2();
-    void updateFish3();
+
     void updateSpear();
 
     void getFish();
 
-    void startTimer(int x, int y);
+    void shotSpear(int x, int y);
     void setSpearLabel(int x, int y);
     //void notifyCollision();
 
@@ -120,6 +117,12 @@ private:
     b2Body* spear;
     int spearX;
     int spearY;
+    int fish1X;
+    int fish1Y;
+    int fish2X;
+    int fish2Y;
+    int fish3X;
+    int fish3Y;
     QTimer *timer;
     void initFish1();
     void initFish2();

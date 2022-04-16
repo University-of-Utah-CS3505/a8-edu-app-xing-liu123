@@ -40,11 +40,10 @@ View::View(Model &model,  QWidget *parent)
     animatedFish.load(":/fish2.png");
     ui->fish2Label->setPixmap(animatedFish.scaled(ui->fish2Label->width(), ui->fish2Label->height()));
 
-
     QPixmap spearPix;
     spearPix.load(":/spear.png");
     ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
-
+//    ui->spearLabel->setStyleSheet("QLabel{background-color : red}");
     //Set up the initial Widget
     ui->stackedWidget->setCurrentIndex(0);
     time = new QTimer(this);
@@ -55,19 +54,6 @@ View::View(Model &model,  QWidget *parent)
             &model,
             &Model::setUpWorld);
 
-    //Connection for timer
-    connect(time,
-            &QTimer::timeout,
-            &model,
-            &Model::updateFish1);
-    connect(time,
-            &QTimer::timeout,
-            &model,
-            &Model::updateFish2);
-    connect(time,
-            &QTimer::timeout,
-            &model,
-            &Model::updateFish3);
     //oOnnection to display fish
     connect(&model,
             &Model::setUpFish1,
@@ -81,16 +67,12 @@ View::View(Model &model,  QWidget *parent)
             &Model::setUpFish3,
             this,
             &View::displayFish3);
-    connect(&model,
-            &Model::startTime,
-            this,
-            &View::startTime);
 
     // connects for spear
     connect(this,
             &View::shootSpear,
             &model,
-            &Model::startTimer);
+            &Model::shotSpear);
     connect(&model,
             &Model::setUpSpear,
             this,
@@ -161,11 +143,6 @@ View::~View()
 }
 
 
-//Start timer.
-void View::startTime(){
-    time->start(75);
-}
-
 
 //Get the Program to start
 void View::on_startButton_clicked()
@@ -175,27 +152,37 @@ void View::on_startButton_clicked()
 
 
 //Display the fish labels into their new position
-void View::displayFish1(int x, int y){
+void View::displayFish1(int x1, int y1, int x2, int y2){
 //    std::cout << "hit " << std::endl;
-    ui->fish1Label->setGeometry(x * 100, y * 100,
-                                ui->fish1Label->width(), ui->fish1Label->height());
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->fish1Label,"pos");
+    animation->setDuration(25);
+    animation->setStartValue(QPoint(x1,y1));
+    animation->setEndValue(QPoint(x2,y2));
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->start();
 }
-void View::displayFish2(int x, int y){
-    ui->fish2Label->setGeometry(x * 100, y * 100,
-                                ui->fish2Label->width(), ui->fish2Label->height());
+void View::displayFish2(int x1, int y1, int x2, int y2){
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->fish2Label,"pos");
+    animation->setDuration(25);
+    animation->setStartValue(QPoint(x1,y1));
+    animation->setEndValue(QPoint(x2,y2));
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->start();
 
 }
-void View::displayFish3(int x, int y){
-    ui->fish3Label->setGeometry(x * 100, y * 100,
-                                ui->fish3Label->width(), ui->fish3Label->height());
+void View::displayFish3(int x1, int y1, int x2, int y2){
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->fish3Label,"pos");
+    animation->setDuration(25);
+    animation->setStartValue(QPoint(x1,y1));
+    animation->setEndValue(QPoint(x2,y2));
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->start();
 
 }
 
 void View::displaySpear(int x1, int y1, int x2, int y2){
-//    ui->spearLabel->setGeometry(x2 , y2,
-//                                ui->spearLabel->width(), ui->spearLabel->height());
     QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
-    animation->setDuration(100);
+    animation->setDuration(25);
     animation->setStartValue(QPoint(x1,y1));
     animation->setEndValue(QPoint(x2,y2));
     animation->setEasingCurve(QEasingCurve::Linear);
@@ -205,9 +192,12 @@ void View::displaySpear(int x1, int y1, int x2, int y2){
 
 void View::mouseMoveEvent(QMouseEvent *event){
     QPoint point = event->pos();
-    std::cout << "moved" << std::endl;
     emit sendPosition(point.x(), point.y());
-
+    QString s("X: ");
+            s.append(QString::number(point.x()));
+            s.append(" Y: ");
+            s.append(QString::number(point.y()));
+            ui->locationLabel->setText(s);
 }
 
 void View::updateSpearLabel(QPixmap map){

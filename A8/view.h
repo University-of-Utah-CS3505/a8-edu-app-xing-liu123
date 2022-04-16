@@ -40,11 +40,10 @@ signals:
     void checkUserAnswer(QString question, QString answer);
 
 private slots:
-    void displayFish1(int x, int y);
-    void displayFish2(int x, int y);
-    void displayFish3(int x, int y);
+    void displayFish1(int x1, int y1, int x2, int y2);
+    void displayFish2(int x1, int y1, int x2, int y2);
+    void displayFish3(int x1, int y1, int x2, int y2);
     void displaySpear(int x1, int y1, int x2, int y2);
-    void startTime();
     void updateSpearLabel(QPixmap map);
     void resetSpearLabel(QPixmap map);
     // Uncomment this when working on audios

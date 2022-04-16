@@ -7,6 +7,7 @@ HitListener::HitListener()
 }
 
 void HitListener::BeginContact(b2Contact* contact) {
+    std::cout << "hit" << std::endl;
     emit sendCollision();
 }
 

@@ -45,11 +45,17 @@ void Model::setUpWorld(QString water){
     //Call to initialize the fishes (bodies)
     spearX = 400;
     spearY = 75;
+    fish1X = 55;
+    fish1Y = 300;
+    fish2X = 55;
+    fish2Y = 400;
+    fish3X = 55;
+    fish3Y = 500;
     initFish1();
     initFish2();
     initFish3();
     initSpear();
-    emit startTime();
+    timer->start(25);
 }
 
 
@@ -58,7 +64,7 @@ void Model::initFish1(){
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef1;
     bodyDef1.type = b2_dynamicBody;
-    bodyDef1.position.Set(0.0f, 3.0f); //-> Starting position of the fish
+    bodyDef1.position.Set(0.55f, 3.0f); //-> Starting position of the fish
     fish1 = world->CreateBody(&bodyDef1);
 
     //Give velocity to body (Slow)
@@ -96,7 +102,7 @@ void Model::initFish2(){
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef2;
     bodyDef2.type = b2_dynamicBody;
-    bodyDef2.position.Set(0.0f, 4.0f); //-> Starting position of the fish
+    bodyDef2.position.Set(0.55f, 4.0f); //-> Starting position of the fish
     fish2 = world->CreateBody(&bodyDef2);
 
     //Give velocity to body (Medium)
@@ -132,7 +138,7 @@ void Model::initFish3(){
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef3;
     bodyDef3.type = b2_dynamicBody;
-    bodyDef3.position.Set(0.0f, 5.0f); //-> Starting position of the fish
+    bodyDef3.position.Set(0.55f, 5.0f); //-> Starting position of the fish
     fish3 = world->CreateBody(&bodyDef3);
 
     //Give velocity to body (Fast)
@@ -170,7 +176,7 @@ void Model::initSpear(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
-    dynamicSpear.SetAsBox(0.05f, 0.05f);
+    dynamicSpear.SetAsBox(0.01f, 0.575f);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
@@ -191,111 +197,58 @@ void Model::initSpear(){
 }
 
 
-void Model::updateFish1(){
-    // Prepare for simulation. Typically we use a time step of 1/60 of a
-    // second (60Hz) and 10 iterations. This provides a high quality simulation
-    // in most game scenarios.
-    float32 timeStep = 1.0f / 60.0f;
-    int32 velocityIterations = 6;
-    int32 positionIterations = 2;
-
-    // Instruct the world to perform a single step of simulation.
-    // It is generally best to keep the time step and iterations fixed.
-    world->Step(timeStep, velocityIterations, positionIterations);
-
-    //When the position of the fish is outside our window it will start again
-    if(fish1->GetPosition().x > 9){
-        b2Vec2 pos(-1.0f, 3.0f);
-        fish1->SetTransform(pos,fish1->GetAngle());
-    }
-
-    // Now print the position and angle of the body.
-    b2Vec2 position = fish1->GetPosition();
-    emit setUpFish1(position.x, position.y);
-
-}
-
-void Model::updateFish2(){
-    // Prepare for simulation. Typically we use a time step of 1/60 of a
-    // second (60Hz) and 10 iterations. This provides a high quality simulation
-    // in most game scenarios.
-    float32 timeStep = 1.0f / 60.0f;
-    int32 velocityIterations = 6;
-    int32 positionIterations = 2;
-
-    // Instruct the world to perform a single step of simulation.
-    // It is generally best to keep the time step and iterations fixed.
-    world->Step(timeStep, velocityIterations, positionIterations);
-
-    //When the position of the fish is outside our window it will start again
-    if(fish2->GetPosition().x > 9){
-        b2Vec2 pos(-1.0f, 4.0f);
-        fish2->SetTransform(pos,fish2->GetAngle());
-    }
-
-    // Now print the position and angle of the body.
-    b2Vec2 position = fish2->GetPosition();
-    emit setUpFish2(position.x, position.y);
-}
-
-
-void Model::updateFish3(){
-    // Prepare for simulation. Typically we use a time step of 1/60 of a
-    // second (60Hz) and 10 iterations. This provides a high quality simulation
-    // in most game scenarios.
-    float32 timeStep = 1.0f / 60.0f;
-    int32 velocityIterations = 6;
-    int32 positionIterations = 2;
-
-    // Instruct the world to perform a single step of simulation.
-    // It is generally best to keep the time step and iterations fixed.
-    world->Step(timeStep, velocityIterations, positionIterations);
-
-    //When the position of the fish is outside our window it will start again
-    if(fish3->GetPosition().x > 9){
-        b2Vec2 pos(-1.0f, 5.0f);
-        fish3->SetTransform(pos,fish3->GetAngle());
-    }
-
-    // Now print the position and angle of the body.
-    b2Vec2 position = fish3->GetPosition();
-    emit setUpFish3(position.x, position.y);
-}
-
-void Model::startTimer(int x, int y){
+void Model::shotSpear(int x, int y){
     isShot = true;
     float velocityX = 0;
     float velocityY = 0;
     float angle = 0;
 
+    QImage rotated;
+    QPixmap spearPix;
+
     if(y > 75){
         velocityX = x - 400;
         velocityY = y - 75;
-        angle = -atan(x/y)*180 / M_PI;
+        double radian = -atan(velocityX/velocityY);
+
+        angle = radian*180 / M_PI;
+
+        rotated = spearImage.transformed(QTransform().rotate(angle));
+        spearPix = QPixmap::fromImage(rotated.scaled(150*(sin(abs(radian)) + cos(abs(radian))),150*(sin(abs(radian)) + cos(abs(radian)))));
     }
     else if(x <= 400){
         velocityX = -1;
         velocityY = 0;
         angle = 90;
+        rotated = spearImage.transformed(QTransform().rotate(90));
+        spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
     }
     else{
         velocityX = 1;
         velocityY = 0;
         angle = -90;
+        rotated = spearImage.transformed(QTransform().rotate(-90));
+        spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
     }
+
+
+    emit sendSpearLabel(spearPix);
 
     // normolize the velocity
     b2Vec2 velocity(velocityX*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))));
     spear->SetLinearVelocity(velocity);
     spear->SetTransform(spear->GetPosition(), angle);
-
-
-    timer->start(100);
 }
 
 void Model::updateSpear(){
-    int initX = spearX - 75;
-    int initY = spearY - 75;
+    int initXSpear = spearX - 75;
+    int initYSpear = spearY - 75;
+    int initXFish1 = fish1X - 55;
+    int initYFish1 = fish1Y - 40;
+    int initXFish2 = fish2X - 55;
+    int initYFish2 = fish2Y - 40;
+    int initXFish3 = fish3X - 55;
+    int initYFish3 = fish3Y - 40;
 
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
@@ -315,20 +268,75 @@ void Model::updateSpear(){
 
 
     if(spearX <= 925 && spearX >= -125 && spearY <= 725 && spearY >= -125 ){
-        std::cout << "X: " << spearX << " Y: " << spearY << std::endl;
-        emit setUpSpear(initX, initY, spearX - 75, spearY - 75);
+        emit setUpSpear(initXSpear, initYSpear, spearX - 75, spearY - 75);
     }
     else{
-        timer->stop();
+        emit setUpSpear(325, 0, 325, 0);
+//        timer->stop();
 
         initSpear();
         spearX = 400;
         spearY = 75;
+
+
         QPixmap spearPix = QPixmap::fromImage(spearImage.scaled(150, 150));;
 
         emit resetSpear(spearPix);
         isShot = false;
-        std::cout << "over" << std::endl;
+    }
+
+    //When the position of the fish is outside our window it will start again
+    if(fish1->GetPosition().x > 9){
+        b2Vec2 pos(-1.0f, 3.0f);
+        fish1->SetTransform(pos,fish1->GetAngle());
+    }
+
+    // Now print the position and angle of the body.
+    b2Vec2 posFish1 = fish1->GetPosition();
+    fish1X= posFish1.x*100;
+    fish1Y = posFish1.y*100;
+
+    if(fish1X < initXFish1){
+        emit setUpFish1(-125, 260, fish1X - 55, fish1Y - 40);
+    }
+    else{
+        emit setUpFish1(initXFish1, initYFish1, fish1X - 55, fish1Y - 40);
+    }
+
+    //When the position of the fish is outside our window it will start again
+    if(fish2->GetPosition().x > 9){
+        b2Vec2 pos(-1.0f, 4.0f);
+        fish2->SetTransform(pos,fish2->GetAngle());
+    }
+
+    // Now print the position and angle of the body.
+    b2Vec2 posFish2 = fish2->GetPosition();
+    fish2X= posFish2.x*100;
+    fish2Y = posFish2.y*100;
+
+    if(fish2X < initXFish2){
+        emit setUpFish2(-125, 360, fish2X - 55, fish2Y - 40);
+    }
+    else{
+        emit setUpFish2(initXFish2, initYFish2, fish2X - 55, fish2Y - 40);
+    }
+
+    //When the position of the fish is outside our window it will start again
+    if(fish3->GetPosition().x > 9){
+        b2Vec2 pos(-1.0f, 5.0f);
+        fish3->SetTransform(pos,fish3->GetAngle());
+    }
+
+    // Now print the position and angle of the body.
+    b2Vec2 posFish3 = fish3->GetPosition();
+    fish3X= posFish3.x*100;
+    fish3Y = posFish3.y*100;
+
+    if(fish3X < initXFish3){
+        emit setUpFish3(-125, 460, fish3X - 55, fish3Y - 40);
+    }
+    else{
+        emit setUpFish3(initXFish3, initYFish3, fish3X - 55, fish3Y - 40);
     }
 }
 
@@ -338,9 +346,9 @@ void Model::setSpearLabel(int x, int y){
         QPixmap spearPix;
 
         if(y > 75){
-            double deltaX = x - 400;
-            double deltaY = y - 75;
-            double radian = -atan(deltaX/deltaY);
+            double velocityX = x - 400;
+            double velocityY = y - 75;
+            double radian = -atan(velocityX/velocityY);
             double angle = radian*180 / M_PI;
 
             rotated = spearImage.transformed(QTransform().rotate(angle));
@@ -356,7 +364,6 @@ void Model::setSpearLabel(int x, int y){
         }
 
         emit sendSpearLabel(spearPix);
-        std::cout << "back" << std::endl;
     }
 }
 
