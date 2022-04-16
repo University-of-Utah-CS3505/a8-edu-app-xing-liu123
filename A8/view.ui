@@ -20,17 +20,17 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>771</width>
-      <height>551</height>
+      <x>0</x>
+      <y>0</y>
+      <width>800</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="mouseTracking">
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -157,10 +157,10 @@
      <widget class="QLabel" name="fish1Label">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>300</y>
-        <width>111</width>
-        <height>81</height>
+        <x>0</x>
+        <y>260</y>
+        <width>110</width>
+        <height>80</height>
        </rect>
       </property>
       <property name="mouseTracking">
@@ -173,10 +173,10 @@
      <widget class="QLabel" name="fish2Label">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>390</y>
-        <width>111</width>
-        <height>71</height>
+        <x>0</x>
+        <y>360</y>
+        <width>110</width>
+        <height>80</height>
        </rect>
       </property>
       <property name="mouseTracking">
@@ -189,10 +189,10 @@
      <widget class="QLabel" name="fish3Label">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>480</y>
-        <width>111</width>
-        <height>61</height>
+        <x>0</x>
+        <y>460</y>
+        <width>110</width>
+        <height>80</height>
        </rect>
       </property>
       <property name="mouseTracking">

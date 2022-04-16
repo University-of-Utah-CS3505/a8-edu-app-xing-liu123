@@ -171,7 +171,7 @@ public:
         centralwidget->setMouseTracking(true);
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
-        stackedWidget->setGeometry(QRect(10, 10, 771, 551));
+        stackedWidget->setGeometry(QRect(0, 0, 800, 600));
         stackedWidget->setMouseTracking(true);
         MainMenuPage = new QWidget();
         MainMenuPage->setObjectName(QString::fromUtf8("MainMenuPage"));
@@ -623,15 +623,15 @@ public:
         View->setCentralWidget(centralwidget);
         menubar = new QMenuBar(View);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 28));
+        menubar->setGeometry(QRect(0, 0, 800, 22));
         View->setMenuBar(menubar);
         statusbar = new QStatusBar(View);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         View->setStatusBar(statusbar);
 
         retranslateUi(View);
+        stackedWidget->setCurrentIndex(3);
 
-        stackedWidget->setCurrentIndex(10);
 
 
         QMetaObject::connectSlotsByName(View);
