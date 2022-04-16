@@ -98,7 +98,7 @@ signals:
 public slots:
     void setUpWorld(QString water);
 
-    void updateSpear();
+    void updateWorld();
 
     void getFish();
 

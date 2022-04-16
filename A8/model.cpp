@@ -12,7 +12,7 @@ Model::Model(QObject *parent)
     spearImage.load(":/spear.png");
     isShot = false;
     timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &Model::updateSpear);
+    connect(timer, &QTimer::timeout, this, &Model::updateWorld);
 }
 
 Model::~Model(){
@@ -72,7 +72,7 @@ void Model::initFish1(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(0.05f, 0.05f);
+    dynamicFish.SetAsBox(0.04f, 0.03f);
 
 
     // Define the dynamic body fixture.
@@ -148,7 +148,7 @@ void Model::initFish3(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(0.05f, 0.05f);
+    dynamicFish.SetAsBox(0.04f, 0.03f);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDefFish;
@@ -180,7 +180,7 @@ void Model::initSpear(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
-    dynamicSpear.SetAsBox(0.01f, 0.575f);
+    dynamicSpear.SetAsBox(0.01f, 0.500f);
 
 
     // Define the dynamic body fixture.
@@ -209,6 +209,7 @@ void Model::shotSpear(int x, int y){
     float velocityX = 0;
     float velocityY = 0;
     float angle = 0;
+    float radian = 0;
 
     QImage rotated;
     QPixmap spearPix;
@@ -216,7 +217,7 @@ void Model::shotSpear(int x, int y){
     if(y > 75){
         velocityX = x - 400;
         velocityY = y - 75;
-        double radian = -atan(velocityX/velocityY);
+        radian = -atan(velocityX/velocityY);
 
         angle = radian*180 / M_PI;
 
@@ -227,14 +228,17 @@ void Model::shotSpear(int x, int y){
         velocityX = -1;
         velocityY = 0;
         angle = 90;
-        rotated = spearImage.transformed(QTransform().rotate(90));
+        radian = 0.5*M_PI;
+
+        rotated = spearImage.transformed(QTransform().rotate(angle));
         spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
     }
     else{
         velocityX = 1;
         velocityY = 0;
         angle = -90;
-        rotated = spearImage.transformed(QTransform().rotate(-90));
+        radian = -0.5*M_PI;
+        rotated = spearImage.transformed(QTransform().rotate(angle));
         spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
     }
 
@@ -244,10 +248,10 @@ void Model::shotSpear(int x, int y){
     // normolize the velocity
     b2Vec2 velocity(velocityX*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))));
     spear->SetLinearVelocity(velocity);
-    spear->SetTransform(spear->GetPosition(), angle);
+    spear->SetTransform(spear->GetPosition(), radian);
 }
 
-void Model::updateSpear(){
+void Model::updateWorld(){
     int initXSpear = spearX - 75;
     int initYSpear = spearY - 75;
     int initXFish1 = fish1X - 55;
@@ -280,7 +284,6 @@ void Model::updateSpear(){
     }
     else{
         emit setUpSpear(325, 0, 325, 0);
-//        timer->stop();
 
         initSpear();
         spearX = 400;
