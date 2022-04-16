@@ -1,3 +1,6 @@
 <RCC>
-    <qresource prefix="/"/>
+    <qresource prefix="/">
+        <file>Waves.mp3</file>
+        <file>Water_Churning.mp3</file>
+    </qresource>
 </RCC>

@@ -15,11 +15,12 @@ View::View(Model &model,  QWidget *parent)
 
     // Audios
     // Uncomment this when working on audios
-    //    bgmPlayer->setAudioOutput(bgmOutput);
-    //    bgmPlayer->setSource(QUrl("qrc:/new/audio/Water_Churning.mp3"));
-    //    bgmOutput->setVolume(50);
-    //    connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playmedia);
-
+//    bgmOutput->setVolume(0.2f);
+//    bgmPlayer->setAudioOutput(bgmOutput);
+//    bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+//    connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playBGM);
+//    connect(ui->mainMenuMucisButton, &QPushButton::pressed, this, &View::pressMusicButton);
+//    connect(this, &View::updateMainMenuMusicButton, ui->mainMenuMucisButton, &QPushButton::setText);
 
 
     // ui->widget->show();
@@ -157,10 +158,10 @@ View::~View()
     delete time;
 
     // Uncomment this when working on audios
-    //    delete bgmPlayer;
-    //    delete bgmOutput;
-    //    delete soundEffectOutput;
-    //    delete audioDevice;
+//    delete bgmPlayer;
+//    delete bgmOutput;
+//    delete soundEffectOutput;
+//    delete audioDevice;
 }
 
 
@@ -411,12 +412,22 @@ void View::on_nextButton_clicked(){
 
 
 // Uncomment this when working on audios
-//void View::playmedia(QMediaPlayer::MediaStatus status){
+//void View::playBGM(QMediaPlayer::MediaStatus status){
 //    if (bgmPlayer->hasAudio()){
 //        bgmPlayer->play();
 //    }
 //    else{
 //        std::cout << "No media found" << std::endl;
+//    }
+//}
+//void View::pressMusicButton(){
+//    if(bgmPlayer->playbackState() == QMediaPlayer::PlayingState){
+//        bgmPlayer->stop();
+//        emit updateMainMenuMusicButton("Music: off");
+//    }
+//    else{
+//        bgmPlayer->play();
+//        emit updateMainMenuMusicButton("Music: on");
 //    }
 //}
 
