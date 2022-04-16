@@ -31,6 +31,9 @@ public:
     void mousePressEvent(QMouseEvent *event) override;
 
 signals:
+    // Uncomment this when working on audios
+//    void updateMainMenuMusicButton(QString str);
+
     void newPositiontValue(int height, int width);
     void updateWorld(QString water);
     void shootSpear(int x, int y);
@@ -40,14 +43,16 @@ signals:
     void checkUserAnswer(QString question, QString answer);
 
 private slots:
-    void displayFish1(int x, int y);
-    void displayFish2(int x, int y);
-    void displayFish3(int x, int y);
-    void displaySpear(int x1, int y1, int x2, int y2);
-    void startTime();
-    void updateSpearLabel(QPixmap map);
     // Uncomment this when working on audios
-    //    void playmedia(QMediaPlayer::MediaStatus status);
+//    void playBGM(QMediaPlayer::MediaStatus status);
+//    void pressMusicButton();
+
+    void displayFish1(int x1, int y1, int x2, int y2);
+    void displayFish2(int x1, int y1, int x2, int y2);
+    void displayFish3(int x1, int y1, int x2, int y2);
+    void displaySpear(int x1, int y1, int x2, int y2);
+    void updateSpearLabel(QPixmap map);
+    void resetSpearLabel(QPixmap map);
 
     void setUpQuiz(QString question, QString answer, QString randAnswer1,
                    QString randAnswer2, QString fishPic, QString fishName);
@@ -68,13 +73,25 @@ private slots:
 
     // goback to fishing screen
     void on_nextButton_clicked();
-
     void on_nextButtonFI_clicked();
+
+    //display on Journal
+    void setUpJournal(int fishNum, QString waterLetter,
+                       QString a1, QString a2,
+                       QString a3, QString a4,
+                       QString fishName, QString fishPic);
+
 
 private:
     Ui::View *ui;
     QTimer * time;
     QImage spearImage;
+    int const startPage = 0;
+    int const fishingPage = 1;
+    int const InfoPage = 3;
+    int const quizPage = 4;
+    int const journalPage1 = 5;
+
 
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
 
@@ -82,10 +99,10 @@ private:
 
 
     // Uncomment this when working on audios
-    //    QMediaPlayer* bgmPlayer = new QMediaPlayer;
-    //    QAudioOutput* bgmOutput = new QAudioOutput;
-    //    QAudioOutput* soundEffectOutput = new QAudioOutput;
-    //    QAudioDevice* audioDevice = new QAudioDevice;
+//    QMediaPlayer* bgmPlayer = new QMediaPlayer;
+//    QAudioOutput* bgmOutput = new QAudioOutput;
+//    QAudioOutput* soundEffectOutput = new QAudioOutput;
+//    QAudioDevice* audioDevice = new QAudioDevice;
 };
 #endif // VIEW_H
 

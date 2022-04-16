@@ -15,14 +15,16 @@ View::View(Model &model,  QWidget *parent)
 
     // Audios
     // Uncomment this when working on audios
-    //    bgmPlayer->setAudioOutput(bgmOutput);
-    //    bgmPlayer->setSource(QUrl("qrc:/new/audio/Water_Churning.mp3"));
-    //    bgmOutput->setVolume(50);
-    //    connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playmedia);
-
+//    bgmOutput->setVolume(0.2f);
+//    bgmPlayer->setAudioOutput(bgmOutput);
+//    bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+//    connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playBGM);
+//    connect(ui->mainMenuMucisButton, &QPushButton::pressed, this, &View::pressMusicButton);
+//    connect(this, &View::updateMainMenuMusicButton, ui->mainMenuMucisButton, &QPushButton::setText);
 
 
     // ui->widget->show();
+
 
     //Set up labels
     QPixmap water;
@@ -40,11 +42,10 @@ View::View(Model &model,  QWidget *parent)
     animatedFish.load(":/fish2.png");
     ui->fish2Label->setPixmap(animatedFish.scaled(ui->fish2Label->width(), ui->fish2Label->height()));
 
-
     QPixmap spearPix;
     spearPix.load(":/spear.png");
     ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
-
+//    ui->spearLabel->setStyleSheet("QLabel{background-color : red}");
     //Set up the initial Widget
     ui->stackedWidget->setCurrentIndex(0);
     time = new QTimer(this);
@@ -55,19 +56,6 @@ View::View(Model &model,  QWidget *parent)
             &model,
             &Model::setUpWorld);
 
-    //Connection for timer
-    connect(time,
-            &QTimer::timeout,
-            &model,
-            &Model::updateFish1);
-    connect(time,
-            &QTimer::timeout,
-            &model,
-            &Model::updateFish2);
-    connect(time,
-            &QTimer::timeout,
-            &model,
-            &Model::updateFish3);
     //oOnnection to display fish
     connect(&model,
             &Model::setUpFish1,
@@ -81,16 +69,12 @@ View::View(Model &model,  QWidget *parent)
             &Model::setUpFish3,
             this,
             &View::displayFish3);
-    connect(&model,
-            &Model::startTime,
-            this,
-            &View::startTime);
 
     // connects for spear
     connect(this,
             &View::shootSpear,
             &model,
-            &Model::startTimer);
+            &Model::shotSpear);
     connect(&model,
             &Model::setUpSpear,
             this,
@@ -103,7 +87,10 @@ View::View(Model &model,  QWidget *parent)
             &Model::sendSpearLabel,
             this,
             &View::updateSpearLabel);
-
+    connect(&model,
+            &Model::resetSpear,
+            this,
+            &View::resetSpearLabel);
 
     //Ctach, Quiz and info window
     connect(ui->catchButton,
@@ -142,6 +129,26 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::showResult);
 
+    //Journal
+    connect(&model,
+            &Model::updateJournal,
+            this,
+            &View::setUpJournal);
+
+    //Testing Code for quiz and info window
+    connect(ui->nextFishTestButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::getTestInfoFish);
+    connect(ui->nextQuestionButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::getTestQuizInfo);
+    connect(ui->goToQuizButton,
+            &QPushButton::clicked,
+            &model,
+            &Model::getTestQuizInfo);
+
 }
 
 
@@ -151,17 +158,12 @@ View::~View()
     delete time;
 
     // Uncomment this when working on audios
-    //    delete bgmPlayer;
-    //    delete bgmOutput;
-    //    delete soundEffectOutput;
-    //    delete audioDevice;
+//    delete bgmPlayer;
+//    delete bgmOutput;
+//    delete soundEffectOutput;
+//    delete audioDevice;
 }
 
-
-//Start timer.
-void View::startTime(){
-    time->start(75);
-}
 
 
 //Get the Program to start
@@ -172,26 +174,37 @@ void View::on_startButton_clicked()
 
 
 //Display the fish labels into their new position
-void View::displayFish1(int x, int y){
-    std::cout << "hit " << std::endl;
-    ui->fish1Label->setGeometry(x * 100, y * 100,
-                                ui->fish1Label->width(), ui->fish1Label->height());
+void View::displayFish1(int x1, int y1, int x2, int y2){
+//    std::cout << "hit " << std::endl;
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->fish1Label,"pos");
+    animation->setDuration(25);
+    animation->setStartValue(QPoint(x1,y1));
+    animation->setEndValue(QPoint(x2,y2));
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->start();
 }
-void View::displayFish2(int x, int y){
-    ui->fish2Label->setGeometry(x * 100, y * 100,
-                                ui->fish2Label->width(), ui->fish2Label->height());
+void View::displayFish2(int x1, int y1, int x2, int y2){
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->fish2Label,"pos");
+    animation->setDuration(25);
+    animation->setStartValue(QPoint(x1,y1));
+    animation->setEndValue(QPoint(x2,y2));
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->start();
 
 }
-void View::displayFish3(int x, int y){
-    ui->fish3Label->setGeometry(x * 100, y * 100,
-                                ui->fish3Label->width(), ui->fish3Label->height());
+void View::displayFish3(int x1, int y1, int x2, int y2){
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->fish3Label,"pos");
+    animation->setDuration(25);
+    animation->setStartValue(QPoint(x1,y1));
+    animation->setEndValue(QPoint(x2,y2));
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->start();
 
 }
 
 void View::displaySpear(int x1, int y1, int x2, int y2){
-
     QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
-    animation->setDuration(100);
+    animation->setDuration(25);
     animation->setStartValue(QPoint(x1,y1));
     animation->setEndValue(QPoint(x2,y2));
     animation->setEasingCurve(QEasingCurve::Linear);
@@ -202,9 +215,20 @@ void View::displaySpear(int x1, int y1, int x2, int y2){
 void View::mouseMoveEvent(QMouseEvent *event){
     QPoint point = event->pos();
     emit sendPosition(point.x(), point.y());
+    QString s("X: ");
+            s.append(QString::number(point.x()));
+            s.append(" Y: ");
+            s.append(QString::number(point.y()));
+            ui->locationLabel->setText(s);
 }
 
 void View::updateSpearLabel(QPixmap map){
+    ui->spearLabel->setAlignment(Qt::AlignCenter);
+    ui->spearLabel->setPixmap(map);
+}
+
+void View::resetSpearLabel(QPixmap map){
+    ui->spearLabel->setGeometry(325, 0, 150, 150);
     ui->spearLabel->setAlignment(Qt::AlignCenter);
     ui->spearLabel->setPixmap(map);
 }
@@ -315,8 +339,27 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
     pix.load(fishPic);
     ui->inforFishPicLabel->setPixmap(pix.scaled(ui->inforFishPicLabel->width(), ui->inforFishPicLabel->height()));
 
+}
+
+
+void View::setUpJournal(int fishNum, QString waterLetter,
+                         QString a1, QString a2,
+                         QString a3, QString a4,
+                         QString fishName, QString fishPic){
+
+    QString pageNum = QString::number((fishNum%2) + 1);
+    QString labelNum = QString::number((fishNum%5) + 1);
+    QString labelInfoName = waterLetter + "JP_" + pageNum + "InfoLabel_" + labelNum;
+    QString labelPictureName =  waterLetter + "JP_" + pageNum + "PicLabel_" + labelNum;
+
+    QString infoInLabel = fishName + a1 + "\n" + a2 + "\n" + a3 + "\n" + a4;
+
+
 
 }
+
+
+
 
 //Answer Buttons
 void View::on_answerButton1_clicked(){
@@ -368,7 +411,7 @@ void View::on_nextButton_clicked(){
 
 
 // Uncomment this when working on audios
-//void View::playmedia(QMediaPlayer::MediaStatus status){
+//void View::playBGM(QMediaPlayer::MediaStatus status){
 //    if (bgmPlayer->hasAudio()){
 //        bgmPlayer->play();
 //    }
@@ -376,6 +419,18 @@ void View::on_nextButton_clicked(){
 //        std::cout << "No media found" << std::endl;
 //    }
 //}
+//void View::pressMusicButton(){
+//    if(bgmPlayer->playbackState() == QMediaPlayer::PlayingState){
+//        bgmPlayer->stop();
+//        emit updateMainMenuMusicButton("Music: off");
+//    }
+//    else{
+//        bgmPlayer->play();
+//        emit updateMainMenuMusicButton("Music: on");
+//    }
+//}
+
+
 
 
 void View::on_nextButtonFI_clicked()
