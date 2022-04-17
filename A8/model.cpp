@@ -22,11 +22,11 @@ Model::~Model(){
 void Model::setUpWorld(QString water){
 
     if(water.contains("Salt"))
-        waterType = TypeOfWater::TOW_SaltWater;
+        waterType = TypeOfWater::TOW_SeaWater;
     if(water.contains("Fresh"))
-        waterType = TypeOfWater::TOW_FreshWater;
+        waterType = TypeOfWater::TOW_PondWater;
     if(water.contains("Smooth"))
-        waterType = TypeOfWater::TOW_SmoothWater;
+        waterType = TypeOfWater::TOW_RiverWater;
 
     // Define the gravity vector.
     b2Vec2 gravity(0.0f, 0.0f);
@@ -379,7 +379,7 @@ void Model::setSpearLabel(int x, int y){
 }
 
 void Model::loadInfoQ(){
-    QFile inputFile(QString(":/fishQuestionAnswers.txt"));
+    QFile inputFile(QString(":/Fish_info.txt"));
     if (inputFile.open(QIODevice::ReadOnly))
     {
         QTextStream in(&inputFile);
@@ -424,10 +424,22 @@ void Model::loadInfoQ(){
                 test.insert("Am I an endangered species?", line);
 
             }
-            else if(line.contains("filepath"))
+            else if(line.contains("ActualImagefilepath"))
             {
                 line = line.trimmed().split(" ")[1];
-                test.insert("filepath", line);
+                test.insert("ActualImagefilepath", line);
+
+            }
+            else if(line.contains("PixelatedImagefilepath"))
+            {
+                line = line.trimmed().split(" ")[1];
+                test.insert("PixelatedImagefilepath", line);
+
+            }
+            else if(line.contains("Rarity"))
+            {
+                line = line.trimmed().split(":")[1];
+                test.insert("Rarity", line);
                 fishQA.insert(currentFish, test);
                 count = -1;
                 test.clear();
@@ -438,14 +450,14 @@ void Model::loadInfoQ(){
     }
 
     //for testing purposes
-    int count = 1;
-    for(QMap<QString,QString> str: fishQA.values())
+    //int count = 1;
+    //for(QMap<QString,QString> str: fishQA.values())
     {
 //        std::cout << count++ << std::endl;
         //        std::cout << str.value("What is my Name?").toStdString() << std::endl;
         //        std::cout << str.value("How big can I get?").toStdString() << std::endl;
         //        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
-//        std::cout << str.value("filepath").toStdString() <<std::endl;
+//        std::cout << str.value("ActualImagefilepath").toStdString() <<std::endl;
     }
 }
 
@@ -460,20 +472,20 @@ void Model::getFish(){
     QString currFish;
     QString waterL;
 
-    if(waterType == TypeOfWater::TOW_SaltWater){
-        currFish = saltFish[randNum];
+    if(waterType == TypeOfWater::TOW_SeaWater){
+        currFish = seaFish[randNum];
         waterL = "s";
     }
-    else if(waterType == TypeOfWater::TOW_SmoothWater){
-        currFish = smoothFish[randNum];
+    else if(waterType == TypeOfWater::TOW_RiverWater){
+        currFish = riverFish[randNum];
          waterL = "r";
     }
-    else if(waterType == TypeOfWater::TOW_FreshWater){
-        currFish = freshFish[randNum];
+    else if(waterType == TypeOfWater::TOW_PondWater){
+        currFish = pondFish[randNum];
          waterL = "p";
     }
     //Read the picture file
-    QString fishPic = fishQA.value(currFish).value("filepath");
+    QString fishPic = fishQA.value(currFish).value("ActualImagefilepath");
 
 
     //Check if is in the list of catched fish
@@ -585,12 +597,12 @@ QString Model::getRandFish(){
     int randNum = rand()%10;
     QString randFish;
 
-    if(waterType == TypeOfWater::TOW_SaltWater)
-        randFish = saltFish[randNum];
-    else if(waterType == TypeOfWater::TOW_SmoothWater)
-        randFish = smoothFish[randNum];
-    else if(waterType == TypeOfWater::TOW_FreshWater)
-        randFish = freshFish[randNum];
+    if(waterType == TypeOfWater::TOW_SeaWater)
+        randFish = seaFish[randNum];
+    else if(waterType == TypeOfWater::TOW_RiverWater)
+        randFish = riverFish[randNum];
+    else if(waterType == TypeOfWater::TOW_PondWater)
+        randFish = pondFish[randNum];
 
     //if my fish is the same as my current fish, then repeat method
     return randFish != currFish? randFish: getRandFish();
@@ -602,13 +614,13 @@ QString Model::getRandFish(){
 //INFORMATION TESTING
 void Model::getTestInfoFish(){
     QString fish;
-    if(waterType == TypeOfWater::TOW_SaltWater)
-        fish = saltFish[currInfo];
-    else if(waterType == TypeOfWater::TOW_SmoothWater)
-        fish = smoothFish[currInfo];
-    else if(waterType == TypeOfWater::TOW_FreshWater)
-        fish = freshFish[currInfo];
-    QString fishPic = fishQA.value(fish).value("filepath");
+    if(waterType == TypeOfWater::TOW_SeaWater)
+        fish = seaFish[currInfo];
+    else if(waterType == TypeOfWater::TOW_RiverWater)
+        fish = riverFish[currInfo];
+    else if(waterType == TypeOfWater::TOW_PondWater)
+        fish = pondFish[currInfo];
+    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
 
     //send all infomation of the fish
     QString question1 = "What is my Name?";
@@ -639,13 +651,13 @@ void Model::getTestQuizInfo(){
     QString question;
     QString answer;
     QString fish;
-    if(waterType == TypeOfWater::TOW_SaltWater)
-        fish = saltFish[currQuiz];
-    else if(waterType == TypeOfWater::TOW_SmoothWater)
-        fish = smoothFish[currQuiz];
-    else if(waterType == TypeOfWater::TOW_FreshWater)
-        fish = freshFish[currQuiz];
-    QString fishPic = fishQA.value(fish).value("filepath");
+    if(waterType == TypeOfWater::TOW_SeaWater)
+        fish = seaFish[currQuiz];
+    else if(waterType == TypeOfWater::TOW_RiverWater)
+        fish = riverFish[currQuiz];
+    else if(waterType == TypeOfWater::TOW_PondWater)
+        fish = pondFish[currQuiz];
+    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
 
     //Get the question and aswer
     switch(qNum){

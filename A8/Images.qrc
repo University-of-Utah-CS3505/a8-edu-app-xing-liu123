@@ -38,5 +38,63 @@
         <file>water/freshW.jpg</file>
         <file>water/saltW1.jpg</file>
         <file>water/smoothW.jpg</file>
+        <file>fishPics/Anchovy.webp</file>
+        <file>fishPics/Bitterling.webp</file>
+        <file>fishPics/Blowfish.webp</file>
+        <file>fishPics/Bluegill.jfif</file>
+        <file>fishPics/butterflyfish.jpg</file>
+        <file>fishPics/Carp.jpg</file>
+        <file>fishPics/Catfish.jpg</file>
+        <file>fishPics/Cherrysalmon.jpg</file>
+        <file>fishPics/Clownfish.jpg</file>
+        <file>fishPics/Crawfish.jpg</file>
+        <file>fishPics/Cruciancarp.jfif</file>
+        <file>fishPics/Frog.jfif</file>
+        <file>fishPics/Giantsnakehead.jpg</file>
+        <file>fishPics/Killifish.jfif</file>
+        <file>fishPics/Koi.webp</file>
+        <file>fishPics/napoleonfish.jpg</file>
+        <file>fishPics/NH-Icon-anchovy.webp</file>
+        <file>fishPics/NH-Icon-bitterling.webp</file>
+        <file>fishPics/NH-Icon-blowfish.webp</file>
+        <file>fishPics/NH-Icon-bluegill.webp</file>
+        <file>fishPics/NH-Icon-butterflyfish.webp</file>
+        <file>fishPics/NH-Icon-carp.webp</file>
+        <file>fishPics/NH-Icon-catfish.webp</file>
+        <file>fishPics/NH-Icon-cherrysalmon.webp</file>
+        <file>fishPics/NH-Icon-clownfish.webp</file>
+        <file>fishPics/NH-Icon-crawfish.webp</file>
+        <file>fishPics/NH-Icon-cruciancarp.webp</file>
+        <file>fishPics/NH-Icon-frog.webp</file>
+        <file>fishPics/NH-Icon-gar.webp</file>
+        <file>fishPics/NH-Icon-giantsnakehead.webp</file>
+        <file>fishPics/NH-Icon-goldfish.webp</file>
+        <file>fishPics/NH-Icon-killifish.webp</file>
+        <file>fishPics/NH-Icon-koi.webp</file>
+        <file>fishPics/NH-Icon-napoleonfish.webp</file>
+        <file>fishPics/NH-Icon-palechub.webp</file>
+        <file>fishPics/NH-Icon-pike.webp</file>
+        <file>fishPics/NH-Icon-pufferfish.webp</file>
+        <file>fishPics/NH-Icon-sawshark.webp</file>
+        <file>fishPics/NH-Icon-seahorse.webp</file>
+        <file>fishPics/NH-Icon-snappingturtle.webp</file>
+        <file>fishPics/NH-Icon-softshelledturtle.webp</file>
+        <file>fishPics/NH-Icon-surgeonfish.webp</file>
+        <file>fishPics/NH-Icon-tadpole.webp</file>
+        <file>fishPics/NH-Icon-tilapia.webp</file>
+        <file>fishPics/NH-Icon-yellowperch.webp</file>
+        <file>fishPics/NH-Icon-zebraturkeyfish.webp</file>
+        <file>fishPics/Palechub.jpg</file>
+        <file>fishPics/Pike.jpg</file>
+        <file>fishPics/Pufferfish.jpeg</file>
+        <file>fishPics/Sawshark.jpg</file>
+        <file>fishPics/seahorse.webp</file>
+        <file>fishPics/SnappingTurtle.jpg</file>
+        <file>fishPics/Softshelledturtle.jpg</file>
+        <file>fishPics/surgeonfish.webp</file>
+        <file>fishPics/Tadpole.jfif</file>
+        <file>fishPics/Tilapia.webp</file>
+        <file>fishPics/YellowPerch.jpg</file>
+        <file>fishPics/ZebraTurkeyfish.webp</file>
     </qresource>
 </RCC>

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>fishQuestionAnswers.txt</file>
+        <file>Fish_info.txt</file>
     </qresource>
 </RCC>

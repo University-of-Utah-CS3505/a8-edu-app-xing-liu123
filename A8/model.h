@@ -12,9 +12,9 @@
 #include <vector>
 
 enum class TypeOfWater{
-    TOW_FreshWater,
-    TOW_SaltWater,
-    TOW_SmoothWater
+    TOW_PondWater,
+    TOW_SeaWater,
+    TOW_RiverWater
 };
 
 enum class SmoothWaterFish{
@@ -149,39 +149,69 @@ private:
     FreshWaterFish freshCurrFish; //default 0
     TypeOfWater waterType;
     QMap<QString, int> catchedFish;
-    QString smoothFish[10] = {"Ocean Sunfish",
-                              "Giant Freshwater Stingray",
-                              "Bull Shark",
-                              "Nile Perch",
-                              "Taimen",
-                              "Arapaima",
-                              "Mekong Giant Catfish",
-                              "Beluga Sturgeon",
-                              "Alligator Gar",
-                              "American Paddlefish"};
+//    QString smoothFish[10] = {"Ocean Sunfish",
+//                              "Giant Freshwater Stingray",
+//                              "Bull Shark",
+//                              "Nile Perch",
+//                              "Taimen",
+//                              "Arapaima",
+//                              "Mekong Giant Catfish",
+//                              "Beluga Sturgeon",
+//                              "Alligator Gar",
+//                              "American Paddlefish"};
 
-    QString saltFish[10] = {"Designer Clownfish",
-                            "Red Sea Purple Tang",
-                            "Sargassum Triggerfish",
-                            "Lineatus Fairy Wrasse",
-                            "Lyretail Anthias",
-                            "Flame Angelfish",
-                            "Emperor Angelfish",
-                            "Harlequin Tusk",
-                            "Marine Betta",
-                            "Volitan Lionfish"};
+//    QString saltFish[10] = {"Designer Clownfish",
+//                            "Red Sea Purple Tang",
+//                            "Sargassum Triggerfish",
+//                            "Lineatus Fairy Wrasse",
+//                            "Lyretail Anthias",
+//                            "Flame Angelfish",
+//                            "Emperor Angelfish",
+//                            "Harlequin Tusk",
+//                            "Marine Betta",
+//                            "Volitan Lionfish"};
 
-    QString freshFish[10] = {"Neon Tetra",
-                             "Guppies",
-                             "Mollies",
-                             "Betta Fish",
-                             "Goldfish",
-                             "Angelfish",
-                             "Golden Dwarf Barbs",
-                             "Rainbowfish",
-                             "Zebra Danios",
-                             "Platies"};
+//    QString freshFish[10] = {"Neon Tetra",
+//                             "Guppies",
+//                             "Mollies",
+//                             "Betta Fish",
+//                             "Goldfish",
+//                             "Angelfish",
+//                             "Golden Dwarf Barbs",
+//                             "Rainbowfish",
+//                             "Zebra Danios",
+//                             "Platies"};
 
+    QString pondFish[10] = {"Carp",
+                            "Koi",
+                            "Goldfish",
+                            "Crawfish",
+                            "Killifish",
+                            "Tadpole",
+                            "Catfish",
+                            "Giant snakehead",
+                            "Alligator Gar",
+                            "Frog"};
+    QString riverFish[10] = {"Bitterling",
+                             "Pale chub",
+                             "Crucian carp",
+                             "Soft-shelled turtle",
+                             "Snapping Turtle",
+                             "Bluegill",
+                             "Yellow perch",
+                             "Tilapia",
+                             "Pike",
+                             "Cherry salmon"};
+    QString seaFish[10] = {"Sea horse",
+                           "Clown fish",
+                           "Surgeonfish",
+                           "Butterfly fish",
+                           "Napoleonfish",
+                           "Zebra turkeyfish",
+                           "Blowfish",
+                           "Puffer fish",
+                           "Anchovy",
+                           "Saw shark"};
 
     QImage spearImage;
     bool isShot;
