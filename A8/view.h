@@ -39,6 +39,7 @@ signals:
     void updateWorld(QString water);
     void shootSpear(int x, int y);
     void sendPosition(int x, int y);
+    void resetWorld();
 
     //answer
     void checkUserAnswer(QString question, QString answer);

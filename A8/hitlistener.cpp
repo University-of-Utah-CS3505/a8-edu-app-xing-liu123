@@ -11,6 +11,16 @@ std::vector<b2Body*> HitListener::getBodyVector()
     return bodiesToRemove;
 }
 
+bool HitListener::getDestroy()
+{
+    return destroy;
+}
+
+void HitListener::setDestroy(bool incomingBool)
+{
+    destroy = incomingBool;
+}
+
 void HitListener::BeginContact(b2Contact* contact) {
     // fishes
     void* fixtureUserDataA = contact->GetFixtureA()->GetUserData();
@@ -32,6 +42,7 @@ void HitListener::BeginContact(b2Contact* contact) {
         //TODO
         std::cout << "hit fish 3" << std::endl;
     }
+    destroy = true;
     emit sendCollision();
 }
 

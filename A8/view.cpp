@@ -69,6 +69,12 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::displayFish3);
 
+    // reset world
+    connect(this,
+            &View::resetWorld,
+            &model,
+            &Model::resetWorld);
+
     // connects for spear
     connect(this,
             &View::shootSpear,
@@ -421,9 +427,12 @@ void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
     }
 }
 
+
 void View::on_nextButtonFI_clicked()
 {
+    emit resetWorld();
     ui->stackedWidget->setCurrentIndex(1);
+
 }
 
 
