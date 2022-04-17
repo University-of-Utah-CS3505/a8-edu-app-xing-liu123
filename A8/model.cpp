@@ -4,6 +4,7 @@
 #include <QTextStream>
 #include <QImage>
 #include <QPixmap>
+#include <QVector>
 
 Model::Model(QObject *parent)
     : QObject{parent}
@@ -13,6 +14,10 @@ Model::Model(QObject *parent)
     isShot = false;
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
+    spearType = TypeOfSpear::TOS_Wood;
+    correctAnsw = 0;
+
+    //TODO: FIgure out an effective way to initialize array of fish
 }
 
 Model::~Model(){
@@ -400,28 +405,28 @@ void Model::loadInfoQ(){
                 count++;
             }
 
-            else if(line.contains("What is my Name?"))
+            else if(line.contains(questions[0]))
             {
                 line = line.trimmed().split(":")[1];
-                test.insert("What is my Name?", line);
+                test.insert(questions[0], line);
                 count++;
             }
-            else if(line.contains("How big can I get?"))
+            else if(line.contains(questions[1]))
             {
                 line = line.trimmed().split(":")[1];
-                test.insert("How big can I get?", line);
+                test.insert(questions[1], line);
                 count++;
             }
-            else if(line.contains("Where can you find me?"))
+            else if(line.contains(questions[2]))
             {
                 line = line.trimmed().split(":")[1];
-                test.insert("Where can you find me?", line);
+                test.insert(questions[2], line);
                 count++;
             }
-            else if(line.contains("Am I an endangered species?"))
+            else if(line.contains(questions[3]))
             {
                 line = line.trimmed().split(":")[1];
-                test.insert("Am I an endangered species?", line);
+                test.insert(questions[3], line);
 
             }
             else if(line.contains("ActualImagefilepath"))
@@ -465,25 +470,21 @@ void Model::loadInfoQ(){
 
 //***********Quiz************************
 //Once the Spear has crashed with a fish, the you call this method
+//Common, Rare, Legendary
 void Model::getFish(){
-    //loadInfoQ();
 
-    int randNum = rand()%10;
-    QString currFish;
-    QString waterL;
+    //Get the fish
+    int randNum = rand()%10;    
+    QString currFish = getRandFish(randNum);
+    //Get the water
+    QChar waterL;
+    if(waterType == TypeOfWater::TOW_SeaWater)
+        waterL = 's';
+    else if(waterType == TypeOfWater::TOW_RiverWater)
+         waterL = 'r';
+    else
+         waterL = 'p';
 
-    if(waterType == TypeOfWater::TOW_SeaWater){
-        currFish = seaFish[randNum];
-        waterL = "s";
-    }
-    else if(waterType == TypeOfWater::TOW_RiverWater){
-        currFish = riverFish[randNum];
-         waterL = "r";
-    }
-    else if(waterType == TypeOfWater::TOW_PondWater){
-        currFish = pondFish[randNum];
-         waterL = "p";
-    }
     //Read the picture file
     QString fishPic = fishQA.value(currFish).value("ActualImagefilepath");
 
@@ -500,24 +501,8 @@ void Model::getFish(){
         catchedFish[currFish]++;
 
         //Get the question and aswer
-        switch(questionNum){
-        case 0:
-            question = "What is my Name?";
-            answer = fishQA.value(currFish).value(question);
-            break;
-        case 1:
-            question = "How big can I get?";
-            answer = fishQA.value(currFish).value(question);
-            break;
-        case 2:
-            question = "Where can you find me?";
-            answer = fishQA.value(currFish).value(question);
-            break;
-        case 3:
-            question = "Am I an endangered species?";
-            answer = fishQA.value(currFish).value(question);
-            break;
-        }
+        question = questions[questionNum];
+        answer = fishQA.value(currFish).value(question);
 
         //send to method to get two other random values of fish
         QString randAsnw1 = getRandAnswer(questionNum,question, answer);
@@ -527,86 +512,87 @@ void Model::getFish(){
     //If it is not catched
     else{
         catchedFish.insert(currFish, 1);
+
         //send all infomation of the fish
-        QString question1 = "What is my Name?";
-        QString answer1 = fishQA.value(currFish).value(question1);
+        QString answer1 = fishQA.value(currFish).value(questions[0]);
+        QString answer2 = fishQA.value(currFish).value(questions[1]);
+        QString answer3 = fishQA.value(currFish).value(questions[2]);
+        QString answer4 = fishQA.value(currFish).value(questions[3]);
 
-        QString question2  = "How big can I get?";
-        QString answer2 = fishQA.value(currFish).value(question2);
-
-        QString question3  = "Where can you find me?";
-        QString answer3 = fishQA.value(currFish).value(question3);
-
-        QString question4  = "Am I an endangered species?";
-        QString answer4 = fishQA.value(currFish).value(question4);
-
-        emit updateInformation(question1, answer1, question2, answer2,
-                               question3, answer3, question4, answer4,
+        emit updateInformation(questions[0], answer1, questions[1], answer2,
+                               questions[2], answer3, questions[3], answer4,
                                currFish, fishPic);
-
-        //Information to set up journal
-         emit updateJournal(randNum, waterL, answer1, answer2,
-                            answer3, answer4, currFish, fishPic);
-
-
     }
-
 }
 
 
 //Helper method that gets a random answer based on the question
 QString Model::getRandAnswer(int questionNum, QString question,  QString answer){
     //get a random fish
-    QString randFish = getRandFish();
-    QString randAnsw;
+    QString randFish = getRandFish(rand()%10);
 
     //Based on our question number (The question we did)
-    //We will get the answer of
-    switch(questionNum){
-    case 0:
-        randAnsw = fishQA.value(randFish).value(question);
-        break;
-    case 1:
-        randAnsw = fishQA.value(randFish).value(question);
-        break;
-    case 2:
-        randAnsw = fishQA.value(randFish).value(question);
-        break;
-    case 3:
-        randAnsw = fishQA.value(randFish).value(question);
-        break;
-    }
+    QString randAnsw = fishQA.value(randFish).value(question);
 
     //if my answer is the same as my current answer, then repeat method
     return randAnsw != answer? randAnsw: getRandAnswer(questionNum, question, answer);
 }
 
-//Checks user answer
-void Model::checkAnswer(QString question, QString userAnswer){
-
-    QString correctAnswer = fishQA.value(currFish).value(question);
-
-    if(correctAnswer == userAnswer)
-        emit answerResult(true);
-    else
-        emit answerResult(false);
-}
 
 //Helper method to get a random fish from the water type we are currently in
-QString Model::getRandFish(){
-    int randNum = rand()%10;
+QString Model::getRandFish(int randNum){
     QString randFish;
 
     if(waterType == TypeOfWater::TOW_SeaWater)
         randFish = seaFish[randNum];
     else if(waterType == TypeOfWater::TOW_RiverWater)
         randFish = riverFish[randNum];
-    else if(waterType == TypeOfWater::TOW_PondWater)
+    else
         randFish = pondFish[randNum];
 
-    //if my fish is the same as my current fish, then repeat method
-    return randFish != currFish? randFish: getRandFish();
+    QString typeFish = fishQA.value(randFish).value("Rarity");
+
+
+    //if my spear is wood but the fish I have is not 'common', get a different fish
+    //if my spear is metal and I get a 'legenday' fish, get a different fish
+    //if my fish is the same as my current fish, get a different fish
+    if((spearType == TypeOfSpear::TOS_Wood && typeFish != "Common") ||
+            (spearType == TypeOfSpear::TOS_Metal && typeFish == "Legendary") ||
+            (randFish == currFish)){
+        getRandFish(rand()%10);
+    }
+
+    return randFish;
 }
+
+
+//Checks user answer
+void Model::checkAnswer(QString question, QString userAnswer){
+    QString correctAnswer = fishQA.value(currFish).value(question);
+    if(correctAnswer == userAnswer){
+        correctAnsw++;
+        if(correctAnsw == 10){
+            correctAnsw = 0;
+            updateSpear();
+        }
+        emit answerResult(true);
+    }
+    else
+        emit answerResult(false);
+}
+
+
+
+void Model::updateSpear(){
+  if(spearType == TypeOfSpear::TOS_Wood)
+      spearType = TypeOfSpear::TOS_Metal;
+  else
+      spearType = TypeOfSpear::TOS_Beagle;
+
+  emit newSpear();
+}
+
+
 
 //*********** Code for Testing *********************
 
@@ -623,32 +609,24 @@ void Model::getTestInfoFish(){
     QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
 
     //send all infomation of the fish
-    QString question1 = "What is my Name?";
-    QString answer1 = fishQA.value(fish).value(question1);
-
-    QString question2  = "How big can I get?";
-    QString answer2 = fishQA.value(fish).value(question2);
-
-    QString question3  = "Where can you find me?";
-    QString answer3 = fishQA.value(fish).value(question3);
-
-    QString question4  = "Am I an endangered species?";
-    QString answer4 = fishQA.value(fish).value(question4);
+    QString answer1 = fishQA.value(fish).value(questions[0]);
+    QString answer2 = fishQA.value(fish).value(questions[1]);
+    QString answer3 = fishQA.value(fish).value(questions[2]);
+    QString answer4 = fishQA.value(fish).value(questions[3]);
 
     if(currInfo < 9)
         currInfo++;
     else
         currInfo = 0;
 
-    emit updateInformation(question1, answer1, question2, answer2,
-                           question3, answer3, question4, answer4,
+    emit updateInformation(questions[0], answer1, questions[1], answer2,
+                           questions[2], answer3, questions[3], answer4,
                            fish, fishPic);
 }
 
 
 //QUIZ TESTING
 void Model::getTestQuizInfo(){
-    QString question;
     QString answer;
     QString fish;
     if(waterType == TypeOfWater::TOW_SeaWater)
@@ -660,28 +638,11 @@ void Model::getTestQuizInfo(){
     QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
 
     //Get the question and aswer
-    switch(qNum){
-    case 0:
-        question = "What is my Name?";
-        answer = fishQA.value(fish).value(question);
-        break;
-    case 1:
-        question = "How big can I get?";
-        answer = fishQA.value(fish).value(question);
-        break;
-    case 2:
-        question = "Where can you find me?";
-        answer = fishQA.value(fish).value(question);
-        break;
-    case 3:
-        question = "Am I an endangered species?";
-        answer = fishQA.value(fish).value(question);
-        break;
-    }
+    answer = fishQA.value(fish).value(questions[qNum]);
 
     //send to method to get two other random values of fish
-    QString randAsnw1 = getRandAnswer(qNum,question, answer);
-    QString randAsnw2 = getRandAnswer(qNum, question, answer);
+    QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer);
+    QString randAsnw2 = getRandAnswer(qNum, questions[qNum], answer);
 
 
     //Counter of questions
@@ -695,6 +656,63 @@ void Model::getTestQuizInfo(){
     else if(currQuiz >= 10 && qNum == 0)
         currQuiz = 0;
 
-    emit updateQuiz(question, answer, randAsnw1, randAsnw2,  fishPic, fish);
+    emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2,  fishPic, fish);
 
 }
+
+
+//************* Journal set **********************
+
+//Is there a better way???
+void Model::getJouralInfo(int page){
+//    struct jInfo{
+//        QString fishName;
+//        QString answers [4];
+//        QString picFish;
+//    };
+
+//    jInfo fishInfo;
+//    QVector<jInfo> info;
+
+//    //if page == 0 -> Sea
+//    //if page == 1 -> Sea
+//    if(page == 0 || page == 1){
+//        //if page is 0, send the info of the first five fish in list
+//        for(int i = 0; i <5; i++){
+//            fishInfo.fishName = seaFish[i];
+//            fishInfo.picFish = fishQA.value(fishInfo.fishName).value("ActualImagefilepath");
+//            for(int j = 0; j < 4; j++){
+//                fishInfo.answers[j] = fishQA.value(fishInfo.fishName).value(questions[j]);
+//            }
+//            info.append(fishInfo);
+//        }
+//        //else, senf info of last five fish in list
+//        for(int i = 5; i <10; i++){
+//            fishInfo.fishName = seaFish[i];
+//            fishInfo.picFish = fishQA.value(fishInfo.fishName).value("ActualImagefilepath");
+//            for(int j = 0; j < 4; j++){
+//                fishInfo.answers[j] = fishQA.value(fishInfo.fishName).value(questions[j]);
+//            }
+//            info.append(fishInfo);
+//        }
+//    }
+//    //if page == 2 -> Pond
+//    //if page == 3 -> Pond
+//    else if(page == 0 || page == 1){
+
+//    }
+//    //if page == 4 -> River
+//    //if page == 5 -> River
+//    else{
+
+//    }
+
+}
+
+void setJournalVector(QString fish[]){
+
+
+}
+
+
+

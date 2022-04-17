@@ -9,7 +9,7 @@
 #include "hitlistener.h"
 #include <QImage>
 #include <QPixmap>
-#include <vector>
+#include <QVector>
 
 enum class TypeOfWater{
     TOW_PondWater,
@@ -64,6 +64,13 @@ enum class CurrentScreen{
     CS_FishInfo
 };
 
+//Different types of spears
+enum class TypeOfSpear{
+    TOS_Wood,
+    TOS_Metal,
+    TOS_Beagle
+};
+
 class Model : public QObject
 {
     Q_OBJECT
@@ -83,10 +90,11 @@ signals:
                            QString q3, QString a3, QString q4, QString a4,
                            QString fishName, QString fishPic);
 
-    void updateJournal(int fishNum, QString waterLetter,
-                       QString a1, QString a2,
-                       QString a3, QString a4,
-                       QString fishName, QString fishPic);
+//    void updateJournal(int fishNum, QChar waterLetter,
+//                       QString a1, QString a2,
+//                       QString a3, QString a4,
+//                       QString fishName, QString fishPic);
+
 
     void sendSpearLabel(QPixmap map);
     void resetSpear(QPixmap map);
@@ -96,7 +104,7 @@ signals:
     //check answer
     void answerResult(bool result); //result is true if answer is correct
 
-
+    void newSpear();
 
 
     //Discuss with TEAM why private not working
@@ -118,6 +126,9 @@ public slots:
     //TESTING slots for Info and quiz
     void getTestInfoFish();
     void getTestQuizInfo();
+
+    //Journal set up
+    void getJouralInfo(int page);
 
 
 private:
@@ -144,11 +155,10 @@ private:
     HitListener *contactListener;
 
     QString currFish;
-    SmoothWaterFish smoothCurrFish; //default 0
-    SaltWaterFish saltCurrFish; //default 0
-    FreshWaterFish freshCurrFish; //default 0
     TypeOfWater waterType;
+    TypeOfSpear spearType;
     QMap<QString, int> catchedFish;
+    int correctAnsw;
 //    QString smoothFish[10] = {"Ocean Sunfish",
 //                              "Giant Freshwater Stingray",
 //                              "Bull Shark",
@@ -213,19 +223,30 @@ private:
                            "Anchovy",
                            "Saw shark"};
 
+    QString questions[4] = {"What is my Name?",
+                           "How big can I get?",
+                           "Where can you find me?",
+                           "Am I an endangered species?"};
+
     QImage spearImage;
     bool isShot;
+    void updateSpear();
 
+    void setJournalVector(QString fish[]);
 
     //testing question info
     QMultiMap<QString, QMap<QString, QString> > fishQA;
-    QString getRandFish();
+    QString getRandFish(int randNum);
     void loadInfoQ();
+
 
     //TESTING Variable: slots for Info and quiz
     int currInfo = 0;
     int currQuiz = 0;
     int qNum = 0;
+
+
+
 
 };
 

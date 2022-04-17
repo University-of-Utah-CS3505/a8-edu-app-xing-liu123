@@ -23,7 +23,6 @@ View::View(Model &model,  QWidget *parent)
 //    connect(this, &View::updateMainMenuMusicButton, ui->mainMenuMucisButton, &QPushButton::setText);
 
 
-    // ui->widget->show();
 
 
     //Set up labels
@@ -130,10 +129,15 @@ View::View(Model &model,  QWidget *parent)
             &View::showResult);
 
     //Journal
-    connect(&model,
-            &Model::updateJournal,
-            this,
-            &View::setUpJournal);
+//    connect(&model,
+//            &Model::updateJournal,
+//            this,
+//            &View::setUpJournal);
+
+    connect(this,
+            &View::getJournal,
+            &model,
+            &Model::getJouralInfo);
 
     //Testing Code for quiz and info window
     connect(ui->nextFishTestButton,
@@ -341,22 +345,115 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
 
 }
 
-
-void View::setUpJournal(int fishNum, QString waterLetter,
+//**********************Journal *****************************
+void View::setUpJournal(int fishNum, QChar waterLetter,
                          QString a1, QString a2,
                          QString a3, QString a4,
                          QString fishName, QString fishPic){
 
-    QString pageNum = QString::number((fishNum%2) + 1);
-    QString labelNum = QString::number((fishNum%5) + 1);
-    QString labelInfoName = waterLetter + "JP_" + pageNum + "InfoLabel_" + labelNum;
-    QString labelPictureName =  waterLetter + "JP_" + pageNum + "PicLabel_" + labelNum;
-
     QString infoInLabel = fishName + a1 + "\n" + a2 + "\n" + a3 + "\n" + a4;
 
 
+    //Display Tittle and Page
+     displayTittlePage(waterLetter, fishNum);
+    //Display labels
+    displayJournalLabels(infoInLabel, fishPic, (fishNum%5) + 1);
+
 
 }
+
+//Helper method to display the Journal
+void View::displayTittlePage(QChar waterLetter, int fishNum){
+    int pageNum = 0;
+    switch(waterLetter.unicode()){
+    case u's':
+        ui->journalTittleLabel->setText("Sea Fish");
+        pageNum = 1;
+        break;
+    case u'r':
+        ui->journalTittleLabel->setText("River Fish");
+        pageNum = 3;
+        break;
+    case u'p':
+        ui->journalTittleLabel->setText("Pond Fish");
+        pageNum = 5;
+        break;
+    }
+
+    if(fishNum > 5)
+        pageNum++;
+
+    QString page;
+    page.setNum(pageNum);
+    page = "Page " + page;
+
+    ui->journalPageLabel->setText(page);
+
+
+}
+
+//Helper method to display journal
+void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
+    QPixmap pix;
+    pix.load(fishPic);
+
+    switch(fishNum){
+    case 1:
+        ui->journalInfoLabel_1->setText(info);
+        ui->journalPicLabel_1->setPixmap(pix.scaled(ui->journalPicLabel_1->width(), ui->journalPicLabel_1->height()));
+        break;
+    case 2:
+        ui->journalInfoLabel_2->setText(info);
+        ui->journalPicLabel_2->setPixmap(pix.scaled(ui->journalPicLabel_2->width(), ui->journalPicLabel_2->height()));
+        break;
+    case 3:
+        ui->journalInfoLabel_3->setText(info);
+        ui->journalPicLabel_3->setPixmap(pix.scaled(ui->journalPicLabel_3->width(), ui->journalPicLabel_3->height()));
+        break;
+    case 4:
+        ui->journalInfoLabel_4->setText(info);
+        ui->journalPicLabel_4->setPixmap(pix.scaled(ui->journalPicLabel_4->width(), ui->journalPicLabel_4->height()));
+        break;
+    case 5:
+        ui->journalInfoLabel_5->setText(info);
+        ui->journalPicLabel_5->setPixmap(pix.scaled(ui->journalPicLabel_5->width(), ui->journalPicLabel_5->height()));
+        break;
+    }
+}
+
+void View::on_nextButtonFI_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void View::on_journalButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(journalPage);
+    emit getJournal(journalPageNum);
+}
+
+
+void View::on_journalNextButton_clicked()
+{
+    journalPageNum++;
+    emit getJournal(journalPageNum);
+}
+
+
+void View::on_journalPrevButton_clicked()
+{
+    journalPageNum--;
+    emit getJournal(journalPageNum);
+}
+
+//**********************************************************
+
+
+
+
+
+
 
 
 
@@ -433,8 +530,4 @@ void View::on_nextButton_clicked(){
 
 
 
-void View::on_nextButtonFI_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-}
 

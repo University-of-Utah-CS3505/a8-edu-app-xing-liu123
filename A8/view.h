@@ -9,6 +9,7 @@
 #include <QMouseEvent>
 #include <QHoverEvent>
 #include <QPixmap>
+#include <iostream>
 
 // Uncomment this when working on audios
 //#include <QMediaPlayer>
@@ -41,6 +42,7 @@ signals:
 
     //answer
     void checkUserAnswer(QString question, QString answer);
+    void getJournal(int pageNum);
 
 private slots:
     // Uncomment this when working on audios
@@ -76,11 +78,17 @@ private slots:
     void on_nextButtonFI_clicked();
 
     //display on Journal
-    void setUpJournal(int fishNum, QString waterLetter,
+    void setUpJournal(int fishNum, QChar waterLetter,
                        QString a1, QString a2,
                        QString a3, QString a4,
                        QString fishName, QString fishPic);
 
+
+    void on_journalButton_clicked();
+
+    void on_journalNextButton_clicked();
+
+    void on_journalPrevButton_clicked();
 
 private:
     Ui::View *ui;
@@ -90,11 +98,11 @@ private:
     int const fishingPage = 1;
     int const InfoPage = 3;
     int const quizPage = 4;
-    int const journalPage1 = 5;
-
-
+    int const journalPage = 5;
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
-
+    void displayTittlePage(QChar waterLetter, int fishNum);
+    void displayJournalLabels(QString info, QString fishPic, int fishNum);
+    int journalPageNum = 0;
 
 
 

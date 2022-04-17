@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -273,6 +273,19 @@
        <string>quiz (testing)</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="journalButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>99</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Journal</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="JournalPage">
      <property name="mouseTracking">
@@ -494,21 +507,21 @@
       <property name="text">
        <string>Next</string>
       </property>
+     </widget>
+     <widget class="QPushButton" name="nextFishTestButton">
+      <property name="geometry">
+       <rect>
+        <x>618</x>
+        <y>410</y>
+        <width>121</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Next Fish Test</string>
+      </property>
+     </widget>
     </widget>
-    <widget class="QPushButton" name="nextFishTestButton">
-        <property name="geometry">
-         <rect>
-          <x>618</x>
-          <y>410</y>
-          <width>121</width>
-          <height>33</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Next Fish Test</string>
-        </property>
-    </widget>
-   </widget>
     <widget class="QWidget" name="QuizInfoPage">
      <widget class="QLabel" name="QuizTitleLabel">
       <property name="geometry">
@@ -679,8 +692,8 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="seaJournalPage_1">
-     <widget class="QLabel" name="sJP_1TittleLabel">
+    <widget class="QWidget" name="JournalPage_1">
+     <widget class="QLabel" name="journalTittleLabel">
       <property name="geometry">
        <rect>
         <x>360</x>
@@ -690,10 +703,10 @@
        </rect>
       </property>
       <property name="text">
-       <string>Sea Fish</string>
+       <string>Fish</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1PageLabel">
+     <widget class="QLabel" name="journalPageLabel">
       <property name="geometry">
        <rect>
         <x>670</x>
@@ -706,7 +719,7 @@
        <string>Page 1</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1PicLabel_1">
+     <widget class="QLabel" name="journalPicLabel_1">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -719,7 +732,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1PicLabel_2">
+     <widget class="QLabel" name="journalPicLabel_2">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -732,7 +745,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1PicLabel_3">
+     <widget class="QLabel" name="journalPicLabel_3">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -745,7 +758,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1PicLabel_4">
+     <widget class="QLabel" name="journalPicLabel_4">
       <property name="geometry">
        <rect>
         <x>410</x>
@@ -758,7 +771,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1PicLabel_5">
+     <widget class="QLabel" name="journalPicLabel_5">
       <property name="geometry">
        <rect>
         <x>410</x>
@@ -771,7 +784,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1InfoLabel_1">
+     <widget class="QLabel" name="journalInfoLabel_1">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -784,7 +797,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1InfoLabel_2">
+     <widget class="QLabel" name="journalInfoLabel_2">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -797,7 +810,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1InfoLabel_3">
+     <widget class="QLabel" name="journalInfoLabel_3">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -810,7 +823,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1InfoLabel_4">
+     <widget class="QLabel" name="journalInfoLabel_4">
       <property name="geometry">
        <rect>
         <x>540</x>
@@ -823,7 +836,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sJP_1InfoLabel_5">
+     <widget class="QLabel" name="journalInfoLabel_5">
       <property name="geometry">
        <rect>
         <x>540</x>
@@ -836,7 +849,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="sJP_1NextButton">
+     <widget class="QPushButton" name="journalNextButton">
       <property name="geometry">
        <rect>
         <x>678</x>
@@ -849,932 +862,12 @@
        <string>Next</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="sJP_1PrevButton">
+     <widget class="QPushButton" name="journalPrevButton">
       <property name="geometry">
        <rect>
         <x>598</x>
         <y>490</y>
         <width>71</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Prev</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="seaJournalPage_2">
-     <widget class="QLabel" name="sJP_2TittleLabel">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>10</y>
-        <width>161</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Sea Fish</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2PageLabel">
-      <property name="geometry">
-       <rect>
-        <x>690</x>
-        <y>20</y>
-        <width>70</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Page 2</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2PicLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>50</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2PicLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>240</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2PicLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>430</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2PicLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>140</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2PicLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>350</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2InfoLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>50</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2InfoLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>240</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2InfoLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>430</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2InfoLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>140</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="sJP_2InfoLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>350</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="sJP_2NextButton">
-      <property name="geometry">
-       <rect>
-        <x>678</x>
-        <y>490</y>
-        <width>71</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Next</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="sJP_2PrevButton">
-      <property name="geometry">
-       <rect>
-        <x>598</x>
-        <y>490</y>
-        <width>71</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Prev</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="riverJournalPage_1">
-     <widget class="QLabel" name="rJP_1TittleLabel">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>10</y>
-        <width>151</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>River Fish</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1PageLabel">
-      <property name="geometry">
-       <rect>
-        <x>690</x>
-        <y>10</y>
-        <width>70</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Page 3</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1PicLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1PicLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>220</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1PicLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>430</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1PicLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>120</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1PicLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>330</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1InfoLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>40</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1InfoLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>220</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1InfoLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>430</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1InfoLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>120</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_1InfoLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>330</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="rJP_1NextButton">
-      <property name="geometry">
-       <rect>
-        <x>688</x>
-        <y>490</y>
-        <width>71</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Next</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="rJP_1PrevButton">
-      <property name="geometry">
-       <rect>
-        <x>608</x>
-        <y>490</y>
-        <width>71</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Prev</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="riverJournalPage_2">
-     <widget class="QLabel" name="rJP_2TittleLabel">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>10</y>
-        <width>171</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>River Fish</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2PageLabel">
-      <property name="geometry">
-       <rect>
-        <x>690</x>
-        <y>10</y>
-        <width>70</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Page 4</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2PicLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2PicLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>220</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2PicLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>430</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2PicLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>130</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2PicLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>330</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2InfoLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>40</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2InfoLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>220</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2InfoLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>430</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2InfoLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>130</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="rJP_2InfoLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>330</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="rJP_2NextButton">
-      <property name="geometry">
-       <rect>
-        <x>688</x>
-        <y>500</y>
-        <width>71</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Next</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="rJP_2PrevButton">
-      <property name="geometry">
-       <rect>
-        <x>608</x>
-        <y>500</y>
-        <width>71</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Prev</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="pondJournalPage_1">
-     <widget class="QLabel" name="pJP_1TittleLabel">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>20</y>
-        <width>151</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Pond Fish</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1PageLabel">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>10</y>
-        <width>70</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Page 5</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1PicLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>60</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1PicLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>250</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1PicLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>430</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1PicLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>160</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1PicLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>340</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1InfoLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>60</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1InfoLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>250</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1InfoLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>430</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1InfoLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>160</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_1InfoLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>340</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pJP_1NextButton">
-      <property name="geometry">
-       <rect>
-        <x>688</x>
-        <y>490</y>
-        <width>71</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Next</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pJP_1PrevButton">
-      <property name="geometry">
-       <rect>
-        <x>608</x>
-        <y>490</y>
-        <width>71</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Prev</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="pondJournalPage_2">
-     <widget class="QLabel" name="pJP_2TittleLabel">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>10</y>
-        <width>121</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Pond Fish</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2PageLabel">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>10</y>
-        <width>70</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Page 6</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2PicLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2PicLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>230</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2PicLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>430</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2PicLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>110</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2PicLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>330</y>
-        <width>120</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2InfoLabel_1">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>40</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2InfoLabel_2">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>230</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2InfoLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>430</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2InfoLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>110</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pJP_2InfoLabel_5">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>330</y>
-        <width>230</width>
-        <height>90</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pJP_2NextButton">
-      <property name="geometry">
-       <rect>
-        <x>698</x>
-        <y>490</y>
-        <width>61</width>
-        <height>33</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Next</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pJP_2PrevButton">
-      <property name="geometry">
-       <rect>
-        <x>628</x>
-        <y>490</y>
-        <width>61</width>
         <height>33</height>
        </rect>
       </property>
@@ -1791,7 +884,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>37</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>
