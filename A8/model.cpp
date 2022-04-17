@@ -46,6 +46,8 @@ void Model::setUpWorld(QString water){
     b2Vec2 gravity(0.0f, 0.0f);
     // Construct a world object, which will hold and simulate the rigid bodies.
     world = new b2World(gravity);
+
+
     // Create contact listener
     contactListener = new HitListener();
     world->SetContactListener(contactListener);
@@ -319,6 +321,17 @@ void Model::updateWorld(){
     // It is generally best to keep the time step and iterations fixed.
     world->Step(timeStep, velocityIterations, positionIterations);
 
+    // checks if collision occurs
+    if(contactListener->getDestroy()){ // is contacted when to delete objects
+        world->DestroyBody(spear);
+        //world->DestroyBody(fish1); //maybe needed will need to test
+        contactListener->setDestroy(false);
+        initSpear();
+        initFish1();
+        initFish2();
+        initFish3();
+
+    }
     // Now print the position and angle of the body.
     b2Vec2 finalPos = spear->GetPosition();
     spearX= finalPos.x*100;

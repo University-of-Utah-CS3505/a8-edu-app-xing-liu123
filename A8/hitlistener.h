@@ -12,7 +12,10 @@ class HitListener: public QObject, public b2ContactListener
 
 public:
     HitListener();
+    bool destroy = false;
     std::vector<b2Body*> getBodyVector();
+    bool getDestroy();
+    void setDestroy(bool);
     //create some vector that holds
     std::vector<b2Body*> bodiesToRemove;
     virtual void BeginContact(b2Contact* contact);
