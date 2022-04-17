@@ -96,5 +96,8 @@
         <file>fishPics/Tilapia.webp</file>
         <file>fishPics/YellowPerch.jpg</file>
         <file>fishPics/ZebraTurkeyfish.webp</file>
+        <file>spear3.png</file>
+        <file>spear4.png</file>
+        <file>spear2.png</file>
     </qresource>
 </RCC>

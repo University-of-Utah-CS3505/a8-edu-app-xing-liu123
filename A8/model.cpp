@@ -9,7 +9,21 @@ Model::Model(QObject *parent)
     : QObject{parent}
 {
     loadInfoQ();
-    spearImage.load(":/spear.png");
+    currentSpear = 2;
+    switch(currentSpear){
+        case 1:
+            spearImage.load(":/spear.png");
+            break;
+        case 2:
+            spearImage.load(":/spear2.png");
+            break;
+        case 3:
+            spearImage.load(":/spear3.png");
+            break;
+        case 4:
+            spearImage.load(":/spear4.png");
+            break;
+    }
     isShot = false;
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
@@ -41,14 +55,10 @@ void Model::setUpWorld(QString water){
             this,
             &Model::getFish);
     //Call to initialize the fishes (bodies)
-    spearX = 400;
-    spearY = 75;
-    fish1X = 55;
-    fish1Y = 300;
-    fish2X = 55;
-    fish2Y = 400;
-    fish3X = 55;
-    fish3Y = 500;
+
+
+
+
     initFish1();
     initFish2();
     initFish3();
@@ -59,6 +69,8 @@ void Model::setUpWorld(QString water){
 
 //Initialize the fish to be at the top with the slowest velocity.
 void Model::initFish1(){
+    fish1X = 55;
+    fish1Y = 300;
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef1;
     bodyDef1.type = b2_dynamicBody;
@@ -99,6 +111,8 @@ void Model::initFish1(){
 
 //Initialize the fish to be in the middle with the medium velocity.
 void Model::initFish2(){
+    fish2X = 55;
+    fish2Y = 400;
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef2;
     bodyDef2.type = b2_dynamicBody;
@@ -136,6 +150,8 @@ void Model::initFish2(){
 
 //Initialize the fish to be at the buttom with the fastest velocity..
 void Model::initFish3(){
+    fish3X = 55;
+    fish3Y = 500;
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef3;
     bodyDef3.type = b2_dynamicBody;
@@ -172,6 +188,8 @@ void Model::initFish3(){
 }
 
 void Model::initSpear(){
+    spearX = 400;
+    spearY = 75;
     b2BodyDef bodySpearDef;
     bodySpearDef.type = b2_dynamicBody;
     bodySpearDef.position.Set(4.00f, 0.75f);
@@ -180,8 +198,21 @@ void Model::initSpear(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
-    dynamicSpear.SetAsBox(0.01f, 0.500f);
 
+    switch(currentSpear){
+        case 1:
+            dynamicSpear.SetAsBox(0.01f, 0.50f);
+            break;
+        case 2:
+            dynamicSpear.SetAsBox(0.012f, 0.52f);
+            break;
+        case 3:
+            dynamicSpear.SetAsBox(0.014f, 0.54f);
+            break;
+        case 4:
+            dynamicSpear.SetAsBox(0.016f, 0.56f);
+            break;
+    }
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
@@ -245,8 +276,24 @@ void Model::shotSpear(int x, int y){
 
     emit sendSpearLabel(spearPix);
 
+    b2Vec2 velocity;
+
+    switch(currentSpear){
+        case 1:
+            velocity = b2Vec2(velocityX*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))));
+            break;
+        case 2:
+            velocity = b2Vec2(velocityX*sqrt(72/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(72/(pow(velocityX,2)+pow(velocityY,2))));
+            break;
+        case 3:
+            velocity = b2Vec2(velocityX*sqrt(128/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(128/(pow(velocityX,2)+pow(velocityY,2))));
+            break;
+        case 4:
+            velocity = b2Vec2(velocityX*sqrt(200/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(200/(pow(velocityX,2)+pow(velocityY,2))));
+            break;
+
+    }
     // normolize the velocity
-    b2Vec2 velocity(velocityX*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))));
     spear->SetLinearVelocity(velocity);
     spear->SetTransform(spear->GetPosition(), radian);
 }
@@ -283,12 +330,10 @@ void Model::updateWorld(){
 
     }
     else{
+        world->DestroyBody(spear);
         emit setUpSpear(325, 0, 325, 0);
 
         initSpear();
-        spearX = 400;
-        spearY = 75;
-
 
         QPixmap spearPix = QPixmap::fromImage(spearImage.scaled(150, 150));;
 
@@ -349,6 +394,28 @@ void Model::updateWorld(){
     else{
         emit setUpFish3(initXFish3, initYFish3, fish3X - 55, fish3Y - 40);
     }
+}
+
+void Model::resetWorld(){
+    timer->stop();
+    world->DestroyBody(spear);
+    world->DestroyBody(fish1);
+
+    world->DestroyBody(fish2);
+
+    world->DestroyBody(fish3);
+
+    emit setUpSpear(325, 0, 325, 0);
+    initSpear();
+
+    QPixmap spearPix = QPixmap::fromImage(spearImage.scaled(150, 150));;
+
+    emit resetSpear(spearPix);
+    isShot = false;
+    initFish1();
+    initFish2();
+    initFish3();
+    timer->start(25);
 }
 
 void Model::setSpearLabel(int x, int y){
@@ -465,9 +532,9 @@ void Model::loadInfoQ(){
 
 //***********Quiz************************
 //Once the Spear has crashed with a fish, the you call this method
-void Model::getFish(){
-    //loadInfoQ();
+void Model::getFish(){   
 
+    //loadInfoQ();
     int randNum = rand()%10;
     QString currFish;
     QString waterL;

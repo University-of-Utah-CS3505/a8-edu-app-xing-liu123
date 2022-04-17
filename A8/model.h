@@ -119,6 +119,7 @@ public slots:
     void getTestInfoFish();
     void getTestQuizInfo();
 
+    void resetWorld();
 
 private:
     b2World *world;
@@ -126,6 +127,7 @@ private:
     b2Body* fish2;
     b2Body* fish3;
     b2Body* spear;
+    int currentSpear;
     int spearX;
     int spearY;
     int fish1X;
