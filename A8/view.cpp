@@ -135,15 +135,14 @@ View::View(Model &model,  QWidget *parent)
             &View::showResult);
 
     //Journal
-//    connect(&model,
-//            &Model::updateJournal,
-//            this,
-//            &View::setUpJournal);
-
     connect(this,
             &View::getJournal,
             &model,
             &Model::getJouralInfo);
+    connect(&model,
+            &Model::updateJournal,
+            this,
+            &View::setUpJournal);
 
     //Testing Code for quiz and info window
     connect(ui->nextFishTestButton,
@@ -352,51 +351,37 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
 }
 
 //**********************Journal *****************************
-void View::setUpJournal(int fishNum, QChar waterLetter,
-                         QString a1, QString a2,
-                         QString a3, QString a4,
-                         QString fishName, QString fishPic){
+void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
 
-    QString infoInLabel = fishName + a1 + "\n" + a2 + "\n" + a3 + "\n" + a4;
+    QString fishPic;
+    int count = 1;
+    QString infoInLabel;
+    ui->journalTittleLabel->setText(info[0]);
+    ui->journalPageLabel->setText(info[1]);
 
-
-    //Display Tittle and Page
-     displayTittlePage(waterLetter, fishNum);
-    //Display labels
-    displayJournalLabels(infoInLabel, fishPic, (fishNum%5) + 1);
-
-
-}
-
-//Helper method to display the Journal
-void View::displayTittlePage(QChar waterLetter, int fishNum){
-    int pageNum = 0;
-    switch(waterLetter.unicode()){
-    case u's':
-        ui->journalTittleLabel->setText("Sea Fish");
-        pageNum = 1;
-        break;
-    case u'r':
-        ui->journalTittleLabel->setText("River Fish");
-        pageNum = 3;
-        break;
-    case u'p':
-        ui->journalTittleLabel->setText("Pond Fish");
-        pageNum = 5;
-        break;
+    for(int i = 2; i < info.size(); i++){
+        infoInLabel = "";
+        //if it has not been cath
+        if(info[i] == "uncached"){
+            count++;
+        }
+        if(info[i] != "uncached"){
+            fishPic = info[i];
+            i++;
+            int qNum = 0;
+            for(int j = i; j < i+4; j++){
+                infoInLabel += questions[qNum] + info[j] + "\n";
+                qNum++;
+            }
+            displayJournalLabels(infoInLabel, fishPic, count);
+            i += 3;
+            count++;
+        }
     }
 
-    if(fishNum > 5)
-        pageNum++;
-
-    QString page;
-    page.setNum(pageNum);
-    page = "Page " + page;
-
-    ui->journalPageLabel->setText(page);
-
-
 }
+
+
 
 //Helper method to display journal
 void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
@@ -428,11 +413,9 @@ void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
 }
 
 
-void View::on_nextButtonFI_clicked()
+void View::on_journalKeepFishingButton_clicked()
 {
-    emit resetWorld();
     ui->stackedWidget->setCurrentIndex(1);
-
 }
 
 
@@ -462,10 +445,12 @@ void View::on_journalPrevButton_clicked()
 
 
 
+void View::on_nextButtonFI_clicked()
+{
+    emit resetWorld();
+    ui->stackedWidget->setCurrentIndex(1);
 
-
-
-
+}
 
 //Answer Buttons
 void View::on_answerButton1_clicked(){

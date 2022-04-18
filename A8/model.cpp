@@ -575,12 +575,12 @@ void Model::getFish(){
     currFish = getRandFish(randNum);
     //Get the water
     QChar waterL;
-    if(waterType == TypeOfWater::TOW_SeaWater)
-        waterL = 's';
+    if(waterType == TypeOfWater::TOW_PondWater)
+        waterL = 'p';
     else if(waterType == TypeOfWater::TOW_RiverWater)
          waterL = 'r';
     else
-         waterL = 'p';
+         waterL = 's';
 
 
     //Read the picture file
@@ -641,12 +641,12 @@ QString Model::getRandAnswer(int questionNum, QString question,  QString answer)
 QString Model::getRandFish(int randNum){
     QString randFish;
 
-    if(waterType == TypeOfWater::TOW_SeaWater)
-        randFish = seaFish[randNum];
+    if(waterType == TypeOfWater::TOW_PondWater)
+        randFish = pondFish[randNum];
     else if(waterType == TypeOfWater::TOW_RiverWater)
         randFish = riverFish[randNum];
     else
-        randFish = pondFish[randNum];
+        randFish = seaFish[randNum];
 
     QString typeFish = fishQA.value(randFish).value("Rarity");
 
@@ -698,13 +698,16 @@ void Model::updateSpear(){
 //INFORMATION TESTING
 void Model::getTestInfoFish(){
     QString fish;
-    if(waterType == TypeOfWater::TOW_SeaWater)
-        fish = seaFish[currInfo];
+    if(waterType == TypeOfWater::TOW_PondWater)
+        fish = pondFish[currInfo];
     else if(waterType == TypeOfWater::TOW_RiverWater)
         fish = riverFish[currInfo];
-    else if(waterType == TypeOfWater::TOW_PondWater)
-        fish = pondFish[currInfo];
+    else if(waterType == TypeOfWater::TOW_SeaWater)
+        fish = seaFish[currInfo];
     QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
+
+    if(!catchedFish.contains(fish))
+        catchedFish.insert(fish, 1);
 
     //send all infomation of the fish
     QString answer1 = fishQA.value(fish).value(questions[0]);
@@ -727,12 +730,12 @@ void Model::getTestInfoFish(){
 void Model::getTestQuizInfo(){
     QString answer;
     QString fish;
-    if(waterType == TypeOfWater::TOW_SeaWater)
-        fish = seaFish[currQuiz];
+    if(waterType == TypeOfWater::TOW_PondWater)
+        fish = pondFish[currQuiz];
     else if(waterType == TypeOfWater::TOW_RiverWater)
         fish = riverFish[currQuiz];
-    else if(waterType == TypeOfWater::TOW_PondWater)
-        fish = pondFish[currQuiz];
+    else if(waterType == TypeOfWater::TOW_SeaWater)
+        fish = seaFish[currQuiz];
     QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
     currFish = fish;
     //Get the question and aswer
@@ -761,55 +764,73 @@ void Model::getTestQuizInfo(){
 
 
 //************* Journal set **********************
-
-//Is there a better way???
 void Model::getJouralInfo(int page){
-//    struct jInfo{
-//        QString fishName;
-//        QString answers [4];
-//        QString picFish;
-//    };
+    QVector<QString> info;
+    QString pageStr;
+    pageStr.setNum(page + 1);
 
-//    jInfo fishInfo;
-//    QVector<jInfo> info;
+    //if page == 0 -> Pond
+    //if page == 1 -> Pond
+    if(page == 0 || page == 1){
+        info.push_back("Pond Fish");
+        info.push_back("Page " + pageStr);
+        setJournalVector(pondFish, info, page%2);
+    }
+    //if page == 2 -> River
+    //if page == 3 -> River
+    else if(page == 2 || page == 3){
+        info.push_back("River Fish");
+        info.push_back("Page " + pageStr);
+        setJournalVector(riverFish, info, page%2);
+    }
+    //if page == 4 -> Sea
+    //if page == 5 -> Sea
+    else{
+        info.push_back("Sea Fish");
+        info.push_back("Page " + pageStr);
+        setJournalVector(seaFish, info, page%2);
+    }
 
-//    //if page == 0 -> Sea
-//    //if page == 1 -> Sea
-//    if(page == 0 || page == 1){
-//        //if page is 0, send the info of the first five fish in list
-//        for(int i = 0; i <5; i++){
-//            fishInfo.fishName = seaFish[i];
-//            fishInfo.picFish = fishQA.value(fishInfo.fishName).value("ActualImagefilepath");
-//            for(int j = 0; j < 4; j++){
-//                fishInfo.answers[j] = fishQA.value(fishInfo.fishName).value(questions[j]);
-//            }
-//            info.append(fishInfo);
-//        }
-//        //else, senf info of last five fish in list
-//        for(int i = 5; i <10; i++){
-//            fishInfo.fishName = seaFish[i];
-//            fishInfo.picFish = fishQA.value(fishInfo.fishName).value("ActualImagefilepath");
-//            for(int j = 0; j < 4; j++){
-//                fishInfo.answers[j] = fishQA.value(fishInfo.fishName).value(questions[j]);
-//            }
-//            info.append(fishInfo);
-//        }
-//    }
-//    //if page == 2 -> Pond
-//    //if page == 3 -> Pond
-//    else if(page == 0 || page == 1){
-
-//    }
-//    //if page == 4 -> River
-//    //if page == 5 -> River
-//    else{
-
-//    }
-
+    emit updateJournal(info, questions);
 }
 
-void setJournalVector(QString fish[]){
+void Model::setJournalVector(QVector<QString> fish, QVector<QString> &info, int page){
 
+    //TODO: Change to not have repeated code
+    //if page is 0, sent the info of the first five fish in list
+    if(page == 0){
+        for(int i = 0; i <5; i++){
+            //Check if the user has catch it
+            if(catchedFish.contains(fish[i])){
+                //Picture of Fish
+                info.push_back(fishQA.value(fish[i]).value("ActualImagefilepath"));
+                for(int j = 0; j < 4; j++){
+                    info.push_back(fishQA.value(fish[i]).value(questions[j]));
+                }
+            }
+            //If it has not been catch send a message
+            else{
+                info.push_back("uncached");
+            }
+        }
+    }
+    //else, sent info of last five fish in list
+    else{
+        for(int i = 5; i <10; i++){
+            //Check if the user has catch it
+            if(catchedFish.contains(fish[i])){
+                //Picture of Fish
+                info.push_back(fishQA.value(fish[i]).value("ActualImagefilepath"));
+                for(int j = 0; j < 4; j++){
+                    info.push_back(fishQA.value(fish[i]).value(questions[j]));
+                }
+            }
+            //If it has not been catch send a message
+            else{
+                info.push_back("uncached");
+            }
+        }
+    }
 
 }
 

@@ -79,10 +79,7 @@ private slots:
     void on_nextButtonFI_clicked();
 
     //display on Journal
-    void setUpJournal(int fishNum, QChar waterLetter,
-                       QString a1, QString a2,
-                       QString a3, QString a4,
-                       QString fishName, QString fishPic);
+    void setUpJournal(QVector<QString> info, QVector<QString> questions);
 
 
     void on_journalButton_clicked();
@@ -94,6 +91,7 @@ private slots:
     void on_return2FishButton_clicked();
 
     void on_return2MenuButton_clicked();
+    void on_journalKeepFishingButton_clicked();
 
 private:
     Ui::View *ui;
@@ -105,7 +103,6 @@ private:
     int const quizPage = 4;
     int const journalPage = 5;
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
-    void displayTittlePage(QChar waterLetter, int fishNum);
     void displayJournalLabels(QString info, QString fishPic, int fishNum);
     int journalPageNum = 0;
 

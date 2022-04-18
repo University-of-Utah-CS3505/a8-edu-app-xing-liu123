@@ -888,6 +888,19 @@
        <string>Prev</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="journalKeepFishingButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>131</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Keep Fishing</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
