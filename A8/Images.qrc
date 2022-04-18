@@ -100,5 +100,8 @@
         <file>fishPics/Tilapia.png</file>
         <file>fishPics/ZebraTurkeyfish.png</file>
         <file>unknownFish.png</file>
+        <file>Background_Ocean.png</file>
+        <file>Background_Pond.png</file>
+        <file>Background_River.png</file>
     </qresource>
 </RCC>

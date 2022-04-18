@@ -266,6 +266,7 @@ void View::mousePressEvent(QMouseEvent *event){
 void View::on_freshWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->widget(1)->setStyleSheet("border-image: url(:/Background_Pond.png) 0 0 0 0 stretch stretch");
 
     emit updateWorld(ui->freshWaterButton->text());
 }
