@@ -4,7 +4,7 @@ Where can you find me?: Europe and Asia
 How big can I get?: 26.75 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Carp.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-carp.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-carp.png
 Rarity:Common
 
 Koi
@@ -12,8 +12,8 @@ What is my Name?: Koi
 Where can you find me?: Europe and Asia
 How big can I get?: 17.85 in.
 Am I an endangered species?: Yes
-ActualImagefilepath :/fishPics/Koi.webp
-PixelatedImagefilepath :/fishPics/NH-Icon-koi.webp
+ActualImagefilepath :/fishPics/Koi.png
+PixelatedImagefilepath :/fishPics/NH-Icon-koi.png
 Rarity:Rare
 
 Goldfish
@@ -22,7 +22,7 @@ Where can you find me?: East Asia
 How big can I get?: 5.65 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Goldfish.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-goldfish.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-goldfish.png
 Rarity:Common
 
 Crawfish
@@ -31,7 +31,7 @@ Where can you find me?: North America, Rivers, lakes, swamps, canals, wetlands a
 How big can I get?: 7 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Crawfish.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-crawfish.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-crawfish.png
 Rarity:Common
 
 Killifish
@@ -40,7 +40,7 @@ Where can you find me?: Worldwide
 How big can I get?: 1.6 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Killifish.jfif
-PixelatedImagefilepath  :/fishPics/NH-Icon-killifish.webp
+PixelatedImagefilepath  :/fishPics/NH-Icon-killifish.png
 Rarity:Common
 
 Tadpole
@@ -49,7 +49,7 @@ Where can you find me?: ponds, small lakes, rivers and creeks
 How big can I get?: 1.5 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Tadpole.jfif
-PixelatedImagefilepath :/fishPics/NH-Icon-tadpole.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-tadpole.png
 Rarity:Common
 
 Catfish
@@ -58,7 +58,7 @@ Where can you find me?: tropical South America, Asia, and Africa.
 How big can I get?: 22 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Catfish.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-catfish.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-catfish.png
 Rarity:Common
 
 Giant snakehead
@@ -67,7 +67,7 @@ Where can you find me?: in Southeast Asia
 How big can I get?: 4.9 ft.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Giantsnakehead.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-giantsnakehead.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-giantsnakehead.png
 Rarity:Common
 
 Alligator Gar
@@ -76,7 +76,7 @@ Where can you find me?: Alligator gar are present in the Gulf coastal plain from
 How big can I get?: 49 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/AlligatorGar.jfif
-PixelatedImagefilepath :/fishPics/NH-Icon-gar.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-gar.png
 Rarity:Common
 
 Frog
@@ -85,7 +85,7 @@ Where can you find me?: equatorial regions of Africa.
 How big can I get?: 2.5 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Frog.jfif
-PixelatedImagefilepath :/fishPics/NH-Icon-frog.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-frog.png
 Rarity:Common
 
 Bitterling
@@ -93,8 +93,8 @@ What is my Name?: Bitterling
 Where can you find me?: Native to areas of Europe from the Seine River in France to Asia Minor and northern China.
 How big can I get?: 3 in.
 Am I an endangered species?: Yes
-ActualImagefilepath :/fishPics/Bitterling.webp
-PixelatedImagefilepath :/fishPics/NH-Icon-bitterling.webp
+ActualImagefilepath :/fishPics/Bitterling.png
+PixelatedImagefilepath :/fishPics/NH-Icon-bitterling.png
 Rarity:Common
 
 Pale chub
@@ -103,7 +103,7 @@ Where can you find me?: northern China and Korea to northern Vietnam.
 How big can I get?: 5.1 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Palechub.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-palechub.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-palechub.png
 Rarity:Common
 
 Crucian carp
@@ -112,7 +112,7 @@ Where can you find me?: central Asia and Europe, reaching the Arctic Circle in S
 How big can I get?: 5.9 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Cruciancarp.jfif
-PixelatedImagefilepath :/fishPics/NH-Icon-cruciancarp.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-cruciancarp.png
 Rarity:Common
 
 Soft-shelled turtle
@@ -121,7 +121,7 @@ Where can you find me?: throughout most of the United States, from the central-e
 How big can I get?: 19 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Softshelledturtle.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-softshelledturtle.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-softshelledturtle.png
 Rarity:Common
 
 Snapping Turtle
@@ -130,7 +130,7 @@ Where can you find me?:  North America from eastern Canada and New England to th
 How big can I get?:14 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/SnappingTurtle.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-snappingturtle.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-snappingturtle.png
 Rarity:Common
 
 Bluegill
@@ -139,7 +139,7 @@ Where can you find me?: the United States, Mexico and southern Canada
 How big can I get?: 7.5 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Bluegill.jfif
-PixelatedImagefilepath :/fishPics/NH-Icon-bluegill.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-bluegill.png
 Rarity:Common
 
 Yellow perch
@@ -148,7 +148,7 @@ Where can you find me?: Yellow perch are only found in North America; they are n
 How big can I get?: 7.5 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/YellowPerch.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-yellowperch.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-yellowperch.png
 Rarity:Common
 
 Tilapia
@@ -156,8 +156,8 @@ What is my Name?: Tilapia
 Where can you find me?: the Middle East and Africa
 How big can I get?: 14 in.
 Am I an endangered species?: Yes
-ActualImagefilepath :/fishPics/Tilapia.webp
-PixelatedImagefilepath :/fishPics/NH-Icon-tilapia.webp
+ActualImagefilepath :/fishPics/Tilapia.png
+PixelatedImagefilepath :/fishPics/NH-Icon-tilapia.png
 Rarity:Common
 
 Pike
@@ -166,7 +166,7 @@ Where can you find me?: Northern pike are native to North America and Eurasia. T
 How big can I get?: 22 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Pike.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-pike.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-pike.png
 Rarity:Common
 
 Cherry salmon
@@ -175,7 +175,7 @@ Where can you find me?: in the Western Pacific, from the Kamchatka Peninsula to 
 How big can I get?: 30 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Cherrysalmon.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-cherrysalmon.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-cherrysalmon.png
 Rarity:Common
 
 Sea horse
@@ -183,8 +183,8 @@ What is my Name?: Sea horse
 Where can you find me?: shallow tropical and temperate salt water throughout the world, from about 45°S to 45°N. They live in sheltered areas such as seagrass beds, estuaries, coral reefs, and mangroves.
 How big can I get?: 14 in.
 Am I an endangered species?: Yes
-ActualImagefilepath :/fishPics/seahorse.webp
-PixelatedImagefilepath :/fishPics/NH-Icon-seahorse.webp
+ActualImagefilepath :/fishPics/seahorse.png
+PixelatedImagefilepath :/fishPics/NH-Icon-seahorse.png
 Rarity:Common
 
 Clown fish
@@ -193,7 +193,7 @@ Where can you find me?: warm waters, such as the Red Sea and Pacific Oceans, in 
 How big can I get?: 4.3 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Clownfish.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-clownfish.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-clownfish.png
 Rarity:Common
 
 Surgeonfish
@@ -201,8 +201,8 @@ What is my Name?: Surgeonfish
 Where can you find me?: shallow marine reefs throughout the western Atlantic Ocean, the Caribbean Sea, and the Gulf of Mexico. 
 How big can I get?: 12 in
 Am I an endangered species?: No
-ActualImagefilepath :/fishPics/NH-Icon-surgeonfish.webp
-PixelatedImagefilepath :/fishPics/NH-Icon-surgeonfish.webp
+ActualImagefilepath :/fishPics/NH-Icon-surgeonfish.png
+PixelatedImagefilepath :/fishPics/NH-Icon-surgeonfish.png
 Rarity:Common
 
 Butterfly fish
@@ -211,7 +211,7 @@ Where can you find me?: tropical reefs around the world but are concentrated in 
 How big can I get?: 8.7 in
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/butterflyfish.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-butterflyfish.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-butterflyfish.png
 Rarity:Common
 
 Napoleonfish
@@ -220,7 +220,7 @@ Where can you find me?: warm waters of the Pacific Ocean, the Indian Ocean and t
 How big can I get?: 7.5 ft
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/napoleonfish.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-napoleonfish.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-napoleonfish.png
 Rarity:Common
 
 Zebra turkeyfish
@@ -228,8 +228,8 @@ What is my Name?: Zebra turkeyfish
 Where can you find me?: the Indo-Pacific region from the Red Sea to Indonesia and eastern Australia. 
 How big can I get?: 11.7 in.
 Am I an endangered species?: No
-ActualImagefilepath :/fishPics/ZebraTurkeyfish.webp
-PixelatedImagefilepath :/fishPics/NH-Icon-zebraturkeyfish.webp
+ActualImagefilepath :/fishPics/ZebraTurkeyfish.png
+PixelatedImagefilepath :/fishPics/NH-Icon-zebraturkeyfish.png
 Rarity:Common
 
 Blowfish
@@ -237,8 +237,8 @@ What is my Name?: Blowfish
 Where can you find me?: tropical and subtropical ocean waters, but some species live in brackish and even fresh water.
 How big can I get?: 24 in.
 Am I an endangered species?: No
-ActualImagefilepath :/fishPics/Blowfish.webp
-PixelatedImagefilepath :/fishPics/NH-Icon-blowfish.webp
+ActualImagefilepath :/fishPics/Blowfish.png
+PixelatedImagefilepath :/fishPics/NH-Icon-blowfish.png
 Rarity:Common
 
 Puffer fish
@@ -247,7 +247,7 @@ Where can you find me?: tropical and subtropical ocean waters, but some species 
 How big can I get?: 24 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Pufferfish.jpeg
-PixelatedImagefilepath :/fishPics/NH-Icon-pufferfish.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-pufferfish.png
 Rarity:Common
 
 Anchovy
@@ -255,8 +255,8 @@ What is my Name?: Anchovy
 Where can you find me?: Most species are found in marine waters, but several will enter brackish water, and some in South America are restricted to fresh water.
 How big can I get?: 10 in.
 Am I an endangered species?: No
-ActualImagefilepath :/fishPics/Anchovy.webp
-PixelatedImagefilepath :/fishPics/NH-Icon-anchovy.webp
+ActualImagefilepath :/fishPics/Anchovy.png
+PixelatedImagefilepath :/fishPics/NH-Icon-anchovy.png
 Rarity:Common
 
 Saw shark
@@ -265,5 +265,5 @@ Where can you find me?: tropical and temperate marine waters of the western Atla
 How big can I get?: 49 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Sawshark.jpg
-PixelatedImagefilepath :/fishPics/NH-Icon-sawshark.webp
+PixelatedImagefilepath :/fishPics/NH-Icon-sawshark.png
 Rarity:Common
