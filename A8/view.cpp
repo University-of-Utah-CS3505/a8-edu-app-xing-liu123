@@ -318,7 +318,7 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
     ui->answ1Button_3->setDisabled(false);
 
     //setVisible button
-    ui->nextButton->setVisible(false);
+    ui->quizBackFishButton->setVisible(false);
 
 }
 
@@ -416,6 +416,7 @@ void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
 
 void View::on_journalKeepFishingButton_clicked()
 {
+    emit resetWorld();
     ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -441,17 +442,6 @@ void View::on_journalPrevButton_clicked()
 }
 
 //**********************************************************
-
-
-
-
-
-void View::on_nextButtonFI_clicked()
-{
-    emit resetWorld();
-    ui->stackedWidget->setCurrentIndex(1);
-
-}
 
 //Answer Buttons
 void View::on_answerButton1_clicked(){
@@ -494,12 +484,9 @@ void View::showResult(bool result){
     else
         ui->resultLabel->setText("You are incorrect, try again");
     ui->resultLabel->setVisible(true);
-    ui->nextButton->setVisible(true);
+    ui->quizBackFishButton->setVisible(true);
 }
 
-void View::on_nextButton_clicked(){
-    ui->stackedWidget->setCurrentIndex(1);
-}
 
 
 // Uncomment this when working on audios
@@ -536,5 +523,19 @@ void View::on_return2FishButton_clicked()
 void View::on_return2MenuButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+void View::on_quizBackFishButton_clicked()
+{
+    emit resetWorld();
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void View::on_infoBackButton_clicked()
+{
+    emit resetWorld();
+    ui->stackedWidget->setCurrentIndex(1);
 }
 

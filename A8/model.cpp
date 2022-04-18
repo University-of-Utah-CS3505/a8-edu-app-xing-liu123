@@ -647,6 +647,7 @@ QString Model::getRandAnswer(int questionNum, QString question,  QString answer)
 
 //Helper method to get a random fish from the water type we are currently in
 QString Model::getRandFish(int randNum){
+//    resetWorld();
     QString randFish;
 
     if(waterType == TypeOfWater::TOW_PondWater)
