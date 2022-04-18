@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -286,6 +286,19 @@
        <string>Journal</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="return2MenuButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>100</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Main Menu</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="JournalPage">
      <property name="mouseTracking">
@@ -505,7 +518,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Next</string>
+       <string>Back to Fishing</string>
       </property>
      </widget>
      <widget class="QPushButton" name="nextFishTestButton">
@@ -569,7 +582,7 @@
         <x>50</x>
         <y>220</y>
         <width>381</width>
-        <height>20</height>
+        <height>51</height>
        </rect>
       </property>
       <property name="text">
@@ -582,7 +595,7 @@
         <x>50</x>
         <y>290</y>
         <width>381</width>
-        <height>20</height>
+        <height>51</height>
        </rect>
       </property>
       <property name="text">
@@ -593,9 +606,9 @@
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>370</y>
-        <width>371</width>
-        <height>20</height>
+        <y>360</y>
+        <width>381</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="text">
@@ -675,7 +688,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Next</string>
+       <string>Back to Fishing</string>
       </property>
      </widget>
      <widget class="QPushButton" name="nextQuestionButton">
@@ -884,7 +897,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

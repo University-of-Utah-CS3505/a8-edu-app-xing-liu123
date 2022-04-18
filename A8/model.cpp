@@ -572,7 +572,7 @@ void Model::getFish(){
 
     //Get the fish
     int randNum = rand()%10;    
-    QString currFish = getRandFish(randNum);
+    currFish = getRandFish(randNum);
     //Get the water
     QChar waterL;
     if(waterType == TypeOfWater::TOW_SeaWater)
@@ -734,7 +734,7 @@ void Model::getTestQuizInfo(){
     else if(waterType == TypeOfWater::TOW_PondWater)
         fish = pondFish[currQuiz];
     QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
-
+    currFish = fish;
     //Get the question and aswer
     answer = fishQA.value(fish).value(questions[qNum]);
 
@@ -743,11 +743,7 @@ void Model::getTestQuizInfo(){
     QString randAsnw2 = getRandAnswer(qNum, questions[qNum], answer);
 
 
-    //Counter of questions
-    if(qNum < 3)
-        qNum++;
-    else
-        qNum = 0;
+
     //Counter of fish
     if(currQuiz < 10 && qNum ==0)
         currQuiz++;
@@ -756,6 +752,11 @@ void Model::getTestQuizInfo(){
 
     emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2,  fishPic, fish);
 
+    //Counter of questions
+    if(qNum < 3)
+        qNum++;
+    else
+        qNum = 0;
 }
 
 

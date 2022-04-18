@@ -540,3 +540,15 @@ void View::on_nextButton_clicked(){
 
 
 
+
+void View::on_return2FishButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void View::on_return2MenuButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+

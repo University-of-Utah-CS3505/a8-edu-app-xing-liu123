@@ -91,6 +91,10 @@ private slots:
 
     void on_journalPrevButton_clicked();
 
+    void on_return2FishButton_clicked();
+
+    void on_return2MenuButton_clicked();
+
 private:
     Ui::View *ui;
     QTimer * time;
