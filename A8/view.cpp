@@ -15,12 +15,12 @@ View::View(Model &model,  QWidget *parent)
 
     // Audios
     // Uncomment this when working on audios
-//    bgmOutput->setVolume(0.2f);
-//    bgmPlayer->setAudioOutput(bgmOutput);
-//    bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
-//    connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playBGM);
-//    connect(ui->mainMenuMucisButton, &QPushButton::pressed, this, &View::pressMusicButton);
-//    connect(this, &View::updateMainMenuMusicButton, ui->mainMenuMucisButton, &QPushButton::setText);
+    bgmOutput->setVolume(0.2f);
+    bgmPlayer->setAudioOutput(bgmOutput);
+    bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+    connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playBGM);
+    connect(ui->mainMenuMucisButton, &QPushButton::pressed, this, &View::pressMusicButton);
+    connect(this, &View::updateMainMenuMusicButton, ui->mainMenuMucisButton, &QPushButton::setText);
 
 
 
@@ -490,24 +490,24 @@ void View::showResult(bool result){
 
 
 // Uncomment this when working on audios
-//void View::playBGM(QMediaPlayer::MediaStatus status){
-//    if (bgmPlayer->hasAudio()){
-//        bgmPlayer->play();
-//    }
-//    else{
-//        std::cout << "No media found" << std::endl;
-//    }
-//}
-//void View::pressMusicButton(){
-//    if(bgmPlayer->playbackState() == QMediaPlayer::PlayingState){
-//        bgmPlayer->stop();
-//        emit updateMainMenuMusicButton("Music: off");
-//    }
-//    else{
-//        bgmPlayer->play();
-//        emit updateMainMenuMusicButton("Music: on");
-//    }
-//}
+void View::playBGM(QMediaPlayer::MediaStatus status){
+    if (bgmPlayer->hasAudio()){
+        bgmPlayer->play();
+    }
+    else{
+        std::cout << "No media found" << std::endl;
+    }
+}
+void View::pressMusicButton(){
+    if(bgmPlayer->playbackState() == QMediaPlayer::PlayingState){
+        bgmPlayer->stop();
+        emit updateMainMenuMusicButton("Music: off");
+    }
+    else{
+        bgmPlayer->play();
+        emit updateMainMenuMusicButton("Music: on");
+    }
+}
 
 
 

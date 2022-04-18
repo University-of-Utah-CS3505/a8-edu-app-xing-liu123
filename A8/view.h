@@ -12,9 +12,9 @@
 #include <iostream>
 
 // Uncomment this when working on audios
-//#include <QMediaPlayer>
-//#include <QAudioOutput>
-//#include <QAudioDevice>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+#include <QAudioDevice>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class View; }
@@ -33,7 +33,7 @@ public:
 
 signals:
     // Uncomment this when working on audios
-//    void updateMainMenuMusicButton(QString str);
+    void updateMainMenuMusicButton(QString str);
 
     void newPositiontValue(int height, int width);
     void updateWorld(QString water);
@@ -47,8 +47,8 @@ signals:
 
 private slots:
     // Uncomment this when working on audios
-//    void playBGM(QMediaPlayer::MediaStatus status);
-//    void pressMusicButton();
+    void playBGM(QMediaPlayer::MediaStatus status);
+    void pressMusicButton();
 
     void displayFish1(int x1, int y1, int x2, int y2);
     void displayFish2(int x1, int y1, int x2, int y2);
@@ -109,10 +109,10 @@ private:
 
 
     // Uncomment this when working on audios
-//    QMediaPlayer* bgmPlayer = new QMediaPlayer;
-//    QAudioOutput* bgmOutput = new QAudioOutput;
-//    QAudioOutput* soundEffectOutput = new QAudioOutput;
-//    QAudioDevice* audioDevice = new QAudioDevice;
+    QMediaPlayer* bgmPlayer = new QMediaPlayer;
+    QAudioOutput* bgmOutput = new QAudioOutput;
+    QAudioOutput* soundEffectOutput = new QAudioOutput;
+    QAudioDevice* audioDevice = new QAudioDevice;
 };
 #endif // VIEW_H
 
