@@ -463,85 +463,101 @@ void Model::setSpearLabel(int x, int y){
     }
 }
 
+//Reads the Text file Fish_info.txt and saves information to fishQA multimap.
 void Model::loadInfoQ(){
+    //access the file
     QFile inputFile(QString(":/Fish_info.txt"));
+    //opens the file
     if (inputFile.open(QIODevice::ReadOnly))
     {
+        //Reads the lines in the file
         QTextStream in(&inputFile);
 
+        //counting the number of questions(fields) we go through, and it restarts at zero when it gets to the last question for each fish.
         int count = 0;
+        //holds the current info for the line we are reading in the file
         QString line;
         QString currentFish;
-        QMap<QString,QString> test;
+        //holds all the information for each fish
+        QMap<QString,QString> fishInfo;
         while (!in.atEnd())
         {
             line = in.readLine();
             if(count == -1){
                 count++;
             }
+            //start of each fish, and saves the name as the current fish
             else if(count == 0)
             {
                 currentFish = line;
                 count++;
             }
-
+            //Questions[0] = what is my name?
             else if(line.contains(questions[0]))
             {
                 line = line.trimmed().split(":")[1];
-                test.insert(questions[0], line);
+                fishInfo.insert(questions[0], line);
                 count++;
             }
+            //Questions[1] = How big can I get?
             else if(line.contains(questions[1]))
             {
                 line = line.trimmed().split(":")[1];
-                test.insert(questions[1], line);
+                fishInfo.insert(questions[1], line);
                 count++;
             }
+            //Questions[2] = Where can you find me?
             else if(line.contains(questions[2]))
             {
                 line = line.trimmed().split(":")[1];
-                test.insert(questions[2], line);
+                fishInfo.insert(questions[2], line);
                 count++;
             }
+            //Questions[3] = Am I an endangered species?
             else if(line.contains(questions[3]))
             {
                 line = line.trimmed().split(":")[1];
-                test.insert(questions[3], line);
+                fishInfo.insert(questions[3], line);
 
             }
+            //filepath to the real life image of the fish
             else if(line.contains("ActualImagefilepath"))
             {
                 line = line.trimmed().split(" ")[1];
-                test.insert("ActualImagefilepath", line);
+                fishInfo.insert("ActualImagefilepath", line);
 
             }
+            //filepath to the pixelated image of the fish
             else if(line.contains("PixelatedImagefilepath"))
             {
                 line = line.trimmed().split(" ")[1];
-                test.insert("PixelatedImagefilepath", line);
+                fishInfo.insert("PixelatedImagefilepath", line);
 
             }
+            //Rarity of the fish, common, rare, and legendary
             else if(line.contains("Rarity"))
             {
                 line = line.trimmed().split(":")[1];
-                test.insert("Rarity", line);
-                fishQA.insert(currentFish, test);
+                fishInfo.insert("Rarity", line);
+
+                //we add the information of the fishes to our FishQA multimap
+                fishQA.insert(currentFish, fishInfo);
                 count = -1;
-                test.clear();
+                fishInfo.clear();
             }
         }
-
+        //closes the file
         inputFile.close();
     }
 
-    //for testing purposes
+    //********************** for testing purposes ************************
     //int count = 1;
     //for(QMap<QString,QString> str: fishQA.values())
     {
 //        std::cout << count++ << std::endl;
-        //        std::cout << str.value("What is my Name?").toStdString() << std::endl;
-        //        std::cout << str.value("How big can I get?").toStdString() << std::endl;
-        //        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
+//        std::cout << str.value("What is my Name?").toStdString() << std::endl;
+//        std::cout << str.value("How big can I get?").toStdString() << std::endl;
+//        std::cout << str.value("Where can you find me?").toStdString() << std::endl;
 //        std::cout << str.value("ActualImagefilepath").toStdString() <<std::endl;
     }
 }
@@ -735,7 +751,7 @@ void Model::getTestQuizInfo(){
         qNum++;
     else
         qNum = 0;
-    //COunter of fish
+    //Counter of fish
     if(currQuiz < 10 && qNum ==0)
         currQuiz++;
     else if(currQuiz >= 10 && qNum == 0)
