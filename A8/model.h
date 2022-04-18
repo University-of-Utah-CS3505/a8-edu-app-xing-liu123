@@ -101,9 +101,6 @@ signals:
     //check answer
     void answerResult(bool result); //result is true if answer is correct
 
-    void newSpear();
-
-
     //Discuss with TEAM why private not working
 public slots:
     void setUpWorld(QString water);

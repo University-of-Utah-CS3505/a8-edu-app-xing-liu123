@@ -10,21 +10,9 @@ Model::Model(QObject *parent)
     : QObject{parent}
 {
     loadInfoQ();
-    currentSpear = 2;
-    switch(currentSpear){
-        case 1:
-            spearImage.load(":/spear.png");
-            break;
-        case 2:
-            spearImage.load(":/spear2.png");
-            break;
-        case 3:
-            spearImage.load(":/spear3.png");
-            break;
-        case 4:
-            spearImage.load(":/spear4.png");
-            break;
-    }
+    currentSpear = 1;
+//    spearImage.load(":/spear.png");
+
     isShot = false;
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
@@ -195,6 +183,21 @@ void Model::initFish3(){
 }
 
 void Model::initSpear(){
+    switch(currentSpear){
+        case 1:
+            spearImage.load(":/spear.png");
+            break;
+        case 2:
+            spearImage.load(":/spear2.png");
+            break;
+        case 3:
+            spearImage.load(":/spear3.png");
+            break;
+        case 4:
+            spearImage.load(":/spear4.png");
+            break;
+    }
+
     spearX = 400;
     spearY = 75;
     b2BodyDef bodySpearDef;
@@ -243,7 +246,12 @@ void Model::initSpear(){
 
 
 void Model::shotSpear(int x, int y){
+    if(isShot){
+        return;
+    }
+
     isShot = true;
+
     float velocityX = 0;
     float velocityY = 0;
     float angle = 0;
@@ -326,17 +334,17 @@ void Model::updateWorld(){
     // It is generally best to keep the time step and iterations fixed.
     world->Step(timeStep, velocityIterations, positionIterations);
 
-    // checks if collision occurs
-    if(contactListener->getDestroy()){ // is contacted when to delete objects
-        world->DestroyBody(spear);
-        //world->DestroyBody(fish1); //maybe needed will need to test
-        contactListener->setDestroy(false);
-        initSpear();
-        initFish1();
-        initFish2();
-        initFish3();
+//    // checks if collision occurs
+//    if(contactListener->getDestroy()){ // is contacted when to delete objects
+//        world->DestroyBody(spear);
+//        //world->DestroyBody(fish1); //maybe needed will need to test
+//        contactListener->setDestroy(false);
+//        initSpear();
+//        initFish1();
+//        initFish2();
+//        initFish3();
 
-    }
+//    }
     // Now print the position and angle of the body.
     b2Vec2 finalPos = spear->GetPosition();
     spearX= finalPos.x*100;
@@ -654,8 +662,8 @@ QString Model::getRandFish(int randNum){
     //if my spear is wood but the fish I have is not 'common', get a different fish
     //if my spear is metal and I get a 'legenday' fish, get a different fish
     //if my fish is the same as my current fish, get a different fish
-    if((spearType == TypeOfSpear::TOS_Wood && typeFish != "Common") ||
-            (spearType == TypeOfSpear::TOS_Metal && typeFish == "Legendary") ||
+    if((currentSpear == 1 && typeFish != "Common") ||
+            ((currentSpear == 2 || currentSpear == 3) && typeFish == "Legendary") ||
             (randFish == currFish)){
         getRandFish(rand()%10);
     }
@@ -669,7 +677,7 @@ void Model::checkAnswer(QString question, QString userAnswer){
     QString correctAnswer = fishQA.value(currFish).value(question);
     if(correctAnswer == userAnswer){
         correctAnsw++;
-        if(correctAnsw == 10){
+        if(correctAnsw == 1){
             correctAnsw = 0;
             updateSpear();
         }
@@ -682,12 +690,11 @@ void Model::checkAnswer(QString question, QString userAnswer){
 
 
 void Model::updateSpear(){
-  if(spearType == TypeOfSpear::TOS_Wood)
-      spearType = TypeOfSpear::TOS_Metal;
-  else
-      spearType = TypeOfSpear::TOS_Beagle;
+  if(currentSpear < 4){
+    currentSpear++;
+  }
+  resetWorld();
 
-  emit newSpear();
 }
 
 
