@@ -90,10 +90,7 @@ signals:
                            QString q3, QString a3, QString q4, QString a4,
                            QString fishName, QString fishPic);
 
-//    void updateJournal(int fishNum, QChar waterLetter,
-//                       QString a1, QString a2,
-//                       QString a3, QString a4,
-//                       QString fishName, QString fishPic);
+   void updateJournal(QVector<QString> info, QVector<QString> questions);
 
 
     void sendSpearLabel(QPixmap map);
@@ -195,7 +192,7 @@ private:
 //                             "Zebra Danios",
 //                             "Platies"};
 
-    QString pondFish[10] = {"Carp",
+    QVector<QString> pondFish = {"Carp",
                             "Koi",
                             "Goldfish",
                             "Crawfish",
@@ -205,7 +202,7 @@ private:
                             "Giant snakehead",
                             "Alligator Gar",
                             "Frog"};
-    QString riverFish[10] = {"Bitterling",
+    QVector<QString> riverFish = {"Bitterling",
                              "Pale chub",
                              "Crucian carp",
                              "Soft-shelled turtle",
@@ -215,7 +212,7 @@ private:
                              "Tilapia",
                              "Pike",
                              "Cherry salmon"};
-    QString seaFish[10] = {"Sea horse",
+    QVector<QString> seaFish = {"Sea horse",
                            "Clown fish",
                            "Surgeonfish",
                            "Butterfly fish",
@@ -226,7 +223,7 @@ private:
                            "Anchovy",
                            "Saw shark"};
 
-    QString questions[4] = {"What is my Name?",
+    QVector<QString> questions = {"What is my Name?",
                            "How big can I get?",
                            "Where can you find me?",
                            "Am I an endangered species?"};
@@ -235,7 +232,7 @@ private:
     bool isShot;
     void updateSpear();
 
-    void setJournalVector(QString fish[]);
+    void setJournalVector(QVector<QString> fish, QVector<QString> &info, int page);
 
     //testing question info
     QMultiMap<QString, QMap<QString, QString> > fishQA;

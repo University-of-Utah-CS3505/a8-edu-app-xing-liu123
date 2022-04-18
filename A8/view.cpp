@@ -135,15 +135,14 @@ View::View(Model &model,  QWidget *parent)
             &View::showResult);
 
     //Journal
-//    connect(&model,
-//            &Model::updateJournal,
-//            this,
-//            &View::setUpJournal);
-
     connect(this,
             &View::getJournal,
             &model,
             &Model::getJouralInfo);
+    connect(&model,
+            &Model::updateJournal,
+            this,
+            &View::setUpJournal);
 
     //Testing Code for quiz and info window
     connect(ui->nextFishTestButton,
@@ -352,21 +351,41 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
 }
 
 //**********************Journal *****************************
-void View::setUpJournal(int fishNum, QChar waterLetter,
-                         QString a1, QString a2,
-                         QString a3, QString a4,
-                         QString fishName, QString fishPic){
+void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
 
-    QString infoInLabel = fishName + a1 + "\n" + a2 + "\n" + a3 + "\n" + a4;
+    QString fishPic;
+    int count = 1;
+    QString infoInLabel;
+    ui->journalTittleLabel->setText(info[0]);
+    ui->journalPageLabel->setText(info[1]);
 
-
-    //Display Tittle and Page
-     displayTittlePage(waterLetter, fishNum);
-    //Display labels
-    displayJournalLabels(infoInLabel, fishPic, (fishNum%5) + 1);
-
+    for(int i = 2; i < info.size(); i++){
+        infoInLabel = "";
+        //if it has not been cath
+        if(info[i] == "uncached"){
+            count++;
+        }
+        if(info[i] != "uncached"){
+            fishPic = info[i];
+            i++;
+            int qNum = 0;
+            for(int j = i; j < i+4; j++){
+                infoInLabel += questions[qNum] + info[j] + "\n";
+                qNum++;
+            }
+            displayJournalLabels(infoInLabel, fishPic, count);
+            i += 3;
+            count++;
+        }
+    }
 
 }
+
+
+
+
+
+
 
 //Helper method to display the Journal
 void View::displayTittlePage(QChar waterLetter, int fishNum){
