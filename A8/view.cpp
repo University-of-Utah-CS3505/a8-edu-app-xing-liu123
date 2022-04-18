@@ -383,40 +383,6 @@ void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
 
 
 
-
-
-
-
-//Helper method to display the Journal
-void View::displayTittlePage(QChar waterLetter, int fishNum){
-    int pageNum = 0;
-    switch(waterLetter.unicode()){
-    case u's':
-        ui->journalTittleLabel->setText("Sea Fish");
-        pageNum = 1;
-        break;
-    case u'r':
-        ui->journalTittleLabel->setText("River Fish");
-        pageNum = 3;
-        break;
-    case u'p':
-        ui->journalTittleLabel->setText("Pond Fish");
-        pageNum = 5;
-        break;
-    }
-
-    if(fishNum > 5)
-        pageNum++;
-
-    QString page;
-    page.setNum(pageNum);
-    page = "Page " + page;
-
-    ui->journalPageLabel->setText(page);
-
-
-}
-
 //Helper method to display journal
 void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
     QPixmap pix;
@@ -447,11 +413,9 @@ void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
 }
 
 
-void View::on_nextButtonFI_clicked()
+void View::on_journalKeepFishingButton_clicked()
 {
-    emit resetWorld();
     ui->stackedWidget->setCurrentIndex(1);
-
 }
 
 
@@ -481,10 +445,12 @@ void View::on_journalPrevButton_clicked()
 
 
 
+void View::on_nextButtonFI_clicked()
+{
+    emit resetWorld();
+    ui->stackedWidget->setCurrentIndex(1);
 
-
-
-
+}
 
 //Answer Buttons
 void View::on_answerButton1_clicked(){
@@ -554,6 +520,8 @@ void View::on_nextButton_clicked(){
 //        emit updateMainMenuMusicButton("Music: on");
 //    }
 //}
+
+
 
 
 

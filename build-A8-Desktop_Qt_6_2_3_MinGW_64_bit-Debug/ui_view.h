@@ -86,6 +86,7 @@ public:
     QLabel *journalInfoLabel_5;
     QPushButton *journalNextButton;
     QPushButton *journalPrevButton;
+    QPushButton *journalKeepFishingButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -331,6 +332,9 @@ public:
         journalPrevButton = new QPushButton(JournalPage_1);
         journalPrevButton->setObjectName(QString::fromUtf8("journalPrevButton"));
         journalPrevButton->setGeometry(QRect(598, 490, 71, 33));
+        journalKeepFishingButton = new QPushButton(JournalPage_1);
+        journalKeepFishingButton->setObjectName(QString::fromUtf8("journalKeepFishingButton"));
+        journalKeepFishingButton->setGeometry(QRect(30, 30, 131, 33));
         stackedWidget->addWidget(JournalPage_1);
         View->setCentralWidget(centralwidget);
         menubar = new QMenuBar(View);
@@ -343,7 +347,7 @@ public:
 
         retranslateUi(View);
 
-        stackedWidget->setCurrentIndex(5);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(View);
@@ -406,6 +410,7 @@ public:
         journalInfoLabel_5->setText(QCoreApplication::translate("View", "TextLabel", nullptr));
         journalNextButton->setText(QCoreApplication::translate("View", "Next", nullptr));
         journalPrevButton->setText(QCoreApplication::translate("View", "Prev", nullptr));
+        journalKeepFishingButton->setText(QCoreApplication::translate("View", "Keep Fishing", nullptr));
     } // retranslateUi
 
 };

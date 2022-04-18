@@ -88,6 +88,8 @@ private slots:
 
     void on_journalPrevButton_clicked();
 
+    void on_journalKeepFishingButton_clicked();
+
 private:
     Ui::View *ui;
     QTimer * time;
@@ -98,7 +100,6 @@ private:
     int const quizPage = 4;
     int const journalPage = 5;
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
-    void displayTittlePage(QChar waterLetter, int fishNum);
     void displayJournalLabels(QString info, QString fishPic, int fishNum);
     int journalPageNum = 0;
 
