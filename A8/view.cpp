@@ -363,6 +363,7 @@ void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
         infoInLabel = "";
         //if it has not been cath
         if(info[i] == "uncached"){
+            displayJournalLabels("uncached", ":/unknownFish.png", count);
             count++;
         }
         if(info[i] != "uncached"){

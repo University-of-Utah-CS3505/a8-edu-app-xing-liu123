@@ -752,8 +752,6 @@ void Model::getTestQuizInfo(){
     QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer);
     QString randAsnw2 = getRandAnswer(qNum, questions[qNum], answer);
 
-
-
     //Counter of fish
     if(currQuiz < 10 && qNum ==0)
         currQuiz++;
@@ -810,7 +808,7 @@ void Model::setJournalVector(QVector<QString> fish, QVector<QString> &info, int 
             //Check if the user has catch it
             if(catchedFish.contains(fish[i])){
                 //Picture of Fish
-                info.push_back(fishQA.value(fish[i]).value("ActualImagefilepath"));
+                info.push_back(fishQA.value(fish[i]).value("PixelatedImagefilepath"));
                 for(int j = 0; j < 4; j++){
                     info.push_back(fishQA.value(fish[i]).value(questions[j]));
                 }
@@ -827,7 +825,7 @@ void Model::setJournalVector(QVector<QString> fish, QVector<QString> &info, int 
             //Check if the user has catch it
             if(catchedFish.contains(fish[i])){
                 //Picture of Fish
-                info.push_back(fishQA.value(fish[i]).value("ActualImagefilepath"));
+                info.push_back(fishQA.value(fish[i]).value("PixelatedImagefilepath"));
                 for(int j = 0; j < 4; j++){
                     info.push_back(fishQA.value(fish[i]).value(questions[j]));
                 }

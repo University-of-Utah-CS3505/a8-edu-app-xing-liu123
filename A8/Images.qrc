@@ -99,5 +99,6 @@
         <file>fishPics/surgeonfish.png</file>
         <file>fishPics/Tilapia.png</file>
         <file>fishPics/ZebraTurkeyfish.png</file>
+        <file>unknownFish.png</file>
     </qresource>
 </RCC>
