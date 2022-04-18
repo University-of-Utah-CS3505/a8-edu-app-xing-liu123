@@ -74,10 +74,6 @@ private slots:
     void on_answerButton3_clicked();
     void showResult(bool result);
 
-    // goback to fishing screen
-    void on_nextButton_clicked();
-    void on_nextButtonFI_clicked();
-
     //display on Journal
     void setUpJournal(QVector<QString> info, QVector<QString> questions);
 
@@ -92,6 +88,10 @@ private slots:
 
     void on_return2MenuButton_clicked();
     void on_journalKeepFishingButton_clicked();
+
+    void on_quizBackFishButton_clicked();
+
+    void on_infoBackButton_clicked();
 
 private:
     Ui::View *ui;

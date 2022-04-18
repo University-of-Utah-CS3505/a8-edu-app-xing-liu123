@@ -508,7 +508,7 @@
        <string>a4</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="nextButtonFI">
+     <widget class="QPushButton" name="infoBackButton">
       <property name="geometry">
        <rect>
         <x>670</x>
@@ -678,7 +678,7 @@
        <enum>Qt::PlainText</enum>
       </property>
      </widget>
-     <widget class="QPushButton" name="nextButton">
+     <widget class="QPushButton" name="quizBackFishButton">
       <property name="geometry">
        <rect>
         <x>650</x>
@@ -910,7 +910,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
