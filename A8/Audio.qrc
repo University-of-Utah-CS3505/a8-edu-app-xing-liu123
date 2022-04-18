@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>Waves.mp3</file>
         <file>Water_Churning.mp3</file>
+        <file>GameOver(Test).wav</file>
     </qresource>
 </RCC>

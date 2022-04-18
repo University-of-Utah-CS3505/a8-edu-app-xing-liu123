@@ -12,15 +12,31 @@ View::View(Model &model,  QWidget *parent)
     ui->setupUi(this);
     this->setMouseTracking(true);
 
+    /*
+     * Audio section
+    **/
 
-    // Audios
     // Uncomment this when working on audios
-    bgmOutput->setVolume(0.2f);
+    // Background music
+    bgmOutput->setVolume(audioVolumn);
     bgmPlayer->setAudioOutput(bgmOutput);
     bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+
+    // Sound effects
+    SE_GameOver.setSource(QUrl("qrc:/GameOver(Test).wav"));
+
+    /*
+     * Audio connections
+    **/
+
+    // Connect loading media and playing media, cause mediaplayer to play the audio after finished loading
     connect(bgmPlayer, &QMediaPlayer::mediaStatusChanged, this, &View::playBGM);
+    // Connect Music: on/off to an event
     connect(ui->mainMenuMucisButton, &QPushButton::pressed, this, &View::pressMusicButton);
+    // Connect event's emission to change the text of Music: on/of
     connect(this, &View::updateMainMenuMusicButton, ui->mainMenuMucisButton, &QPushButton::setText);
+    // [TEST] Connect TestSound Button to an event
+    connect(ui->TestSoundButton, &QPushButton::clicked, this, &View::pressTestSoundButton);
 
 
 
@@ -167,10 +183,8 @@ View::~View()
     delete time;
 
     // Uncomment this when working on audios
-//    delete bgmPlayer;
-//    delete bgmOutput;
-//    delete soundEffectOutput;
-//    delete audioDevice;
+    delete bgmPlayer;
+    delete bgmOutput;
 }
 
 
@@ -507,6 +521,10 @@ void View::pressMusicButton(){
         bgmPlayer->play();
         emit updateMainMenuMusicButton("Music: on");
     }
+}
+void View::pressTestSoundButton(){
+    SE_GameOver.setVolume(audioVolumn);
+    SE_GameOver.play();
 }
 
 
