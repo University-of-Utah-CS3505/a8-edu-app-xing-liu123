@@ -456,14 +456,16 @@ void View::on_journalButton_clicked()
 
 void View::on_journalNextButton_clicked()
 {
-    journalPageNum++;
+    if(journalPageNum<5)
+        journalPageNum++;
     emit getJournal(journalPageNum);
 }
 
 
 void View::on_journalPrevButton_clicked()
 {
-    journalPageNum--;
+    if(journalPageNum>0)
+        journalPageNum--;
     emit getJournal(journalPageNum);
 }
 

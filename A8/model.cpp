@@ -613,6 +613,14 @@ void Model::getFish(){
         //send to method to get two other random values of fish
         QString randAsnw1 = getRandAnswer(questionNum,question, answer);
         QString randAsnw2 = getRandAnswer(questionNum, question, answer);
+
+        //IF question num == 3
+            //set random answer2  and eand answe 3
+            //NO Answer
+        // else
+            //set random answer2  and eand answe 3
+            //randAnswer
+
         emit updateQuiz(question, answer, randAsnw1, randAsnw2,  fishPic, currFish);
     }
     //If it is not catched
