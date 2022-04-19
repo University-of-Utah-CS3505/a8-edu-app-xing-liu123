@@ -579,7 +579,7 @@
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>10</y>
+        <y>0</y>
         <width>101</width>
         <height>41</height>
        </rect>
@@ -600,8 +600,8 @@
      <widget class="QLabel" name="quizQ1Label">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>160</y>
+        <x>320</x>
+        <y>300</y>
         <width>191</width>
         <height>31</height>
        </rect>
@@ -658,7 +658,7 @@
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>130</y>
+        <y>80</y>
         <width>311</width>
         <height>191</height>
        </rect>
@@ -671,7 +671,7 @@
       <property name="geometry">
        <rect>
         <x>280</x>
-        <y>60</y>
+        <y>40</y>
         <width>211</width>
         <height>31</height>
        </rect>
@@ -692,8 +692,8 @@
      <widget class="QLabel" name="resultLabel">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>230</y>
+        <x>210</x>
+        <y>150</y>
         <width>441</width>
         <height>331</height>
        </rect>
@@ -756,6 +756,17 @@
        <string>PushButton</string>
       </property>
      </widget>
+     <zorder>QuizTitleLabel</zorder>
+     <zorder>quizQ1Label</zorder>
+     <zorder>answ1Button</zorder>
+     <zorder>answ1Button_2</zorder>
+     <zorder>answ1Button_3</zorder>
+     <zorder>fishPicLabel</zorder>
+     <zorder>quizFishName</zorder>
+     <zorder>quizBackFishButton</zorder>
+     <zorder>nextQuestionButton</zorder>
+     <zorder>answ1Button_4</zorder>
+     <zorder>resultLabel</zorder>
     </widget>
     <widget class="QWidget" name="JournalPage_1">
      <widget class="QLabel" name="journalTittleLabel">

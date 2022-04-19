@@ -141,6 +141,10 @@ View::View(Model &model,  QWidget *parent)
             &QPushButton::clicked,
             this,
             &View::on_answerButton3_clicked);
+    connect(ui->answ1Button_4,
+            &QPushButton::clicked,
+            this,
+            &View::on_answerButton3_clicked);
     connect(this,
             &View::checkUserAnswer,
             &model,
@@ -300,32 +304,41 @@ void View::on_saltWaterButton_clicked()
 
 
 void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
-                     QString randAnswer2, QString fishPic, QString fishName){
+                     QString randAnswer2, QString randAnswer3,
+                     QString fishPic, QString fishName){
 
     ui->stackedWidget->setCurrentIndex(4);
     ui->quizFishName->setText(fishName);
     ui->quizQ1Label->setText(question);
 
-    //TODO: Get the answers of the buttons to wrap up if necesary
+    //Randomize the result of buttons but check the answers to randomize
+    int randNum = randAnswer3 != "N/A"? rand() % 4: rand() % 2;
+    setButtonQuizVisibility(randAnswer3);
 
 
-    //Randomize the result of buttons
-    int randNum = rand() % 3;
     switch (randNum) {
     case 0:
         ui->answ1Button->setText(answer);
         ui->answ1Button_2->setText(randAnswer1);
         ui->answ1Button_3->setText(randAnswer2);
+        ui->answ1Button_4->setText(randAnswer3);
         break;
     case 1:
         ui->answ1Button->setText(randAnswer1);
         ui->answ1Button_2->setText(answer);
         ui->answ1Button_3->setText(randAnswer2);
+        ui->answ1Button_4->setText(randAnswer3);
         break;
     case 2:
         ui->answ1Button->setText(randAnswer1);
         ui->answ1Button_2->setText(randAnswer2);
         ui->answ1Button_3->setText(answer);
+        ui->answ1Button_4->setText(randAnswer3);
+    case 3:
+        ui->answ1Button->setText(randAnswer1);
+        ui->answ1Button_2->setText(randAnswer2);
+        ui->answ1Button_3->setText(randAnswer3);
+        ui->answ1Button_4->setText(answer);
         break;
     }
 
@@ -342,11 +355,28 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
     ui->answ1Button->setDisabled(false);
     ui->answ1Button_2->setDisabled(false);
     ui->answ1Button_3->setDisabled(false);
+    ui->answ1Button_4->setDisabled(false);
 
     //setVisible button
     ui->quizBackFishButton->setVisible(false);
 
+
 }
+
+
+void View::setButtonQuizVisibility(QString answ){
+
+    if(answ == "N/A"){
+        ui->answ1Button_3->setVisible(false);
+        ui->answ1Button_4->setVisible(false);
+    }
+    else{
+        ui->answ1Button_3->setVisible(true);
+        ui->answ1Button_4->setVisible(true);
+    }
+}
+
+
 
 
 void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
@@ -477,33 +507,45 @@ void View::on_answerButton1_clicked(){
     QString question = ui->quizQ1Label->text();
     QString answer = ui->answ1Button->text();
     emit checkUserAnswer(question,answer);
-
     //disable buttons after selecting once
-    ui->answ1Button->setDisabled(true);
-    ui->answ1Button_2->setDisabled(true);
-    ui->answ1Button_3->setDisabled(true);
+    disableQuizButtons();
 }
 void View::on_answerButton2_clicked(){
 
     QString question = ui->quizQ1Label->text();
     QString answer = ui->answ1Button_2->text();
     emit checkUserAnswer(question,answer);
-
     //disable buttons after selecting once
-    ui->answ1Button->setDisabled(true);
-    ui->answ1Button_2->setDisabled(true);
-    ui->answ1Button_3->setDisabled(true);
+    disableQuizButtons();
 }
 void View::on_answerButton3_clicked(){
     QString question = ui->quizQ1Label->text();
     QString answer = ui->answ1Button_3->text();
     emit checkUserAnswer(question,answer);
+    //disable buttons after selecting once
+    disableQuizButtons();
+}
 
+
+void View::on_answ1Button_4_clicked()
+{
+    QString question = ui->quizQ1Label->text();
+    QString answer = ui->answ1Button_4->text();
+    emit checkUserAnswer(question,answer);
+    //disable buttons after selecting once
+    disableQuizButtons();
+}
+
+void View::disableQuizButtons(){
     //disable buttons after selecting once
     ui->answ1Button->setDisabled(true);
     ui->answ1Button_2->setDisabled(true);
     ui->answ1Button_3->setDisabled(true);
+    ui->answ1Button_4->setDisabled(true);
 }
+
+
+
 
 void View::showResult(bool result){
 
@@ -570,4 +612,6 @@ void View::on_infoBackButton_clicked()
     emit resetWorld();
     ui->stackedWidget->setCurrentIndex(1);
 }
+
+
 

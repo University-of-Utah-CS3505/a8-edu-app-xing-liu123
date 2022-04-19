@@ -85,7 +85,8 @@ signals:
     void setUpSpear(int x1, int y1, int x2, int y2);
 
     void updateQuiz(QString question, QString answer, QString randAnswer1,
-                    QString randAnswer2, QString fishPic, QString fishName );
+                    QString randAnswer2, QString randAnswer3,
+                    QString fishPic, QString fishName );
     void updateInformation(QString q1,QString a1, QString q2, QString a2,
                            QString q3, QString a3, QString q4, QString a4,
                            QString fishName, QString fishPic);
