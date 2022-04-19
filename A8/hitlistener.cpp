@@ -27,10 +27,12 @@ void HitListener::BeginContact(b2Contact* contact) {
     // spear
     void* fixtureUserDataB = contact->GetFixtureB()->GetUserData();
 
+    b2Fixture* fB = contact->GetFixtureB();
     // if the fixture is an object and that object is fish 1
     if(contact->GetFixtureA() != nullptr && (int)(size_t) fixtureUserDataA == 1){
         //TODO
         std::cout << "hit fish 1" << std::endl;
+        //fB->SetSensor(true);
     }
     // if the fixture is an object and that object is fish 2
     if(contact->GetFixtureA() != nullptr && (int)(size_t) fixtureUserDataA == 2){

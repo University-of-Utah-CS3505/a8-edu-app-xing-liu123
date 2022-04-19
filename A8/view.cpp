@@ -13,6 +13,12 @@ View::View(Model &model,  QWidget *parent)
     this->setMouseTracking(true);
 
     /*
+     * Button style section
+    **/
+    ui->freshWaterButton->setStyleSheet("border-image: url(:/buttons/Button_FreshWater_Test.png)"); // Test
+    ui->freshWaterButton->resize(180,60); // Find the original PNG size and divide it by 2.5. Set the values as QPushButton size.
+
+    /*
      * Audio section
     **/
 
@@ -51,10 +57,10 @@ View::View(Model &model,  QWidget *parent)
     ui->saltPicLabel->setPixmap(water.scaled(ui->saltPicLabel->width(), ui->saltPicLabel->height()));
 
     QPixmap animatedFish;
-    animatedFish.load(":/fish1.png");
+    animatedFish.load("://fishShadow.png");
     ui->fish1Label->setPixmap(animatedFish.scaled(ui->fish1Label->width(), ui->fish1Label->height()));
     ui->fish3Label->setPixmap(animatedFish.scaled(ui->fish3Label->width(), ui->fish3Label->height()));
-    animatedFish.load(":/fish2.png");
+    animatedFish.load(":/fishShadow.png");
     ui->fish2Label->setPixmap(animatedFish.scaled(ui->fish2Label->width(), ui->fish2Label->height()));
 
     QPixmap spearPix;
@@ -74,10 +80,10 @@ View::View(Model &model,  QWidget *parent)
 
     //setup the buttons and images for the game
 
-    ui->saltWaterButton->setDisabled(true);
-    ui->smoothWaterButton->setDisabled(true);
-    ui->saltPicLabel->setDisabled(true);
-    ui->smoothPicLabel->setDisabled(true);
+    ui->saltWaterButton->setEnabled(false);
+    ui->smoothWaterButton->setEnabled(false);
+    ui->saltPicLabel->setEnabled(false);
+    ui->smoothPicLabel->setEnabled(false);
 
     //Connections to set up first
     connect(this,
@@ -152,6 +158,10 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::on_answerButton2_clicked);
     connect(ui->answ1Button_3,
+            &QPushButton::clicked,
+            this,
+            &View::on_answerButton3_clicked);
+    connect(ui->answ1Button_4,
             &QPushButton::clicked,
             this,
             &View::on_answerButton3_clicked);
@@ -329,32 +339,41 @@ void View::on_saltWaterButton_clicked()
 
 
 void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
-                     QString randAnswer2, QString fishPic, QString fishName){
+                     QString randAnswer2, QString randAnswer3,
+                     QString fishPic, QString fishName){
 
     ui->stackedWidget->setCurrentIndex(4);
     ui->quizFishName->setText(fishName);
     ui->quizQ1Label->setText(question);
 
-    //TODO: Get the answers of the buttons to wrap up if necesary
+    //Randomize the result of buttons but check the answers to randomize
+    int randNum = randAnswer3 != "N/A"? rand() % 4: rand() % 2;
+    setButtonQuizVisibility(randAnswer3);
 
 
-    //Randomize the result of buttons
-    int randNum = rand() % 3;
     switch (randNum) {
     case 0:
         ui->answ1Button->setText(answer);
         ui->answ1Button_2->setText(randAnswer1);
         ui->answ1Button_3->setText(randAnswer2);
+        ui->answ1Button_4->setText(randAnswer3);
         break;
     case 1:
         ui->answ1Button->setText(randAnswer1);
         ui->answ1Button_2->setText(answer);
         ui->answ1Button_3->setText(randAnswer2);
+        ui->answ1Button_4->setText(randAnswer3);
         break;
     case 2:
         ui->answ1Button->setText(randAnswer1);
         ui->answ1Button_2->setText(randAnswer2);
         ui->answ1Button_3->setText(answer);
+        ui->answ1Button_4->setText(randAnswer3);
+    case 3:
+        ui->answ1Button->setText(randAnswer1);
+        ui->answ1Button_2->setText(randAnswer2);
+        ui->answ1Button_3->setText(randAnswer3);
+        ui->answ1Button_4->setText(answer);
         break;
     }
 
@@ -368,14 +387,31 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
     ui->resultLabel->setVisible(false);
 
     //enable buttons
-    ui->answ1Button->setDisabled(false);
-    ui->answ1Button_2->setDisabled(false);
-    ui->answ1Button_3->setDisabled(false);
+    ui->answ1Button->setEnabled(true);
+    ui->answ1Button_2->setEnabled(true);
+    ui->answ1Button_3->setEnabled(true);
+    ui->answ1Button_4->setEnabled(true);
 
     //setVisible button
     ui->quizBackFishButton->setVisible(false);
 
+
 }
+
+
+void View::setButtonQuizVisibility(QString answ){
+
+    if(answ == "N/A"){
+        ui->answ1Button_3->setVisible(false);
+        ui->answ1Button_4->setVisible(false);
+    }
+    else{
+        ui->answ1Button_3->setVisible(true);
+        ui->answ1Button_4->setVisible(true);
+    }
+}
+
+
 
 
 void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
@@ -506,36 +542,45 @@ void View::on_answerButton1_clicked(){
     QString question = ui->quizQ1Label->text();
     QString answer = ui->answ1Button->text();
     emit checkUserAnswer(question,answer);
-
     //disable buttons after selecting once
-    ui->answ1Button->setDisabled(true);
-    ui->answ1Button_2->setDisabled(true);
-    ui->answ1Button_3->setDisabled(true);
+    disableQuizButtons();
 }
 void View::on_answerButton2_clicked(){
 
     QString question = ui->quizQ1Label->text();
     QString answer = ui->answ1Button_2->text();
     emit checkUserAnswer(question,answer);
-
     //disable buttons after selecting once
-    ui->answ1Button->setDisabled(true);
-    ui->answ1Button_2->setDisabled(true);
-    ui->answ1Button_3->setDisabled(true);
+    disableQuizButtons();
 }
 void View::on_answerButton3_clicked(){
     QString question = ui->quizQ1Label->text();
     QString answer = ui->answ1Button_3->text();
     emit checkUserAnswer(question,answer);
-
     //disable buttons after selecting once
-    ui->answ1Button->setDisabled(true);
-    ui->answ1Button_2->setDisabled(true);
-    ui->answ1Button_3->setDisabled(true);
+    disableQuizButtons();
 }
 
-void View::showResult(bool result, QString answer){
 
+void View::on_answ1Button_4_clicked()
+{
+    QString question = ui->quizQ1Label->text();
+    QString answer = ui->answ1Button_4->text();
+    emit checkUserAnswer(question,answer);
+    //disable buttons after selecting once
+    disableQuizButtons();
+}
+
+void View::disableQuizButtons(){
+    //disable buttons after selecting once
+    ui->answ1Button->setEnabled(false);
+    ui->answ1Button_2->setEnabled(false);
+    ui->answ1Button_3->setEnabled(false);
+    ui->answ1Button_4->setEnabled(false);
+}
+
+
+void View::showResult(bool result, QString answer){
     if(result)
         ui->resultLabel->setText("You are Correct! \n The answer is: \n" + answer);
     else
@@ -586,14 +631,14 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         //TODO unlock the next level here
         if(waterType == 'p'){
 
-            ui->smoothWaterButton->setDisabled(false);
-            ui->smoothPicLabel->setDisabled(false);
+            ui->smoothWaterButton->setEnabled(true);
+            ui->smoothPicLabel->setEnabled(true);
 
         }
         else if(waterType =='r')
         {
-            ui->saltWaterButton->setDisabled(false);
-            ui->saltPicLabel->setDisabled(false);
+            ui->saltWaterButton->setEnabled(true);
+            ui->saltPicLabel->setEnabled(true);
         }
 
     }

@@ -97,6 +97,7 @@ void Model::initFish1(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 1;
+//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish1->CreateFixture(&fixtureDefFish);
@@ -137,7 +138,7 @@ void Model::initFish2(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 2;
-
+//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish2->CreateFixture(&fixtureDefFish);
@@ -205,6 +206,8 @@ void Model::initSpear(){
     bodySpearDef.position.Set(4.00f, 0.75f);
     spear = world->CreateBody(&bodySpearDef);
 
+    // head
+
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
@@ -238,9 +241,11 @@ void Model::initSpear(){
     // Set the bounciness
     fixtureDef.restitution = 0.0f;
     fixtureDef.userData = (void*) 4;
+    //fixtureDef.isSensor = true;
 
     // Add the shape to the body.
     spear->CreateFixture(&fixtureDef);
+
 
 }
 
@@ -334,17 +339,17 @@ void Model::updateWorld(){
     // It is generally best to keep the time step and iterations fixed.
     world->Step(timeStep, velocityIterations, positionIterations);
 
-//    // checks if collision occurs
-//    if(contactListener->getDestroy()){ // is contacted when to delete objects
-//        world->DestroyBody(spear);
-//        //world->DestroyBody(fish1); //maybe needed will need to test
-//        contactListener->setDestroy(false);
-//        initSpear();
-//        initFish1();
-//        initFish2();
-//        initFish3();
+    // checks if collision occurs
+    if(contactListener->getDestroy()){ // is contacted when to delete objects
+        world->DestroyBody(spear);
+        //world->DestroyBody(fish1); //maybe needed will need to test
+        contactListener->setDestroy(false);
+        initSpear();
+        //initFish1();
+        //initFish2();
+        //initFish3();
 
-//    }
+    }
     // Now print the position and angle of the body.
     b2Vec2 finalPos = spear->GetPosition();
     spearX= finalPos.x*100;
@@ -613,15 +618,16 @@ void Model::getFish(){
         //send to method to get two other random values of fish
         QString randAsnw1 = getRandAnswer(questionNum,question, answer);
         QString randAsnw2 = getRandAnswer(questionNum, question, answer);
+        QString randAsnw3 = getRandAnswer(questionNum, question, answer);
 
-        //IF question num == 3
-            //set random answer2  and eand answe 3
-            //NO Answer
-        // else
-            //set random answer2  and eand answe 3
-            //randAnswer
+        //If we have question 3, the answer is just yes/no so we need no more answers
+        if(questionNum == 3){
+             randAsnw2 = "N/A";
+             randAsnw3 = "N/A";
+        }
 
-        emit updateQuiz(question, answer, randAsnw1, randAsnw2,  fishPic, currFish);
+
+        emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw2, fishPic, currFish);
     }
     //If it is not catched
     else{
@@ -775,6 +781,13 @@ void Model::getTestQuizInfo(){
     //send to method to get two other random values of fish
     QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer);
     QString randAsnw2 = getRandAnswer(qNum, questions[qNum], answer);
+    QString randAsnw3 = getRandAnswer(qNum, questions[qNum], answer);
+
+    //If we have question 3, the answer is just yes/no so we need no more answers
+    if(qNum == 3){
+         randAsnw2 = "N/A";
+         randAsnw3 = "N/A";
+    }
 
     //Counter of fish
     if(currQuiz < 10 && qNum ==0)
@@ -782,7 +795,7 @@ void Model::getTestQuizInfo(){
     else if(currQuiz >= 10 && qNum == 0)
         currQuiz = 0;
 
-    emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2,  fishPic, fish);
+    emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2, randAsnw3, fishPic, fish);
 
     //Counter of questions
     if(qNum < 3)
