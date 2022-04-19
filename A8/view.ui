@@ -312,6 +312,32 @@
        <string>Main Menu</string>
       </property>
      </widget>
+     <widget class="QLabel" name="backgroundImageLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>570</height>
+       </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <zorder>backgroundImageLabel</zorder>
+     <zorder>fish1Label</zorder>
+     <zorder>fish2Label</zorder>
+     <zorder>fish3Label</zorder>
+     <zorder>spearLabel</zorder>
+     <zorder>locationLabel</zorder>
+     <zorder>catchButton</zorder>
+     <zorder>goToQuizButton</zorder>
+     <zorder>journalButton</zorder>
+     <zorder>return2MenuButton</zorder>
     </widget>
     <widget class="QWidget" name="JournalPage">
      <property name="mouseTracking">

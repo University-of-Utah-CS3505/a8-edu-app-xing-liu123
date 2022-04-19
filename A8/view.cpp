@@ -266,7 +266,10 @@ void View::mousePressEvent(QMouseEvent *event){
 void View::on_freshWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
-    ui->stackedWidget->widget(1)->setStyleSheet("border-image: url(:/Background_Pond.png) 0 0 0 0 stretch stretch");
+
+    QPixmap backgroundPix;
+    backgroundPix.load(":/Background_Pond.png");
+    ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->freshWaterButton->text());
 }
@@ -276,6 +279,10 @@ void View::on_smoothWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 
+    QPixmap backgroundPix;
+    backgroundPix.load(":/Background_River.png");
+    ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+
     emit updateWorld(ui->smoothWaterButton->text());
 }
 
@@ -283,6 +290,10 @@ void View::on_smoothWaterButton_clicked()
 void View::on_saltWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+
+    QPixmap backgroundPix;
+    backgroundPix.load(":/Background_Ocean.png");
+    ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->saltWaterButton->text());
 }
