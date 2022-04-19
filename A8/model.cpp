@@ -97,6 +97,7 @@ void Model::initFish1(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 1;
+//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish1->CreateFixture(&fixtureDefFish);
@@ -137,7 +138,7 @@ void Model::initFish2(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 2;
-
+//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish2->CreateFixture(&fixtureDefFish);
@@ -205,6 +206,8 @@ void Model::initSpear(){
     bodySpearDef.position.Set(4.00f, 0.75f);
     spear = world->CreateBody(&bodySpearDef);
 
+    // head
+
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
@@ -238,9 +241,11 @@ void Model::initSpear(){
     // Set the bounciness
     fixtureDef.restitution = 0.0f;
     fixtureDef.userData = (void*) 4;
+    //fixtureDef.isSensor = true;
 
     // Add the shape to the body.
     spear->CreateFixture(&fixtureDef);
+
 
 }
 
