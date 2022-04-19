@@ -104,5 +104,6 @@
         <file>Background_River.png</file>
         <file>Background_Ocean.png</file>
         <file>fishShadow.png</file>
+        <file>buttons/Button_FreshWater_Test.png</file>
     </qresource>
 </RCC>

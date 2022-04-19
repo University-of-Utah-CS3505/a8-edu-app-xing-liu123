@@ -13,6 +13,12 @@ View::View(Model &model,  QWidget *parent)
     this->setMouseTracking(true);
 
     /*
+     * Button style section
+    **/
+    ui->freshWaterButton->setStyleSheet("border-image: url(:/buttons/Button_FreshWater_Test.png)"); // Test
+    ui->freshWaterButton->resize(180,60); // Find the original PNG size and divide it by 2.5. Set the values as QPushButton size.
+
+    /*
      * Audio section
     **/
 
