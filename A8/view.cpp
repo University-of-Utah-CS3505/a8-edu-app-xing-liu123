@@ -13,6 +13,11 @@ View::View(Model &model,  QWidget *parent)
     this->setMouseTracking(true);
 
     /*
+     * Button stlye section
+    **/
+    ui->freshWaterButton->setStyleSheet("border-image: url(:/Buttons/Button_FreshWater.png)");
+
+    /*
      * Audio section
     **/
 
