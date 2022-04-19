@@ -618,7 +618,16 @@ void Model::getFish(){
         //send to method to get two other random values of fish
         QString randAsnw1 = getRandAnswer(questionNum,question, answer);
         QString randAsnw2 = getRandAnswer(questionNum, question, answer);
-        emit updateQuiz(question, answer, randAsnw1, randAsnw2,  fishPic, currFish);
+        QString randAsnw3 = getRandAnswer(questionNum, question, answer);
+
+        //If we have question 3, the answer is just yes/no so we need no more answers
+        if(questionNum == 3){
+             randAsnw2 = "N/A";
+             randAsnw3 = "N/A";
+        }
+
+
+        emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw2, fishPic, currFish);
     }
     //If it is not catched
     else{
@@ -687,10 +696,10 @@ void Model::checkAnswer(QString question, QString userAnswer){
             correctAnsw = 0;
             updateSpear();
         }
-        emit answerResult(true);
+        emit answerResult(true, correctAnswer);
     }
     else
-        emit answerResult(false);
+        emit answerResult(false, correctAnswer);
 }
 
 
@@ -757,6 +766,13 @@ void Model::getTestQuizInfo(){
     //send to method to get two other random values of fish
     QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer);
     QString randAsnw2 = getRandAnswer(qNum, questions[qNum], answer);
+    QString randAsnw3 = getRandAnswer(qNum, questions[qNum], answer);
+
+    //If we have question 3, the answer is just yes/no so we need no more answers
+    if(qNum == 3){
+         randAsnw2 = "N/A";
+         randAsnw3 = "N/A";
+    }
 
     //Counter of fish
     if(currQuiz < 10 && qNum ==0)
@@ -764,7 +780,7 @@ void Model::getTestQuizInfo(){
     else if(currQuiz >= 10 && qNum == 0)
         currQuiz = 0;
 
-    emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2,  fishPic, fish);
+    emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2, randAsnw3, fishPic, fish);
 
     //Counter of questions
     if(qNum < 3)

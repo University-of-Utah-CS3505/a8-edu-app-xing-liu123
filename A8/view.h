@@ -59,7 +59,8 @@ private slots:
     void resetSpearLabel(QPixmap map);
 
     void setUpQuiz(QString question, QString answer, QString randAnswer1,
-                   QString randAnswer2, QString fishPic, QString fishName);
+                   QString randAnswer2, QString randAnswer3,
+                   QString fishPic, QString fishName);
     void setUpInfo(QString q1,QString a1, QString q2, QString a2,
                    QString q3, QString a3, QString q4, QString a4,
                    QString fishName, QString fishPic);
@@ -73,7 +74,7 @@ private slots:
     void on_answerButton1_clicked();
     void on_answerButton2_clicked();
     void on_answerButton3_clicked();
-    void showResult(bool result);
+    void showResult(bool result, QString Answer);
 
     //display on Journal
     void setUpJournal(QVector<QString> info, QVector<QString> questions);
@@ -94,6 +95,8 @@ private slots:
 
     void on_infoBackButton_clicked();
 
+    void on_answ1Button_4_clicked();
+
 private:
     Ui::View *ui;
     QTimer * time;
@@ -106,8 +109,8 @@ private:
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
     void displayJournalLabels(QString info, QString fishPic, int fishNum);
     int journalPageNum = 0;
-
-
+    void setButtonQuizVisibility(QString answ);
+    void disableQuizButtons();
 
     // Uncomment this when working on audios
     // Audio parameters

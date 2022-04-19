@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -578,8 +578,8 @@
      <widget class="QLabel" name="QuizTitleLabel">
       <property name="geometry">
        <rect>
-        <x>336</x>
-        <y>30</y>
+        <x>330</x>
+        <y>0</y>
         <width>101</width>
         <height>41</height>
        </rect>
@@ -600,8 +600,8 @@
      <widget class="QLabel" name="quizQ1Label">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>160</y>
+        <x>320</x>
+        <y>300</y>
         <width>191</width>
         <height>31</height>
        </rect>
@@ -618,8 +618,8 @@
      <widget class="QPushButton" name="answ1Button">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>220</y>
+        <x>10</x>
+        <y>350</y>
         <width>381</width>
         <height>51</height>
        </rect>
@@ -631,8 +631,8 @@
      <widget class="QPushButton" name="answ1Button_2">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>290</y>
+        <x>410</x>
+        <y>350</y>
         <width>381</width>
         <height>51</height>
        </rect>
@@ -644,8 +644,8 @@
      <widget class="QPushButton" name="answ1Button_3">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>360</y>
+        <x>10</x>
+        <y>430</y>
         <width>381</width>
         <height>51</height>
        </rect>
@@ -657,10 +657,10 @@
      <widget class="QLabel" name="fishPicLabel">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>180</y>
-        <width>260</width>
-        <height>250</height>
+        <x>250</x>
+        <y>80</y>
+        <width>311</width>
+        <height>191</height>
        </rect>
       </property>
       <property name="text">
@@ -671,7 +671,7 @@
       <property name="geometry">
        <rect>
         <x>280</x>
-        <y>80</y>
+        <y>40</y>
         <width>211</width>
         <height>31</height>
        </rect>
@@ -692,8 +692,8 @@
      <widget class="QLabel" name="resultLabel">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>160</y>
+        <x>210</x>
+        <y>150</y>
         <width>441</width>
         <height>331</height>
        </rect>
@@ -720,7 +720,7 @@
      <widget class="QPushButton" name="quizBackFishButton">
       <property name="geometry">
        <rect>
-        <x>650</x>
+        <x>690</x>
         <y>480</y>
         <width>91</width>
         <height>61</height>
@@ -733,8 +733,8 @@
      <widget class="QPushButton" name="nextQuestionButton">
       <property name="geometry">
        <rect>
-        <x>388</x>
-        <y>490</y>
+        <x>460</x>
+        <y>500</y>
         <width>201</width>
         <height>33</height>
        </rect>
@@ -743,6 +743,30 @@
        <string>Next Quiz (Test)</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="answ1Button_4">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>430</y>
+        <width>381</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <zorder>QuizTitleLabel</zorder>
+     <zorder>quizQ1Label</zorder>
+     <zorder>answ1Button</zorder>
+     <zorder>answ1Button_2</zorder>
+     <zorder>answ1Button_3</zorder>
+     <zorder>fishPicLabel</zorder>
+     <zorder>quizFishName</zorder>
+     <zorder>quizBackFishButton</zorder>
+     <zorder>nextQuestionButton</zorder>
+     <zorder>answ1Button_4</zorder>
+     <zorder>resultLabel</zorder>
     </widget>
     <widget class="QWidget" name="JournalPage_1">
      <widget class="QLabel" name="journalTittleLabel">
@@ -949,7 +973,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>37</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>

@@ -85,7 +85,8 @@ signals:
     void setUpSpear(int x1, int y1, int x2, int y2);
 
     void updateQuiz(QString question, QString answer, QString randAnswer1,
-                    QString randAnswer2, QString fishPic, QString fishName );
+                    QString randAnswer2, QString randAnswer3,
+                    QString fishPic, QString fishName );
     void updateInformation(QString q1,QString a1, QString q2, QString a2,
                            QString q3, QString a3, QString q4, QString a4,
                            QString fishName, QString fishPic);
@@ -99,7 +100,7 @@ signals:
     //void sendCollision();
 
     //check answer
-    void answerResult(bool result); //result is true if answer is correct
+    void answerResult(bool result, QString answer); //result is true if answer is correct
 
     //Discuss with TEAM why private not working
 public slots:
