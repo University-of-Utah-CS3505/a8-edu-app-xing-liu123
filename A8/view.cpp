@@ -545,14 +545,11 @@ void View::disableQuizButtons(){
 }
 
 
-
-
-void View::showResult(bool result){
-
+void View::showResult(bool result, QString answer){
     if(result)
-        ui->resultLabel->setText("You are Correct!");
+        ui->resultLabel->setText("You are Correct! \n The answer is: \n" + answer);
     else
-        ui->resultLabel->setText("You are incorrect, try again");
+        ui->resultLabel->setText("You are incorrect, try again \n This is the correct answer: \n" + answer);
     ui->resultLabel->setVisible(true);
     ui->quizBackFishButton->setVisible(true);
 }

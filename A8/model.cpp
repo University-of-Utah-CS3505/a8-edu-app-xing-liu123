@@ -691,10 +691,10 @@ void Model::checkAnswer(QString question, QString userAnswer){
             correctAnsw = 0;
             updateSpear();
         }
-        emit answerResult(true);
+        emit answerResult(true, correctAnswer);
     }
     else
-        emit answerResult(false);
+        emit answerResult(false, correctAnswer);
 }
 
 
