@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -362,7 +362,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Congratulations! You have catch</string>
+       <string>Congratulations! You have caught a</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -973,7 +973,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>
