@@ -227,7 +227,6 @@ void View::on_startButton_clicked()
 
 //Display the fish labels into their new position
 void View::displayFish1(int x1, int y1, int x2, int y2){
-//    std::cout << "hit " << std::endl;
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish1Label,"pos");
     animation->setDuration(25);
     animation->setStartValue(QPoint(x1,y1));
@@ -265,13 +264,15 @@ void View::displaySpear(int x1, int y1, int x2, int y2){
 
 
 void View::mouseMoveEvent(QMouseEvent *event){
-    QPoint point = event->pos();
-    emit sendPosition(point.x(), point.y());
-    QString s("X: ");
-            s.append(QString::number(point.x()));
-            s.append(" Y: ");
-            s.append(QString::number(point.y()));
-            ui->locationLabel->setText(s);
+    if(ui->stackedWidget->currentIndex() == 1){
+        QPoint point = event->pos();
+        emit sendPosition(point.x(), point.y());
+        QString s("X: ");
+                s.append(QString::number(point.x()));
+                s.append(" Y: ");
+                s.append(QString::number(point.y()));
+                ui->locationLabel->setText(s);
+    }
 }
 
 void View::updateSpearLabel(QPixmap map){
@@ -289,8 +290,10 @@ void View::resetSpearLabel(QPixmap map){
 
 
 void View::mousePressEvent(QMouseEvent *event){
-    QPoint point = event->pos();
-    emit shootSpear(point.x(), point.y());
+    if(ui->stackedWidget->currentIndex() == 1){
+        QPoint point = event->pos();
+        emit shootSpear(point.x(), point.y());
+    }
 }
 
 void View::on_freshWaterButton_clicked()

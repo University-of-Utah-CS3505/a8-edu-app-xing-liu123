@@ -79,7 +79,7 @@ void Model::initFish1(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(0.04f, 0.03f);
+    dynamicFish.SetAsBox(0.22f, 0.12f);
 
 
     // Define the dynamic body fixture.
@@ -121,7 +121,7 @@ void Model::initFish2(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(0.05f, 0.05f);
+    dynamicFish.SetAsBox(0.22f, 0.12f);
 
 
     // Define the dynamic body fixture.
@@ -160,7 +160,7 @@ void Model::initFish3(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(0.04f, 0.03f);
+    dynamicFish.SetAsBox(0.22f, 0.12f);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDefFish;
@@ -214,16 +214,16 @@ void Model::initSpear(){
 
     switch(currentSpear){
         case 1:
-            dynamicSpear.SetAsBox(0.01f, 0.50f);
+            dynamicSpear.SetAsBox(0.012f, 0.45f);
             break;
         case 2:
-            dynamicSpear.SetAsBox(0.012f, 0.52f);
+            dynamicSpear.SetAsBox(0.014f, 0.47f);
             break;
         case 3:
-            dynamicSpear.SetAsBox(0.014f, 0.54f);
+            dynamicSpear.SetAsBox(0.016f, 0.49f);
             break;
         case 4:
-            dynamicSpear.SetAsBox(0.016f, 0.56f);
+            dynamicSpear.SetAsBox(0.018f, 0.51f);
             break;
     }
 
