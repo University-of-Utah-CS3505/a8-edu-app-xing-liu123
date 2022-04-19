@@ -30,11 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-<<<<<<< Updated upstream
      <number>3</number>
-=======
-     <number>0</number>
->>>>>>> Stashed changes
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -54,9 +50,6 @@
       </property>
      </widget>
      <widget class="QPushButton" name="freshWaterButton">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
       <property name="geometry">
        <rect>
         <x>60</x>
@@ -65,11 +58,8 @@
         <height>81</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">border: none</string>
-      </property>
       <property name="text">
-       <string/>
+       <string>Fresh Water</string>
       </property>
      </widget>
      <widget class="QPushButton" name="smoothWaterButton">
@@ -80,9 +70,6 @@
         <width>161</width>
         <height>71</height>
        </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: none</string>
       </property>
       <property name="text">
        <string>Smooth Water</string>
@@ -96,9 +83,6 @@
         <width>161</width>
         <height>81</height>
        </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: none</string>
       </property>
       <property name="text">
        <string>Salt Water</string>
@@ -989,11 +973,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-<<<<<<< Updated upstream
      <height>19</height>
-=======
-     <height>37</height>
->>>>>>> Stashed changes
     </rect>
    </property>
   </widget>
