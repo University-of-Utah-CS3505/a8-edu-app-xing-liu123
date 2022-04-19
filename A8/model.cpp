@@ -636,6 +636,21 @@ void Model::getFish(){
         emit updateInformation(questions[0], answer1, questions[1], answer2,
                                questions[2], answer3, questions[3], answer4,
                                currFish, fishPic);
+
+        if(waterL == 'p'){
+            pondProgess++;
+            emit updateNextLevelProgress(pondProgess, waterL);
+        }
+        else if(waterL == 'r')
+        {
+            riverProgess++;
+            emit updateNextLevelProgress(riverProgess, waterL);
+        }
+        else
+        {
+            seaProgess++;
+            emit updateNextLevelProgress(seaProgess, waterL);
+        }
     }
 }
 

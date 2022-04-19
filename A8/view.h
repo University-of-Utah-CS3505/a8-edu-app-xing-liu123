@@ -77,6 +77,7 @@ private slots:
 
     //display on Journal
     void setUpJournal(QVector<QString> info, QVector<QString> questions);
+    void updateNextLevelProgress(int progess, QChar waterType);
 
 
     void on_journalButton_clicked();
@@ -93,6 +94,10 @@ private slots:
     void on_quizBackFishButton_clicked();
 
     void on_infoBackButton_clicked();
+
+    void on_closeCongratsButton_clicked();
+
+
 
 private:
     Ui::View *ui;

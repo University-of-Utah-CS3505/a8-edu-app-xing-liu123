@@ -65,6 +65,20 @@ View::View(Model &model,  QWidget *parent)
     ui->stackedWidget->setCurrentIndex(0);
     time = new QTimer(this);
 
+    //Congrats label
+    ui->congratsLabel->setVisible(false);
+    //congrats close button
+    ui->closeCongratsButton->setEnabled(false);
+    ui->closeCongratsButton->setVisible(false);
+
+
+    //setup the buttons and images for the game
+
+    ui->saltWaterButton->setDisabled(true);
+    ui->smoothWaterButton->setDisabled(true);
+    ui->saltPicLabel->setDisabled(true);
+    ui->smoothPicLabel->setDisabled(true);
+
     //Connections to set up first
     connect(this,
             &View::updateWorld,
@@ -174,6 +188,11 @@ View::View(Model &model,  QWidget *parent)
             &model,
             &Model::getTestQuizInfo);
 
+    //update the levels and progress bar
+    connect(&model,
+            &Model::updateNextLevelProgress,
+            this,
+            &View::updateNextLevelProgress);
 }
 
 
@@ -248,6 +267,7 @@ void View::mouseMoveEvent(QMouseEvent *event){
 void View::updateSpearLabel(QPixmap map){
     ui->spearLabel->setAlignment(Qt::AlignCenter);
     ui->spearLabel->setPixmap(map);
+    ui->progressBar2GetNewSpear->setValue(0);
 }
 
 void View::resetSpearLabel(QPixmap map){
@@ -272,6 +292,9 @@ void View::on_freshWaterButton_clicked()
     ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->freshWaterButton->text());
+
+    //reset progress bar for next level
+    ui->progressBar2NextLevel->setValue(0);
 }
 
 
@@ -284,6 +307,9 @@ void View::on_smoothWaterButton_clicked()
     ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->smoothWaterButton->text());
+
+    //reset progress bar for next level
+    ui->progressBar2NextLevel->setValue(0);
 }
 
 
@@ -296,6 +322,9 @@ void View::on_saltWaterButton_clicked()
     ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->saltWaterButton->text());
+
+    //reset progress bar for next level
+    ui->progressBar2NextLevel->setValue(0);
 }
 
 
@@ -542,9 +571,33 @@ void View::pressTestSoundButton(){
 }
 
 
+void View::updateNextLevelProgress(int progress, QChar waterType){
+    //updated progress bar for nextlevel
+    //int progress = ui->progressBar2NextLevel->value() + 1;
+    ui->progressBar2NextLevel->setValue(progress);
 
+    //if progessbar is 5 or 100% we unlock the next level
+    if(progress == 5)
+    {
+        ui->congratsLabel->setVisible(true);
+        ui->closeCongratsButton->setVisible(true);
+        ui->closeCongratsButton->setEnabled(true);
 
+        //TODO unlock the next level here
+        if(waterType == 'p'){
 
+            ui->smoothWaterButton->setDisabled(false);
+            ui->smoothPicLabel->setDisabled(false);
+
+        }
+        else if(waterType =='r')
+        {
+            ui->saltWaterButton->setDisabled(false);
+            ui->saltPicLabel->setDisabled(false);
+        }
+
+    }
+}
 
 void View::on_return2FishButton_clicked()
 {
@@ -569,5 +622,13 @@ void View::on_infoBackButton_clicked()
 {
     emit resetWorld();
     ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void View::on_closeCongratsButton_clicked()
+{
+    ui->congratsLabel->setVisible(false);
+    ui->closeCongratsButton->setEnabled(false);
+    ui->closeCongratsButton->setVisible(false);
 }
 
