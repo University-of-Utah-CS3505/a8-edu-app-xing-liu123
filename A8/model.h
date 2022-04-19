@@ -99,7 +99,7 @@ signals:
     //void sendCollision();
 
     //check answer
-    void answerResult(bool result); //result is true if answer is correct
+    void answerResult(bool result, QString answer); //result is true if answer is correct
 
     //Discuss with TEAM why private not working
 public slots:

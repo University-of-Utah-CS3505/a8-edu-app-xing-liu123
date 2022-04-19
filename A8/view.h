@@ -73,7 +73,7 @@ private slots:
     void on_answerButton1_clicked();
     void on_answerButton2_clicked();
     void on_answerButton3_clicked();
-    void showResult(bool result);
+    void showResult(bool result, QString Answer);
 
     //display on Journal
     void setUpJournal(QVector<QString> info, QVector<QString> questions);
