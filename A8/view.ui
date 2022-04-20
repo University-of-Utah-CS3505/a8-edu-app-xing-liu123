@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -437,11 +437,6 @@
      <zorder>label_4</zorder>
      <zorder>congratsLabel</zorder>
      <zorder>closeCongratsButton</zorder>
-    </widget>
-    <widget class="QWidget" name="JournalPage">
-     <property name="mouseTracking">
-      <bool>false</bool>
-     </property>
     </widget>
     <widget class="QWidget" name="FishInfoPage">
      <widget class="QLabel" name="CongratsLabel">
