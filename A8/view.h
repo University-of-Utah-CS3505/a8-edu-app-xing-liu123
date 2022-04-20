@@ -80,6 +80,8 @@ private slots:
     void setUpJournal(QVector<QString> info, QVector<QString> questions);
     void updateNextLevelProgress(int progess, QChar waterType);
 
+    //updates next spear progress bar
+    void updateNextSpearProgress(int currentProgress);
 
     void on_journalButton_clicked();
 

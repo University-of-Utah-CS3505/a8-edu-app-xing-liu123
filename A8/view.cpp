@@ -203,6 +203,12 @@ View::View(Model &model,  QWidget *parent)
             &Model::updateNextLevelProgress,
             this,
             &View::updateNextLevelProgress);
+
+    // update the spear and progress bar
+    connect(&model,
+            &Model::updateNextSpearProgress,
+            this,
+            &View::updateNextSpearProgress);
 }
 
 
@@ -278,7 +284,7 @@ void View::mouseMoveEvent(QMouseEvent *event){
 void View::updateSpearLabel(QPixmap map){
     ui->spearLabel->setAlignment(Qt::AlignCenter);
     ui->spearLabel->setPixmap(map);
-    ui->progressBar2GetNewSpear->setValue(0);
+    //ui->progressBar2GetNewSpear->setValue(0);
 }
 
 void View::resetSpearLabel(QPixmap map){
@@ -646,6 +652,13 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
 
     }
 }
+
+void View::updateNextSpearProgress(int progress){
+    ui->progressBar2GetNewSpear->setValue(progress);
+}
+
+
+
 
 void View::on_return2FishButton_clicked()
 {

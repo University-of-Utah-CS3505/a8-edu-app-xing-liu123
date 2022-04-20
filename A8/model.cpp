@@ -341,13 +341,16 @@ void Model::updateWorld(){
 
     // checks if collision occurs
     if(contactListener->getDestroy()){ // is contacted when to delete objects
-        world->DestroyBody(spear);
         //world->DestroyBody(fish1); //maybe needed will need to test
         contactListener->setDestroy(false);
+        world->DestroyBody(spear);
         initSpear();
-        //initFish1();
-        //initFish2();
-        //initFish3();
+        world->DestroyBody(fish1);
+        initFish1();
+        world->DestroyBody(fish2);
+        initFish2();
+        world->DestroyBody(fish3);
+        initFish3();
 
     }
     // Now print the position and angle of the body.
@@ -707,11 +710,25 @@ void Model::checkAnswer(QString question, QString userAnswer){
     QString correctAnswer = fishQA.value(currFish).value(question);
     if(correctAnswer == userAnswer){
         correctAnsw++;
-        if(correctAnsw == 1){
-            correctAnsw = 0;
+        correctAnswForProgBar++;
+        if(correctAnsw == 10){
+            correctAnswForProgBar = 0;
+            updateSpear();
+        }
+        else if(correctAnsw == 20){
+            correctAnswForProgBar = 0;
+            updateSpear();
+        }
+        else if(correctAnsw == 30){
+            correctAnswForProgBar = 0;
+            updateSpear();
+        }
+        else if(correctAnsw == 40){
+            correctAnswForProgBar = 0;
             updateSpear();
         }
         emit answerResult(true, correctAnswer);
+        emit updateNextSpearProgress(correctAnswForProgBar);
     }
     else
         emit answerResult(false, correctAnswer);

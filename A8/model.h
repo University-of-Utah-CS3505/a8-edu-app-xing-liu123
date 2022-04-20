@@ -105,6 +105,8 @@ signals:
     //updates nextlevel progress bar
     void updateNextLevelProgress(int currentProgress, QChar waterType);
 
+    //updates next spear progress bar
+    void updateNextSpearProgress(int currentProgress);
     //Discuss with TEAM why private not working
 public slots:
     void setUpWorld(QString water);
@@ -160,6 +162,7 @@ private:
     TypeOfSpear spearType;
     QMap<QString, int> catchedFish;
     int correctAnsw;
+    int correctAnswForProgBar;
 //    QString smoothFish[10] = {"Ocean Sunfish",
 //                              "Giant Freshwater Stingray",
 //                              "Bull Shark",
