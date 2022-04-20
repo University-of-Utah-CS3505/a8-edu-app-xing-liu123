@@ -193,7 +193,7 @@
        <bool>true</bool>
       </property>
       <property name="text">
-       <string>Fish 1</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="fish2Label">
@@ -209,7 +209,7 @@
        <bool>true</bool>
       </property>
       <property name="text">
-       <string>Fish 2</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="fish3Label">
@@ -225,7 +225,7 @@
        <bool>true</bool>
       </property>
       <property name="text">
-       <string>Fish 3</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="spearLabel">
@@ -1072,7 +1072,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>37</height>
     </rect>
    </property>
   </widget>

@@ -56,12 +56,13 @@ View::View(Model &model,  QWidget *parent)
     water.load(":/water/saltW1.jpg");
     ui->saltPicLabel->setPixmap(water.scaled(ui->saltPicLabel->width(), ui->saltPicLabel->height()));
 
-    QPixmap animatedFish;
-    animatedFish.load("://fishShadow.png");
-    ui->fish1Label->setPixmap(animatedFish.scaled(ui->fish1Label->width(), ui->fish1Label->height()));
-    ui->fish3Label->setPixmap(animatedFish.scaled(ui->fish3Label->width(), ui->fish3Label->height()));
-    animatedFish.load(":/fishShadow.png");
-    ui->fish2Label->setPixmap(animatedFish.scaled(ui->fish2Label->width(), ui->fish2Label->height()));
+    // Set images for moving fishes
+    ui->fish1Label->setStyleSheet("border-image: url(:/fishShadows/Picture_FishShadow_1.png)");
+    ui->fish1Label->resize(80,32);
+    ui->fish2Label->setStyleSheet("border-image: url(:/fishShadows/Picture_FishShadow_1.png)");
+    ui->fish2Label->resize(80,32);
+    ui->fish3Label->setStyleSheet("border-image: url(:/fishShadows/Picture_FishShadow_1.png)");
+    ui->fish3Label->resize(80,32);
 
     QPixmap spearPix;
     spearPix.load(":/spear.png");
