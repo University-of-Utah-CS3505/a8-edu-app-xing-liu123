@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -244,22 +244,6 @@
        <string>Spear</string>
       </property>
      </widget>
-     <widget class="QLabel" name="locationLabel">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>10</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="text">
-       <string>X: Y:</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="catchButton">
       <property name="geometry">
        <rect>
@@ -426,7 +410,6 @@
      <zorder>fish2Label</zorder>
      <zorder>fish3Label</zorder>
      <zorder>spearLabel</zorder>
-     <zorder>locationLabel</zorder>
      <zorder>catchButton</zorder>
      <zorder>goToQuizButton</zorder>
      <zorder>journalButton</zorder>
@@ -1067,7 +1050,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>37</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
