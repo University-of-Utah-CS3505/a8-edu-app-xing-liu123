@@ -3,7 +3,6 @@
         <file>fish1.png</file>
         <file>fish2.png</file>
         <file>fish3.jpg</file>
-        <file>spear.png</file>
         <file>fishPic.jpg</file>
         <file>fishPics/AlligatorGar.jfif</file>
         <file>fishPics/AmericanPaddlefish.jpg</file>
@@ -58,9 +57,6 @@
         <file>fishPics/Softshelledturtle.jpg</file>
         <file>fishPics/Tadpole.jfif</file>
         <file>fishPics/YellowPerch.jpg</file>
-        <file>spear3.png</file>
-        <file>spear4.png</file>
-        <file>spear2.png</file>
         <file>fishPics/Anchovy.png</file>
         <file>fishPics/Bitterling.png</file>
         <file>fishPics/Blowfish.png</file>
@@ -107,5 +103,9 @@
         <file>buttons/Button_FreshWater_Test.png</file>
         <file>fishShadows/Picture_FishShadow_1.png</file>
         <file>fishShadows/fishShadow.png</file>
+        <file>spear1.png</file>
+        <file>spear2.png</file>
+        <file>spear3.png</file>
+        <file>spear4.png</file>
     </qresource>
 </RCC>

@@ -16,7 +16,7 @@ Model::Model(QObject *parent)
     timer = new QTimer(this);
     quizTimer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
-    connect(quizTimer, &QTimer::timeout, this, &Model::quizCountDown);
+    connect(quizTimer, &QTimer::timeout, this, &Model::updateQuizTime);
 
     correctAnsw = 0;
     quizTimeCounter =10;
@@ -100,7 +100,6 @@ void Model::initFish1(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 1;
-    //    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish1->CreateFixture(&fixtureDefFish);
@@ -141,7 +140,6 @@ void Model::initFish2(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 2;
-//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish2->CreateFixture(&fixtureDefFish);
@@ -190,7 +188,7 @@ void Model::initFish3(){
 void Model::initSpear(){
     switch(currentSpear){
         case 1:
-            spearImage.load(":/spear.png");
+            spearImage.load(":/spear4.png");
             break;
         case 2:
             spearImage.load(":/spear2.png");
@@ -247,7 +245,6 @@ void Model::initSpear(){
     // Set the bounciness
     fixtureDef.restitution = 0.0f;
     fixtureDef.userData = (void*) 4;
-    //fixtureDef.isSensor = true;
 
     // Add the shape to the body.
     spear->CreateFixture(&fixtureDef);
@@ -519,30 +516,39 @@ void Model::loadInfoQ(){
         //holds all the information for each fish
         QMap<QString,QString> fishInfo;
 
-        QString waterType = "";
+        QString waterTypeFile = "";
         while (!in.atEnd())
         {
             line = in.readLine();
             if(line.contains("WaterType"))
             {
                 line = line.trimmed().split(":")[1];
-                waterType = line;
+                waterTypeFile = line;
                 continue;
             }
-            if(count == -1){
-                count++;
+
+            if(line.contains("Question"))
+            {
+                line = line.trimmed().split(":")[1];
+                questions.push_back(line);
+                continue;
+            }
+
+            //fish information
+            if(line.isEmpty()){
+                continue;
             }
             //start of each fish, and saves the name as the current fish
-            else if(count == 0)
+            if(count == 0)
             {
                 currentFish = line;
                 count++;
 
-                if(waterType == "pond")
+                if(waterTypeFile == "pond")
                 {
                     pondFish.push_back(currentFish);
                 }
-                else if(waterType == "river")
+                else if(waterTypeFile == "river")
                 {
                     riverFish.push_back(currentFish);
                 }
@@ -601,7 +607,7 @@ void Model::loadInfoQ(){
 
                 //we add the information of the fishes to our FishQA multimap
                 fishQA.insert(currentFish, fishInfo);
-                count = -1;
+                count = 0;
                 fishInfo.clear();
             }
         }
@@ -661,19 +667,12 @@ void Model::getFish(){
         question = questions[questionNum];
         answer = fishQA.value(currFish).value(question);
 
-        //send to method to get two other random values of fish
-        QString randAsnw1 = getRandAnswer(questionNum,question, answer);
-        QString randAsnw2 = getRandAnswer(questionNum, question, answer);
-        QString randAsnw3 = getRandAnswer(questionNum, question, answer);
+        //send to method to get two other random values of fish (If our question is yes/no answer do not get fish)
+        QString randAsnw1 = getRandAnswer(questionNum,question, answer, "", "");
+        QString randAsnw2 = questionNum == 3? "N/A": getRandAnswer(questionNum, question, answer, randAsnw1, "");
+        QString randAsnw3 = questionNum == 3? "N/A": getRandAnswer(questionNum, question, answer, randAsnw1, randAsnw2);
 
-        //If we have question 3, the answer is just yes/no so we need no more answers
-        if(questionNum == 3){
-             randAsnw2 = "N/A";
-             randAsnw3 = "N/A";
-        }
-
-        //connect(timer, &QTimer::timeout, this, &Model::updateWorld);
-        //quizTimer->start(1000);
+        //Set up timer for quiz
         quizCountDown();
         emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw2, fishPic, currFish);
     }
@@ -709,16 +708,23 @@ void Model::getFish(){
 
 
 //Helper method that gets a random answer based on the question
-QString Model::getRandAnswer(int questionNum, QString question,  QString answer){
+QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
+                             QString randAns1, QString randAns2){
     //get a random fish
     QString randFish = getRandFish(rand()%10);
 
     //Based on our question number (The question we did)
     QString randAnsw = fishQA.value(randFish).value(question);
 
-    //if my answer is the same as my current answer, then repeat method
-    return randAnsw != answer? randAnsw: getRandAnswer(questionNum, question, answer);
+    if(randAnsw != answer && randAnsw != randAns1 && randAnsw != randAns2 )
+        return randAnsw;
+    else
+        return getRandAnswer(questionNum, question, answer, randAns1, randAns2);
 }
+
+
+
+
 
 
 //Helper method to get a random fish from the water type we are currently in
@@ -752,18 +758,17 @@ QString Model::getRandFish(int randNum){
 
 void Model::quizCountDown(){
     quizTimeCounter = 10;
-    for(int i = 0; i<=10; i++){
-        QTimer::singleShot(1000 * i, this, &Model::updateQuizTime);
-    }
+        quizTimer->start(1000);
 }
 
 void Model::updateQuizTime(){
     emit sendCountDown(QString::number(quizTimeCounter));
-    quizTimeCounter--;
+    if(quizTimeCounter >0)
+        quizTimeCounter--;
+    else
+        quizTimer->stop();
 
 }
-
-
 
 
 
@@ -859,15 +864,10 @@ void Model::getTestQuizInfo(){
     answer = fishQA.value(fish).value(questions[qNum]);
 
     //send to method to get two other random values of fish
-    QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer);
-    QString randAsnw2 = getRandAnswer(qNum, questions[qNum], answer);
-    QString randAsnw3 = getRandAnswer(qNum, questions[qNum], answer);
+    QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer, "", "");
+    QString randAsnw2 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, "");
+    QString randAsnw3 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, randAsnw2);
 
-    //If we have question 3, the answer is just yes/no so we need no more answers
-    if(qNum == 3){
-         randAsnw2 = "N/A";
-         randAsnw3 = "N/A";
-    }
 
     //Counter of fish
     if(currQuiz < 10 && qNum ==0)
