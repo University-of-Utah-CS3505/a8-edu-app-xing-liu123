@@ -97,6 +97,9 @@ private slots:
 
     void on_answ1Button_4_clicked();
 
+    //Set up count down
+    void displayCountDown(QString time);
+
 private:
     Ui::View *ui;
     QTimer * time;

@@ -63,6 +63,9 @@
       </property>
      </widget>
      <widget class="QPushButton" name="smoothWaterButton">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>310</x>
@@ -76,6 +79,9 @@
       </property>
      </widget>
      <widget class="QPushButton" name="saltWaterButton">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>560</x>
@@ -111,6 +117,9 @@
       </property>
      </widget>
      <widget class="QLabel" name="smoothPicLabel">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>290</x>
@@ -124,6 +133,9 @@
       </property>
      </widget>
      <widget class="QLabel" name="saltPicLabel">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>540</x>
@@ -756,6 +768,26 @@
        <string>PushButton</string>
       </property>
      </widget>
+     <widget class="QLabel" name="countDownLabel">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>91</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
      <zorder>QuizTitleLabel</zorder>
      <zorder>quizQ1Label</zorder>
      <zorder>answ1Button</zorder>
@@ -767,6 +799,7 @@
      <zorder>nextQuestionButton</zorder>
      <zorder>answ1Button_4</zorder>
      <zorder>resultLabel</zorder>
+     <zorder>countDownLabel</zorder>
     </widget>
     <widget class="QWidget" name="JournalPage_1">
      <widget class="QLabel" name="journalTittleLabel">

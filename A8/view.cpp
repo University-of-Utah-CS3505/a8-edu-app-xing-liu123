@@ -65,6 +65,8 @@ View::View(Model &model,  QWidget *parent)
     ui->stackedWidget->setCurrentIndex(0);
     time = new QTimer(this);
 
+    //
+
     //Connections to set up first
     connect(this,
             &View::updateWorld,
@@ -127,6 +129,10 @@ View::View(Model &model,  QWidget *parent)
             &Model::updateQuiz,
             this,
             &View::setUpQuiz);
+    connect(&model,
+            &Model::sendCountDown,
+            this,
+            &View::displayCountDown);
 
     //Checking Answer Buttons
     connect(ui->answ1Button,
@@ -307,6 +313,7 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
                      QString randAnswer2, QString randAnswer3,
                      QString fishPic, QString fishName){
 
+    ui->countDownLabel->setVisible(true);
     ui->stackedWidget->setCurrentIndex(4);
     ui->quizFishName->setText(fishName);
     ui->quizQ1Label->setText(question);
@@ -376,6 +383,15 @@ void View::setButtonQuizVisibility(QString answ){
     }
 }
 
+
+void View::displayCountDown(QString time){
+    ui->countDownLabel->setText(time);
+    if(time == "0"){
+        //send wrong answer to model
+        QString question = ui->quizQ1Label->text();
+        emit checkUserAnswer(question, " ");
+    }
+}
 
 
 
@@ -552,6 +568,7 @@ void View::showResult(bool result, QString answer){
         ui->resultLabel->setText("You are incorrect, try again \n This is the correct answer: \n" + answer);
     ui->resultLabel->setVisible(true);
     ui->quizBackFishButton->setVisible(true);
+    ui->countDownLabel->setVisible(false);
 }
 
 

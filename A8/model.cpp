@@ -14,16 +14,21 @@ Model::Model(QObject *parent)
 //    spearImage.load(":/spear.png");
 
     isShot = false;
+    time = new QTime(0,1,0);
     timer = new QTimer(this);
+    quizTimer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
+    connect(quizTimer, &QTimer::timeout, this, &Model::quizCountDown);
     spearType = TypeOfSpear::TOS_Wood;
     correctAnsw = 0;
+    quizTimeCounter =10;
 
     //TODO: FIgure out an effective way to initialize array of fish
 }
 
 Model::~Model(){
     delete world;
+    delete time; //TODO: maybe not??????
 }
 
 void Model::setUpWorld(QString water){
@@ -621,13 +626,14 @@ void Model::getFish(){
              randAsnw3 = "N/A";
         }
 
-
+        //connect(timer, &QTimer::timeout, this, &Model::updateWorld);
+        //quizTimer->start(1000);
+        quizCountDown();
         emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw2, fishPic, currFish);
     }
     //If it is not catched
     else{
         catchedFish.insert(currFish, 1);
-
         //send all infomation of the fish
         QString answer1 = fishQA.value(currFish).value(questions[0]);
         QString answer2 = fishQA.value(currFish).value(questions[1]);
@@ -680,6 +686,25 @@ QString Model::getRandFish(int randNum){
 
     return randFish;
 }
+
+
+
+void Model::quizCountDown(){
+    quizTimeCounter = 10;
+    for(int i = 0; i<=10; i++){
+        QTimer::singleShot(1000 * i, this, &Model::updateQuizTime);
+    }
+}
+
+void Model::updateQuizTime(){
+    emit sendCountDown(QString::number(quizTimeCounter));
+    quizTimeCounter--;
+
+}
+
+
+
+
 
 
 //Checks user answer
@@ -775,6 +800,8 @@ void Model::getTestQuizInfo(){
     else if(currQuiz >= 10 && qNum == 0)
         currQuiz = 0;
 
+    //quizTimer->start(1000);
+    quizCountDown();
     emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2, randAsnw3, fishPic, fish);
 
     //Counter of questions
