@@ -100,7 +100,6 @@ void Model::initFish1(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 1;
-    //    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish1->CreateFixture(&fixtureDefFish);
@@ -141,7 +140,6 @@ void Model::initFish2(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 2;
-//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish2->CreateFixture(&fixtureDefFish);
@@ -190,7 +188,7 @@ void Model::initFish3(){
 void Model::initSpear(){
     switch(currentSpear){
         case 1:
-            spearImage.load(":/spear.png");
+            spearImage.load(":/spear4.png");
             break;
         case 2:
             spearImage.load(":/spear2.png");
@@ -247,7 +245,6 @@ void Model::initSpear(){
     // Set the bounciness
     fixtureDef.restitution = 0.0f;
     fixtureDef.userData = (void*) 4;
-    //fixtureDef.isSensor = true;
 
     // Add the shape to the body.
     spear->CreateFixture(&fixtureDef);

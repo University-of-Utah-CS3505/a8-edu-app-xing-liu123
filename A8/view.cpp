@@ -57,13 +57,13 @@ View::View(Model &model,  QWidget *parent)
     ui->saltPicLabel->setPixmap(water.scaled(ui->saltPicLabel->width(), ui->saltPicLabel->height()));
 
     // Set images for moving fishes
-    ui->fish1Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)"); //
+    ui->fish1Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
     ui->fish2Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
     ui->fish3Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
 
     // set image for the spear
     QPixmap spearPix;
-    spearPix.load(":/spear.png");
+    spearPix.load(":/spear1.png");
     ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
 
     //Set up the initial Widget
