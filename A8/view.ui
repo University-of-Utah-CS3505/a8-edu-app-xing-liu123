@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -256,11 +256,27 @@
        <string>Spear</string>
       </property>
      </widget>
+     <widget class="QLabel" name="locationLabel">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>10</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>X: Y:</string>
+      </property>
+     </widget>
      <widget class="QPushButton" name="catchButton">
       <property name="geometry">
        <rect>
-        <x>710</x>
-        <y>80</y>
+        <x>590</x>
+        <y>70</y>
         <width>80</width>
         <height>18</height>
        </rect>
@@ -272,7 +288,7 @@
      <widget class="QPushButton" name="goToQuizButton">
       <property name="geometry">
        <rect>
-        <x>660</x>
+        <x>630</x>
         <y>110</y>
         <width>131</width>
         <height>31</height>
@@ -285,8 +301,8 @@
      <widget class="QPushButton" name="journalButton">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>0</y>
+        <x>30</x>
+        <y>30</y>
         <width>99</width>
         <height>33</height>
        </rect>
@@ -298,8 +314,8 @@
      <widget class="QPushButton" name="return2MenuButton">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>0</y>
+        <x>30</x>
+        <y>100</y>
         <width>80</width>
         <height>24</height>
        </rect>
@@ -327,8 +343,8 @@
      <widget class="QProgressBar" name="progressBar2NextLevel">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>0</y>
+        <x>640</x>
+        <y>530</y>
         <width>118</width>
         <height>23</height>
        </rect>
@@ -349,8 +365,8 @@
      <widget class="QProgressBar" name="progressBar2GetNewSpear">
       <property name="geometry">
        <rect>
-        <x>570</x>
-        <y>0</y>
+        <x>640</x>
+        <y>30</y>
         <width>118</width>
         <height>23</height>
        </rect>
@@ -365,8 +381,8 @@
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>0</y>
+        <x>470</x>
+        <y>530</y>
         <width>161</width>
         <height>16</height>
        </rect>
@@ -378,8 +394,8 @@
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>400</x>
-        <y>0</y>
+        <x>470</x>
+        <y>30</y>
         <width>161</width>
         <height>20</height>
        </rect>
@@ -422,6 +438,7 @@
      <zorder>fish2Label</zorder>
      <zorder>fish3Label</zorder>
      <zorder>spearLabel</zorder>
+     <zorder>locationLabel</zorder>
      <zorder>catchButton</zorder>
      <zorder>goToQuizButton</zorder>
      <zorder>journalButton</zorder>
@@ -862,7 +879,7 @@
        </font>
       </property>
       <property name="text">
-       <string>10</string>
+       <string>0</string>
       </property>
      </widget>
      <zorder>QuizTitleLabel</zorder>
@@ -1083,11 +1100,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-<<<<<<< HEAD
-     <height>19</height>
-=======
-     <height>28</height>
->>>>>>> e117dfe95d0367cbd411ee4342321e2a58084c30
+     <height>22</height>
     </rect>
    </property>
   </widget>
