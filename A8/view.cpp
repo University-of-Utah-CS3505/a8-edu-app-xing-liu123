@@ -76,14 +76,6 @@ View::View(Model &model,  QWidget *parent)
     ui->closeCongratsButton->setEnabled(false);
     ui->closeCongratsButton->setVisible(false);
 
-
-    //setup the buttons and images for the game
-
-    ui->saltWaterButton->setEnabled(false);
-    ui->smoothWaterButton->setEnabled(false);
-    ui->saltPicLabel->setEnabled(false);
-    ui->smoothPicLabel->setEnabled(false);
-
     //Connections to set up first
     connect(this,
             &View::updateWorld,
@@ -312,7 +304,7 @@ void View::on_freshWaterButton_clicked()
 
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Pond.png");
-    ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+    ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->freshWaterButton->text());
 
@@ -327,7 +319,7 @@ void View::on_smoothWaterButton_clicked()
 
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_River.png");
-    ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+    ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->smoothWaterButton->text());
 
@@ -342,7 +334,7 @@ void View::on_saltWaterButton_clicked()
 
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Ocean.png");
-    ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+    ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->saltWaterButton->text());
 
@@ -354,6 +346,9 @@ void View::on_saltWaterButton_clicked()
 void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
                      QString randAnswer2, QString randAnswer3,
                      QString fishPic, QString fishName){
+    // Set up quiz background
+    ui->quizBackgroundImageLabel->setStyleSheet("border-image: url(:/Background_QuizInfoPage.png)");
+
 
     ui->countDownLabel->setVisible(true);
     ui->stackedWidget->setCurrentIndex(quizPage);

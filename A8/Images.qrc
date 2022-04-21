@@ -107,5 +107,6 @@
         <file>spear2.png</file>
         <file>spear3.png</file>
         <file>spear4.png</file>
+        <file>Background_QuizInfoPage.png</file>
     </qresource>
 </RCC>

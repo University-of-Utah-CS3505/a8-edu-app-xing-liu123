@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -324,7 +324,7 @@
        <string>Main Menu</string>
       </property>
      </widget>
-     <widget class="QLabel" name="backgroundImageLabel">
+     <widget class="QLabel" name="fishingBackgroundImageLabel">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -433,7 +433,7 @@
        <string>Close</string>
       </property>
      </widget>
-     <zorder>backgroundImageLabel</zorder>
+     <zorder>fishingBackgroundImageLabel</zorder>
      <zorder>fish1Label</zorder>
      <zorder>fish2Label</zorder>
      <zorder>fish3Label</zorder>
@@ -681,33 +681,11 @@
      </widget>
     </widget>
     <widget class="QWidget" name="QuizInfoPage">
-     <widget class="QLabel" name="QuizTitleLabel">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>0</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Quiz</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
      <widget class="QLabel" name="quizQ1Label">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>300</y>
+        <x>310</x>
+        <y>310</y>
         <width>191</width>
         <height>31</height>
        </rect>
@@ -720,6 +698,9 @@
       <property name="text">
        <string>What is my name? </string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QPushButton" name="answ1Button">
       <property name="geometry">
@@ -729,6 +710,9 @@
         <width>381</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
       </property>
       <property name="text">
        <string>PushButton</string>
@@ -743,6 +727,9 @@
         <height>51</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
+      </property>
       <property name="text">
        <string>PushButton</string>
       </property>
@@ -755,6 +742,9 @@
         <width>381</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
       </property>
       <property name="text">
        <string>PushButton</string>
@@ -858,6 +848,9 @@
         <height>51</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
+      </property>
       <property name="text">
        <string>PushButton</string>
       </property>
@@ -882,8 +875,20 @@
        <string>0</string>
       </property>
      </widget>
-     <zorder>QuizTitleLabel</zorder>
-     <zorder>quizQ1Label</zorder>
+     <widget class="QLabel" name="quizBackgroundImageLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>570</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>quizBackgroundImageLabel</zorder>
      <zorder>answ1Button</zorder>
      <zorder>answ1Button_2</zorder>
      <zorder>answ1Button_3</zorder>
@@ -894,6 +899,7 @@
      <zorder>answ1Button_4</zorder>
      <zorder>resultLabel</zorder>
      <zorder>countDownLabel</zorder>
+     <zorder>quizQ1Label</zorder>
     </widget>
     <widget class="QWidget" name="JournalPage_1">
      <widget class="QLabel" name="journalTittleLabel">
@@ -1100,7 +1106,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>37</height>
     </rect>
    </property>
   </widget>
