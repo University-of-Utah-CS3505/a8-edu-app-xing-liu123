@@ -17,7 +17,7 @@ Model::Model(QObject *parent)
     timer = new QTimer(this);
     quizTimer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
-    connect(quizTimer, &QTimer::timeout, this, &Model::quizCountDown);
+    connect(quizTimer, &QTimer::timeout, this, &Model::updateQuizTime);
 
     correctAnsw = 0;
     quizTimeCounter =10;
@@ -662,19 +662,12 @@ void Model::getFish(){
         question = questions[questionNum];
         answer = fishQA.value(currFish).value(question);
 
-        //send to method to get two other random values of fish
-        QString randAsnw1 = getRandAnswer(questionNum,question, answer);
-        QString randAsnw2 = getRandAnswer(questionNum, question, answer);
-        QString randAsnw3 = getRandAnswer(questionNum, question, answer);
+        //send to method to get two other random values of fish (If our question is yes/no answer do not get fish)
+        QString randAsnw1 = getRandAnswer(questionNum,question, answer, "", "");
+        QString randAsnw2 = questionNum == 3? "N/A": getRandAnswer(questionNum, question, answer, randAsnw1, "");
+        QString randAsnw3 = questionNum == 3? "N/A": getRandAnswer(questionNum, question, answer, randAsnw1, randAsnw2);
 
-        //If we have question 3, the answer is just yes/no so we need no more answers
-        if(questionNum == 3){
-             randAsnw2 = "N/A";
-             randAsnw3 = "N/A";
-        }
-
-        //connect(timer, &QTimer::timeout, this, &Model::updateWorld);
-        //quizTimer->start(1000);
+        //Set up timer for quiz
         quizCountDown();
         emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw2, fishPic, currFish);
     }
@@ -710,16 +703,23 @@ void Model::getFish(){
 
 
 //Helper method that gets a random answer based on the question
-QString Model::getRandAnswer(int questionNum, QString question,  QString answer){
+QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
+                             QString randAns1, QString randAns2){
     //get a random fish
     QString randFish = getRandFish(rand()%10);
 
     //Based on our question number (The question we did)
     QString randAnsw = fishQA.value(randFish).value(question);
 
-    //if my answer is the same as my current answer, then repeat method
-    return randAnsw != answer? randAnsw: getRandAnswer(questionNum, question, answer);
+    if(randAnsw != answer && randAnsw != randAns1 && randAnsw != randAns2 )
+        return randAnsw;
+    else
+        return getRandAnswer(questionNum, question, answer, randAns1, randAns2);
 }
+
+
+
+
 
 
 //Helper method to get a random fish from the water type we are currently in
@@ -753,18 +753,17 @@ QString Model::getRandFish(int randNum){
 
 void Model::quizCountDown(){
     quizTimeCounter = 10;
-    for(int i = 0; i<=10; i++){
-        QTimer::singleShot(1000 * i, this, &Model::updateQuizTime);
-    }
+        quizTimer->start(1000);
 }
 
 void Model::updateQuizTime(){
     emit sendCountDown(QString::number(quizTimeCounter));
-    quizTimeCounter--;
+    if(quizTimeCounter >0)
+        quizTimeCounter--;
+    else
+        quizTimer->stop();
 
 }
-
-
 
 
 
@@ -860,15 +859,10 @@ void Model::getTestQuizInfo(){
     answer = fishQA.value(fish).value(questions[qNum]);
 
     //send to method to get two other random values of fish
-    QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer);
-    QString randAsnw2 = getRandAnswer(qNum, questions[qNum], answer);
-    QString randAsnw3 = getRandAnswer(qNum, questions[qNum], answer);
+    QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer, "", "");
+    QString randAsnw2 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, "");
+    QString randAsnw3 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, randAsnw2);
 
-    //If we have question 3, the answer is just yes/no so we need no more answers
-    if(qNum == 3){
-         randAsnw2 = "N/A";
-         randAsnw3 = "N/A";
-    }
 
     //Counter of fish
     if(currQuiz < 10 && qNum ==0)

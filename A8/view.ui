@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -879,7 +879,7 @@
        </font>
       </property>
       <property name="text">
-       <string>0</string>
+       <string>10</string>
       </property>
      </widget>
      <zorder>QuizTitleLabel</zorder>
@@ -1100,7 +1100,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>
