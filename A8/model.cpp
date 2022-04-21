@@ -520,30 +520,39 @@ void Model::loadInfoQ(){
         //holds all the information for each fish
         QMap<QString,QString> fishInfo;
 
-        QString waterType = "";
+        QString waterTypeFile = "";
         while (!in.atEnd())
         {
             line = in.readLine();
             if(line.contains("WaterType"))
             {
                 line = line.trimmed().split(":")[1];
-                waterType = line;
+                waterTypeFile = line;
                 continue;
             }
-            if(count == -1){
-                count++;
+
+            if(line.contains("Question"))
+            {
+                line = line.trimmed().split(":")[1];
+                questions.push_back(line);
+                continue;
+            }
+
+            //fish information
+            if(line.isEmpty()){
+                continue;
             }
             //start of each fish, and saves the name as the current fish
-            else if(count == 0)
+            if(count == 0)
             {
                 currentFish = line;
                 count++;
 
-                if(waterType == "pond")
+                if(waterTypeFile == "pond")
                 {
                     pondFish.push_back(currentFish);
                 }
-                else if(waterType == "river")
+                else if(waterTypeFile == "river")
                 {
                     riverFish.push_back(currentFish);
                 }
@@ -602,7 +611,7 @@ void Model::loadInfoQ(){
 
                 //we add the information of the fishes to our FishQA multimap
                 fishQA.insert(currentFish, fishInfo);
-                count = -1;
+                count = 0;
                 fishInfo.clear();
             }
         }
