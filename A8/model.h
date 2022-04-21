@@ -5,6 +5,7 @@
 #include <Box2D/Box2D.h>
 //#include <QAudio>
 #include <QTimer>
+#include <QTime>
 #include <QMap>
 #include "hitlistener.h"
 #include <QImage>
@@ -102,11 +103,13 @@ signals:
     //check answer
     void answerResult(bool result, QString answer); //result is true if answer is correct
 
+
+    void sendCountDown(QString time);
     //updates nextlevel progress bar
     void updateNextLevelProgress(int currentProgress, QChar waterType);
-
     //updates next spear progress bar
     void updateNextSpearProgress(int currentProgress);
+
     //Discuss with TEAM why private not working
 public slots:
     void setUpWorld(QString water);
@@ -132,6 +135,10 @@ public slots:
 
     void resetWorld();
 
+    //Timer for quiz
+    void quizCountDown();
+    void updateQuizTime();
+
 
 private:
     b2World *world;
@@ -148,7 +155,10 @@ private:
     int fish2Y;
     int fish3X;
     int fish3Y;
+    int quizTimeCounter;
+    QTime *time;
     QTimer *timer;
+    QTimer *quizTimer;
     void initFish1();
     void initFish2();
     void initFish3();
