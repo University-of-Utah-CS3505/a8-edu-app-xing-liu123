@@ -11,7 +11,6 @@ Model::Model(QObject *parent)
 {
     loadInfoQ();
     currentSpear = 1;
-
     isShot = false;
     time = new QTime(0,1,0);
     timer = new QTimer(this);
@@ -101,7 +100,6 @@ void Model::initFish1(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 1;
-    //    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish1->CreateFixture(&fixtureDefFish);
@@ -142,7 +140,6 @@ void Model::initFish2(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 2;
-//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish2->CreateFixture(&fixtureDefFish);
@@ -191,7 +188,7 @@ void Model::initFish3(){
 void Model::initSpear(){
     switch(currentSpear){
         case 1:
-            spearImage.load(":/spear.png");
+            spearImage.load(":/spear4.png");
             break;
         case 2:
             spearImage.load(":/spear2.png");
@@ -248,7 +245,6 @@ void Model::initSpear(){
     // Set the bounciness
     fixtureDef.restitution = 0.0f;
     fixtureDef.userData = (void*) 4;
-    //fixtureDef.isSensor = true;
 
     // Add the shape to the body.
     spear->CreateFixture(&fixtureDef);
@@ -520,30 +516,39 @@ void Model::loadInfoQ(){
         //holds all the information for each fish
         QMap<QString,QString> fishInfo;
 
-        QString waterType = "";
+        QString waterTypeFile = "";
         while (!in.atEnd())
         {
             line = in.readLine();
             if(line.contains("WaterType"))
             {
                 line = line.trimmed().split(":")[1];
-                waterType = line;
+                waterTypeFile = line;
                 continue;
             }
-            if(count == -1){
-                count++;
+
+            if(line.contains("Question"))
+            {
+                line = line.trimmed().split(":")[1];
+                questions.push_back(line);
+                continue;
+            }
+
+            //fish information
+            if(line.isEmpty()){
+                continue;
             }
             //start of each fish, and saves the name as the current fish
-            else if(count == 0)
+            if(count == 0)
             {
                 currentFish = line;
                 count++;
 
-                if(waterType == "pond")
+                if(waterTypeFile == "pond")
                 {
                     pondFish.push_back(currentFish);
                 }
-                else if(waterType == "river")
+                else if(waterTypeFile == "river")
                 {
                     riverFish.push_back(currentFish);
                 }
@@ -602,7 +607,7 @@ void Model::loadInfoQ(){
 
                 //we add the information of the fishes to our FishQA multimap
                 fishQA.insert(currentFish, fishInfo);
-                count = -1;
+                count = 0;
                 fishInfo.clear();
             }
         }

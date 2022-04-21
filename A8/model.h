@@ -18,60 +18,6 @@ enum class TypeOfWater{
     TOW_RiverWater
 };
 
-enum class SmoothWaterFish{
-    SFWF_OceanSunfish,
-    SFWF_Stingray,
-    SFWF_BullShark,
-    SFWF_NilePerch,
-    SFWF_Taimen,
-    SFWF_AmericanPaddlefish,
-    SFWF_AlligatorGar,
-    SFWF_BelugaSturgeon,
-    SFWF_MekongGiantCatfish,
-    SFWF_Arapaima
-};
-
-enum class SaltWaterFish{
-    SWF_DesignerClownfish,
-    SWF_RedSeaPurpleTang,
-    SWF_SargassumTriggerfish,
-    SWF_LineatusFairyWrasse,
-    SWF_LyretailAnthias,
-    SWF_FlameAngelfish,
-    SWF_EmperorAngelfish,
-    SWF_HarlequinTusk,
-    SWF_MarineBetta,
-    SWF_VolitanLionfish,
-};
-
-enum class FreshWaterFish{
-    FWF_Platies,
-    FWF_ZebraDanios,
-    FWF_Rainbowfish,
-    FWF_GoldenDwarfBarbs,
-    FWF_Angelfish,
-    FWF_Goldfish,
-    FWF_BettaFish,
-    FWF_Mollies,
-    FWF_Guppies,
-    FWF_NeonTetra
-};
-
-// For screen transition
-enum class CurrentScreen{
-    CS_Start,
-    CS_Fishing,
-    CS_Journal,
-    CS_FishInfo
-};
-
-//Different types of spears
-enum class TypeOfSpear{
-    TOS_Wood,
-    TOS_Metal,
-    TOS_Beagle
-};
-
 class Model : public QObject
 {
     Q_OBJECT
@@ -170,78 +116,14 @@ private:
 
     QString currFish;
     TypeOfWater waterType;
-    TypeOfSpear spearType;
     QMap<QString, int> catchedFish;
     int correctAnsw;
     int correctAnswForProgBar;
-//    QString smoothFish[10] = {"Ocean Sunfish",
-//                              "Giant Freshwater Stingray",
-//                              "Bull Shark",
-//                              "Nile Perch",
-//                              "Taimen",
-//                              "Arapaima",
-//                              "Mekong Giant Catfish",
-//                              "Beluga Sturgeon",
-//                              "Alligator Gar",
-//                              "American Paddlefish"};
 
-//    QString saltFish[10] = {"Designer Clownfish",
-//                            "Red Sea Purple Tang",
-//                            "Sargassum Triggerfish",
-//                            "Lineatus Fairy Wrasse",
-//                            "Lyretail Anthias",
-//                            "Flame Angelfish",
-//                            "Emperor Angelfish",
-//                            "Harlequin Tusk",
-//                            "Marine Betta",
-//                            "Volitan Lionfish"};
-
-//    QString freshFish[10] = {"Neon Tetra",
-//                             "Guppies",
-//                             "Mollies",
-//                             "Betta Fish",
-//                             "Goldfish",
-//                             "Angelfish",
-//                             "Golden Dwarf Barbs",
-//                             "Rainbowfish",
-//                             "Zebra Danios",
-//                             "Platies"};
-
-    QVector<QString> pondFish;/* = {"Carp",
-                            "Koi",
-                            "Goldfish",
-                            "Crawfish",
-                            "Killifish",
-                            "Tadpole",
-                            "Catfish",
-                            "Giant snakehead",
-                            "Alligator Gar",
-                            "Frog"};*/
-    QVector<QString> riverFish;/* = {"Bitterling",
-                             "Pale chub",
-                             "Crucian carp",
-                             "Soft-shelled turtle",
-                             "Snapping Turtle",
-                             "Bluegill",
-                             "Yellow perch",
-                             "Tilapia",
-                             "Pike",
-                             "Cherry salmon"};*/
-    QVector<QString> seaFish;/* = {"Sea horse",
-                           "Clown fish",
-                           "Surgeonfish",
-                           "Butterfly fish",
-                           "Napoleonfish",
-                           "Zebra turkeyfish",
-                           "Blowfish",
-                           "Puffer fish",
-                           "Anchovy",
-                           "Saw shark"};*/
-
-    QVector<QString> questions = {"What is my Name?",
-                           "How big can I get?",
-                           "Where can you find me?",
-                           "Am I an endangered species?"};
+    QVector<QString> pondFish;
+    QVector<QString> riverFish;
+    QVector<QString> seaFish;
+    QVector<QString> questions;
 
     QImage spearImage;
     bool isShot;
