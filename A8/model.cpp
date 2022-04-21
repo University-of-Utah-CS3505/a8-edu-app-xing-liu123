@@ -496,9 +496,17 @@ void Model::loadInfoQ(){
         QString currentFish;
         //holds all the information for each fish
         QMap<QString,QString> fishInfo;
+
+        QString waterType = "";
         while (!in.atEnd())
         {
             line = in.readLine();
+            if(line.contains("WaterType"))
+            {
+                line = line.trimmed().split(":")[1];
+                waterType = line;
+                continue;
+            }
             if(count == -1){
                 count++;
             }
@@ -507,6 +515,19 @@ void Model::loadInfoQ(){
             {
                 currentFish = line;
                 count++;
+
+                if(waterType == "pond")
+                {
+                    pondFish.push_back(currentFish);
+                }
+                else if(waterType == "river")
+                {
+                    riverFish.push_back(currentFish);
+                }
+                else
+                {
+                    seaFish.push_back(currentFish);
+                }
             }
             //Questions[0] = what is my name?
             else if(line.contains(questions[0]))
