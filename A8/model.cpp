@@ -18,13 +18,9 @@ Model::Model(QObject *parent)
     quizTimer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
     connect(quizTimer, &QTimer::timeout, this, &Model::quizCountDown);
-    spearType = TypeOfSpear::TOS_Wood;
 
     correctAnsw = 0;
     quizTimeCounter =10;
-
-    connect(timer, &QTimer::timeout, this, &Model::updateWorld);
-
 
     //TODO: FIgure out an effective way to initialize array of fish
 }
