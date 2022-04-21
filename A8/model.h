@@ -103,7 +103,13 @@ signals:
     //check answer
     void answerResult(bool result, QString answer); //result is true if answer is correct
 
+
     void sendCountDown(QString time);
+    //updates nextlevel progress bar
+    void updateNextLevelProgress(int currentProgress, QChar waterType);
+    //updates next spear progress bar
+    void updateNextSpearProgress(int currentProgress);
+
     //Discuss with TEAM why private not working
 public slots:
     void setUpWorld(QString water);
@@ -166,6 +172,7 @@ private:
     TypeOfSpear spearType;
     QMap<QString, int> catchedFish;
     int correctAnsw;
+    int correctAnswForProgBar;
 //    QString smoothFish[10] = {"Ocean Sunfish",
 //                              "Giant Freshwater Stingray",
 //                              "Bull Shark",
@@ -253,8 +260,10 @@ private:
     int qNum = 0;
 
 
-
-
+    //Holds the value of progess for next level
+    int pondProgess = 0;
+    int riverProgess = 0;
+    int seaProgess = 0; //we don't need this, but if we decided to expand our game it a placeholder for the future.
 };
 
 #endif // MODEL_H

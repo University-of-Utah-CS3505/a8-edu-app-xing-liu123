@@ -13,6 +13,12 @@ View::View(Model &model,  QWidget *parent)
     this->setMouseTracking(true);
 
     /*
+     * Button style section
+    **/
+    ui->freshWaterButton->setStyleSheet("border-image: url(:/buttons/Button_FreshWater_Test.png)"); // Test
+    ui->freshWaterButton->resize(180,60); // Find the original PNG size and divide it by 2.5. Set the values as QPushButton size.
+
+    /*
      * Audio section
     **/
 
@@ -50,22 +56,35 @@ View::View(Model &model,  QWidget *parent)
     water.load(":/water/saltW1.jpg");
     ui->saltPicLabel->setPixmap(water.scaled(ui->saltPicLabel->width(), ui->saltPicLabel->height()));
 
-    QPixmap animatedFish;
-    animatedFish.load(":/fish1.png");
-    ui->fish1Label->setPixmap(animatedFish.scaled(ui->fish1Label->width(), ui->fish1Label->height()));
-    ui->fish3Label->setPixmap(animatedFish.scaled(ui->fish3Label->width(), ui->fish3Label->height()));
-    animatedFish.load(":/fish2.png");
-    ui->fish2Label->setPixmap(animatedFish.scaled(ui->fish2Label->width(), ui->fish2Label->height()));
+    // Set images for moving fishes
+    ui->fish1Label->setStyleSheet("border-image: url(:/fishShadows/Picture_FishShadow_1.png)");
+    ui->fish1Label->resize(80,32);
+    ui->fish2Label->setStyleSheet("border-image: url(:/fishShadows/Picture_FishShadow_1.png)");
+    ui->fish2Label->resize(80,32);
+    ui->fish3Label->setStyleSheet("border-image: url(:/fishShadows/Picture_FishShadow_1.png)");
+    ui->fish3Label->resize(80,32);
 
     QPixmap spearPix;
     spearPix.load(":/spear.png");
     ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
 //    ui->spearLabel->setStyleSheet("QLabel{background-color : red}");
     //Set up the initial Widget
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(startPage);
     time = new QTimer(this);
 
-    //
+    //Congrats label
+    ui->congratsLabel->setVisible(false);
+    //congrats close button
+    ui->closeCongratsButton->setEnabled(false);
+    ui->closeCongratsButton->setVisible(false);
+
+
+    //setup the buttons and images for the game
+
+    ui->saltWaterButton->setEnabled(false);
+    ui->smoothWaterButton->setEnabled(false);
+    ui->saltPicLabel->setEnabled(false);
+    ui->smoothPicLabel->setEnabled(false);
 
     //Connections to set up first
     connect(this,
@@ -184,6 +203,17 @@ View::View(Model &model,  QWidget *parent)
             &model,
             &Model::getTestQuizInfo);
 
+    //update the levels and progress bar
+    connect(&model,
+            &Model::updateNextLevelProgress,
+            this,
+            &View::updateNextLevelProgress);
+
+    // update the spear and progress bar
+    connect(&model,
+            &Model::updateNextSpearProgress,
+            this,
+            &View::updateNextSpearProgress);
 }
 
 
@@ -202,13 +232,12 @@ View::~View()
 //Get the Program to start
 void View::on_startButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
 
 //Display the fish labels into their new position
 void View::displayFish1(int x1, int y1, int x2, int y2){
-//    std::cout << "hit " << std::endl;
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish1Label,"pos");
     animation->setDuration(25);
     animation->setStartValue(QPoint(x1,y1));
@@ -246,18 +275,21 @@ void View::displaySpear(int x1, int y1, int x2, int y2){
 
 
 void View::mouseMoveEvent(QMouseEvent *event){
-    QPoint point = event->pos();
-    emit sendPosition(point.x(), point.y());
-    QString s("X: ");
-            s.append(QString::number(point.x()));
-            s.append(" Y: ");
-            s.append(QString::number(point.y()));
-            ui->locationLabel->setText(s);
+    if(ui->stackedWidget->currentIndex() == fishingPage){
+        QPoint point = event->pos();
+        emit sendPosition(point.x(), point.y());
+        QString s("X: ");
+                s.append(QString::number(point.x()));
+                s.append(" Y: ");
+                s.append(QString::number(point.y()));
+                ui->locationLabel->setText(s);
+    }
 }
 
 void View::updateSpearLabel(QPixmap map){
     ui->spearLabel->setAlignment(Qt::AlignCenter);
     ui->spearLabel->setPixmap(map);
+    //ui->progressBar2GetNewSpear->setValue(0);
 }
 
 void View::resetSpearLabel(QPixmap map){
@@ -269,43 +301,54 @@ void View::resetSpearLabel(QPixmap map){
 
 
 void View::mousePressEvent(QMouseEvent *event){
-    QPoint point = event->pos();
-    emit shootSpear(point.x(), point.y());
+    if(ui->stackedWidget->currentIndex() == fishingPage){
+        QPoint point = event->pos();
+        emit shootSpear(point.x(), point.y());
+    }
 }
 
 void View::on_freshWaterButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(fishingPage);
 
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Pond.png");
     ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->freshWaterButton->text());
+
+    //reset progress bar for next level
+    ui->progressBar2NextLevel->setValue(0);
 }
 
 
 void View::on_smoothWaterButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(fishingPage);
 
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_River.png");
     ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->smoothWaterButton->text());
+
+    //reset progress bar for next level
+    ui->progressBar2NextLevel->setValue(0);
 }
 
 
 void View::on_saltWaterButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(fishingPage);
 
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Ocean.png");
     ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->saltWaterButton->text());
+
+    //reset progress bar for next level
+    ui->progressBar2NextLevel->setValue(0);
 }
 
 
@@ -314,7 +357,7 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
                      QString fishPic, QString fishName){
 
     ui->countDownLabel->setVisible(true);
-    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentIndex(quizPage);
     ui->quizFishName->setText(fishName);
     ui->quizQ1Label->setText(question);
 
@@ -359,10 +402,10 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
     ui->resultLabel->setVisible(false);
 
     //enable buttons
-    ui->answ1Button->setDisabled(false);
-    ui->answ1Button_2->setDisabled(false);
-    ui->answ1Button_3->setDisabled(false);
-    ui->answ1Button_4->setDisabled(false);
+    ui->answ1Button->setEnabled(true);
+    ui->answ1Button_2->setEnabled(true);
+    ui->answ1Button_3->setEnabled(true);
+    ui->answ1Button_4->setEnabled(true);
 
     //setVisible button
     ui->quizBackFishButton->setVisible(false);
@@ -399,7 +442,7 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
                      QString q3, QString a3, QString q4, QString a4,
                      QString fish, QString fishPic){
 
-    ui->stackedWidget->setCurrentIndex(3);
+    ui->stackedWidget->setCurrentIndex(infoPage);
     ui->fishNameLabel->setText(fish);
 
     ui->infoQ1Label->setText(q1);
@@ -489,7 +532,7 @@ void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
 void View::on_journalKeepFishingButton_clicked()
 {
     emit resetWorld();
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
 
@@ -554,10 +597,10 @@ void View::on_answ1Button_4_clicked()
 
 void View::disableQuizButtons(){
     //disable buttons after selecting once
-    ui->answ1Button->setDisabled(true);
-    ui->answ1Button_2->setDisabled(true);
-    ui->answ1Button_3->setDisabled(true);
-    ui->answ1Button_4->setDisabled(true);
+    ui->answ1Button->setEnabled(false);
+    ui->answ1Button_2->setEnabled(false);
+    ui->answ1Button_3->setEnabled(false);
+    ui->answ1Button_4->setEnabled(false);
 }
 
 
@@ -598,34 +641,71 @@ void View::pressTestSoundButton(){
 }
 
 
+void View::updateNextLevelProgress(int progress, QChar waterType){
+    //updated progress bar for nextlevel
+    //int progress = ui->progressBar2NextLevel->value() + 1;
+    ui->progressBar2NextLevel->setValue(progress);
+
+    //if progessbar is 5 or 100% we unlock the next level
+    if(progress == 5)
+    {
+        ui->congratsLabel->setVisible(true);
+        ui->closeCongratsButton->setVisible(true);
+        ui->closeCongratsButton->setEnabled(true);
+
+        //TODO unlock the next level here
+        if(waterType == 'p'){
+
+            ui->smoothWaterButton->setEnabled(true);
+            ui->smoothPicLabel->setEnabled(true);
+
+        }
+        else if(waterType =='r')
+        {
+            ui->saltWaterButton->setEnabled(true);
+            ui->saltPicLabel->setEnabled(true);
+        }
+
+    }
+}
+
+void View::updateNextSpearProgress(int progress){
+    ui->progressBar2GetNewSpear->setValue(progress);
+}
 
 
 
 
 void View::on_return2FishButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
 
 void View::on_return2MenuButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(startPage);
 }
 
 
 void View::on_quizBackFishButton_clicked()
 {
     emit resetWorld();
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
 
 void View::on_infoBackButton_clicked()
 {
     emit resetWorld();
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
 
+void View::on_closeCongratsButton_clicked()
+{
+    ui->congratsLabel->setVisible(false);
+    ui->closeCongratsButton->setEnabled(false);
+    ui->closeCongratsButton->setVisible(false);
+}
 

@@ -84,7 +84,7 @@ void Model::initFish1(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(0.04f, 0.03f);
+    dynamicFish.SetAsBox(0.22f, 0.12f);
 
 
     // Define the dynamic body fixture.
@@ -102,6 +102,7 @@ void Model::initFish1(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 1;
+//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish1->CreateFixture(&fixtureDefFish);
@@ -125,7 +126,7 @@ void Model::initFish2(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(0.05f, 0.05f);
+    dynamicFish.SetAsBox(0.22f, 0.12f);
 
 
     // Define the dynamic body fixture.
@@ -142,7 +143,7 @@ void Model::initFish2(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 2;
-
+//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish2->CreateFixture(&fixtureDefFish);
@@ -164,7 +165,7 @@ void Model::initFish3(){
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
-    dynamicFish.SetAsBox(0.04f, 0.03f);
+    dynamicFish.SetAsBox(0.22f, 0.12f);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDefFish;
@@ -210,22 +211,24 @@ void Model::initSpear(){
     bodySpearDef.position.Set(4.00f, 0.75f);
     spear = world->CreateBody(&bodySpearDef);
 
+    // head
+
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
 
     switch(currentSpear){
         case 1:
-            dynamicSpear.SetAsBox(0.01f, 0.50f);
+            dynamicSpear.SetAsBox(0.012f, 0.45f);
             break;
         case 2:
-            dynamicSpear.SetAsBox(0.012f, 0.52f);
+            dynamicSpear.SetAsBox(0.014f, 0.47f);
             break;
         case 3:
-            dynamicSpear.SetAsBox(0.014f, 0.54f);
+            dynamicSpear.SetAsBox(0.016f, 0.49f);
             break;
         case 4:
-            dynamicSpear.SetAsBox(0.016f, 0.56f);
+            dynamicSpear.SetAsBox(0.018f, 0.51f);
             break;
     }
 
@@ -243,9 +246,11 @@ void Model::initSpear(){
     // Set the bounciness
     fixtureDef.restitution = 0.0f;
     fixtureDef.userData = (void*) 4;
+    //fixtureDef.isSensor = true;
 
     // Add the shape to the body.
     spear->CreateFixture(&fixtureDef);
+
 
 }
 
@@ -339,17 +344,20 @@ void Model::updateWorld(){
     // It is generally best to keep the time step and iterations fixed.
     world->Step(timeStep, velocityIterations, positionIterations);
 
-//    // checks if collision occurs
-//    if(contactListener->getDestroy()){ // is contacted when to delete objects
-//        world->DestroyBody(spear);
-//        //world->DestroyBody(fish1); //maybe needed will need to test
-//        contactListener->setDestroy(false);
-//        initSpear();
-//        initFish1();
-//        initFish2();
-//        initFish3();
+    // checks if collision occurs
+    if(contactListener->getDestroy()){ // is contacted when to delete objects
+        //world->DestroyBody(fish1); //maybe needed will need to test
+        contactListener->setDestroy(false);
+        world->DestroyBody(spear);
+        initSpear();
+        world->DestroyBody(fish1);
+        initFish1();
+        world->DestroyBody(fish2);
+        initFish2();
+        world->DestroyBody(fish3);
+        initFish3();
 
-//    }
+    }
     // Now print the position and angle of the body.
     b2Vec2 finalPos = spear->GetPosition();
     spearX= finalPos.x*100;
@@ -643,6 +651,21 @@ void Model::getFish(){
         emit updateInformation(questions[0], answer1, questions[1], answer2,
                                questions[2], answer3, questions[3], answer4,
                                currFish, fishPic);
+
+        if(waterL == 'p'){
+            pondProgess++;
+            emit updateNextLevelProgress(pondProgess, waterL);
+        }
+        else if(waterL == 'r')
+        {
+            riverProgess++;
+            emit updateNextLevelProgress(riverProgess, waterL);
+        }
+        else
+        {
+            seaProgess++;
+            emit updateNextLevelProgress(seaProgess, waterL);
+        }
     }
 }
 
@@ -712,11 +735,25 @@ void Model::checkAnswer(QString question, QString userAnswer){
     QString correctAnswer = fishQA.value(currFish).value(question);
     if(correctAnswer == userAnswer){
         correctAnsw++;
-        if(correctAnsw == 1){
-            correctAnsw = 0;
+        correctAnswForProgBar++;
+        if(correctAnsw == 10){
+            correctAnswForProgBar = 0;
+            updateSpear();
+        }
+        else if(correctAnsw == 20){
+            correctAnswForProgBar = 0;
+            updateSpear();
+        }
+        else if(correctAnsw == 30){
+            correctAnswForProgBar = 0;
+            updateSpear();
+        }
+        else if(correctAnsw == 40){
+            correctAnswForProgBar = 0;
             updateSpear();
         }
         emit answerResult(true, correctAnswer);
+        emit updateNextSpearProgress(correctAnswForProgBar);
     }
     else
         emit answerResult(false, correctAnswer);

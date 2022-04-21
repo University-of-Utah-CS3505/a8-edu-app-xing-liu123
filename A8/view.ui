@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -205,7 +205,7 @@
        <bool>true</bool>
       </property>
       <property name="text">
-       <string>Fish 1</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="fish2Label">
@@ -221,7 +221,7 @@
        <bool>true</bool>
       </property>
       <property name="text">
-       <string>Fish 2</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="fish3Label">
@@ -237,7 +237,7 @@
        <bool>true</bool>
       </property>
       <property name="text">
-       <string>Fish 3</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="spearLabel">
@@ -340,6 +340,99 @@
        <string>TextLabel</string>
       </property>
      </widget>
+     <widget class="QProgressBar" name="progressBar2NextLevel">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>530</y>
+        <width>118</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>5</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>true</bool>
+      </property>
+      <property name="textDirection">
+       <enum>QProgressBar::TopToBottom</enum>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBar2GetNewSpear">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>30</y>
+        <width>118</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>530</y>
+        <width>161</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Progress to unlock next level</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>30</y>
+        <width>161</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Progess to unlock next spear</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="congratsLabel">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>170</y>
+        <width>401</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Congrats you unlocked the next level</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="closeCongratsButton">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>400</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Close</string>
+      </property>
+     </widget>
      <zorder>backgroundImageLabel</zorder>
      <zorder>fish1Label</zorder>
      <zorder>fish2Label</zorder>
@@ -350,11 +443,12 @@
      <zorder>goToQuizButton</zorder>
      <zorder>journalButton</zorder>
      <zorder>return2MenuButton</zorder>
-    </widget>
-    <widget class="QWidget" name="JournalPage">
-     <property name="mouseTracking">
-      <bool>false</bool>
-     </property>
+     <zorder>progressBar2NextLevel</zorder>
+     <zorder>progressBar2GetNewSpear</zorder>
+     <zorder>label_2</zorder>
+     <zorder>label_4</zorder>
+     <zorder>congratsLabel</zorder>
+     <zorder>closeCongratsButton</zorder>
     </widget>
     <widget class="QWidget" name="FishInfoPage">
      <widget class="QLabel" name="CongratsLabel">
@@ -374,7 +468,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Congratulations! You have catch</string>
+       <string>Congratulations! You have caught a</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

@@ -78,7 +78,10 @@ private slots:
 
     //display on Journal
     void setUpJournal(QVector<QString> info, QVector<QString> questions);
+    void updateNextLevelProgress(int progess, QChar waterType);
 
+    //updates next spear progress bar
+    void updateNextSpearProgress(int currentProgress);
 
     void on_journalButton_clicked();
 
@@ -95,6 +98,8 @@ private slots:
 
     void on_infoBackButton_clicked();
 
+    void on_closeCongratsButton_clicked();
+
     void on_answ1Button_4_clicked();
 
     //Set up count down
@@ -104,11 +109,11 @@ private:
     Ui::View *ui;
     QTimer * time;
     QImage spearImage;
-    int const startPage = 0;
-    int const fishingPage = 1;
-    int const InfoPage = 3;
-    int const quizPage = 4;
-    int const journalPage = 5;
+    int const startPage = 0; //it was 0
+    int const fishingPage = 1; //it was 1
+    int const infoPage = 2;
+    int const quizPage = 3;
+    int const journalPage = 4;
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
     void displayJournalLabels(QString info, QString fishPic, int fishNum);
     int journalPageNum = 0;
