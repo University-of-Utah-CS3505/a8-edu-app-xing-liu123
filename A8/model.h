@@ -206,7 +206,7 @@ private:
 //                             "Zebra Danios",
 //                             "Platies"};
 
-    QVector<QString> pondFish = {"Carp",
+    QVector<QString> pondFish;/* = {"Carp",
                             "Koi",
                             "Goldfish",
                             "Crawfish",
@@ -215,8 +215,8 @@ private:
                             "Catfish",
                             "Giant snakehead",
                             "Alligator Gar",
-                            "Frog"};
-    QVector<QString> riverFish = {"Bitterling",
+                            "Frog"};*/
+    QVector<QString> riverFish;/* = {"Bitterling",
                              "Pale chub",
                              "Crucian carp",
                              "Soft-shelled turtle",
@@ -225,8 +225,8 @@ private:
                              "Yellow perch",
                              "Tilapia",
                              "Pike",
-                             "Cherry salmon"};
-    QVector<QString> seaFish = {"Sea horse",
+                             "Cherry salmon"};*/
+    QVector<QString> seaFish;/* = {"Sea horse",
                            "Clown fish",
                            "Surgeonfish",
                            "Butterfly fish",
@@ -235,7 +235,7 @@ private:
                            "Blowfish",
                            "Puffer fish",
                            "Anchovy",
-                           "Saw shark"};
+                           "Saw shark"};*/
 
     QVector<QString> questions = {"What is my Name?",
                            "How big can I get?",

@@ -170,7 +170,7 @@ View::View(Model &model,  QWidget *parent)
     connect(ui->answ1Button_4,
             &QPushButton::clicked,
             this,
-            &View::on_answerButton3_clicked);
+            &View::on_answ1Button_4_clicked);
     connect(this,
             &View::checkUserAnswer,
             &model,
