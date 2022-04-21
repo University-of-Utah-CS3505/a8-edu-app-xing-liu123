@@ -11,7 +11,6 @@ Model::Model(QObject *parent)
 {
     loadInfoQ();
     currentSpear = 1;
-
     isShot = false;
     time = new QTime(0,1,0);
     timer = new QTimer(this);

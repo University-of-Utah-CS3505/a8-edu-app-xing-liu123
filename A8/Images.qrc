@@ -106,5 +106,6 @@
         <file>fishShadow.png</file>
         <file>buttons/Button_FreshWater_Test.png</file>
         <file>fishShadows/Picture_FishShadow_1.png</file>
+        <file>fishShadows/fishShadow.png</file>
     </qresource>
 </RCC>
