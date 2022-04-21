@@ -11,7 +11,6 @@ Model::Model(QObject *parent)
 {
     loadInfoQ();
     currentSpear = 1;
-//    spearImage.load(":/spear.png");
 
     isShot = false;
     time = new QTime(0,1,0);
@@ -20,8 +19,12 @@ Model::Model(QObject *parent)
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
     connect(quizTimer, &QTimer::timeout, this, &Model::quizCountDown);
     spearType = TypeOfSpear::TOS_Wood;
+
     correctAnsw = 0;
     quizTimeCounter =10;
+
+    connect(timer, &QTimer::timeout, this, &Model::updateWorld);
+
 
     //TODO: FIgure out an effective way to initialize array of fish
 }
@@ -31,6 +34,7 @@ Model::~Model(){
     delete time; //TODO: maybe not??????
 }
 
+// set up the physical world
 void Model::setUpWorld(QString water){
 
     if(water.contains("Salt"))
@@ -56,13 +60,12 @@ void Model::setUpWorld(QString water){
             &Model::getFish);
     //Call to initialize the fishes (bodies)
 
-
-
-
     initFish1();
     initFish2();
     initFish3();
     initSpear();
+
+    // start the world imitation
     timer->start(25);
 }
 
@@ -71,10 +74,12 @@ void Model::setUpWorld(QString water){
 void Model::initFish1(){
     fish1X = 55;
     fish1Y = 300;
+
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef1;
     bodyDef1.type = b2_dynamicBody;
     bodyDef1.position.Set(0.55f, 3.0f); //-> Starting position of the fish
+
     fish1 = world->CreateBody(&bodyDef1);
     fish1->SetUserData((void*)1);
 
@@ -86,12 +91,10 @@ void Model::initFish1(){
     b2PolygonShape dynamicFish;
     dynamicFish.SetAsBox(0.22f, 0.12f);
 
-
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDefFish;
 
     fixtureDefFish.shape = &dynamicFish;
-
 
     // Set the box density to be non-zero, so it will be dynamic.
     fixtureDefFish.density = 0.1f;
@@ -102,11 +105,10 @@ void Model::initFish1(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 1;
-//    fixtureDefFish.isSensor = true;
+    //    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish1->CreateFixture(&fixtureDefFish);
-
 }
 
 
@@ -114,10 +116,12 @@ void Model::initFish1(){
 void Model::initFish2(){
     fish2X = 55;
     fish2Y = 400;
+
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef2;
     bodyDef2.type = b2_dynamicBody;
     bodyDef2.position.Set(0.55f, 4.0f); //-> Starting position of the fish
+
     fish2 = world->CreateBody(&bodyDef2);
 
     //Give velocity to body (Medium)
@@ -127,7 +131,6 @@ void Model::initFish2(){
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicFish;
     dynamicFish.SetAsBox(0.22f, 0.12f);
-
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDefFish;
@@ -149,14 +152,16 @@ void Model::initFish2(){
     fish2->CreateFixture(&fixtureDefFish);
 }
 
-//Initialize the fish to be at the buttom with the fastest velocity..
+//Initialize the fish to be at the buttom with the fastest velocity.
 void Model::initFish3(){
     fish3X = 55;
     fish3Y = 500;
+
     // Define the dynamic body (fish). We set its position and call the body factory.
     b2BodyDef bodyDef3;
     bodyDef3.type = b2_dynamicBody;
     bodyDef3.position.Set(0.55f, 5.0f); //-> Starting position of the fish
+
     fish3 = world->CreateBody(&bodyDef3);
 
     //Give velocity to body (Fast)
@@ -172,7 +177,6 @@ void Model::initFish3(){
 
     fixtureDefFish.shape = &dynamicFish;
 
-
     // Set the box density to be non-zero, so it will be dynamic.
     fixtureDefFish.density = 0.1f;
 
@@ -183,11 +187,11 @@ void Model::initFish3(){
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 3;
 
-
     // Add the shape to the body.
     fish3->CreateFixture(&fixtureDefFish);
 }
 
+// initialize the spear based on the current spear
 void Model::initSpear(){
     switch(currentSpear){
         case 1:
@@ -204,19 +208,21 @@ void Model::initSpear(){
             break;
     }
 
+    // center of spear on the window
     spearX = 400;
     spearY = 75;
+
     b2BodyDef bodySpearDef;
     bodySpearDef.type = b2_dynamicBody;
+
+    // center of spear in the world
     bodySpearDef.position.Set(4.00f, 0.75f);
     spear = world->CreateBody(&bodySpearDef);
-
-    // head
-
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicSpear;
 
+    // give different collision box size to different spears
     switch(currentSpear){
         case 1:
             dynamicSpear.SetAsBox(0.012f, 0.45f);
@@ -250,12 +256,11 @@ void Model::initSpear(){
 
     // Add the shape to the body.
     spear->CreateFixture(&fixtureDef);
-
-
 }
 
-
+// shot the spear based on the position clicked by the player
 void Model::shotSpear(int x, int y){
+    // ignore action if it is moving
     if(isShot){
         return;
     }
@@ -270,39 +275,47 @@ void Model::shotSpear(int x, int y){
     QImage rotated;
     QPixmap spearPix;
 
+    // if target is below the position of character, it will be shot at the angle based on the target position
     if(y > 75){
         velocityX = x - 400;
         velocityY = y - 75;
-        radian = -atan(velocityX/velocityY);
 
+        radian = -atan(velocityX/velocityY);
         angle = radian*180 / M_PI;
 
         rotated = spearImage.transformed(QTransform().rotate(angle));
         spearPix = QPixmap::fromImage(rotated.scaled(150*(sin(abs(radian)) + cos(abs(radian))),150*(sin(abs(radian)) + cos(abs(radian)))));
     }
+    // if target is above the position of character, it will be shot horizontally to the left
     else if(x <= 400){
         velocityX = -1;
         velocityY = 0;
+
+        // rotate 90 degrees to the left
         angle = 90;
         radian = 0.5*M_PI;
 
         rotated = spearImage.transformed(QTransform().rotate(angle));
         spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
     }
+    // if target is above the position of character, it will be shot horizontally to the right
     else{
         velocityX = 1;
         velocityY = 0;
+
+        // rotate 90 degrees to the left
         angle = -90;
         radian = -0.5*M_PI;
+
         rotated = spearImage.transformed(QTransform().rotate(angle));
         spearPix = QPixmap::fromImage(rotated.scaled(150, 150));
     }
-
 
     emit sendSpearLabel(spearPix);
 
     b2Vec2 velocity;
 
+    // different spears have different speeds
     switch(currentSpear){
         case 1:
             velocity = b2Vec2(velocityX*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))));
@@ -316,14 +329,16 @@ void Model::shotSpear(int x, int y){
         case 4:
             velocity = b2Vec2(velocityX*sqrt(200/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(200/(pow(velocityX,2)+pow(velocityY,2))));
             break;
-
     }
+
     // normolize the velocity
     spear->SetLinearVelocity(velocity);
     spear->SetTransform(spear->GetPosition(), radian);
 }
 
+// update the world based on the timer
 void Model::updateWorld(){
+    // initial positions of objects on the window
     int initXSpear = spearX - 75;
     int initYSpear = spearY - 75;
     int initXFish1 = fish1X - 55;
@@ -356,18 +371,19 @@ void Model::updateWorld(){
         initFish2();
         world->DestroyBody(fish3);
         initFish3();
-
     }
+
     // Now print the position and angle of the body.
     b2Vec2 finalPos = spear->GetPosition();
     spearX= finalPos.x*100;
     spearY = finalPos.y*100;
 
-
+    // check if the spear goes out of the window
     if(spearX <= 925 && spearX >= -125 && spearY <= 725 && spearY >= -125 ){
         emit setUpSpear(initXSpear, initYSpear, spearX - 75, spearY - 75);
 
     }
+    // if so, reinitialize it and set it back to the boat
     else{
         world->DestroyBody(spear);
         emit setUpSpear(325, 0, 325, 0);
@@ -391,6 +407,7 @@ void Model::updateWorld(){
     fish1X= posFish1.x*100;
     fish1Y = posFish1.y*100;
 
+    // place the fish to the left if it reaches right end
     if(fish1X < initXFish1){
         emit setUpFish1(-125, 260, fish1X - 55, fish1Y - 40);
     }
@@ -409,6 +426,7 @@ void Model::updateWorld(){
     fish2X= posFish2.x*100;
     fish2Y = posFish2.y*100;
 
+    // place the fish to the left if it reaches right end
     if(fish2X < initXFish2){
         emit setUpFish2(-125, 360, fish2X - 55, fish2Y - 40);
     }
@@ -427,6 +445,7 @@ void Model::updateWorld(){
     fish3X= posFish3.x*100;
     fish3Y = posFish3.y*100;
 
+    // place the fish to the left if it reaches right end
     if(fish3X < initXFish3){
         emit setUpFish3(-125, 460, fish3X - 55, fish3Y - 40);
     }
@@ -435,39 +454,42 @@ void Model::updateWorld(){
     }
 }
 
+// reset the world when going back to the fishing page from other page
 void Model::resetWorld(){
     timer->stop();
+
     world->DestroyBody(spear);
     world->DestroyBody(fish1);
-
     world->DestroyBody(fish2);
-
     world->DestroyBody(fish3);
 
     emit setUpSpear(325, 0, 325, 0);
+    isShot = false;
     initSpear();
 
     QPixmap spearPix = QPixmap::fromImage(spearImage.scaled(150, 150));;
-
     emit resetSpear(spearPix);
-    isShot = false;
+
     initFish1();
     initFish2();
     initFish3();
     timer->start(25);
 }
 
+// rotate the spear when the player moving cursor
 void Model::setSpearLabel(int x, int y){
     if(!isShot){
         QImage rotated;
         QPixmap spearPix;
 
+        // rotate the spear when the cursor is below the character
         if(y > 75){
             double velocityX = x - 400;
             double velocityY = y - 75;
             double radian = -atan(velocityX/velocityY);
             double angle = radian*180 / M_PI;
 
+            // change the size of pixmap to avoid scaling spear when rotating
             rotated = spearImage.transformed(QTransform().rotate(angle));
             spearPix = QPixmap::fromImage(rotated.scaled(150*(sin(abs(radian)) + cos(abs(radian))),150*(sin(abs(radian)) + cos(abs(radian)))));
         }

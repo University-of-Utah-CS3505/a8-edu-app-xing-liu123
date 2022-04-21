@@ -64,10 +64,11 @@ View::View(Model &model,  QWidget *parent)
     ui->fish3Label->setStyleSheet("border-image: url(:/fishShadows/Picture_FishShadow_1.png)");
     ui->fish3Label->resize(80,32);
 
+    // set image for the spear
     QPixmap spearPix;
     spearPix.load(":/spear.png");
     ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
-//    ui->spearLabel->setStyleSheet("QLabel{background-color : red}");
+
     //Set up the initial Widget
     ui->stackedWidget->setCurrentIndex(startPage);
     time = new QTimer(this);
@@ -245,6 +246,7 @@ void View::displayFish1(int x1, int y1, int x2, int y2){
     animation->setEasingCurve(QEasingCurve::Linear);
     animation->start();
 }
+
 void View::displayFish2(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish2Label,"pos");
     animation->setDuration(25);
@@ -254,6 +256,7 @@ void View::displayFish2(int x1, int y1, int x2, int y2){
     animation->start();
 
 }
+
 void View::displayFish3(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish3Label,"pos");
     animation->setDuration(25);
@@ -264,6 +267,7 @@ void View::displayFish3(int x1, int y1, int x2, int y2){
 
 }
 
+// Display the spear moving from initial position to final position
 void View::displaySpear(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
     animation->setDuration(25);
@@ -273,35 +277,33 @@ void View::displaySpear(int x1, int y1, int x2, int y2){
     animation->start();
 }
 
-
+// send the position of cursor to rotate the spear
 void View::mouseMoveEvent(QMouseEvent *event){
+
     if(ui->stackedWidget->currentIndex() == fishingPage){
         QPoint point = event->pos();
         emit sendPosition(point.x(), point.y());
-        QString s("X: ");
-                s.append(QString::number(point.x()));
-                s.append(" Y: ");
-                s.append(QString::number(point.y()));
-                ui->locationLabel->setText(s);
     }
 }
 
+// set the spear label when it is shot
 void View::updateSpearLabel(QPixmap map){
     ui->spearLabel->setAlignment(Qt::AlignCenter);
     ui->spearLabel->setPixmap(map);
-    //ui->progressBar2GetNewSpear->setValue(0);
 }
 
+// reset the spear label when going back to the fishing page
 void View::resetSpearLabel(QPixmap map){
     ui->spearLabel->setGeometry(325, 0, 150, 150);
     ui->spearLabel->setAlignment(Qt::AlignCenter);
     ui->spearLabel->setPixmap(map);
 }
 
-
-
+// send a signal to shot the spear
 void View::mousePressEvent(QMouseEvent *event){
+
     if(ui->stackedWidget->currentIndex() == fishingPage){
+
         QPoint point = event->pos();
         emit shootSpear(point.x(), point.y());
     }
