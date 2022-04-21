@@ -60,7 +60,7 @@ How big can I get?: 22 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Catfish.jpg
 PixelatedImagefilepath :/fishPics/NH-Icon-catfish.png
-Rarity:Common
+Rarity:Rare
 
 Giant snakehead
 What is my Name?: Giant snakehead
@@ -69,7 +69,7 @@ How big can I get?: 4.9 ft.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Giantsnakehead.jpg
 PixelatedImagefilepath :/fishPics/NH-Icon-giantsnakehead.png
-Rarity:Common
+Rarity:Legendary
 
 Alligator Gar
 What is my Name?: Gar
@@ -78,7 +78,7 @@ How big can I get?: 49 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/AlligatorGar.jfif
 PixelatedImagefilepath :/fishPics/NH-Icon-gar.png
-Rarity:Common
+Rarity:Legendary
 
 Frog
 What is my Name?: Frog
@@ -106,7 +106,7 @@ How big can I get?: 5.1 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Palechub.jpg
 PixelatedImagefilepath :/fishPics/NH-Icon-palechub.png
-Rarity:Common
+Rarity:Rare
 
 Crucian carp
 What is my Name?: Crucian carp
@@ -124,7 +124,7 @@ How big can I get?: 19 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Softshelledturtle.jpg
 PixelatedImagefilepath :/fishPics/NH-Icon-softshelledturtle.png
-Rarity:Common
+Rarity:Legendary
 
 Snapping Turtle
 What is my Name?: Snapping Turtle
@@ -133,7 +133,7 @@ How big can I get?:14 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/SnappingTurtle.jpg
 PixelatedImagefilepath :/fishPics/NH-Icon-snappingturtle.png
-Rarity:Common
+Rarity:Rare
 
 Bluegill
 What is my Name?: Bluegill
@@ -142,7 +142,7 @@ How big can I get?: 7.5 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Bluegill.jfif
 PixelatedImagefilepath :/fishPics/NH-Icon-bluegill.png
-Rarity:Common
+Rarity:common
 
 Yellow perch
 What is my Name?: Yellow perch
@@ -169,7 +169,7 @@ How big can I get?: 22 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Pike.jpg
 PixelatedImagefilepath :/fishPics/NH-Icon-pike.png
-Rarity:Common
+Rarity:Rare
 
 Cherry salmon
 What is my Name?: Cherry salmon
@@ -178,7 +178,7 @@ How big can I get?: 30 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Cherrysalmon.jpg
 PixelatedImagefilepath :/fishPics/NH-Icon-cherrysalmon.png
-Rarity:Common
+Rarity:Legendary
 
 WaterType:sea
 Sea horse
@@ -188,7 +188,7 @@ How big can I get?: 14 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/seahorse.png
 PixelatedImagefilepath :/fishPics/NH-Icon-seahorse.png
-Rarity:Common
+Rarity:Legendary
 
 Clown fish
 What is my Name?: Clown fish
@@ -206,7 +206,7 @@ How big can I get?: 12 in
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/NH-Icon-surgeonfish.png
 PixelatedImagefilepath :/fishPics/NH-Icon-surgeonfish.png
-Rarity:Common
+Rarity:Rare
 
 Butterfly fish
 What is my Name?: Butterfly fish
@@ -233,7 +233,7 @@ How big can I get?: 11.7 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/ZebraTurkeyfish.png
 PixelatedImagefilepath :/fishPics/NH-Icon-zebraturkeyfish.png
-Rarity:Common
+Rarity:Rare
 
 Blowfish
 What is my Name?: Blowfish
@@ -251,7 +251,7 @@ How big can I get?: 24 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Pufferfish.jpeg
 PixelatedImagefilepath :/fishPics/NH-Icon-pufferfish.png
-Rarity:Common
+Rarity:Rare
 
 Anchovy
 What is my Name?: Anchovy
@@ -269,4 +269,4 @@ How big can I get?: 49 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Sawshark.jpg
 PixelatedImagefilepath :/fishPics/NH-Icon-sawshark.png
-Rarity:Common
+Rarity:Legendary
