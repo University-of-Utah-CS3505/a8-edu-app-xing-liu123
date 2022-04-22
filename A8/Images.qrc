@@ -108,5 +108,9 @@
         <file>spear3.png</file>
         <file>spear4.png</file>
         <file>Background_QuizInfoPage.png</file>
+        <file>Background_MainMenu.png</file>
+        <file>buttons/Button_FreshWater.png</file>
+        <file>buttons/Button_SmoothWater.png</file>
+        <file>buttons/Button_SeaWater.png</file>
     </qresource>
 </RCC>

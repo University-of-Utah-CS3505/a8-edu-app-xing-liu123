@@ -30,30 +30,17 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
       <bool>false</bool>
      </property>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>411</width>
-        <height>261</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QPushButton" name="freshWaterButton">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>290</y>
+        <x>10</x>
+        <y>310</y>
         <width>161</width>
         <height>81</height>
        </rect>
@@ -68,8 +55,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>440</y>
+        <x>150</x>
+        <y>20</y>
         <width>161</width>
         <height>71</height>
        </rect>
@@ -84,8 +71,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>290</y>
+        <x>600</x>
+        <y>330</y>
         <width>161</width>
         <height>81</height>
        </rect>
@@ -97,8 +84,8 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>60</y>
+        <x>-140</x>
+        <y>180</y>
         <width>611</width>
         <height>31</height>
        </rect>
@@ -114,51 +101,6 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="smoothPicLabel">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>290</y>
-        <width>201</width>
-        <height>141</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="saltPicLabel">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>140</y>
-        <width>201</width>
-        <height>141</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="freshPicLabel">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>140</y>
-        <width>201</width>
-        <height>141</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
       </property>
      </widget>
      <widget class="QPushButton" name="mainMenuMucisButton">
@@ -187,6 +129,26 @@
        <string>Test Sound</string>
       </property>
      </widget>
+     <widget class="QLabel" name="mainMenuBackgroundImageLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>570</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>mainMenuBackgroundImageLabel</zorder>
+     <zorder>freshWaterButton</zorder>
+     <zorder>smoothWaterButton</zorder>
+     <zorder>saltWaterButton</zorder>
+     <zorder>label_3</zorder>
+     <zorder>mainMenuMucisButton</zorder>
+     <zorder>TestSoundButton</zorder>
     </widget>
     <widget class="QWidget" name="FishingPage">
      <property name="mouseTracking">

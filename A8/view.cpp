@@ -15,8 +15,15 @@ View::View(Model &model,  QWidget *parent)
     /*
      * Button style section
     **/
-    ui->freshWaterButton->setStyleSheet("border-image: url(:/buttons/Button_FreshWater_Test.png)"); // Test
+    ui->freshWaterButton->setStyleSheet("border-image: url(:/buttons/Button_FreshWater.png)"); // Test
     ui->freshWaterButton->resize(180,60); // Find the original PNG size and divide it by 2.5. Set the values as QPushButton size.
+    ui->saltWaterButton->setStyleSheet("border-image: url(:/buttons/Button_SeaWater.png)");
+    ui->smoothWaterButton->setStyleSheet("border-image: url(:/buttons/Button_SmoothWater.png)");
+
+    /*
+     * Background style section
+    **/
+    ui->mainMenuBackgroundImageLabel->setStyleSheet("border-image: url(:/Background_MainMenu.png)");
 
     /*
      * Audio section
@@ -43,18 +50,6 @@ View::View(Model &model,  QWidget *parent)
     connect(this, &View::updateMainMenuMusicButton, ui->mainMenuMucisButton, &QPushButton::setText);
     // [TEST] Connect TestSound Button to an event
     connect(ui->TestSoundButton, &QPushButton::clicked, this, &View::pressTestSoundButton);
-
-
-
-
-    //Set up labels
-    QPixmap water;
-    water.load(":/water/freshW.jpg");
-    ui->freshPicLabel->setPixmap(water.scaled(ui->freshPicLabel->width(), ui->freshPicLabel->height()));
-    water.load(":/water/smoothW.jpg");
-    ui->smoothPicLabel->setPixmap(water.scaled(ui->smoothPicLabel->width(), ui->smoothPicLabel->height()));
-    water.load(":/water/saltW1.jpg");
-    ui->saltPicLabel->setPixmap(water.scaled(ui->saltPicLabel->width(), ui->saltPicLabel->height()));
 
     // Set images for moving fishes
     ui->fish1Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
@@ -651,13 +646,11 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         if(waterType == 'p'){
 
             ui->smoothWaterButton->setEnabled(true);
-            ui->smoothPicLabel->setEnabled(true);
 
         }
         else if(waterType =='r')
         {
             ui->saltWaterButton->setEnabled(true);
-            ui->saltPicLabel->setEnabled(true);
         }
 
     }
