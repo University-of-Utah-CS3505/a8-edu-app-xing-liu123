@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -641,6 +641,33 @@
        <string>Next Fish Test</string>
       </property>
      </widget>
+     <widget class="QLabel" name="fishInfoPageBackgroundImagelabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>570</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>fishInfoPageBackgroundImagelabel</zorder>
+     <zorder>CongratsLabel</zorder>
+     <zorder>fishNameLabel</zorder>
+     <zorder>inforFishPicLabel</zorder>
+     <zorder>infoQ1Label</zorder>
+     <zorder>infoQ2Label</zorder>
+     <zorder>infoQ3Label</zorder>
+     <zorder>infoQ4Label</zorder>
+     <zorder>infoA1Label</zorder>
+     <zorder>infoA2Label</zorder>
+     <zorder>infoA3Label</zorder>
+     <zorder>infoA4Label</zorder>
+     <zorder>infoBackButton</zorder>
+     <zorder>nextFishTestButton</zorder>
     </widget>
     <widget class="QWidget" name="QuizInfoPage">
      <widget class="QLabel" name="quizQ1Label">

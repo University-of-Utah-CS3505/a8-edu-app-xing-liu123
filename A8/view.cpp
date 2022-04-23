@@ -451,7 +451,7 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
     QPixmap pix;
     pix.load(fishPic);
     ui->inforFishPicLabel->setPixmap(pix.scaled(ui->inforFishPicLabel->width(), ui->inforFishPicLabel->height()));
-
+    ui->fishInfoPageBackgroundImagelabel->setStyleSheet("border-image: url(:/Background_FishInfoPage.png)");
 }
 
 //**********************Journal *****************************
