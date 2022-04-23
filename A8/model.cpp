@@ -10,7 +10,7 @@ Model::Model(QObject *parent)
     : QObject{parent}
 {
     loadInfoQ();
-    currentSpear = 1;
+    currentSpear = 2;
     isShot = false;
     time = new QTime(0,1,0);
     timer = new QTimer(this);
@@ -61,7 +61,7 @@ void Model::setUpWorld(QString water){
     initSpear();
 
     // start the world imitation
-    timer->start(25);
+    timer->start(10);
 }
 
 
@@ -79,7 +79,7 @@ void Model::initFish1(){
     fish1->SetUserData((void*)1);
 
     //Give velocity to body (Slow)
-    b2Vec2 velocity1(4.0f, 0.0f);
+    b2Vec2 velocity1(1.6f, 0.0f);
     fish1->SetLinearVelocity(velocity1);
 
     // Define another box shape for our dynamic body.
@@ -119,7 +119,7 @@ void Model::initFish2(){
     fish2 = world->CreateBody(&bodyDef2);
 
     //Give velocity to body (Medium)
-    b2Vec2 velocity2(6.0f, 0.0f);
+    b2Vec2 velocity2(2.4f, 0.0f);
     fish2->SetLinearVelocity(velocity2);
 
     // Define another box shape for our dynamic body.
@@ -158,7 +158,7 @@ void Model::initFish3(){
     fish3 = world->CreateBody(&bodyDef3);
 
     //Give velocity to body (Fast)
-    b2Vec2 velocity3(8.0f, 0.0f);
+    b2Vec2 velocity3(3.2f, 0.0f);
     fish3->SetLinearVelocity(velocity3);
 
     // Define another box shape for our dynamic body.
@@ -188,7 +188,7 @@ void Model::initFish3(){
 void Model::initSpear(){
     switch(currentSpear){
         case 1:
-            spearImage.load(":/spear4.png");
+            spearImage.load(":/spear1.png");
             break;
         case 2:
             spearImage.load(":/spear2.png");
@@ -218,16 +218,16 @@ void Model::initSpear(){
     // give different collision box size to different spears
     switch(currentSpear){
         case 1:
-            dynamicSpear.SetAsBox(0.012f, 0.45f);
+            dynamicSpear.SetAsBox(0.012f, 0.36f);
             break;
         case 2:
-            dynamicSpear.SetAsBox(0.014f, 0.47f);
+            dynamicSpear.SetAsBox(0.012f, 0.40f);
             break;
         case 3:
-            dynamicSpear.SetAsBox(0.016f, 0.49f);
+            dynamicSpear.SetAsBox(0.012f, 0.44f);
             break;
         case 4:
-            dynamicSpear.SetAsBox(0.018f, 0.51f);
+            dynamicSpear.SetAsBox(0.012f, 0.48f);
             break;
     }
 
@@ -310,16 +310,16 @@ void Model::shotSpear(int x, int y){
     // different spears have different speeds
     switch(currentSpear){
         case 1:
-            velocity = b2Vec2(velocityX*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))));
+            velocity = b2Vec2(velocityX*sqrt(8/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(8/(pow(velocityX,2)+pow(velocityY,2))));
             break;
         case 2:
-            velocity = b2Vec2(velocityX*sqrt(72/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(72/(pow(velocityX,2)+pow(velocityY,2))));
+            velocity = b2Vec2(velocityX*sqrt(12/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(12/(pow(velocityX,2)+pow(velocityY,2))));
             break;
         case 3:
-            velocity = b2Vec2(velocityX*sqrt(128/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(128/(pow(velocityX,2)+pow(velocityY,2))));
+            velocity = b2Vec2(velocityX*sqrt(16/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(16/(pow(velocityX,2)+pow(velocityY,2))));
             break;
         case 4:
-            velocity = b2Vec2(velocityX*sqrt(200/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(200/(pow(velocityX,2)+pow(velocityY,2))));
+            velocity = b2Vec2(velocityX*sqrt(20/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(20/(pow(velocityX,2)+pow(velocityY,2))));
             break;
     }
 
@@ -465,7 +465,7 @@ void Model::resetWorld(){
     initFish1();
     initFish2();
     initFish3();
-    timer->start(25);
+    timer->start(10);
 }
 
 // rotate the spear when the player moving cursor

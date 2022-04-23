@@ -238,7 +238,6 @@ void View::displayFish2(int x1, int y1, int x2, int y2){
     animation->setEndValue(QPoint(x2,y2));
     animation->setEasingCurve(QEasingCurve::Linear);
     animation->start();
-
 }
 
 void View::displayFish3(int x1, int y1, int x2, int y2){
@@ -248,7 +247,6 @@ void View::displayFish3(int x1, int y1, int x2, int y2){
     animation->setEndValue(QPoint(x2,y2));
     animation->setEasingCurve(QEasingCurve::Linear);
     animation->start();
-
 }
 
 // Display the spear moving from initial position to final position
@@ -285,9 +283,7 @@ void View::resetSpearLabel(QPixmap map){
 
 // send a signal to shot the spear
 void View::mousePressEvent(QMouseEvent *event){
-
     if(ui->stackedWidget->currentIndex() == fishingPage){
-
         QPoint point = event->pos();
         emit shootSpear(point.x(), point.y());
     }
