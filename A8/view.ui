@@ -618,11 +618,15 @@
      <widget class="QPushButton" name="infoBackButton">
       <property name="geometry">
        <rect>
-        <x>670</x>
+        <x>660</x>
         <y>480</y>
-        <width>91</width>
+        <width>101</width>
         <height>61</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none;
+color: white;</string>
       </property>
       <property name="text">
        <string>Back to Fishing</string>
