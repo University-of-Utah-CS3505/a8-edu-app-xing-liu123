@@ -3,6 +3,7 @@
 #include "ui_view.h"
 #include <iostream>
 #include <QPropertyAnimation>
+#include <QMessageBox>
 
 View::View(Model &model,  QWidget *parent)
     : QMainWindow(parent)
@@ -717,3 +718,22 @@ void View::on_closeCongratsButton_clicked()
     ui->closeCongratsButton->setVisible(false);
 }
 
+/**
+ * @brief View::closeEvent
+ * Opens a warning message, letting the user know they are exiting the game and giving them the choice to exit out or cancel the action.
+ * @param event
+ */
+void View::closeEvent(QCloseEvent *event){
+
+    //TODO: didn't stop the crash do more research
+    QMessageBox::StandardButton closeBtn = QMessageBox::warning(this, "Spear Fishing",
+                                                                tr("Are you sure you want to close the Game?"),
+                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                QMessageBox::No);
+    if(closeBtn != QMessageBox::Yes){
+        event->ignore();
+    }
+    else{
+        event->accept();
+    }
+}

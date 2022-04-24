@@ -10,6 +10,7 @@
 #include <QHoverEvent>
 #include <QPixmap>
 #include <iostream>
+#include <QCloseEvent>
 
 // Uncomment this when working on audios
 #include <QMediaPlayer>
@@ -104,6 +105,9 @@ private slots:
 
     //Set up count down
     void displayCountDown(QString time);
+
+    //Check before closing
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::View *ui;
