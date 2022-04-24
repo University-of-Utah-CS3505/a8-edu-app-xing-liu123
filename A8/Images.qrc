@@ -112,5 +112,6 @@
         <file>buttons/Button_FreshWater.png</file>
         <file>buttons/Button_SmoothWater.png</file>
         <file>buttons/Button_SeaWater.png</file>
+        <file>Background_FishInfoPage.png</file>
     </qresource>
 </RCC>

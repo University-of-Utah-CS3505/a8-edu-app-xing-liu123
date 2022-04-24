@@ -218,22 +218,6 @@
        <string>Spear</string>
       </property>
      </widget>
-     <widget class="QLabel" name="locationLabel">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>10</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="text">
-       <string>X: Y:</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="catchButton">
       <property name="geometry">
        <rect>
@@ -400,7 +384,6 @@
      <zorder>fish2Label</zorder>
      <zorder>fish3Label</zorder>
      <zorder>spearLabel</zorder>
-     <zorder>locationLabel</zorder>
      <zorder>catchButton</zorder>
      <zorder>goToQuizButton</zorder>
      <zorder>journalButton</zorder>
@@ -618,11 +601,15 @@
      <widget class="QPushButton" name="infoBackButton">
       <property name="geometry">
        <rect>
-        <x>670</x>
+        <x>660</x>
         <y>480</y>
-        <width>91</width>
+        <width>101</width>
         <height>61</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none;
+color: white;</string>
       </property>
       <property name="text">
        <string>Back to Fishing</string>
@@ -641,6 +628,33 @@
        <string>Next Fish Test</string>
       </property>
      </widget>
+     <widget class="QLabel" name="fishInfoPageBackgroundImagelabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>570</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>fishInfoPageBackgroundImagelabel</zorder>
+     <zorder>CongratsLabel</zorder>
+     <zorder>fishNameLabel</zorder>
+     <zorder>inforFishPicLabel</zorder>
+     <zorder>infoQ1Label</zorder>
+     <zorder>infoQ2Label</zorder>
+     <zorder>infoQ3Label</zorder>
+     <zorder>infoQ4Label</zorder>
+     <zorder>infoA1Label</zorder>
+     <zorder>infoA2Label</zorder>
+     <zorder>infoA3Label</zorder>
+     <zorder>infoA4Label</zorder>
+     <zorder>infoBackButton</zorder>
+     <zorder>nextFishTestButton</zorder>
     </widget>
     <widget class="QWidget" name="QuizInfoPage">
      <widget class="QLabel" name="quizQ1Label">
@@ -1068,7 +1082,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
