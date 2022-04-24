@@ -128,6 +128,11 @@ private:
     QAudioOutput* bgmOutput = new QAudioOutput;
     // Sound Effects
     QSoundEffect SE_GameOver;
+
+    //progress for levels
+    int pondProgess = 0;
+    int riverProgess = 0;
+    int seaProgess = 0;
 };
 #endif // VIEW_H
 
