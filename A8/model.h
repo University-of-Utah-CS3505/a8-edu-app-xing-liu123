@@ -5,7 +5,6 @@
 #include <Box2D/Box2D.h>
 //#include <QAudio>
 #include <QTimer>
-#include <QTime>
 #include <QMap>
 #include "hitlistener.h"
 #include <QImage>
@@ -102,7 +101,6 @@ private:
     int fish3X;
     int fish3Y;
     int quizTimeCounter;
-    QTime *time;
     QTimer *timer;
     QTimer *quizTimer;
     void initFish1();
@@ -116,7 +114,7 @@ private:
 
     QString currFish;
     TypeOfWater waterType;
-    QMap<QString, int> catchedFish;
+    QVector<QString> catchedFish;
     int correctAnsw;
     int correctAnswForProgBar;
 

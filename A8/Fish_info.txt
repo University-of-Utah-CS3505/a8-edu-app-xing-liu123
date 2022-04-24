@@ -78,7 +78,7 @@ Rarity:Legendary
 
 Alligator Gar
 What is my Name?: Gar
-Where can you find me?: Alligator gar are present in the Gulf coastal plain from the Econfina River in Florida west and south to Veracruz, Mexico. The historic range extends north in the Mississippi River basin to the lower reaches of the Missouri and Ohio rivers. In Texas, alligator gar may be found in large rivers and reservoirs, as well as in coastal bays. Recent surveys indicate the species is declining or has disappeared in many areas of the southeastern United States. 
+Where can you find me?: In the Gulf coastal in Florida west and south to Veracruz, Mexico.
 How big can I get?: 49 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/AlligatorGar.jfif
@@ -97,7 +97,7 @@ Rarity:Common
 WaterType:river
 Bitterling
 What is my Name?: Bitterling
-Where can you find me?: Native to areas of Europe from the Seine River in France to Asia Minor and northern China.
+Where can you find me?: In France to Asia Minor and northern China.
 How big can I get?: 3 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Bitterling.png
@@ -124,7 +124,7 @@ Rarity:Common
 
 Soft-shelled turtle
 What is my Name?: Soft-shelled turtle
-Where can you find me?: throughout most of the United States, from the central-eastern U.S. to Wisconsin and Minnesota, and as far south as Mexico.
+Where can you find me?: Throughout most of the United States
 How big can I get?: 19 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Softshelledturtle.jpg
@@ -133,7 +133,7 @@ Rarity:Legendary
 
 Snapping Turtle
 What is my Name?: Snapping Turtle
-Where can you find me?:  North America from eastern Canada and New England to the Rockies, and they are also found in pockets from Mexico and Central America to Ecuador. 
+Where can you find me?:  North America from eastern Canada and New England
 How big can I get?:14 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/SnappingTurtle.jpg
@@ -151,7 +151,7 @@ Rarity:common
 
 Yellow perch
 What is my Name?: Yellow perch
-Where can you find me?: Yellow perch are only found in North America; they are native to the tributaries of the Arctic and Atlantic Oceans, and the Great Lakes–St. Lawrence River and Mississippi River basins. In Canada, its native range extends throughout Nova Scotia and Quebec north to the Mackenzie River.
+Where can you find me?: Yellow perch are only found in North America
 How big can I get?: 7.5 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/YellowPerch.jpg
@@ -169,7 +169,7 @@ Rarity:Common
 
 Pike
 What is my Name?: Pike
-Where can you find me?: Northern pike are native to North America and Eurasia. They are found from Labrador west to Alaska, south to Pennsylvannia, Missouri and Nebraska.
+Where can you find me?: Northern pike are native to North America and Eurasia
 How big can I get?: 22 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Pike.jpg
@@ -178,7 +178,7 @@ Rarity:Rare
 
 Cherry salmon
 What is my Name?: Cherry salmon
-Where can you find me?: in the Western Pacific, from the Kamchatka Peninsula to Sakhalin Island, the Kuril Islands, Primorsky Krai and south through Korea, Japan and even Taiwan.
+Where can you find me?: in the Western Pacific
 How big can I get?: 30 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Cherrysalmon.jpg
@@ -188,7 +188,7 @@ Rarity:Legendary
 WaterType:sea
 Sea horse
 What is my Name?: Sea horse
-Where can you find me?: shallow tropical and temperate salt water throughout the world, from about 45°S to 45°N. They live in sheltered areas such as seagrass beds, estuaries, coral reefs, and mangroves.
+Where can you find me?: shallow tropical and temperate salt water throughout the world
 How big can I get?: 14 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/seahorse.png
@@ -197,7 +197,7 @@ Rarity:Legendary
 
 Clown fish
 What is my Name?: Clown fish
-Where can you find me?: warm waters, such as the Red Sea and Pacific Oceans, in sheltered reefs or lagoons, living in anemone.
+Where can you find me?: warm waters, such as the Red Sea and Pacific Oceans
 How big can I get?: 4.3 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Clownfish.jpg
@@ -206,7 +206,7 @@ Rarity:Common
 
 Surgeonfish
 What is my Name?: Surgeonfish
-Where can you find me?: shallow marine reefs throughout the western Atlantic Ocean, the Caribbean Sea, and the Gulf of Mexico. 
+Where can you find me?: Throughout the western Atlantic Ocean, the Caribbean Sea, and the Gulf of Mexico.
 How big can I get?: 12 in
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/NH-Icon-surgeonfish.png
@@ -215,7 +215,7 @@ Rarity:Rare
 
 Butterfly fish
 What is my Name?: Butterfly fish
-Where can you find me?: tropical reefs around the world but are concentrated in the Indo-Pacific oceanic region.
+Where can you find me?: In the Indo-Pacific oceanic region.
 How big can I get?: 8.7 in
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/butterflyfish.jpg
@@ -224,7 +224,7 @@ Rarity:Common
 
 Napoleonfish
 What is my Name?: Napoleonfish
-Where can you find me?: warm waters of the Pacific Ocean, the Indian Ocean and the Red Sea, mainly on coral reef edges and drop-offs. 
+Where can you find me?: warm waters of the Pacific Ocean, the Indian Ocean and the Red Sea
 How big can I get?: 7.5 ft
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/napoleonfish.jpg
@@ -242,7 +242,7 @@ Rarity:Rare
 
 Blowfish
 What is my Name?: Blowfish
-Where can you find me?: tropical and subtropical ocean waters, but some species live in brackish and even fresh water.
+Where can you find me?: tropical and subtropical ocean waters
 How big can I get?: 24 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Blowfish.png
@@ -251,7 +251,7 @@ Rarity:Common
 
 Puffer fish
 What is my Name?: Puffer fish
-Where can you find me?: tropical and subtropical ocean waters, but some species live in brackish and even fresh water.
+Where can you find me?: tropical and subtropical ocean waters
 How big can I get?: 24 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Pufferfish.jpeg
@@ -260,7 +260,7 @@ Rarity:Rare
 
 Anchovy
 What is my Name?: Anchovy
-Where can you find me?: Most species are found in marine waters, but several will enter brackish water, and some in South America are restricted to fresh water.
+Where can you find me?: Most species are found in marine waters
 How big can I get?: 10 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Anchovy.png
@@ -269,7 +269,7 @@ Rarity:Common
 
 Saw shark
 What is my Name?: Saw shark
-Where can you find me?: tropical and temperate marine waters of the western Atlantic Ocean near Florida and the Bahamas, the Indian Ocean near India and southeastern Africa, and the Pacific Ocean near eastern Asia and Australia.
+Where can you find me?: In western Atlantic Ocean near Florida and the Bahamas
 How big can I get?: 49 in.
 Am I an endangered species?: Yes
 ActualImagefilepath :/fishPics/Sawshark.jpg

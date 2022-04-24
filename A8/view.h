@@ -10,6 +10,7 @@
 #include <QHoverEvent>
 #include <QPixmap>
 #include <iostream>
+#include <QCloseEvent>
 
 // Uncomment this when working on audios
 #include <QMediaPlayer>
@@ -105,12 +106,15 @@ private slots:
     //Set up count down
     void displayCountDown(QString time);
 
+    //Check before closing
+    void closeEvent(QCloseEvent *event);
+
 private:
     Ui::View *ui;
     QTimer * time;
     QImage spearImage;
-    int const startPage = 0; //it was 0
-    int const fishingPage = 1; //it was 1
+    int const startPage = 0;
+    int const fishingPage = 1;
     int const infoPage = 2;
     int const quizPage = 3;
     int const journalPage = 4;
@@ -128,6 +132,11 @@ private:
     QAudioOutput* bgmOutput = new QAudioOutput;
     // Sound Effects
     QSoundEffect SE_GameOver;
+
+    //progress for levels
+    int pondProgess = 0;
+    int riverProgess = 0;
+    int seaProgess = 0;
 };
 #endif // VIEW_H
 
