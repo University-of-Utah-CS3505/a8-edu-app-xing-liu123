@@ -3,6 +3,7 @@
 #include "ui_view.h"
 #include <iostream>
 #include <QPropertyAnimation>
+#include <QMessageBox>
 
 View::View(Model &model,  QWidget *parent)
     : QMainWindow(parent)
@@ -310,7 +311,7 @@ void View::on_freshWaterButton_clicked()
     emit updateWorld(ui->freshWaterButton->text());
 
     //reset progress bar for next level
-    ui->progressBar2NextLevel->setValue(0);
+    ui->progressBar2NextLevel->setValue(pondProgess);
 }
 
 
@@ -325,7 +326,7 @@ void View::on_smoothWaterButton_clicked()
     emit updateWorld(ui->smoothWaterButton->text());
 
     //reset progress bar for next level
-    ui->progressBar2NextLevel->setValue(0);
+    ui->progressBar2NextLevel->setValue(riverProgess);
 }
 
 
@@ -340,7 +341,7 @@ void View::on_saltWaterButton_clicked()
     emit updateWorld(ui->saltWaterButton->text());
 
     //reset progress bar for next level
-    ui->progressBar2NextLevel->setValue(0);
+    ui->progressBar2NextLevel->setValue(seaProgess);
 }
 
 
@@ -489,7 +490,6 @@ void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
             count++;
         }
     }
-
 }
 
 
@@ -637,14 +637,18 @@ void View::pressTestSoundButton(){
 
 void View::updateNextLevelProgress(int progress, QChar waterType){
     //updated progress bar for nextlevel
-    //int progress = ui->progressBar2NextLevel->value() + 1;
     ui->progressBar2NextLevel->setValue(progress);
 
     //if progessbar is 5 or 100% we unlock the next level
-    if(progress == 5)
+    // we can remove the condition for watertype not equal to s, if we create another level after sea
+    if(progress == 5 )
     {
         ui->congratsLabel->setVisible(true);
         ui->closeCongratsButton->setVisible(true);
+        if(waterType == 's')
+        {
+            ui->congratsLabel->setText("Congrats you made it to the end of the level. \n We hope to release more levels soon. \n Keep up catching the fish and fill in the journal :D");
+        }
         ui->closeCongratsButton->setEnabled(true);
 
         //TODO unlock the next level here
@@ -657,8 +661,14 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         {
             ui->saltWaterButton->setEnabled(true);
         }
-
     }
+
+    if(waterType == 's')
+        seaProgess = progress;
+    else if(waterType == 'p')
+        pondProgess = progress;
+    else
+        riverProgess = progress;
 }
 
 void View::updateNextSpearProgress(int progress){
@@ -701,3 +711,22 @@ void View::on_closeCongratsButton_clicked()
     ui->closeCongratsButton->setVisible(false);
 }
 
+/**
+ * @brief View::closeEvent
+ * Opens a warning message, letting the user know they are exiting the game and giving them the choice to exit out or cancel the action.
+ * @param event
+ */
+void View::closeEvent(QCloseEvent *event){
+
+    //TODO: didn't stop the crash do more research
+    QMessageBox::StandardButton closeBtn = QMessageBox::warning(this, "Spear Fishing",
+                                                                tr("Are you sure you want to close the Game?"),
+                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                QMessageBox::No);
+    if(closeBtn != QMessageBox::Yes){
+        event->ignore();
+    }
+    else{
+        event->accept();
+    }
+}
