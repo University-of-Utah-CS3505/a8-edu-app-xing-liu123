@@ -10,7 +10,7 @@ Model::Model(QObject *parent)
     : QObject{parent}
 {
     loadInfoQ();
-    currentSpear = 2;
+    currentSpear = 1;
     isShot = false;
     timer = new QTimer(this);
     quizTimer = new QTimer(this);
@@ -655,9 +655,9 @@ void Model::getFish(){
 
         //if it is then check how many times it has been catched
         //and get the %4 num to get the questionString
-        int questionNum = catchedFish[currFish] % 4; //returns 0,1,2,3
+        int questionNum = catchedFish.indexOf(currFish) % 4; //returns 0,1,2,3
         //update the value
-        catchedFish[currFish]++;
+//        catchedFish[currFish]++;
 
         //Get the question and aswer
         question = questions[questionNum];
@@ -670,11 +670,11 @@ void Model::getFish(){
 
         //Set up timer for quiz
         quizCountDown();
-        emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw2, fishPic, currFish);
+        emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw3, fishPic, currFish);
     }
     //If it is not catched
     else{
-        catchedFish.insert(currFish, 1);
+        catchedFish.push_back(currFish);
         //send all infomation of the fish
         QString answer1 = fishQA.value(currFish).value(questions[0]);
         QString answer2 = fishQA.value(currFish).value(questions[1]);
@@ -712,10 +712,15 @@ QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
     //Based on our question number (The question we did)
     QString randAnsw = fishQA.value(randFish).value(question);
 
-    if(randAnsw != answer && randAnsw != randAns1 && randAnsw != randAns2 )
-        return randAnsw;
-    else
+//    if(randAnsw != answer && randAnsw != randAns1 && randAnsw != randAns2 )
+//        return randAnsw;
+//    else
+//        return getRandAnswer(questionNum, question, answer, randAns1, randAns2);
+
+    if(randAnsw == answer || randAnsw == randAns1 || randAnsw == randAns2 )
         return getRandAnswer(questionNum, question, answer, randAns1, randAns2);
+    else
+        return randAnsw;
 }
 
 
@@ -724,7 +729,6 @@ QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
 
 
 //Helper method to get a random fish from the water type we are currently in
-//TODO: TEst this!!!
 QString Model::getRandFish(int randNum){
 //    resetWorld();
     QString randFish;
@@ -773,6 +777,7 @@ void Model::updateQuizTime(){
 //Checks user answer
 void Model::checkAnswer(QString question, QString userAnswer){
     QString correctAnswer = fishQA.value(currFish).value(question);
+    quizTimer->stop();
     if(correctAnswer == userAnswer){
         correctAnsw++;
         correctAnswForProgBar++;

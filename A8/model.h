@@ -114,7 +114,7 @@ private:
 
     QString currFish;
     TypeOfWater waterType;
-    QMap<QString, int> catchedFish;
+    QVector<QString> catchedFish;
     int correctAnsw;
     int correctAnswForProgBar;
 

@@ -351,7 +351,6 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
     ui->quizBackgroundImageLabel->setStyleSheet("border-image: url(:/Background_QuizInfoPage.png)");
 
 
-    ui->countDownLabel->setVisible(true);
     ui->stackedWidget->setCurrentIndex(quizPage);
     ui->quizFishName->setText(fishName);
     ui->quizQ1Label->setText(question);
@@ -426,6 +425,7 @@ void View::displayCountDown(QString time){
     ui->countDownLabel->setText(time);
     if(time == "0"){
         //send wrong answer to model
+        disableQuizButtons();
         QString question = ui->quizQ1Label->text();
         emit checkUserAnswer(question, " ");
     }
@@ -606,7 +606,6 @@ void View::showResult(bool result, QString answer){
         ui->resultLabel->setText("You are incorrect, try again \n This is the correct answer: \n" + answer);
     ui->resultLabel->setVisible(true);
     ui->quizBackFishButton->setVisible(true);
-    ui->countDownLabel->setVisible(false);
 }
 
 
