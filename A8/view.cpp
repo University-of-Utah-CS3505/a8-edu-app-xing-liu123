@@ -13,11 +13,28 @@ View::View(Model &model,  QWidget *parent)
     ui->setupUi(this);
     this->setMouseTracking(true);
 
+
+
+    /*
+     * Set quiz buttons to be unvisibles
+    **/
+    ui->nextQuestionButton->setVisible(false);
+    ui->nextFishTestButton->setVisible(false);
+    ui->catchButton->setVisible(false);
+    ui->goToQuizButton->setVisible(false);
+
     /*
      * Button style section
     **/
-    ui->freshWaterButton->setStyleSheet("border-image: url(:/buttons/Button_FreshWater_Test.png)"); // Test
+    ui->freshWaterButton->setStyleSheet("border-image: url(:/buttons/Button_FreshWater.png)"); // Test
     ui->freshWaterButton->resize(180,60); // Find the original PNG size and divide it by 2.5. Set the values as QPushButton size.
+    ui->saltWaterButton->setStyleSheet("border-image: url(:/buttons/Button_SeaWater.png)");
+    ui->smoothWaterButton->setStyleSheet("border-image: url(:/buttons/Button_SmoothWater.png)");
+
+    /*
+     * Background style section
+    **/
+    ui->mainMenuBackgroundImageLabel->setStyleSheet("border-image: url(:/Background_MainMenu.png)");
 
     /*
      * Audio section
@@ -45,26 +62,14 @@ View::View(Model &model,  QWidget *parent)
     // [TEST] Connect TestSound Button to an event
     connect(ui->TestSoundButton, &QPushButton::clicked, this, &View::pressTestSoundButton);
 
-
-
-
-    //Set up labels
-    QPixmap water;
-    water.load(":/water/freshW.jpg");
-    ui->freshPicLabel->setPixmap(water.scaled(ui->freshPicLabel->width(), ui->freshPicLabel->height()));
-    water.load(":/water/smoothW.jpg");
-    ui->smoothPicLabel->setPixmap(water.scaled(ui->smoothPicLabel->width(), ui->smoothPicLabel->height()));
-    water.load(":/water/saltW1.jpg");
-    ui->saltPicLabel->setPixmap(water.scaled(ui->saltPicLabel->width(), ui->saltPicLabel->height()));
-
     // Set images for moving fishes
-    ui->fish1Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)"); //
+    ui->fish1Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
     ui->fish2Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
     ui->fish3Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
 
     // set image for the spear
     QPixmap spearPix;
-    spearPix.load(":/spear.png");
+    spearPix.load(":/spear1.png");
     ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
 
     //Set up the initial Widget
@@ -76,14 +81,6 @@ View::View(Model &model,  QWidget *parent)
     //congrats close button
     ui->closeCongratsButton->setEnabled(false);
     ui->closeCongratsButton->setVisible(false);
-
-
-    //setup the buttons and images for the game
-
-    ui->saltWaterButton->setEnabled(false);
-    ui->smoothWaterButton->setEnabled(false);
-    ui->saltPicLabel->setEnabled(false);
-    ui->smoothPicLabel->setEnabled(false);
 
     //Connections to set up first
     connect(this,
@@ -252,7 +249,6 @@ void View::displayFish2(int x1, int y1, int x2, int y2){
     animation->setEndValue(QPoint(x2,y2));
     animation->setEasingCurve(QEasingCurve::Linear);
     animation->start();
-
 }
 
 void View::displayFish3(int x1, int y1, int x2, int y2){
@@ -262,7 +258,6 @@ void View::displayFish3(int x1, int y1, int x2, int y2){
     animation->setEndValue(QPoint(x2,y2));
     animation->setEasingCurve(QEasingCurve::Linear);
     animation->start();
-
 }
 
 // Display the spear moving from initial position to final position
@@ -299,9 +294,7 @@ void View::resetSpearLabel(QPixmap map){
 
 // send a signal to shot the spear
 void View::mousePressEvent(QMouseEvent *event){
-
     if(ui->stackedWidget->currentIndex() == fishingPage){
-
         QPoint point = event->pos();
         emit shootSpear(point.x(), point.y());
     }
@@ -313,7 +306,7 @@ void View::on_freshWaterButton_clicked()
 
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Pond.png");
-    ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+    ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->freshWaterButton->text());
 
@@ -328,7 +321,7 @@ void View::on_smoothWaterButton_clicked()
 
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_River.png");
-    ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+    ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->smoothWaterButton->text());
 
@@ -343,7 +336,7 @@ void View::on_saltWaterButton_clicked()
 
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Ocean.png");
-    ui->backgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+    ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
 
     emit updateWorld(ui->saltWaterButton->text());
 
@@ -355,6 +348,9 @@ void View::on_saltWaterButton_clicked()
 void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
                      QString randAnswer2, QString randAnswer3,
                      QString fishPic, QString fishName){
+    // Set up quiz background
+    ui->quizBackgroundImageLabel->setStyleSheet("border-image: url(:/Background_QuizInfoPage.png)");
+
 
     ui->countDownLabel->setVisible(true);
     ui->stackedWidget->setCurrentIndex(quizPage);
@@ -462,7 +458,7 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
     QPixmap pix;
     pix.load(fishPic);
     ui->inforFishPicLabel->setPixmap(pix.scaled(ui->inforFishPicLabel->width(), ui->inforFishPicLabel->height()));
-
+    ui->fishInfoPageBackgroundImagelabel->setStyleSheet("border-image: url(:/Background_FishInfoPage.png)");
 }
 
 //**********************Journal *****************************
@@ -660,13 +656,11 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         if(waterType == 'p'){
 
             ui->smoothWaterButton->setEnabled(true);
-            ui->smoothPicLabel->setEnabled(true);
 
         }
         else if(waterType =='r')
         {
             ui->saltWaterButton->setEnabled(true);
-            ui->saltPicLabel->setEnabled(true);
         }
     }
 

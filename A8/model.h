@@ -5,7 +5,6 @@
 #include <Box2D/Box2D.h>
 //#include <QAudio>
 #include <QTimer>
-#include <QTime>
 #include <QMap>
 #include "hitlistener.h"
 #include <QImage>
@@ -102,14 +101,14 @@ private:
     int fish3X;
     int fish3Y;
     int quizTimeCounter;
-    QTime *time;
     QTimer *timer;
     QTimer *quizTimer;
     void initFish1();
     void initFish2();
     void initFish3();
     void initSpear();
-    QString getRandAnswer(int questionNum, QString question, QString answer);
+    QString getRandAnswer(int questionNum, QString question, QString answer,
+                          QString randAns1, QString randAns2);
 
     HitListener *contactListener;
 
@@ -134,6 +133,7 @@ private:
     QMultiMap<QString, QMap<QString, QString> > fishQA;
     QString getRandFish(int randNum);
     void loadInfoQ();
+    //void compareAnswers();
 
 
     //TESTING Variable: slots for Info and quiz

@@ -36,24 +36,11 @@
      <property name="mouseTracking">
       <bool>false</bool>
      </property>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>411</width>
-        <height>261</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QPushButton" name="freshWaterButton">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>290</y>
+        <x>10</x>
+        <y>310</y>
         <width>161</width>
         <height>81</height>
        </rect>
@@ -68,8 +55,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>440</y>
+        <x>150</x>
+        <y>20</y>
         <width>161</width>
         <height>71</height>
        </rect>
@@ -84,8 +71,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>290</y>
+        <x>600</x>
+        <y>330</y>
         <width>161</width>
         <height>81</height>
        </rect>
@@ -97,8 +84,8 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>60</y>
+        <x>-140</x>
+        <y>180</y>
         <width>611</width>
         <height>31</height>
        </rect>
@@ -114,51 +101,6 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="smoothPicLabel">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>290</y>
-        <width>201</width>
-        <height>141</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="saltPicLabel">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>140</y>
-        <width>201</width>
-        <height>141</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="freshPicLabel">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>140</y>
-        <width>201</width>
-        <height>141</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
       </property>
      </widget>
      <widget class="QPushButton" name="mainMenuMucisButton">
@@ -187,6 +129,26 @@
        <string>Test Sound</string>
       </property>
      </widget>
+     <widget class="QLabel" name="mainMenuBackgroundImageLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>570</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>mainMenuBackgroundImageLabel</zorder>
+     <zorder>freshWaterButton</zorder>
+     <zorder>smoothWaterButton</zorder>
+     <zorder>saltWaterButton</zorder>
+     <zorder>label_3</zorder>
+     <zorder>mainMenuMucisButton</zorder>
+     <zorder>TestSoundButton</zorder>
     </widget>
     <widget class="QWidget" name="FishingPage">
      <property name="mouseTracking">
@@ -256,22 +218,6 @@
        <string>Spear</string>
       </property>
      </widget>
-     <widget class="QLabel" name="locationLabel">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>10</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="text">
-       <string>X: Y:</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="catchButton">
       <property name="geometry">
        <rect>
@@ -324,7 +270,7 @@
        <string>Main Menu</string>
       </property>
      </widget>
-     <widget class="QLabel" name="backgroundImageLabel">
+     <widget class="QLabel" name="fishingBackgroundImageLabel">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -433,12 +379,11 @@
        <string>Close</string>
       </property>
      </widget>
-     <zorder>backgroundImageLabel</zorder>
+     <zorder>fishingBackgroundImageLabel</zorder>
      <zorder>fish1Label</zorder>
      <zorder>fish2Label</zorder>
      <zorder>fish3Label</zorder>
      <zorder>spearLabel</zorder>
-     <zorder>locationLabel</zorder>
      <zorder>catchButton</zorder>
      <zorder>goToQuizButton</zorder>
      <zorder>journalButton</zorder>
@@ -656,11 +601,15 @@
      <widget class="QPushButton" name="infoBackButton">
       <property name="geometry">
        <rect>
-        <x>670</x>
+        <x>660</x>
         <y>480</y>
-        <width>91</width>
+        <width>101</width>
         <height>61</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none;
+color: white;</string>
       </property>
       <property name="text">
        <string>Back to Fishing</string>
@@ -679,35 +628,40 @@
        <string>Next Fish Test</string>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="QuizInfoPage">
-     <widget class="QLabel" name="QuizTitleLabel">
+     <widget class="QLabel" name="fishInfoPageBackgroundImagelabel">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>0</x>
         <y>0</y>
-        <width>101</width>
-        <height>41</height>
+        <width>800</width>
+        <height>570</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
       <property name="text">
-       <string>Quiz</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <string/>
       </property>
      </widget>
+     <zorder>fishInfoPageBackgroundImagelabel</zorder>
+     <zorder>CongratsLabel</zorder>
+     <zorder>fishNameLabel</zorder>
+     <zorder>inforFishPicLabel</zorder>
+     <zorder>infoQ1Label</zorder>
+     <zorder>infoQ2Label</zorder>
+     <zorder>infoQ3Label</zorder>
+     <zorder>infoQ4Label</zorder>
+     <zorder>infoA1Label</zorder>
+     <zorder>infoA2Label</zorder>
+     <zorder>infoA3Label</zorder>
+     <zorder>infoA4Label</zorder>
+     <zorder>infoBackButton</zorder>
+     <zorder>nextFishTestButton</zorder>
+    </widget>
+    <widget class="QWidget" name="QuizInfoPage">
      <widget class="QLabel" name="quizQ1Label">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>300</y>
+        <x>310</x>
+        <y>310</y>
         <width>191</width>
         <height>31</height>
        </rect>
@@ -720,6 +674,9 @@
       <property name="text">
        <string>What is my name? </string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QPushButton" name="answ1Button">
       <property name="geometry">
@@ -729,6 +686,9 @@
         <width>381</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
       </property>
       <property name="text">
        <string>PushButton</string>
@@ -743,6 +703,9 @@
         <height>51</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
+      </property>
       <property name="text">
        <string>PushButton</string>
       </property>
@@ -755,6 +718,9 @@
         <width>381</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
       </property>
       <property name="text">
        <string>PushButton</string>
@@ -858,6 +824,9 @@
         <height>51</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border: none</string>
+      </property>
       <property name="text">
        <string>PushButton</string>
       </property>
@@ -882,8 +851,20 @@
        <string>0</string>
       </property>
      </widget>
-     <zorder>QuizTitleLabel</zorder>
-     <zorder>quizQ1Label</zorder>
+     <widget class="QLabel" name="quizBackgroundImageLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>570</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>quizBackgroundImageLabel</zorder>
      <zorder>answ1Button</zorder>
      <zorder>answ1Button_2</zorder>
      <zorder>answ1Button_3</zorder>
@@ -894,6 +875,7 @@
      <zorder>answ1Button_4</zorder>
      <zorder>resultLabel</zorder>
      <zorder>countDownLabel</zorder>
+     <zorder>quizQ1Label</zorder>
     </widget>
     <widget class="QWidget" name="JournalPage_1">
      <widget class="QLabel" name="journalTittleLabel">

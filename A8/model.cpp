@@ -10,23 +10,19 @@ Model::Model(QObject *parent)
     : QObject{parent}
 {
     loadInfoQ();
-    currentSpear = 1;
+    currentSpear = 2;
     isShot = false;
-    time = new QTime(0,1,0);
     timer = new QTimer(this);
     quizTimer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
-    connect(quizTimer, &QTimer::timeout, this, &Model::quizCountDown);
+    connect(quizTimer, &QTimer::timeout, this, &Model::updateQuizTime);
 
     correctAnsw = 0;
     quizTimeCounter =10;
-
-    //TODO: FIgure out an effective way to initialize array of fish
 }
 
 Model::~Model(){
     delete world;
-    delete time; //TODO: maybe not??????
 }
 
 // set up the physical world
@@ -61,7 +57,7 @@ void Model::setUpWorld(QString water){
     initSpear();
 
     // start the world imitation
-    timer->start(25);
+    timer->start(10);
 }
 
 
@@ -79,7 +75,7 @@ void Model::initFish1(){
     fish1->SetUserData((void*)1);
 
     //Give velocity to body (Slow)
-    b2Vec2 velocity1(4.0f, 0.0f);
+    b2Vec2 velocity1(1.6f, 0.0f);
     fish1->SetLinearVelocity(velocity1);
 
     // Define another box shape for our dynamic body.
@@ -100,7 +96,6 @@ void Model::initFish1(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 1;
-    //    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish1->CreateFixture(&fixtureDefFish);
@@ -120,7 +115,7 @@ void Model::initFish2(){
     fish2 = world->CreateBody(&bodyDef2);
 
     //Give velocity to body (Medium)
-    b2Vec2 velocity2(6.0f, 0.0f);
+    b2Vec2 velocity2(2.4f, 0.0f);
     fish2->SetLinearVelocity(velocity2);
 
     // Define another box shape for our dynamic body.
@@ -141,7 +136,6 @@ void Model::initFish2(){
     // Set the bounciness
     fixtureDefFish.restitution = 0.0f;
     fixtureDefFish.userData = (void*) 2;
-//    fixtureDefFish.isSensor = true;
 
     // Add the shape to the body.
     fish2->CreateFixture(&fixtureDefFish);
@@ -160,7 +154,7 @@ void Model::initFish3(){
     fish3 = world->CreateBody(&bodyDef3);
 
     //Give velocity to body (Fast)
-    b2Vec2 velocity3(8.0f, 0.0f);
+    b2Vec2 velocity3(3.2f, 0.0f);
     fish3->SetLinearVelocity(velocity3);
 
     // Define another box shape for our dynamic body.
@@ -190,7 +184,7 @@ void Model::initFish3(){
 void Model::initSpear(){
     switch(currentSpear){
         case 1:
-            spearImage.load(":/spear.png");
+            spearImage.load(":/spear1.png");
             break;
         case 2:
             spearImage.load(":/spear2.png");
@@ -220,16 +214,16 @@ void Model::initSpear(){
     // give different collision box size to different spears
     switch(currentSpear){
         case 1:
-            dynamicSpear.SetAsBox(0.012f, 0.45f);
+            dynamicSpear.SetAsBox(0.012f, 0.36f);
             break;
         case 2:
-            dynamicSpear.SetAsBox(0.014f, 0.47f);
+            dynamicSpear.SetAsBox(0.012f, 0.40f);
             break;
         case 3:
-            dynamicSpear.SetAsBox(0.016f, 0.49f);
+            dynamicSpear.SetAsBox(0.012f, 0.44f);
             break;
         case 4:
-            dynamicSpear.SetAsBox(0.018f, 0.51f);
+            dynamicSpear.SetAsBox(0.012f, 0.48f);
             break;
     }
 
@@ -247,7 +241,6 @@ void Model::initSpear(){
     // Set the bounciness
     fixtureDef.restitution = 0.0f;
     fixtureDef.userData = (void*) 4;
-    //fixtureDef.isSensor = true;
 
     // Add the shape to the body.
     spear->CreateFixture(&fixtureDef);
@@ -313,16 +306,16 @@ void Model::shotSpear(int x, int y){
     // different spears have different speeds
     switch(currentSpear){
         case 1:
-            velocity = b2Vec2(velocityX*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(50/(pow(velocityX,2)+pow(velocityY,2))));
+            velocity = b2Vec2(velocityX*sqrt(8/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(8/(pow(velocityX,2)+pow(velocityY,2))));
             break;
         case 2:
-            velocity = b2Vec2(velocityX*sqrt(72/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(72/(pow(velocityX,2)+pow(velocityY,2))));
+            velocity = b2Vec2(velocityX*sqrt(12/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(12/(pow(velocityX,2)+pow(velocityY,2))));
             break;
         case 3:
-            velocity = b2Vec2(velocityX*sqrt(128/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(128/(pow(velocityX,2)+pow(velocityY,2))));
+            velocity = b2Vec2(velocityX*sqrt(16/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(16/(pow(velocityX,2)+pow(velocityY,2))));
             break;
         case 4:
-            velocity = b2Vec2(velocityX*sqrt(200/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(200/(pow(velocityX,2)+pow(velocityY,2))));
+            velocity = b2Vec2(velocityX*sqrt(20/(pow(velocityX,2)+pow(velocityY,2))), velocityY*sqrt(20/(pow(velocityX,2)+pow(velocityY,2))));
             break;
     }
 
@@ -468,7 +461,7 @@ void Model::resetWorld(){
     initFish1();
     initFish2();
     initFish3();
-    timer->start(25);
+    timer->start(10);
 }
 
 // rotate the spear when the player moving cursor
@@ -670,19 +663,12 @@ void Model::getFish(){
         question = questions[questionNum];
         answer = fishQA.value(currFish).value(question);
 
-        //send to method to get two other random values of fish
-        QString randAsnw1 = getRandAnswer(questionNum,question, answer);
-        QString randAsnw2 = getRandAnswer(questionNum, question, answer);
-        QString randAsnw3 = getRandAnswer(questionNum, question, answer);
+        //send to method to get two other random values of fish (If our question is yes/no answer do not get fish)
+        QString randAsnw1 = getRandAnswer(questionNum,question, answer, "", "");
+        QString randAsnw2 = questionNum == 3? "N/A": getRandAnswer(questionNum, question, answer, randAsnw1, "");
+        QString randAsnw3 = questionNum == 3? "N/A": getRandAnswer(questionNum, question, answer, randAsnw1, randAsnw2);
 
-        //If we have question 3, the answer is just yes/no so we need no more answers
-        if(questionNum == 3){
-             randAsnw2 = "N/A";
-             randAsnw3 = "N/A";
-        }
-
-        //connect(timer, &QTimer::timeout, this, &Model::updateWorld);
-        //quizTimer->start(1000);
+        //Set up timer for quiz
         quizCountDown();
         emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw2, fishPic, currFish);
     }
@@ -718,19 +704,27 @@ void Model::getFish(){
 
 
 //Helper method that gets a random answer based on the question
-QString Model::getRandAnswer(int questionNum, QString question,  QString answer){
+QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
+                             QString randAns1, QString randAns2){
     //get a random fish
     QString randFish = getRandFish(rand()%10);
 
     //Based on our question number (The question we did)
     QString randAnsw = fishQA.value(randFish).value(question);
 
-    //if my answer is the same as my current answer, then repeat method
-    return randAnsw != answer? randAnsw: getRandAnswer(questionNum, question, answer);
+    if(randAnsw != answer && randAnsw != randAns1 && randAnsw != randAns2 )
+        return randAnsw;
+    else
+        return getRandAnswer(questionNum, question, answer, randAns1, randAns2);
 }
 
 
+
+
+
+
 //Helper method to get a random fish from the water type we are currently in
+//TODO: TEst this!!!
 QString Model::getRandFish(int randNum){
 //    resetWorld();
     QString randFish;
@@ -751,7 +745,7 @@ QString Model::getRandFish(int randNum){
     if((currentSpear == 1 && typeFish != "Common") ||
             ((currentSpear == 2 || currentSpear == 3) && typeFish == "Legendary") ||
             (randFish == currFish)){
-        getRandFish(rand()%10);
+        randFish = getRandFish(rand()%10);
     }
 
     return randFish;
@@ -761,18 +755,17 @@ QString Model::getRandFish(int randNum){
 
 void Model::quizCountDown(){
     quizTimeCounter = 10;
-    for(int i = 0; i<=10; i++){
-        QTimer::singleShot(1000 * i, this, &Model::updateQuizTime);
-    }
+        quizTimer->start(1000);
 }
 
 void Model::updateQuizTime(){
     emit sendCountDown(QString::number(quizTimeCounter));
-    quizTimeCounter--;
+    if(quizTimeCounter >0)
+        quizTimeCounter--;
+    else
+        quizTimer->stop();
 
 }
-
-
 
 
 
@@ -823,76 +816,71 @@ void Model::updateSpear(){
 //TESTING Code for quiz and Information WIndow
 //INFORMATION TESTING
 void Model::getTestInfoFish(){
-    QString fish;
-    if(waterType == TypeOfWater::TOW_PondWater)
-        fish = pondFish[currInfo];
-    else if(waterType == TypeOfWater::TOW_RiverWater)
-        fish = riverFish[currInfo];
-    else if(waterType == TypeOfWater::TOW_SeaWater)
-        fish = seaFish[currInfo];
-    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
+//    QString fish;
+//    if(waterType == TypeOfWater::TOW_PondWater)
+//        fish = pondFish[currInfo];
+//    else if(waterType == TypeOfWater::TOW_RiverWater)
+//        fish = riverFish[currInfo];
+//    else if(waterType == TypeOfWater::TOW_SeaWater)
+//        fish = seaFish[currInfo];
+//    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
 
-    if(!catchedFish.contains(fish))
-        catchedFish.insert(fish, 1);
+//    if(!catchedFish.contains(fish))
+//        catchedFish.insert(fish, 1);
 
-    //send all infomation of the fish
-    QString answer1 = fishQA.value(fish).value(questions[0]);
-    QString answer2 = fishQA.value(fish).value(questions[1]);
-    QString answer3 = fishQA.value(fish).value(questions[2]);
-    QString answer4 = fishQA.value(fish).value(questions[3]);
+//    //send all infomation of the fish
+//    QString answer1 = fishQA.value(fish).value(questions[0]);
+//    QString answer2 = fishQA.value(fish).value(questions[1]);
+//    QString answer3 = fishQA.value(fish).value(questions[2]);
+//    QString answer4 = fishQA.value(fish).value(questions[3]);
 
-    if(currInfo < 9)
-        currInfo++;
-    else
-        currInfo = 0;
+//    if(currInfo < 9)
+//        currInfo++;
+//    else
+//        currInfo = 0;
 
-    emit updateInformation(questions[0], answer1, questions[1], answer2,
-                           questions[2], answer3, questions[3], answer4,
-                           fish, fishPic);
+//    emit updateInformation(questions[0], answer1, questions[1], answer2,
+//                           questions[2], answer3, questions[3], answer4,
+//                           fish, fishPic);
 }
 
 
 //QUIZ TESTING
 void Model::getTestQuizInfo(){
-    QString answer;
-    QString fish;
-    if(waterType == TypeOfWater::TOW_PondWater)
-        fish = pondFish[currQuiz];
-    else if(waterType == TypeOfWater::TOW_RiverWater)
-        fish = riverFish[currQuiz];
-    else if(waterType == TypeOfWater::TOW_SeaWater)
-        fish = seaFish[currQuiz];
-    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
-    currFish = fish;
-    //Get the question and aswer
-    answer = fishQA.value(fish).value(questions[qNum]);
+//    QString answer;
+//    QString fish;
+//    if(waterType == TypeOfWater::TOW_PondWater)
+//        fish = pondFish[currQuiz];
+//    else if(waterType == TypeOfWater::TOW_RiverWater)
+//        fish = riverFish[currQuiz];
+//    else if(waterType == TypeOfWater::TOW_SeaWater)
+//        fish = seaFish[currQuiz];
+//    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
+//    currFish = fish;
+//    //Get the question and aswer
+//    answer = fishQA.value(fish).value(questions[qNum]);
 
-    //send to method to get two other random values of fish
-    QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer);
-    QString randAsnw2 = getRandAnswer(qNum, questions[qNum], answer);
-    QString randAsnw3 = getRandAnswer(qNum, questions[qNum], answer);
+//    //send to method to get two other random values of fish
+//    QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer, "", "");
+//    QString randAsnw2 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, "");
+//    QString randAsnw3 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, randAsnw2);
 
-    //If we have question 3, the answer is just yes/no so we need no more answers
-    if(qNum == 3){
-         randAsnw2 = "N/A";
-         randAsnw3 = "N/A";
-    }
 
-    //Counter of fish
-    if(currQuiz < 10 && qNum ==0)
-        currQuiz++;
-    else if(currQuiz >= 10 && qNum == 0)
-        currQuiz = 0;
+//    //Counter of fish
+//    if(currQuiz < 10 && qNum ==0)
+//        currQuiz++;
+//    else if(currQuiz >= 10 && qNum == 0)
+//        currQuiz = 0;
 
-    //quizTimer->start(1000);
-    quizCountDown();
-    emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2, randAsnw3, fishPic, fish);
+//    //quizTimer->start(1000);
+//    quizCountDown();
+//    emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2, randAsnw3, fishPic, fish);
 
-    //Counter of questions
-    if(qNum < 3)
-        qNum++;
-    else
-        qNum = 0;
+//    //Counter of questions
+//    if(qNum < 3)
+//        qNum++;
+//    else
+//        qNum = 0;
 }
 
 
