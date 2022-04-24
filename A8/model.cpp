@@ -12,7 +12,6 @@ Model::Model(QObject *parent)
     loadInfoQ();
     currentSpear = 1;
     isShot = false;
-    time = new QTime(0,1,0);
     timer = new QTimer(this);
     quizTimer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Model::updateWorld);
@@ -20,13 +19,10 @@ Model::Model(QObject *parent)
 
     correctAnsw = 0;
     quizTimeCounter =10;
-
-    //TODO: FIgure out an effective way to initialize array of fish
 }
 
 Model::~Model(){
     delete world;
-    delete time; //TODO: maybe not??????
 }
 
 // set up the physical world
@@ -728,6 +724,7 @@ QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
 
 
 //Helper method to get a random fish from the water type we are currently in
+//TODO: TEst this!!!
 QString Model::getRandFish(int randNum){
 //    resetWorld();
     QString randFish;
@@ -748,7 +745,7 @@ QString Model::getRandFish(int randNum){
     if((currentSpear == 1 && typeFish != "Common") ||
             ((currentSpear == 2 || currentSpear == 3) && typeFish == "Legendary") ||
             (randFish == currFish)){
-        getRandFish(rand()%10);
+        randFish = getRandFish(rand()%10);
     }
 
     return randFish;
@@ -819,71 +816,71 @@ void Model::updateSpear(){
 //TESTING Code for quiz and Information WIndow
 //INFORMATION TESTING
 void Model::getTestInfoFish(){
-    QString fish;
-    if(waterType == TypeOfWater::TOW_PondWater)
-        fish = pondFish[currInfo];
-    else if(waterType == TypeOfWater::TOW_RiverWater)
-        fish = riverFish[currInfo];
-    else if(waterType == TypeOfWater::TOW_SeaWater)
-        fish = seaFish[currInfo];
-    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
+//    QString fish;
+//    if(waterType == TypeOfWater::TOW_PondWater)
+//        fish = pondFish[currInfo];
+//    else if(waterType == TypeOfWater::TOW_RiverWater)
+//        fish = riverFish[currInfo];
+//    else if(waterType == TypeOfWater::TOW_SeaWater)
+//        fish = seaFish[currInfo];
+//    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
 
-    if(!catchedFish.contains(fish))
-        catchedFish.insert(fish, 1);
+//    if(!catchedFish.contains(fish))
+//        catchedFish.insert(fish, 1);
 
-    //send all infomation of the fish
-    QString answer1 = fishQA.value(fish).value(questions[0]);
-    QString answer2 = fishQA.value(fish).value(questions[1]);
-    QString answer3 = fishQA.value(fish).value(questions[2]);
-    QString answer4 = fishQA.value(fish).value(questions[3]);
+//    //send all infomation of the fish
+//    QString answer1 = fishQA.value(fish).value(questions[0]);
+//    QString answer2 = fishQA.value(fish).value(questions[1]);
+//    QString answer3 = fishQA.value(fish).value(questions[2]);
+//    QString answer4 = fishQA.value(fish).value(questions[3]);
 
-    if(currInfo < 9)
-        currInfo++;
-    else
-        currInfo = 0;
+//    if(currInfo < 9)
+//        currInfo++;
+//    else
+//        currInfo = 0;
 
-    emit updateInformation(questions[0], answer1, questions[1], answer2,
-                           questions[2], answer3, questions[3], answer4,
-                           fish, fishPic);
+//    emit updateInformation(questions[0], answer1, questions[1], answer2,
+//                           questions[2], answer3, questions[3], answer4,
+//                           fish, fishPic);
 }
 
 
 //QUIZ TESTING
 void Model::getTestQuizInfo(){
-    QString answer;
-    QString fish;
-    if(waterType == TypeOfWater::TOW_PondWater)
-        fish = pondFish[currQuiz];
-    else if(waterType == TypeOfWater::TOW_RiverWater)
-        fish = riverFish[currQuiz];
-    else if(waterType == TypeOfWater::TOW_SeaWater)
-        fish = seaFish[currQuiz];
-    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
-    currFish = fish;
-    //Get the question and aswer
-    answer = fishQA.value(fish).value(questions[qNum]);
+//    QString answer;
+//    QString fish;
+//    if(waterType == TypeOfWater::TOW_PondWater)
+//        fish = pondFish[currQuiz];
+//    else if(waterType == TypeOfWater::TOW_RiverWater)
+//        fish = riverFish[currQuiz];
+//    else if(waterType == TypeOfWater::TOW_SeaWater)
+//        fish = seaFish[currQuiz];
+//    QString fishPic = fishQA.value(fish).value("ActualImagefilepath");
+//    currFish = fish;
+//    //Get the question and aswer
+//    answer = fishQA.value(fish).value(questions[qNum]);
 
-    //send to method to get two other random values of fish
-    QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer, "", "");
-    QString randAsnw2 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, "");
-    QString randAsnw3 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, randAsnw2);
+//    //send to method to get two other random values of fish
+//    QString randAsnw1 = getRandAnswer(qNum,questions[qNum], answer, "", "");
+//    QString randAsnw2 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, "");
+//    QString randAsnw3 = qNum == 3? "N/A":getRandAnswer(qNum, questions[qNum], answer, randAsnw1, randAsnw2);
 
 
-    //Counter of fish
-    if(currQuiz < 10 && qNum ==0)
-        currQuiz++;
-    else if(currQuiz >= 10 && qNum == 0)
-        currQuiz = 0;
+//    //Counter of fish
+//    if(currQuiz < 10 && qNum ==0)
+//        currQuiz++;
+//    else if(currQuiz >= 10 && qNum == 0)
+//        currQuiz = 0;
 
-    //quizTimer->start(1000);
-    quizCountDown();
-    emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2, randAsnw3, fishPic, fish);
+//    //quizTimer->start(1000);
+//    quizCountDown();
+//    emit updateQuiz(questions[qNum], answer, randAsnw1, randAsnw2, randAsnw3, fishPic, fish);
 
-    //Counter of questions
-    if(qNum < 3)
-        qNum++;
-    else
-        qNum = 0;
+//    //Counter of questions
+//    if(qNum < 3)
+//        qNum++;
+//    else
+//        qNum = 0;
 }
 
 

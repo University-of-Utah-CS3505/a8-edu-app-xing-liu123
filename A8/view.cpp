@@ -12,6 +12,16 @@ View::View(Model &model,  QWidget *parent)
     ui->setupUi(this);
     this->setMouseTracking(true);
 
+
+
+    /*
+     * Set quiz buttons to be unvisibles
+    **/
+    ui->nextQuestionButton->setVisible(false);
+    ui->nextFishTestButton->setVisible(false);
+    ui->catchButton->setVisible(false);
+    ui->goToQuizButton->setVisible(false);
+
     /*
      * Button style section
     **/

@@ -109,8 +109,8 @@ private:
     Ui::View *ui;
     QTimer * time;
     QImage spearImage;
-    int const startPage = 0; //it was 0
-    int const fishingPage = 1; //it was 1
+    int const startPage = 0;
+    int const fishingPage = 1;
     int const infoPage = 2;
     int const quizPage = 3;
     int const journalPage = 4;
