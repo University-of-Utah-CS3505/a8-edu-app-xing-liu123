@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -895,24 +895,11 @@ color: white;</string>
      <zorder>quizQ1Label</zorder>
     </widget>
     <widget class="QWidget" name="JournalPage_1">
-     <widget class="QLabel" name="journalTittleLabel">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>10</y>
-        <width>70</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Fish</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="journalPageLabel">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>20</y>
+        <x>560</x>
+        <y>500</y>
         <width>70</width>
         <height>23</height>
        </rect>
@@ -924,10 +911,10 @@ color: white;</string>
      <widget class="QLabel" name="journalPicLabel_1">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>60</y>
-        <width>120</width>
-        <height>90</height>
+        <x>60</x>
+        <y>30</y>
+        <width>80</width>
+        <height>70</height>
        </rect>
       </property>
       <property name="text">
@@ -937,10 +924,10 @@ color: white;</string>
      <widget class="QLabel" name="journalPicLabel_2">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>240</y>
-        <width>120</width>
-        <height>90</height>
+        <x>60</x>
+        <y>130</y>
+        <width>80</width>
+        <height>70</height>
        </rect>
       </property>
       <property name="text">
@@ -950,10 +937,10 @@ color: white;</string>
      <widget class="QLabel" name="journalPicLabel_3">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>430</y>
-        <width>120</width>
-        <height>90</height>
+        <x>60</x>
+        <y>230</y>
+        <width>80</width>
+        <height>70</height>
        </rect>
       </property>
       <property name="text">
@@ -963,10 +950,10 @@ color: white;</string>
      <widget class="QLabel" name="journalPicLabel_4">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>150</y>
-        <width>120</width>
-        <height>90</height>
+        <x>60</x>
+        <y>330</y>
+        <width>80</width>
+        <height>70</height>
        </rect>
       </property>
       <property name="text">
@@ -976,10 +963,10 @@ color: white;</string>
      <widget class="QLabel" name="journalPicLabel_5">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>350</y>
-        <width>120</width>
-        <height>90</height>
+        <x>60</x>
+        <y>430</y>
+        <width>80</width>
+        <height>70</height>
        </rect>
       </property>
       <property name="text">
@@ -989,11 +976,17 @@ color: white;</string>
      <widget class="QLabel" name="journalInfoLabel_1">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>60</y>
+        <x>160</x>
+        <y>28</y>
         <width>230</width>
         <height>90</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>TextLabel</string>
@@ -1002,11 +995,17 @@ color: white;</string>
      <widget class="QLabel" name="journalInfoLabel_2">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>240</y>
+        <x>170</x>
+        <y>128</y>
         <width>230</width>
         <height>90</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>TextLabel</string>
@@ -1015,11 +1014,16 @@ color: white;</string>
      <widget class="QLabel" name="journalInfoLabel_3">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>430</y>
+        <x>160</x>
+        <y>228</y>
         <width>230</width>
         <height>90</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>TextLabel</string>
@@ -1028,11 +1032,17 @@ color: white;</string>
      <widget class="QLabel" name="journalInfoLabel_4">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>150</y>
+        <x>160</x>
+        <y>328</y>
         <width>230</width>
         <height>90</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>TextLabel</string>
@@ -1041,11 +1051,17 @@ color: white;</string>
      <widget class="QLabel" name="journalInfoLabel_5">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>350</y>
+        <x>160</x>
+        <y>428</y>
         <width>230</width>
         <height>90</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>TextLabel</string>
@@ -1054,8 +1070,8 @@ color: white;</string>
      <widget class="QPushButton" name="journalNextButton">
       <property name="geometry">
        <rect>
-        <x>678</x>
-        <y>490</y>
+        <x>680</x>
+        <y>500</y>
         <width>71</width>
         <height>33</height>
        </rect>
@@ -1067,8 +1083,8 @@ color: white;</string>
      <widget class="QPushButton" name="journalPrevButton">
       <property name="geometry">
        <rect>
-        <x>598</x>
-        <y>490</y>
+        <x>60</x>
+        <y>510</y>
         <width>71</width>
         <height>33</height>
        </rect>
@@ -1080,8 +1096,8 @@ color: white;</string>
      <widget class="QPushButton" name="journalKeepFishingButton">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>30</y>
+        <x>180</x>
+        <y>510</y>
         <width>131</width>
         <height>33</height>
        </rect>
@@ -1090,6 +1106,223 @@ color: white;</string>
        <string>Keep Fishing</string>
       </property>
      </widget>
+     <widget class="QLabel" name="journalBackgroundLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-10</y>
+        <width>800</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalTittleLabel">
+      <property name="geometry">
+       <rect>
+        <x>378</x>
+        <y>550</y>
+        <width>70</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalPicLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>330</y>
+        <width>80</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalInfoLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>228</y>
+        <width>230</width>
+        <height>90</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalInfoLabel_7">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>140</y>
+        <width>230</width>
+        <height>90</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalInfoLabel_8">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>328</y>
+        <width>230</width>
+        <height>90</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalInfoLabel_9">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>128</y>
+        <width>230</width>
+        <height>90</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalPicLabel_7">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>130</y>
+        <width>80</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalInfoLabel_10">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>428</y>
+        <width>230</width>
+        <height>90</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalPicLabel_8">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>30</y>
+        <width>80</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalPicLabel_9">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>230</y>
+        <width>80</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="journalPicLabel_10">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>430</y>
+        <width>80</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <zorder>journalBackgroundLabel</zorder>
+     <zorder>journalPicLabel_1</zorder>
+     <zorder>journalPicLabel_2</zorder>
+     <zorder>journalPicLabel_3</zorder>
+     <zorder>journalPicLabel_4</zorder>
+     <zorder>journalPicLabel_5</zorder>
+     <zorder>journalInfoLabel_1</zorder>
+     <zorder>journalInfoLabel_2</zorder>
+     <zorder>journalInfoLabel_3</zorder>
+     <zorder>journalInfoLabel_4</zorder>
+     <zorder>journalInfoLabel_5</zorder>
+     <zorder>journalPrevButton</zorder>
+     <zorder>journalKeepFishingButton</zorder>
+     <zorder>journalTittleLabel</zorder>
+     <zorder>journalPicLabel_6</zorder>
+     <zorder>journalInfoLabel_6</zorder>
+     <zorder>journalInfoLabel_7</zorder>
+     <zorder>journalInfoLabel_8</zorder>
+     <zorder>journalInfoLabel_9</zorder>
+     <zorder>journalPicLabel_7</zorder>
+     <zorder>journalInfoLabel_10</zorder>
+     <zorder>journalPicLabel_8</zorder>
+     <zorder>journalPicLabel_9</zorder>
+     <zorder>journalPicLabel_10</zorder>
+     <zorder>journalNextButton</zorder>
+     <zorder>journalPageLabel</zorder>
     </widget>
    </widget>
   </widget>
@@ -1099,7 +1332,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>37</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

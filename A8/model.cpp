@@ -351,10 +351,9 @@ void Model::updateWorld(){
     // It is generally best to keep the time step and iterations fixed.
     world->Step(timeStep, velocityIterations, positionIterations);
 
-    // checks if collision occurs
+    // checks if collision occurs, if it does deletes all bodies and resets for the next step
     if(contactListener->getDestroy()){ // is contacted when to delete objects
-        //world->DestroyBody(fish1); //maybe needed will need to test
-        contactListener->setDestroy(false);
+        contactListener->setDestroy(false); // lets hitlistener reset
         world->DestroyBody(spear);
         initSpear();
         world->DestroyBody(fish1);
@@ -895,24 +894,24 @@ void Model::getJouralInfo(int page){
 
     //if page == 0 -> Pond
     //if page == 1 -> Pond
-    if(page == 0 || page == 1){
-        info.push_back("Pond Fish");
+    if(page == 0 ){ // page == 0 || page == 1
+        info.push_back("Pond");
         info.push_back("Page " + pageStr);
-        setJournalVector(pondFish, info, page%2);
+        setJournalVector(pondFish, info, page%1); //%2
     }
     //if page == 2 -> River
     //if page == 3 -> River
-    else if(page == 2 || page == 3){
-        info.push_back("River Fish");
+    else if(page == 1){ //page == 2 || page == 3
+        info.push_back("River");
         info.push_back("Page " + pageStr);
-        setJournalVector(riverFish, info, page%2);
+        setJournalVector(riverFish, info, page%1);
     }
     //if page == 4 -> Sea
     //if page == 5 -> Sea
     else{
-        info.push_back("Sea Fish");
+        info.push_back("Sea");
         info.push_back("Page " + pageStr);
-        setJournalVector(seaFish, info, page%2);
+        setJournalVector(seaFish, info, page%1);
     }
 
     emit updateJournal(info, questions);
@@ -923,7 +922,7 @@ void Model::setJournalVector(QVector<QString> fish, QVector<QString> &info, int 
     //TODO: Change to not have repeated code
     //if page is 0, sent the info of the first five fish in list
     if(page == 0){
-        for(int i = 0; i <5; i++){
+        for(int i = 0; i <10; i++){ // 5
             //Check if the user has catch it
             if(catchedFish.contains(fish[i])){
                 //Picture of Fish
@@ -939,22 +938,22 @@ void Model::setJournalVector(QVector<QString> fish, QVector<QString> &info, int 
         }
     }
     //else, sent info of last five fish in list
-    else{
-        for(int i = 5; i <10; i++){
-            //Check if the user has catch it
-            if(catchedFish.contains(fish[i])){
-                //Picture of Fish
-                info.push_back(fishQA.value(fish[i]).value("PixelatedImagefilepath"));
-                for(int j = 0; j < 4; j++){
-                    info.push_back(fishQA.value(fish[i]).value(questions[j]));
-                }
-            }
-            //If it has not been catch send a message
-            else{
-                info.push_back("uncached");
-            }
-        }
-    }
+//    else{
+//        for(int i = 5; i <10; i++){
+//            //Check if the user has catch it
+//            if(catchedFish.contains(fish[i])){
+//                //Picture of Fish
+//                info.push_back(fishQA.value(fish[i]).value("PixelatedImagefilepath"));
+//                for(int j = 0; j < 4; j++){
+//                    info.push_back(fishQA.value(fish[i]).value(questions[j]));
+//                }
+//            }
+//            //If it has not been catch send a message
+//            else{
+//                info.push_back("uncached");
+//            }
+//        }
+//    }
 
 }
 

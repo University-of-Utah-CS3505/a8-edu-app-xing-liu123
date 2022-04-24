@@ -113,5 +113,7 @@
         <file>buttons/Button_SmoothWater.png</file>
         <file>buttons/Button_SeaWater.png</file>
         <file>Background_FishInfoPage.png</file>
+        <file>backgrounds/journalBackv3.png</file>
+        <file>backgrounds/journalBackv4.png</file>
     </qresource>
 </RCC>

@@ -56,6 +56,11 @@ View::View(Model &model,  QWidget *parent)
     ui->fish2Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
     ui->fish3Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
 
+    // Set journal images
+    QPixmap journalBackPix;
+    journalBackPix.load("://backgrounds/journalBackv4.png");
+    ui->journalBackgroundLabel->setPixmap(journalBackPix.scaled(800,580));
+
     // set image for the spear
     QPixmap spearPix;
     spearPix.load(":/spear1.png");
@@ -460,6 +465,9 @@ void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
     QString fishPic;
     int count = 1;
     QString infoInLabel;
+
+    QString stringToDisplay;
+
     ui->journalTittleLabel->setText(info[0]);
     ui->journalPageLabel->setText(info[1]);
 
@@ -474,25 +482,41 @@ void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
             fishPic = info[i];
             i++;
             int qNum = 0;
+
+            QString tempString;
+            QVector<QString> tempInfo;
             for(int j = i; j < i+4; j++){
-                infoInLabel += questions[qNum] + info[j] + "\n";
+                //infoInLabel += questions[qNum] + info[j] + "\n";
+                infoInLabel += info[j] + "\n"; //pos delete
+                tempInfo.push_back(info[j]);
+//                if (j < fPar)
+//                    std::cout << "fpar" << infoInLabel.toStdString() << std::endl;
+//                if (j >= fPar && j < sPar)
+//                    std::cout << "spar" << infoInLabel.toStdString() << std::endl;
                 qNum++;
             }
-            displayJournalLabels(infoInLabel, fishPic, count);
+
+            int resizeSize = 23;
+            tempInfo[0].resize(resizeSize, ' ');
+            tempInfo[1].resize(resizeSize, ' ');
+            tempInfo[2].resize(resizeSize, ' ');
+            tempInfo[3].resize(resizeSize, ' ');
+            stringToDisplay = tempInfo[0]  + tempInfo[2] + "\n \n \n" + tempInfo[1] + tempInfo[3];
+            displayJournalLabels(stringToDisplay, fishPic, count);
             i += 3;
             count++;
+
+            tempInfo.clear();
         }
     }
 
 }
 
 
-
 //Helper method to display journal
 void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
     QPixmap pix;
     pix.load(fishPic);
-
     switch(fishNum){
     case 1:
         ui->journalInfoLabel_1->setText(info);
@@ -514,6 +538,26 @@ void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
         ui->journalInfoLabel_5->setText(info);
         ui->journalPicLabel_5->setPixmap(pix.scaled(ui->journalPicLabel_5->width(), ui->journalPicLabel_5->height()));
         break;
+    case 6:
+        ui->journalInfoLabel_6->setText(info);
+        ui->journalPicLabel_6->setPixmap(pix.scaled(ui->journalPicLabel_1->width(), ui->journalPicLabel_1->height()));
+        break;
+    case 7:
+        ui->journalInfoLabel_7->setText(info);
+        ui->journalPicLabel_7->setPixmap(pix.scaled(ui->journalPicLabel_2->width(), ui->journalPicLabel_2->height()));
+        break;
+    case 8:
+        ui->journalInfoLabel_8->setText(info);
+        ui->journalPicLabel_8->setPixmap(pix.scaled(ui->journalPicLabel_3->width(), ui->journalPicLabel_3->height()));
+        break;
+    case 9:
+        ui->journalInfoLabel_9->setText(info);
+        ui->journalPicLabel_9->setPixmap(pix.scaled(ui->journalPicLabel_4->width(), ui->journalPicLabel_4->height()));
+        break;
+    case 10:
+        ui->journalInfoLabel_10->setText(info);
+        ui->journalPicLabel_10->setPixmap(pix.scaled(ui->journalPicLabel_5->width(), ui->journalPicLabel_5->height()));
+        break;
     }
 }
 
@@ -534,7 +578,7 @@ void View::on_journalButton_clicked()
 
 void View::on_journalNextButton_clicked()
 {
-    if(journalPageNum<5)
+    if(journalPageNum<2)
         journalPageNum++;
     emit getJournal(journalPageNum);
 }
