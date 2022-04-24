@@ -18,6 +18,7 @@ Model::Model(QObject *parent)
     connect(quizTimer, &QTimer::timeout, this, &Model::updateQuizTime);
 
     correctAnsw = 0;
+    correctAnswForProgBar = 0;
     quizTimeCounter =10;
 }
 
