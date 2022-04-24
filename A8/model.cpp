@@ -651,26 +651,30 @@ void Model::getFish(){
     //Check if is in the list of catched fish
     if(catchedFish.contains(currFish)){
         QString question;
-        QString answer;
+        QString answer;        
 
         //if it is then check how many times it has been catched
         //and get the %4 num to get the questionString
         int questionNum = catchedFish.indexOf(currFish) % 4; //returns 0,1,2,3
         //update the value
-//        catchedFish[currFish]++;
 
         //Get the question and aswer
         question = questions[questionNum];
         answer = fishQA.value(currFish).value(question);
 
-        //send to method to get two other random values of fish (If our question is yes/no answer do not get fish)
+        //send to method to get two other random values of fish
+        //(If our question is yes/no answer do not get answer for last two)
         QString randAsnw1 = getRandAnswer(questionNum,question, answer, "", "");
         QString randAsnw2 = questionNum == 3? "N/A": getRandAnswer(questionNum, question, answer, randAsnw1, "");
         QString randAsnw3 = questionNum == 3? "N/A": getRandAnswer(questionNum, question, answer, randAsnw1, randAsnw2);
 
         //Set up timer for quiz
         quizCountDown();
-        emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw3, fishPic, currFish);
+
+        //Send information of quiz
+        //(If is the first question (Name) we send an empty string)
+        emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw3, fishPic,
+                        questionNum == 0? "" :currFish);
     }
     //If it is not catched
     else{
@@ -711,11 +715,6 @@ QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
 
     //Based on our question number (The question we did)
     QString randAnsw = fishQA.value(randFish).value(question);
-
-//    if(randAnsw != answer && randAnsw != randAns1 && randAnsw != randAns2 )
-//        return randAnsw;
-//    else
-//        return getRandAnswer(questionNum, question, answer, randAns1, randAns2);
 
     if(randAnsw == answer || randAnsw == randAns1 || randAnsw == randAns2 )
         return getRandAnswer(questionNum, question, answer, randAns1, randAns2);
