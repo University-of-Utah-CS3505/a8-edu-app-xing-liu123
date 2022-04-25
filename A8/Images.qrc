@@ -115,5 +115,6 @@
         <file>Background_FishInfoPage.png</file>
         <file>backgrounds/journalBackv3.png</file>
         <file>backgrounds/journalBackv4.png</file>
+        <file>backgrounds/Background_Cloud.png</file>
     </qresource>
 </RCC>

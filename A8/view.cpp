@@ -30,6 +30,8 @@ View::View(Model &model,  QWidget *parent)
     ui->freshWaterButton->resize(180,60); // Find the original PNG size and divide it by 2.5. Set the values as QPushButton size.
     ui->saltWaterButton->setStyleSheet("border-image: url(:/buttons/Button_SeaWater.png)");
     ui->smoothWaterButton->setStyleSheet("border-image: url(:/buttons/Button_SmoothWater.png)");
+    ui->return2MenuButton->setStyleSheet("border-image: url(:/backgrounds/Background_Cloud.png)");
+    ui->journalButton->setStyleSheet("border-image: url(:/backgrounds/Background_Cloud.png)");
 
     /*
      * Background style section
@@ -47,7 +49,8 @@ View::View(Model &model,  QWidget *parent)
     bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
 
     // Sound effects
-    SE_GameOver.setSource(QUrl("qrc:/GameOver(Test).wav"));
+    SE_ShootSpear.setVolume(audioVolumn);
+    SE_ShootSpear.setSource(QUrl("qrc:/ShootSpear.mp3"));
 
     /*
      * Audio connections
@@ -59,8 +62,6 @@ View::View(Model &model,  QWidget *parent)
     connect(ui->mainMenuMucisButton, &QPushButton::pressed, this, &View::pressMusicButton);
     // Connect event's emission to change the text of Music: on/of
     connect(this, &View::updateMainMenuMusicButton, ui->mainMenuMucisButton, &QPushButton::setText);
-    // [TEST] Connect TestSound Button to an event
-    connect(ui->TestSoundButton, &QPushButton::clicked, this, &View::pressTestSoundButton);
 
     // Set images for moving fishes
     ui->fish1Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
@@ -351,6 +352,7 @@ void View::resetSpearLabel(QPixmap map){
 void View::mousePressEvent(QMouseEvent *event){
     if(ui->stackedWidget->currentIndex() == fishingPage){
         QPoint point = event->pos();
+        SE_ShootSpear.play();
         emit shootSpear(point.x(), point.y());
     }
 }
@@ -784,10 +786,6 @@ void View::pressMusicButton(){
         bgmPlayer->play();
         emit updateMainMenuMusicButton("Music: on");
     }
-}
-void View::pressTestSoundButton(){
-    SE_GameOver.setVolume(audioVolumn);
-    SE_GameOver.play();
 }
 
 

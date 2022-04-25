@@ -50,7 +50,6 @@ private slots:
     // Uncomment this when working on audios
     void playBGM(QMediaPlayer::MediaStatus status);
     void pressMusicButton();
-    void pressTestSoundButton();
 
     void displayFish1(int x1, int y1, int x2, int y2);
     void displayFish2(int x1, int y1, int x2, int y2);
@@ -131,7 +130,7 @@ private:
     QMediaPlayer* bgmPlayer = new QMediaPlayer;
     QAudioOutput* bgmOutput = new QAudioOutput;
     // Sound Effects
-    QSoundEffect SE_GameOver;
+    QSoundEffect SE_ShootSpear;
 
     //progress for levels
     int pondProgess = 0;
