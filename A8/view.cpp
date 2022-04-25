@@ -225,9 +225,10 @@ View::~View()
     delete bgmOutput;
 }
 
-
-
-//Get the Program to start
+/**
+ * @brief View::on_startButton_clicked
+ * Get the Program to start
+ */
 void View::on_startButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(fishingPage);
@@ -237,11 +238,11 @@ void View::on_startButton_clicked()
 //Display the fish labels into their new position
 /**
  * @brief View::displayFish1
- * Display the first fish into its new position
- * @param x1
- * @param y1
- * @param x2
- * @param y2
+ * Animate the movement of the first fish and move it into its new position
+ * @param x1 - x of the initial position
+ * @param y1 - y of the initial position
+ * @param x2 - x of the final position
+ * @param y2 - y of the final position
  */
 void View::displayFish1(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish1Label,"pos");
@@ -254,11 +255,11 @@ void View::displayFish1(int x1, int y1, int x2, int y2){
 
 /**
  * @brief View::displayFish2
- * Display the second fish into its new position
- * @param x1
- * @param y1
- * @param x2
- * @param y2
+ * Animate the movement of the second fish and move it into its new position
+ * @param x1 - x of the initial position
+ * @param y1 - y of the initial position
+ * @param x2 - x of the final position
+ * @param y2 - y of the final position
  */
 void View::displayFish2(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish2Label,"pos");
@@ -271,11 +272,11 @@ void View::displayFish2(int x1, int y1, int x2, int y2){
 
 /**
  * @brief View::displayFish3
- * Display the third fish into its new position
- * @param x1
- * @param y1
- * @param x2
- * @param y2
+ * Animate the movement of the third fish and move it into its new position
+ * @param x1 - x of the initial position
+ * @param y1 - y of the initial position
+ * @param x2 - x of the final position
+ * @param y2 - y of the final position
  */
 void View::displayFish3(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish3Label,"pos");
@@ -289,11 +290,11 @@ void View::displayFish3(int x1, int y1, int x2, int y2){
 
 /**
  * @brief View::displaySpear
- * Display the spear moving from initial position to final position
- * @param x1
- * @param y1
- * @param x2
- * @param y2
+ * Animate the movement of the spear fish and move it into its new position
+ * @param x1 - x of the initial position
+ * @param y1 - y of the initial position
+ * @param x2 - x of the final position
+ * @param y2 - y of the final position
  */
 void View::displaySpear(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
@@ -322,7 +323,7 @@ void View::mouseMoveEvent(QMouseEvent *event){
 /**
  * @brief View::updateSpearLabel
  * Set the spear label when it is shot
- * @param map
+ * @param map - QPixmap sent from the model
  */
 void View::updateSpearLabel(QPixmap map){
     ui->spearLabel->setAlignment(Qt::AlignCenter);
@@ -333,7 +334,7 @@ void View::updateSpearLabel(QPixmap map){
 /**
  * @brief View::resetSpearLabel
  * Reset the spear label when going back to the fishing page
- * @param map
+ * @param map - QPixmap sent from the model
  */
 void View::resetSpearLabel(QPixmap map){
     ui->spearLabel->setGeometry(325, 0, 150, 150);

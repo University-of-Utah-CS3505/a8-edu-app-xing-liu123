@@ -286,8 +286,8 @@ void Model::updateSpear(){
 /**
  * @brief Model::shotSpear
  * shot the spear based on the position clicked by the player
- * @param x
- * @param y
+ * @param x - x of the clicked position
+ * @param y - y of the clicked position
  */
 void Model::shotSpear(int x, int y){
     // ignore action if it is moving
@@ -517,9 +517,9 @@ void Model::resetWorld(){
 
 /**
  * @brief Model::setSpearLabel
- * It rotates the spear when player moves its cursor
- * @param x
- * @param y
+ * It rotates the spear when the player moves its cursor
+ * @param x - x of the position where the cursor is located
+ * @param y - y of the position where the cursor is located
  */
 void Model::setSpearLabel(int x, int y){
     if(!isShot){

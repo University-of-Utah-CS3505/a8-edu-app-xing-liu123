@@ -87,10 +87,14 @@ public slots:
 
 private:
     b2World *world;
+
+    // objects in the physical world
     b2Body* fish1;
     b2Body* fish2;
     b2Body* fish3;
     b2Body* spear;
+
+    // information of objects
     int currentSpear;
     int spearX;
     int spearY;
@@ -100,13 +104,21 @@ private:
     int fish2Y;
     int fish3X;
     int fish3Y;
+
+    QImage spearImage;
+    bool isShot;
+    void updateSpear();
+
+    // timers
     int quizTimeCounter;
     QTimer *timer;
     QTimer *quizTimer;
+
     void initFish1();
     void initFish2();
     void initFish3();
     void initSpear();
+
     QString getRandAnswer(int questionNum, QString question, QString answer,
                           QString randAns1, QString randAns2);
 
@@ -122,10 +134,6 @@ private:
     QVector<QString> riverFish;
     QVector<QString> seaFish;
     QVector<QString> questions;
-
-    QImage spearImage;
-    bool isShot;
-    void updateSpear();
 
     void setJournalVector(QVector<QString> fish, QVector<QString> &info, int page);
 
