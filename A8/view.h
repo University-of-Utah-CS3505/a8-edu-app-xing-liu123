@@ -134,6 +134,7 @@ private:
     // Background music
     QMediaPlayer *bgmPlayer;
     QAudioOutput *bgmOutput;
+    int mapNumber = 1;
 
     // Sound Effects
     QSoundEffect *shootEffect;
@@ -149,6 +150,7 @@ private:
     int pondProgess = 0;
     int riverProgess = 0;
     int seaProgess = 0;
+
 };
 #endif // VIEW_H
 

@@ -41,13 +41,7 @@ View::View(Model &model,  QWidget *parent)
     **/
 
     // Uncomment this when working on audios
-    // Background music
-    bgmPlayer = new QMediaPlayer;
-    bgmOutput = new QAudioOutput;
 
-    bgmOutput->setVolume(audioVolumn);
-    bgmPlayer->setAudioOutput(bgmOutput);
-    bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
 
     // Animation
     fishAnimation1 = new QPropertyAnimation(ui->fish1Label,"pos");
@@ -61,6 +55,14 @@ View::View(Model &model,  QWidget *parent)
 
     spearAnimation = new QPropertyAnimation(ui->spearLabel,"pos");
     spearAnimation->setDuration(25);
+
+    // Background music
+    bgmPlayer = new QMediaPlayer;
+    bgmOutput = new QAudioOutput;
+
+    bgmOutput->setVolume(audioVolumn);
+    bgmPlayer->setAudioOutput(bgmOutput);
+    bgmPlayer->setSource(QUrl("qrc:/bgm.mp3"));
 
     // Sound effects
     shootEffect = new QSoundEffect;
@@ -397,9 +399,13 @@ void View::on_freshWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(fishingPage);
 
+    mapNumber = 1;
+
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Pond.png");
     ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+
+    bgmPlayer->setSource(QUrl("qrc:/pond.mp3"));
 
     emit updateWorld(ui->freshWaterButton->text());
 
@@ -416,9 +422,13 @@ void View::on_smoothWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(fishingPage);
 
+    mapNumber = 2;
+
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_River.png");
     ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+
+    bgmPlayer->setSource(QUrl("qrc:/river.mp3"));
 
     emit updateWorld(ui->smoothWaterButton->text());
 
@@ -438,6 +448,11 @@ void View::on_saltWaterButton_clicked()
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Ocean.png");
     ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+
+    mapNumber = 3;
+
+    bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+
 
     emit updateWorld(ui->saltWaterButton->text());
 
@@ -715,6 +730,17 @@ void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
 
 void View::on_journalKeepFishingButton_clicked()
 {
+    switch(mapNumber){
+        case 1:
+            bgmPlayer->setSource(QUrl("qrc:/pond.mp3"));
+            break;
+        case 2:
+            bgmPlayer->setSource(QUrl("qrc:/river.mp3"));
+            break;
+        case 3:
+            bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+            break;
+    }
     emit resetWorld();
     ui->stackedWidget->setCurrentIndex(fishingPage);
 }
@@ -722,6 +748,7 @@ void View::on_journalKeepFishingButton_clicked()
 
 void View::on_journalButton_clicked()
 {
+    bgmPlayer->setSource(QUrl("qrc:/bgm.mp3"));
     ui->stackedWidget->setCurrentIndex(journalPage);
     emit getJournal(journalPageNum);
 }
@@ -862,16 +889,28 @@ void View::updateNextSpearProgress(int progress){
 
 
 
-
 void View::on_return2FishButton_clicked()
 {
+    switch(mapNumber){
+        case 1:
+            bgmPlayer->setSource(QUrl("qrc:/pond.mp3"));
+            break;
+        case 2:
+            bgmPlayer->setSource(QUrl("qrc:/river.mp3"));
+            break;
+        case 3:
+            bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+            break;
+    }
     ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
 
 void View::on_return2MenuButton_clicked()
 {
+    bgmPlayer->setSource(QUrl("qrc:/bgm.mp3"));
     ui->stackedWidget->setCurrentIndex(startPage);
+
 }
 
 

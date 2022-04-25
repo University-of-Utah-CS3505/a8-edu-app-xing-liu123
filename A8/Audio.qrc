@@ -5,5 +5,8 @@
         <file>ShootSpear.mp3</file>
         <file>hit.wav</file>
         <file>shoot.WAV</file>
+        <file>pond.mp3</file>
+        <file>river.mp3</file>
+        <file>bgm.mp3</file>
     </qresource>
 </RCC>
