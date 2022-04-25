@@ -3,5 +3,7 @@
         <file>Waves.mp3</file>
         <file>Water_Churning.mp3</file>
         <file>ShootSpear.mp3</file>
+        <file>hit.wav</file>
+        <file>shoot.WAV</file>
     </qresource>
 </RCC>

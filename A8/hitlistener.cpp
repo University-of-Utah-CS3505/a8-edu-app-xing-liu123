@@ -69,5 +69,6 @@ void HitListener::BeginContact(b2Contact* contact) {
         std::cout << "hit fish 3" << std::endl;
     }
     destroy = true;
+
     emit sendCollision();
 }

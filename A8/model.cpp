@@ -696,6 +696,7 @@ void Model::loadInfoQ(){
  * on weather is going to the quiz or the information page.
  */
 void Model::getFish(){
+    emit sendSoundEffect();
 
     //Get the fish
     int randNum = rand()%10;    

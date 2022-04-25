@@ -11,6 +11,8 @@
 #include <QPixmap>
 #include <iostream>
 #include <QCloseEvent>
+#include <QPropertyAnimation>
+
 
 // Uncomment this when working on audios
 #include <QMediaPlayer>
@@ -57,6 +59,7 @@ private slots:
     void displaySpear(int x1, int y1, int x2, int y2);
     void updateSpearLabel(QPixmap map);
     void resetSpearLabel(QPixmap map);
+    void playHitSoundEffect();
 
     void setUpQuiz(QString question, QString answer, QString randAnswer1,
                    QString randAnswer2, QString randAnswer3,
@@ -124,13 +127,23 @@ private:
     void disableQuizButtons();
 
     // Uncomment this when working on audios
+
     // Audio parameters
     const float32 audioVolumn = 0.2f;
+
     // Background music
-    QMediaPlayer* bgmPlayer = new QMediaPlayer;
-    QAudioOutput* bgmOutput = new QAudioOutput;
+    QMediaPlayer *bgmPlayer;
+    QAudioOutput *bgmOutput;
+
     // Sound Effects
-    QSoundEffect SE_ShootSpear;
+    QSoundEffect *shootEffect;
+    QSoundEffect *hitEffect;
+
+    // Animation
+    QPropertyAnimation *fishAnimation1;
+    QPropertyAnimation *fishAnimation2;
+    QPropertyAnimation *fishAnimation3;
+    QPropertyAnimation *spearAnimation;
 
     //progress for levels
     int pondProgess = 0;
