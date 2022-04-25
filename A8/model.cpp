@@ -296,6 +296,7 @@ void Model::shotSpear(int x, int y){
     }
 
     isShot = true;
+    emit sendShootEffect();
 
     float velocityX = 0;
     float velocityY = 0;

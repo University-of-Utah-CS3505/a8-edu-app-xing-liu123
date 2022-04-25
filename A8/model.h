@@ -44,6 +44,7 @@ signals:
     void resetSpear(QPixmap map);
 
     void sendSoundEffect();
+    void sendShootEffect();
     //void sendCollision();
 
     //check answer

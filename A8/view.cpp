@@ -160,6 +160,10 @@ View::View(Model &model,  QWidget *parent)
             &Model::sendSoundEffect,
             this,
             &View::playHitSoundEffect);
+    connect(&model,
+            &Model::sendShootEffect,
+            this,
+            &View::playShootSoundEffect);
 
     //Connection to Catch, Quiz and info window
     connect(ui->catchButton,
@@ -376,7 +380,6 @@ void View::resetSpearLabel(QPixmap map){
  */
 void View::mousePressEvent(QMouseEvent *event){
     if(ui->stackedWidget->currentIndex() == fishingPage){ 
-        shootEffect->play();
         QPoint point = event->pos();
         emit shootSpear(point.x(), point.y());
     }
@@ -388,6 +391,14 @@ void View::mousePressEvent(QMouseEvent *event){
  */
 void View::playHitSoundEffect(){
     hitEffect->play();
+}
+
+/**
+ * @brief View::playShootSoundEffect
+ * play the sound effect when shooting
+ */
+void View::playShootSoundEffect(){
+    shootEffect->play();
 }
 
 /**
@@ -831,10 +842,8 @@ void View::playBGM(QMediaPlayer::MediaStatus status){
     if (bgmPlayer->hasAudio()){
         bgmPlayer->play();
     }
-    else{
-        std::cout << "No media found" << std::endl;
-    }
 }
+
 void View::pressMusicButton(){
     if(bgmPlayer->playbackState() == QMediaPlayer::PlayingState){
         bgmPlayer->stop();

@@ -60,6 +60,7 @@ private slots:
     void updateSpearLabel(QPixmap map);
     void resetSpearLabel(QPixmap map);
     void playHitSoundEffect();
+    void playShootSoundEffect();
 
     void setUpQuiz(QString question, QString answer, QString randAnswer1,
                    QString randAnswer2, QString randAnswer3,
