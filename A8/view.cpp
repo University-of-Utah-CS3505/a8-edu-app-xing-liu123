@@ -93,7 +93,7 @@ View::View(Model &model,  QWidget *parent)
             &model,
             &Model::setUpWorld);
 
-    //oOnnection to display fish
+    //Connection to display fish
     connect(&model,
             &Model::setUpFish1,
             this,
@@ -107,13 +107,13 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::displayFish3);
 
-    // reset world
+    //Connection to reset world
     connect(this,
             &View::resetWorld,
             &model,
             &Model::resetWorld);
 
-    // connects for spear
+    //Connects for spear
     connect(this,
             &View::shootSpear,
             &model,
@@ -135,7 +135,7 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::resetSpearLabel);
 
-    //Ctach, Quiz and info window
+    //Connection to Catch, Quiz and info window
     connect(ui->catchButton,
             &QPushButton::clicked,
             &model,
@@ -154,7 +154,7 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::displayCountDown);
 
-    //Checking Answer Buttons
+    //Connection to check Answer Buttons
     connect(ui->answ1Button,
             &QPushButton::clicked,
             this,
@@ -168,7 +168,6 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::on_answerButton3_clicked);
     //button number 4 has an autoconnected slot
-
     connect(this,
             &View::checkUserAnswer,
             &model,
@@ -178,7 +177,7 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::showResult);
 
-    //Journal
+    //Connection to Journal
     connect(this,
             &View::getJournal,
             &model,
@@ -188,7 +187,7 @@ View::View(Model &model,  QWidget *parent)
             this,
             &View::setUpJournal);
 
-    //Testing Code for quiz and info window
+    //Connections to test Code for quiz and info window
     connect(ui->nextFishTestButton,
             &QPushButton::clicked,
             &model,
@@ -202,13 +201,13 @@ View::View(Model &model,  QWidget *parent)
             &model,
             &Model::getTestQuizInfo);
 
-    //update the levels and progress bar
+    //Connection to update the levels and progress bar
     connect(&model,
             &Model::updateNextLevelProgress,
             this,
             &View::updateNextLevelProgress);
 
-    // update the spear and progress bar
+    //Connection to update the spear and progress bar
     connect(&model,
             &Model::updateNextSpearProgress,
             this,
@@ -236,6 +235,14 @@ void View::on_startButton_clicked()
 
 
 //Display the fish labels into their new position
+/**
+ * @brief View::displayFish1
+ * Display the first fish into its new position
+ * @param x1
+ * @param y1
+ * @param x2
+ * @param y2
+ */
 void View::displayFish1(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish1Label,"pos");
     animation->setDuration(25);
@@ -245,6 +252,14 @@ void View::displayFish1(int x1, int y1, int x2, int y2){
     animation->start();
 }
 
+/**
+ * @brief View::displayFish2
+ * Display the second fish into its new position
+ * @param x1
+ * @param y1
+ * @param x2
+ * @param y2
+ */
 void View::displayFish2(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish2Label,"pos");
     animation->setDuration(25);
@@ -254,6 +269,14 @@ void View::displayFish2(int x1, int y1, int x2, int y2){
     animation->start();
 }
 
+/**
+ * @brief View::displayFish3
+ * Display the third fish into its new position
+ * @param x1
+ * @param y1
+ * @param x2
+ * @param y2
+ */
 void View::displayFish3(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->fish3Label,"pos");
     animation->setDuration(25);
@@ -263,7 +286,15 @@ void View::displayFish3(int x1, int y1, int x2, int y2){
     animation->start();
 }
 
-// Display the spear moving from initial position to final position
+
+/**
+ * @brief View::displaySpear
+ * Display the spear moving from initial position to final position
+ * @param x1
+ * @param y1
+ * @param x2
+ * @param y2
+ */
 void View::displaySpear(int x1, int y1, int x2, int y2){
     QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
     animation->setDuration(25);
@@ -273,7 +304,12 @@ void View::displaySpear(int x1, int y1, int x2, int y2){
     animation->start();
 }
 
-// send the position of cursor to rotate the spear
+
+/**
+ * @brief View::mouseMoveEvent
+ * Send the position of cursor to rotate the spear
+ * @param event
+ */
 void View::mouseMoveEvent(QMouseEvent *event){
 
     if(ui->stackedWidget->currentIndex() == fishingPage){
@@ -282,20 +318,35 @@ void View::mouseMoveEvent(QMouseEvent *event){
     }
 }
 
-// set the spear label when it is shot
+
+/**
+ * @brief View::updateSpearLabel
+ * Set the spear label when it is shot
+ * @param map
+ */
 void View::updateSpearLabel(QPixmap map){
     ui->spearLabel->setAlignment(Qt::AlignCenter);
     ui->spearLabel->setPixmap(map);
 }
 
-// reset the spear label when going back to the fishing page
+
+/**
+ * @brief View::resetSpearLabel
+ * Reset the spear label when going back to the fishing page
+ * @param map
+ */
 void View::resetSpearLabel(QPixmap map){
     ui->spearLabel->setGeometry(325, 0, 150, 150);
     ui->spearLabel->setAlignment(Qt::AlignCenter);
     ui->spearLabel->setPixmap(map);
 }
 
-// send a signal to shot the spear
+
+/**
+ * @brief View::mousePressEvent
+ * Send a signal to shot the spear
+ * @param event
+ */
 void View::mousePressEvent(QMouseEvent *event){
     if(ui->stackedWidget->currentIndex() == fishingPage){
         QPoint point = event->pos();
@@ -303,6 +354,11 @@ void View::mousePressEvent(QMouseEvent *event){
     }
 }
 
+/**
+ * @brief View::on_freshWaterButton_clicked
+ * It sends message to model to set the world with pond water
+ * and display pond water fishing window
+ */
 void View::on_freshWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(fishingPage);
@@ -317,7 +373,11 @@ void View::on_freshWaterButton_clicked()
     ui->progressBar2NextLevel->setValue(pondProgess);
 }
 
-
+/**
+ * @brief View::on_smoothWaterButton_clicked
+ * It sends message to model to set the world with river water
+ * and display river water fishing window
+ */
 void View::on_smoothWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(fishingPage);
@@ -332,7 +392,11 @@ void View::on_smoothWaterButton_clicked()
     ui->progressBar2NextLevel->setValue(riverProgess);
 }
 
-
+/**
+ * @brief View::on_saltWaterButton_clicked
+ * It sends message to model to set the world with salt water
+ * and display salt water fishing window
+ */
 void View::on_saltWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(fishingPage);
@@ -347,23 +411,34 @@ void View::on_saltWaterButton_clicked()
     ui->progressBar2NextLevel->setValue(seaProgess);
 }
 
-
+/**
+ * @brief View::setUpQuiz
+ * It changes to the quiz window and display the infromation
+ * of the quiz based on the given paramenter. In addition it
+ * randomized the correct answers of the buttons.
+ * @param question
+ * @param answer
+ * @param randAnswer1
+ * @param randAnswer2
+ * @param randAnswer3
+ * @param fishPic
+ * @param fishName
+ */
 void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
                      QString randAnswer2, QString randAnswer3,
                      QString fishPic, QString fishName){
+
+    //Change to the quiz information window
+    ui->stackedWidget->setCurrentIndex(quizPage);
+
     // Set up quiz background
     ui->quizBackgroundImageLabel->setStyleSheet("border-image: url(:/Background_QuizInfoPage.png)");
-
-
-    ui->stackedWidget->setCurrentIndex(quizPage);
     ui->quizFishName->setText(fishName);
     ui->quizQ1Label->setText(question);
 
     //Randomize the result of buttons but check the answers to randomize
     int randNum = randAnswer3 != "N/A"? rand() % 4: rand() % 2;
     setButtonQuizVisibility(randAnswer3);
-
-
     switch (randNum) {
     case 0:
         ui->answ1Button->setText(answer);
@@ -411,9 +486,13 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
 
 }
 
-
+/**
+ * @brief View::setButtonQuizVisibility
+ * Based on the answer (if it is a yes/No) we show the usser the buttons
+ * @param answ
+ */
 void View::setButtonQuizVisibility(QString answ){
-
+    //If the answer if "n/A" there is no need to display buttons
     if(answ == "N/A"){
         ui->answ1Button_3->setVisible(false);
         ui->answ1Button_4->setVisible(false);
@@ -424,7 +503,11 @@ void View::setButtonQuizVisibility(QString answ){
     }
 }
 
-
+/**
+ * @brief View::displayCountDown
+ * We display the countdown to the user
+ * @param time
+ */
 void View::displayCountDown(QString time){
     ui->countDownLabel->setText(time);
     if(time == "0"){
@@ -436,7 +519,21 @@ void View::displayCountDown(QString time){
 }
 
 
-
+/**
+ * @brief View::setUpInfo
+ * Bsed on the given infromation we display
+ * all the infromation of the fish that the user catched
+ * @param q1
+ * @param a1
+ * @param q2
+ * @param a2
+ * @param q3
+ * @param a3
+ * @param q4
+ * @param a4
+ * @param fish
+ * @param fishPic
+ */
 void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
                      QString q3, QString a3, QString q4, QString a4,
                      QString fish, QString fishPic){
@@ -465,35 +562,44 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
 }
 
 //**********************Journal *****************************
+/**
+ * @brief View::setUpJournal
+ * It goes through the information of all the fishes and
+ * displays it to the journal
+ * @param info
+ * @param questions
+ */
 void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
 
+    int fishCounter = 1; //Counter to keep track of which fish we are currently at
     QString fishPic;
-    int count = 1;
     QString infoInLabel;
-
     QString stringToDisplay;
 
     ui->journalTittleLabel->setText(info[0]);
     ui->journalPageLabel->setText(info[1]);
 
+    //For loop to get the infromation of the fish
     for(int i = 2; i < info.size(); i++){
         infoInLabel = "";
-        //if it has not been cath
+        //if it has been uncacathed display that to the journal window
         if(info[i] == "uncached"){
-            displayJournalLabels("uncached", ":/unknownFish.png", count);
-            count++;
+            displayJournalLabels("", ":/unknownFish.png", fishCounter);
+            fishCounter++;
         }
-        if(info[i] != "uncached"){
+        //TEST this
+        //if(info[i] != "uncached"){
+        else{
             fishPic = info[i];
             i++;
             int qNum = 0;
-
             QString tempString;
-            QVector<QString> tempInfo;
+            QVector<QString> oneFishInfo;
+            //Store the answers information of ONE of the fish
             for(int j = i; j < i+4; j++){
                 //infoInLabel += questions[qNum] + info[j] + "\n";
                 infoInLabel += info[j] + "\n"; //pos delete
-                tempInfo.push_back(info[j]);
+                oneFishInfo.push_back(info[j]);
 //                if (j < fPar)
 //                    std::cout << "fpar" << infoInLabel.toStdString() << std::endl;
 //                if (j >= fPar && j < sPar)
@@ -502,22 +608,29 @@ void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
             }
 
             int resizeSize = 23;
-            tempInfo[0].resize(resizeSize, ' ');
-            tempInfo[1].resize(resizeSize, ' ');
-            tempInfo[2].resize(resizeSize, ' ');
-            tempInfo[3].resize(resizeSize, ' ');
-            stringToDisplay = tempInfo[0]  + tempInfo[2] + "\n \n \n" + tempInfo[1] + tempInfo[3];
-            displayJournalLabels(stringToDisplay, fishPic, count);
-            i += 3;
-            count++;
+            oneFishInfo[0].resize(resizeSize, ' ');
+            oneFishInfo[1].resize(resizeSize, ' ');
+            oneFishInfo[2].resize(resizeSize, ' ');
+            oneFishInfo[3].resize(resizeSize, ' ');
+            stringToDisplay = oneFishInfo[0]  + oneFishInfo[2] + "\n \n \n" + oneFishInfo[1] + oneFishInfo[3];
+            displayJournalLabels(stringToDisplay, fishPic, fishCounter);
+            i += 3; //Increase by 3 since we iterated 3 times in the for loop
+            fishCounter++;
 
-            tempInfo.clear();
+            oneFishInfo.clear();
         }
     }
 }
 
 
-//Helper method to display journal
+/**
+ * @brief View::displayJournalLabels
+ * Helper method to display the information and pictures for the journal
+ * based on the fish number we are currently at
+ * @param info
+ * @param fishPic
+ * @param fishNum
+ */
 void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
     QPixmap pix;
     pix.load(fishPic);
