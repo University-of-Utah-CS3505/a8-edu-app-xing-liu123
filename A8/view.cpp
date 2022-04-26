@@ -1063,21 +1063,28 @@ void View::closeEvent(QCloseEvent *event){
     }
 }
 
+/**
+ * @brief View::on_startGameButton_clicked
+ * goes to the places to fish page
+ */
 void View::on_startGameButton_clicked(){
-    // goes to the places to fish page
     ui->stackedWidget->setCurrentIndex(startPage);
 }
-
+/**
+ * @brief View::on_howToPlayButton_clicked
+ * goes to the how to play page
+ */
 void View::on_howToPlayButton_clicked()
 {
-    //goes to the how to play page
     ui->stackedWidget->setCurrentIndex(helpMenuPage);
 }
 
-
+/**
+ * @brief View::on_goToMainMenuPageButton_clicked
+ * goes to the main menu page
+ */
 void View::on_goToMainMenuPageButton_clicked()
 {
-    //goes to the main menu page
     ui->stackedWidget->setCurrentIndex(startMenuPage);
 }
 
