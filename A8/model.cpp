@@ -58,11 +58,11 @@ Model::~Model(){
  */
 void Model::setUpWorld(QString water){
     //Set up the type of water being navigated
-    if(water.contains("Salt"))
+    if(water.contains("Ocean"))
         waterType = TypeOfWater::TOW_SeaWater;
-    if(water.contains("Fresh"))
+    if(water.contains("Pond"))
         waterType = TypeOfWater::TOW_PondWater;
-    if(water.contains("Smooth"))
+    if(water.contains("River"))
         waterType = TypeOfWater::TOW_RiverWater;
 
     // Define the gravity vector to 0 (Since the fishe should not be falling)

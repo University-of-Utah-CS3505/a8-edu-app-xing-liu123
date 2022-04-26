@@ -139,16 +139,16 @@ private:
     int const journalPage = 4;
     int const startMenuPage = 5;
     int const helpMenuPage = 6;
+
+    bool soundOn = true;
+    float const sound = 0.25f;
+    int const interval = 25;
+
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
     void displayJournalLabels(QString info, QString fishPic, int fishNum);
     int journalPageNum = 0;
     void setButtonQuizVisibility(QString answ);
     void disableQuizButtons();
-
-    // Uncomment this when working on audios
-
-    // Audio parameters
-    const float32 audioVolumn = 0.2f;
 
     // Background music
     QMediaPlayer *bgmPlayer;
