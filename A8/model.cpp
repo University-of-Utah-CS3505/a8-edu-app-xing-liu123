@@ -7,11 +7,6 @@ Model::Model(QObject *parent)
 {
     loadInfoQ();
 
-    // Define the gravity vector to 0 (Since the fishe should not be falling)
-    b2Vec2 gravity(0.0f, 0.0f);
-    // Construct a world object, which will hold and simulate the rigid bodies.
-    world = new b2World(gravity);
-
     currentSpear = 1;
     isShot = false;
 
@@ -22,9 +17,6 @@ Model::Model(QObject *parent)
     correctAnsw = 0;
     correctAnswForProgBar = 0;
     quizTimeCounter =10;
-
-    // Create contact listener
-    world->SetContactListener(contactListener);
 
     connect(timer,
             &QTimer::timeout,
@@ -66,6 +58,16 @@ void Model::setUpWorld(QString water){
         waterType = TypeOfWater::TOW_PondWater;
     if(water.contains("Smooth"))
         waterType = TypeOfWater::TOW_RiverWater;
+
+    // Define the gravity vector to 0 (Since the fishe should not be falling)
+    b2Vec2 gravity(0.0f, 0.0f);
+    // Construct a world object, which will hold and simulate the rigid bodies.
+    world = new b2World(gravity);
+
+    // Create contact listener
+    world->SetContactListener(contactListener);
+
+
 
     //Call to initialize the fishes (bodies)
     initFish1();
