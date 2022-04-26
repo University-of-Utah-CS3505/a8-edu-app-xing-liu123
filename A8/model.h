@@ -1,15 +1,24 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+/**
+ * Team: BAGJL
+ * Students: Brittney Morales, Adriana Salazar, Xing Liu, Jinwen Lei, Gonzalo Tello
+ * Course: CS3505
+ * Date: April 26, 2022
+ *
+ **/
+
 #include <QObject>
 #include <Box2D/Box2D.h>
-//#include <QAudio>
 #include <QTimer>
 #include <QMap>
 #include "hitlistener.h"
 #include <QImage>
 #include <QPixmap>
 #include <QVector>
+#include <QFile>
+#include <QTextStream>
 
 enum class TypeOfWater{
     TOW_PondWater,
