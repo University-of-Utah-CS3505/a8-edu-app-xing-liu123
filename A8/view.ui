@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -46,7 +46,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Fresh Water</string>
+       <string>Pond</string>
       </property>
      </widget>
      <widget class="QPushButton" name="smoothWaterButton">
@@ -62,7 +62,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Smooth Water</string>
+       <string>River</string>
       </property>
      </widget>
      <widget class="QPushButton" name="saltWaterButton">
@@ -78,7 +78,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Salt Water</string>
+       <string>Ocean</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
@@ -1409,7 +1409,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
