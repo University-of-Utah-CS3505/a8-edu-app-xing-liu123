@@ -83,6 +83,11 @@ View::View(Model &model,  QWidget *parent)
 
     //Congrats label
     ui->congratsLabel->setVisible(false);
+    QPixmap worldCongratsLabel;
+    worldCongratsLabel.load("://backgrounds/newWorldCelebrate.png");
+    ui->congratsLabel->setPixmap(worldCongratsLabel.scaled(ui->congratsLabel->width(), ui->congratsLabel->height()));
+    //  ui->congratsLabel->setText("Congrats you have unlocked the River region.");
+
     //congrats close button
     ui->closeCongratsButton->setEnabled(false);
     ui->closeCongratsButton->setVisible(false);
@@ -398,6 +403,7 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
 
     //results label
     ui->resultLabel->setVisible(false);
+    ui->resultImageLabel->setVisible(false);
 
     //enable buttons
     ui->answ1Button->setEnabled(true);
@@ -480,7 +486,7 @@ void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
         infoInLabel = "";
         //if it has not been cath
         if(info[i] == "uncached"){
-            displayJournalLabels("uncached", ":/unknownFish.png", count);
+            displayJournalLabels("", ":/unknownFish.png", count);
             count++;
         }
         if(info[i] != "uncached"){
@@ -642,11 +648,21 @@ void View::disableQuizButtons(){
 
 
 void View::showResult(bool result, QString answer){
-    if(result)
+    if(result){
         ui->resultLabel->setText("You are Correct! \n The answer is: \n" + answer);
-    else
+        QPixmap resultImagePix;
+        resultImagePix.load("://backgrounds/woodenBackground.png");
+        ui->resultImageLabel->setPixmap(resultImagePix.scaled(ui->resultImageLabel->width(), ui->resultImageLabel->height()));
+    }
+    else{
         ui->resultLabel->setText("You are incorrect, try again \n This is the correct answer: \n" + answer);
+        QPixmap resultImagePix;
+        resultImagePix.load("://backgrounds/woodenBackground.png");
+        ui->resultImageLabel->setPixmap(resultImagePix.scaled(ui->resultImageLabel->width(), ui->resultImageLabel->height()));
+
+    }
     ui->resultLabel->setVisible(true);
+    ui->resultImageLabel->setVisible(true);
     ui->quizBackFishButton->setVisible(true);
 }
 
@@ -697,7 +713,6 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         if(waterType == 'p'){
 
             ui->smoothWaterButton->setEnabled(true);
-
         }
         else if(waterType =='r')
         {

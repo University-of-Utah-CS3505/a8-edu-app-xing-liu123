@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -777,7 +777,7 @@ color: white;</string>
        </font>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Sunken</enum>
@@ -787,6 +787,9 @@ color: white;</string>
       </property>
       <property name="textFormat">
        <enum>Qt::PlainText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QPushButton" name="quizBackFishButton">
@@ -864,6 +867,19 @@ color: white;</string>
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="resultImageLabel">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>170</y>
+        <width>441</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
      <zorder>quizBackgroundImageLabel</zorder>
      <zorder>answ1Button</zorder>
      <zorder>answ1Button_2</zorder>
@@ -873,9 +889,10 @@ color: white;</string>
      <zorder>quizBackFishButton</zorder>
      <zorder>nextQuestionButton</zorder>
      <zorder>answ1Button_4</zorder>
-     <zorder>resultLabel</zorder>
      <zorder>countDownLabel</zorder>
      <zorder>quizQ1Label</zorder>
+     <zorder>resultImageLabel</zorder>
+     <zorder>resultLabel</zorder>
     </widget>
     <widget class="QWidget" name="JournalPage_1">
      <widget class="QLabel" name="journalPageLabel">
@@ -1137,8 +1154,8 @@ color: white;</string>
      <widget class="QLabel" name="journalInfoLabel_6">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>228</y>
+        <x>534</x>
+        <y>326</y>
         <width>230</width>
         <height>90</height>
        </rect>
@@ -1155,8 +1172,8 @@ color: white;</string>
      <widget class="QLabel" name="journalInfoLabel_7">
       <property name="geometry">
        <rect>
-        <x>490</x>
-        <y>140</y>
+        <x>540</x>
+        <y>128</y>
         <width>230</width>
         <height>90</height>
        </rect>
@@ -1175,7 +1192,7 @@ color: white;</string>
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>328</y>
+        <y>28</y>
         <width>230</width>
         <height>90</height>
        </rect>
@@ -1194,7 +1211,7 @@ color: white;</string>
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>128</y>
+        <y>228</y>
         <width>230</width>
         <height>90</height>
        </rect>
@@ -1315,7 +1332,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

@@ -115,5 +115,7 @@
         <file>Background_FishInfoPage.png</file>
         <file>backgrounds/journalBackv3.png</file>
         <file>backgrounds/journalBackv4.png</file>
+        <file>backgrounds/newWorldCelebrate.png</file>
+        <file>backgrounds/woodenBackground.png</file>
     </qresource>
 </RCC>
