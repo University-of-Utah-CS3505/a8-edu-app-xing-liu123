@@ -43,33 +43,33 @@ View::View(Model &model,  QWidget *parent)
 
     // Animation
     fishAnimation1 = new QPropertyAnimation(ui->fish1Label,"pos");
-    fishAnimation1->setDuration(25);
+    fishAnimation1->setDuration(interval);
 
     fishAnimation2 = new QPropertyAnimation(ui->fish2Label,"pos");
-    fishAnimation2->setDuration(25);
+    fishAnimation2->setDuration(interval);
 
     fishAnimation3 = new QPropertyAnimation(ui->fish3Label,"pos");
-    fishAnimation3->setDuration(25);
+    fishAnimation3->setDuration(interval);
 
     spearAnimation = new QPropertyAnimation(ui->spearLabel,"pos");
-    spearAnimation->setDuration(25);
+    spearAnimation->setDuration(interval);
 
     // Background music
     bgmPlayer = new QMediaPlayer;
     bgmOutput = new QAudioOutput;
 
-    bgmOutput->setVolume(0.25f);
+    bgmOutput->setVolume(sound);
     bgmPlayer->setAudioOutput(bgmOutput);
     bgmPlayer->setSource(QUrl("qrc:/bgm.mp3"));
 
     // Sound effects
     shootEffect = new QSoundEffect;
     shootEffect->setSource(QUrl::fromLocalFile(":/shoot.WAV"));
-    shootEffect->setVolume(0.25f);
+    shootEffect->setVolume(sound);
 
     hitEffect = new QSoundEffect;
     hitEffect->setSource(QUrl::fromLocalFile(":/hit2.wav"));
-    hitEffect->setVolume(0.25f);
+    hitEffect->setVolume(sound);
 
     /*
      * Audio connections
@@ -894,7 +894,6 @@ void View::showResult(bool result, QString answer){
 }
 
 
-
 // Uncomment this when working on audios
 /**
  * @brief View::playBGM
@@ -924,9 +923,9 @@ void View::pressMusicButton(){
     else{
         soundOn = true;
         emit updateMainMenuMusicButton("Music: on");
-        bgmOutput->setVolume(0.25f);
-        hitEffect->setVolume(0.25f);
-        shootEffect->setVolume(0.25f);
+        bgmOutput->setVolume(sound);
+        hitEffect->setVolume(sound);
+        shootEffect->setVolume(sound);
     }
 }
 
