@@ -115,7 +115,6 @@ View::View(Model &model,  QWidget *parent)
     QPixmap worldCongratsLabel;
     worldCongratsLabel.load("://backgrounds/newWorldCelebrate.png");
     ui->congratsLabel->setPixmap(worldCongratsLabel.scaled(ui->congratsLabel->width(), ui->congratsLabel->height()));
-    //  ui->congratsLabel->setText("Congrats you have unlocked the River region.");
 
     //congrats close button
     ui->closeCongratsButton->setEnabled(false);
