@@ -1,5 +1,4 @@
 #include "hitlistener.h"
-#include <iostream>
 
 /**
  * @brief HitListener::HitListener
