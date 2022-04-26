@@ -720,9 +720,7 @@ void Model::getFish(){
         QString answer;        
 
         //if it is then check how many times it has been catched
-        //and get the %4 num to get the questionString
         int questionNum = rand() % 4; //returns 0,1,2,3
-        //update the value
 
         //Get the question and aswer
         question = questions[questionNum];
