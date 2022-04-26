@@ -1,8 +1,6 @@
 #include "view.h"
 #include "model.h"
 #include "ui_view.h"
-#include <iostream>
-#include <QPropertyAnimation>
 #include <QMessageBox>
 
 View::View(Model &model,  QWidget *parent)

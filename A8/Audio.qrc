@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>Waves.mp3</file>
-        <file>hit.wav</file>
         <file>shoot.WAV</file>
         <file>pond.mp3</file>
         <file>river.mp3</file>

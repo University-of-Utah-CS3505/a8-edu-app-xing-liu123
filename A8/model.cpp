@@ -1,29 +1,45 @@
 #include "model.h"
-#include <iostream>
 #include <QFile>
 #include <QTextStream>
-#include <QImage>
-#include <QPixmap>
-#include <QVector>
 
 Model::Model(QObject *parent)
     : QObject{parent}
 {
     loadInfoQ();
+
     currentSpear = 1;
     isShot = false;
+
     timer = new QTimer(this);
     quizTimer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &Model::updateWorld);
-    connect(quizTimer, &QTimer::timeout, this, &Model::updateQuizTime);
+    contactListener = new HitListener();
 
     correctAnsw = 0;
     correctAnswForProgBar = 0;
     quizTimeCounter =10;
+
+    connect(timer,
+            &QTimer::timeout,
+            this,
+            &Model::updateWorld);
+
+    connect(quizTimer,
+            &QTimer::timeout,
+            this,
+            &Model::updateQuizTime);
+
+    //When a collision happens, we get a fish that will be sent to view
+    connect(contactListener,
+            &HitListener::sendCollision,
+            this,
+            &Model::getFish);
 }
 
 Model::~Model(){
     delete world;
+    delete timer;
+    delete contactListener;
+    delete quizTimer;
 }
 
 // set up the physical world
@@ -49,13 +65,9 @@ void Model::setUpWorld(QString water){
     world = new b2World(gravity);
 
     // Create contact listener
-    contactListener = new HitListener();
     world->SetContactListener(contactListener);
-    //When a collision happens, we get a fish that will be sent to view
-    connect(contactListener,
-            &HitListener::sendCollision,
-            this,
-            &Model::getFish);
+
+
 
     //Call to initialize the fishes (bodies)
     initFish1();
