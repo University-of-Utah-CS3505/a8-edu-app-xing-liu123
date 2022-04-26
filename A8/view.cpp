@@ -58,7 +58,7 @@ View::View(Model &model,  QWidget *parent)
     bgmPlayer = new QMediaPlayer;
     bgmOutput = new QAudioOutput;
 
-    bgmOutput->setVolume(audioVolumn);
+    bgmOutput->setVolume(0.25f);
     bgmPlayer->setAudioOutput(bgmOutput);
     bgmPlayer->setSource(QUrl("qrc:/bgm.mp3"));
 
@@ -561,8 +561,6 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
 
     //setVisible button
     ui->quizBackFishButton->setVisible(false);
-
-
 }
 
 /**
@@ -917,13 +915,19 @@ void View::playBGM(QMediaPlayer::MediaStatus status){
  * It also displays the message to the user to show if mosic is on or off.
  */
 void View::pressMusicButton(){
-    if(bgmPlayer->playbackState() == QMediaPlayer::PlayingState){
-        bgmPlayer->stop();
+    if(soundOn){
+        soundOn = false;
         emit updateMainMenuMusicButton("Music: off");
+        bgmOutput->setVolume(0.0f);
+        hitEffect->setVolume(0.0f);
+        shootEffect->setVolume(0.0f);
     }
     else{
-        bgmPlayer->play();
+        soundOn = true;
         emit updateMainMenuMusicButton("Music: on");
+        bgmOutput->setVolume(0.25f);
+        hitEffect->setVolume(0.25f);
+        shootEffect->setVolume(0.25f);
     }
 }
 
