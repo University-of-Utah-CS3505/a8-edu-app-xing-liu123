@@ -60,7 +60,6 @@ SOURCES += \
     hitlistener.cpp \
     main.cpp \
     model.cpp \
-    scenewidget.cpp \
     view.cpp
 
 HEADERS += \
@@ -113,7 +112,6 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     hitlistener.h \
     model.h \
-    scenewidget.h \
     view.h
 
 FORMS += \

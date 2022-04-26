@@ -117,5 +117,7 @@
         <file>backgrounds/journalBackv4.png</file>
         <file>backgrounds/newWorldCelebrate.png</file>
         <file>backgrounds/woodenBackground.png</file>
+        <file>backgrounds/Background_Cloud.png</file>
+        <file>Background_StartMenu.png</file>
     </qresource>
 </RCC>

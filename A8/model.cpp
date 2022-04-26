@@ -27,8 +27,15 @@ Model::~Model(){
 }
 
 // set up the physical world
+/**
+ * @brief Model::setUpWorld
+ * It obtains the current water being used,
+ * sets up the phisical world with collision management and
+ * the bodies of the world (fishes and spear)
+ * @param water
+ */
 void Model::setUpWorld(QString water){
-
+    //Set up the type of water being navigated
     if(water.contains("Salt"))
         waterType = TypeOfWater::TOW_SeaWater;
     if(water.contains("Fresh"))
@@ -36,22 +43,21 @@ void Model::setUpWorld(QString water){
     if(water.contains("Smooth"))
         waterType = TypeOfWater::TOW_RiverWater;
 
-    // Define the gravity vector.
+    // Define the gravity vector to 0 (Since the fishe should not be falling)
     b2Vec2 gravity(0.0f, 0.0f);
     // Construct a world object, which will hold and simulate the rigid bodies.
     world = new b2World(gravity);
 
-
     // Create contact listener
     contactListener = new HitListener();
     world->SetContactListener(contactListener);
-    //NOTE: Call get fish directly, rather than going to the vew to send it to the model again
+    //When a collision happens, we get a fish that will be sent to view
     connect(contactListener,
             &HitListener::sendCollision,
             this,
             &Model::getFish);
-    //Call to initialize the fishes (bodies)
 
+    //Call to initialize the fishes (bodies)
     initFish1();
     initFish2();
     initFish3();
@@ -62,7 +68,10 @@ void Model::setUpWorld(QString water){
 }
 
 
-//Initialize the fish to be at the top with the slowest velocity.
+/**
+ * @brief Model::initFish1
+ * Initialize the fish to be at the top with the slowest velocity.
+ */
 void Model::initFish1(){
     fish1X = 55;
     fish1Y = 300;
@@ -103,7 +112,10 @@ void Model::initFish1(){
 }
 
 
-//Initialize the fish to be in the middle with the medium velocity.
+/**
+ * @brief Model::initFish2
+ * Initialize the fish to be in the middle with the medium velocity.
+ */
 void Model::initFish2(){
     fish2X = 55;
     fish2Y = 400;
@@ -142,7 +154,11 @@ void Model::initFish2(){
     fish2->CreateFixture(&fixtureDefFish);
 }
 
-//Initialize the fish to be at the buttom with the fastest velocity.
+
+/**
+ * @brief Model::initFish3
+ * Initialize the fish to be at the buttom with the fastest velocity.
+ */
 void Model::initFish3(){
     fish3X = 55;
     fish3Y = 500;
@@ -181,7 +197,13 @@ void Model::initFish3(){
     fish3->CreateFixture(&fixtureDefFish);
 }
 
-// initialize the spear based on the current spear
+
+/**
+ * @brief Model::initSpear
+ * It initialize the spear with its appropiate
+ * velocity, position, and image based on the
+ * current spear integer
+ */
 void Model::initSpear(){
     switch(currentSpear){
         case 1:
@@ -247,7 +269,26 @@ void Model::initSpear(){
     spear->CreateFixture(&fixtureDef);
 }
 
-// shot the spear based on the position clicked by the player
+
+/**
+ * @brief Model::updateSpear
+ * It upddates the information for updating the spear
+ */
+void Model::updateSpear(){
+  if(currentSpear < 4){
+    currentSpear++;
+  }
+  resetWorld();
+}
+
+
+
+/**
+ * @brief Model::shotSpear
+ * shot the spear based on the position clicked by the player
+ * @param x - x of the clicked position
+ * @param y - y of the clicked position
+ */
 void Model::shotSpear(int x, int y){
     // ignore action if it is moving
     if(isShot){
@@ -255,6 +296,7 @@ void Model::shotSpear(int x, int y){
     }
 
     isShot = true;
+    emit sendShootEffect();
 
     float velocityX = 0;
     float velocityY = 0;
@@ -325,7 +367,11 @@ void Model::shotSpear(int x, int y){
     spear->SetTransform(spear->GetPosition(), radian);
 }
 
-// update the world based on the timer
+
+/**
+ * @brief Model::updateWorld
+ * It updates the world based on the timer
+ */
 void Model::updateWorld(){
     // initial positions of objects on the window
     int initXSpear = spearX - 75;
@@ -442,7 +488,11 @@ void Model::updateWorld(){
     }
 }
 
-// reset the world when going back to the fishing page from other page
+
+/**
+ * @brief Model::resetWorld
+ * It resets the world when going back to the fishing page
+ */
 void Model::resetWorld(){
     timer->stop();
 
@@ -464,7 +514,14 @@ void Model::resetWorld(){
     timer->start(10);
 }
 
-// rotate the spear when the player moving cursor
+
+
+/**
+ * @brief Model::setSpearLabel
+ * It rotates the spear when the player moves its cursor
+ * @param x - x of the position where the cursor is located
+ * @param y - y of the position where the cursor is located
+ */
 void Model::setSpearLabel(int x, int y){
     if(!isShot){
         QImage rotated;
@@ -494,7 +551,11 @@ void Model::setSpearLabel(int x, int y){
     }
 }
 
-//Reads the Text file Fish_info.txt and saves information to fishQA multimap.
+
+/**
+ * @brief Model::loadInfoQ
+ * Reads the Text file Fish_info.txt and saves information to fishQA multimap.
+ */
 void Model::loadInfoQ(){
     //access the file
     QFile inputFile(QString(":/Fish_info.txt"));
@@ -629,7 +690,14 @@ void Model::loadInfoQ(){
 //Once the Spear has crashed with a fish, the you call this method
 
 //Common, Rare, Legendary
+/**
+ * @brief Model::getFish
+ * It gets a random fish when a collison with spear and fish happens,
+ * and sends the appropiate information to the view depending
+ * on weather is going to the quiz or the information page.
+ */
 void Model::getFish(){
+    emit sendSoundEffect();
 
     //Get the fish
     int randNum = rand()%10;    
@@ -643,19 +711,17 @@ void Model::getFish(){
     else
          waterL = 's';
 
-
     //Read the picture file
     QString fishPic = fishQA.value(currFish).value("ActualImagefilepath");
 
-
-    //Check if is in the list of catched fish
+    //Check if is in the list of catched fish (send to Quiz Page)
     if(catchedFish.contains(currFish)){
         QString question;
         QString answer;        
 
         //if it is then check how many times it has been catched
         //and get the %4 num to get the questionString
-        int questionNum = catchedFish.indexOf(currFish) % 4; //returns 0,1,2,3
+        int questionNum = rand() % 4; //returns 0,1,2,3
         //update the value
 
         //Get the question and aswer
@@ -676,7 +742,7 @@ void Model::getFish(){
         emit updateQuiz(question, answer, randAsnw1, randAsnw2, randAsnw3, fishPic,
                         questionNum == 0? "" :currFish);
     }
-    //If it is not catched
+    //If it is not catched (send to Information Page)
     else{
         catchedFish.push_back(currFish);
         //send all infomation of the fish
@@ -689,6 +755,8 @@ void Model::getFish(){
                                questions[2], answer3, questions[3], answer4,
                                currFish, fishPic);
 
+        //Based on the water we currently are, we send the infromation
+        //for progreess bar
         if(waterL == 'p'){
             pondProgess++;
             emit updateNextLevelProgress(pondProgess, waterL);
@@ -707,7 +775,16 @@ void Model::getFish(){
 }
 
 
-//Helper method that gets a random answer based on the question
+/**
+ * @brief Model::getRandAnswer
+ * Helper method that gets a random answer based on the question
+ * @param questionNum
+ * @param question
+ * @param answer
+ * @param randAns1
+ * @param randAns2
+ * @return string with the random answer
+ */
 QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
                              QString randAns1, QString randAns2){
     //get a random fish
@@ -716,6 +793,7 @@ QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
     //Based on our question number (The question we did)
     QString randAnsw = fishQA.value(randFish).value(question);
 
+    //If the answer is equal to either of the previous answer, then repeat it again
     if(randAnsw == answer || randAnsw == randAns1 || randAnsw == randAns2 )
         return getRandAnswer(questionNum, question, answer, randAns1, randAns2);
     else
@@ -728,10 +806,15 @@ QString Model::getRandAnswer(int questionNum, QString question,  QString answer,
 
 
 //Helper method to get a random fish from the water type we are currently in
+/**
+ * @brief Model::getRandFish
+ * @param randNum
+ * @return String with a random fish
+ */
 QString Model::getRandFish(int randNum){
-//    resetWorld();
     QString randFish;
 
+    //Based on the water we get the random fish
     if(waterType == TypeOfWater::TOW_PondWater)
         randFish = pondFish[randNum];
     else if(waterType == TypeOfWater::TOW_RiverWater)
@@ -739,6 +822,7 @@ QString Model::getRandFish(int randNum){
     else
         randFish = seaFish[randNum];
 
+    //Get the rarity of the fish
     QString typeFish = fishQA.value(randFish).value("Rarity");
 
 
@@ -755,25 +839,33 @@ QString Model::getRandFish(int randNum){
 }
 
 
-
+/**
+* @brief Model::quizCountDown
+* It starts the count down for the quiz
+*/
 void Model::quizCountDown(){
     quizTimeCounter = 10;
-        quizTimer->start(1000);
+    quizTimer->start(1000);
 }
 
+/**
+ * @brief Model::updateQuizTime
+ * It send the information of the countdown to the quiz
+ */
 void Model::updateQuizTime(){
     emit sendCountDown(QString::number(quizTimeCounter));
     if(quizTimeCounter >0)
         quizTimeCounter--;
     else
         quizTimer->stop();
-
 }
 
-
-
-
-//Checks user answer
+/**
+ * @brief Model::checkAnswer
+ * It checks the answers of the usert for the quiz
+ * @param question
+ * @param userAnswer
+ */
 void Model::checkAnswer(QString question, QString userAnswer){
     QString correctAnswer = fishQA.value(currFish).value(question);
     quizTimer->stop();
@@ -805,18 +897,7 @@ void Model::checkAnswer(QString question, QString userAnswer){
 
 
 
-void Model::updateSpear(){
-  if(currentSpear < 4){
-    currentSpear++;
-  }
-  resetWorld();
-
-}
-
-
-
 //*********** Code for Testing *********************
-
 //TESTING Code for quiz and Information WIndow
 //INFORMATION TESTING
 void Model::getTestInfoFish(){
@@ -847,7 +928,6 @@ void Model::getTestInfoFish(){
 //                           questions[2], answer3, questions[3], answer4,
 //                           fish, fishPic);
 }
-
 
 //QUIZ TESTING
 void Model::getTestQuizInfo(){
@@ -887,8 +967,13 @@ void Model::getTestQuizInfo(){
 //        qNum = 0;
 }
 
-
 //************* Journal set **********************
+/**
+ * @brief Model::getJouralInfo
+ * Based on the page we are currently at, we send the infromation
+ * of the fish that belong to the pond, river or sea
+ * @param page
+ */
 void Model::getJouralInfo(int page){
     QVector<QString> info;
     QString pageStr;
@@ -916,9 +1001,18 @@ void Model::getJouralInfo(int page){
         setJournalVector(seaFish, info, page%1);
     }
 
-    emit updateJournal(info, questions);
+    emit updateJournal(info);
 }
 
+/**
+ * @brief Model::setJournalVector
+ * Helper method, that iterates through all the information of the fish,
+ * based on the vector array given though the parameter to construct the
+ * vector of the fishes that belong in the journal for that spefiic page.
+ * @param fish
+ * @param info
+ * @param page
+ */
 void Model::setJournalVector(QVector<QString> fish, QVector<QString> &info, int page){
 
     //TODO: Change to not have repeated code
@@ -939,23 +1033,6 @@ void Model::setJournalVector(QVector<QString> fish, QVector<QString> &info, int 
             }
         }
     }
-    //else, sent info of last five fish in list
-//    else{
-//        for(int i = 5; i <10; i++){
-//            //Check if the user has catch it
-//            if(catchedFish.contains(fish[i])){
-//                //Picture of Fish
-//                info.push_back(fishQA.value(fish[i]).value("PixelatedImagefilepath"));
-//                for(int j = 0; j < 4; j++){
-//                    info.push_back(fishQA.value(fish[i]).value(questions[j]));
-//                }
-//            }
-//            //If it has not been catch send a message
-//            else{
-//                info.push_back("uncached");
-//            }
-//        }
-//    }
 
 }
 

@@ -11,6 +11,8 @@
 #include <QPixmap>
 #include <iostream>
 #include <QCloseEvent>
+#include <QPropertyAnimation>
+
 
 // Uncomment this when working on audios
 #include <QMediaPlayer>
@@ -50,7 +52,6 @@ private slots:
     // Uncomment this when working on audios
     void playBGM(QMediaPlayer::MediaStatus status);
     void pressMusicButton();
-    void pressTestSoundButton();
 
     void displayFish1(int x1, int y1, int x2, int y2);
     void displayFish2(int x1, int y1, int x2, int y2);
@@ -58,6 +59,8 @@ private slots:
     void displaySpear(int x1, int y1, int x2, int y2);
     void updateSpearLabel(QPixmap map);
     void resetSpearLabel(QPixmap map);
+    void playHitSoundEffect();
+    void playShootSoundEffect();
 
     void setUpQuiz(QString question, QString answer, QString randAnswer1,
                    QString randAnswer2, QString randAnswer3,
@@ -78,7 +81,7 @@ private slots:
     void showResult(bool result, QString Answer);
 
     //display on Journal
-    void setUpJournal(QVector<QString> info, QVector<QString> questions);
+    void setUpJournal(QVector<QString> info);
     void updateNextLevelProgress(int progess, QChar waterType);
 
     //updates next spear progress bar
@@ -109,6 +112,13 @@ private slots:
     //Check before closing
     void closeEvent(QCloseEvent *event);
 
+    //start game button
+    void on_startGameButton_clicked();
+
+    void on_howToPlayButton_clicked();
+
+    void on_goToMainMenuPageButton_clicked();
+
 private:
     Ui::View *ui;
     QTimer * time;
@@ -118,6 +128,8 @@ private:
     int const infoPage = 2;
     int const quizPage = 3;
     int const journalPage = 4;
+    int const startMenuPage = 5;
+    int const helpMenuPage = 6;
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
     void displayJournalLabels(QString info, QString fishPic, int fishNum);
     int journalPageNum = 0;
@@ -125,18 +137,30 @@ private:
     void disableQuizButtons();
 
     // Uncomment this when working on audios
+
     // Audio parameters
     const float32 audioVolumn = 0.2f;
+
     // Background music
-    QMediaPlayer* bgmPlayer = new QMediaPlayer;
-    QAudioOutput* bgmOutput = new QAudioOutput;
+    QMediaPlayer *bgmPlayer;
+    QAudioOutput *bgmOutput;
+    int mapNumber = 1;
+
     // Sound Effects
-    QSoundEffect SE_GameOver;
+    QSoundEffect *shootEffect;
+    QSoundEffect *hitEffect;
+
+    // Animation
+    QPropertyAnimation *fishAnimation1;
+    QPropertyAnimation *fishAnimation2;
+    QPropertyAnimation *fishAnimation3;
+    QPropertyAnimation *spearAnimation;
 
     //progress for levels
     int pondProgess = 0;
     int riverProgess = 0;
     int seaProgess = 0;
+
 };
 #endif // VIEW_H
 
