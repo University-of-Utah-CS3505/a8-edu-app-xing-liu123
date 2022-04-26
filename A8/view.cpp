@@ -94,8 +94,9 @@ View::View(Model &model,  QWidget *parent)
     mainBackPix.load(":/Background_StartMenu.png");
     ui->mainMenuLabel->setPixmap(mainBackPix.scaled(800,580));
 
-    //set startbutton to transparent
+    //set start menut buttons to transparent
     ui->startGameButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
+    ui->howToPlayButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
 
     // Set journal images
     QPixmap journalBackPix;
@@ -886,7 +887,7 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         }
         ui->closeCongratsButton->setEnabled(true);
 
-        //TODO unlock the next level here
+        // unlocks the next level here
         if(waterType == 'p'){
 
             ui->smoothWaterButton->setEnabled(true);
@@ -979,5 +980,20 @@ void View::closeEvent(QCloseEvent *event){
 }
 
 void View::on_startGameButton_clicked(){
+    // goes to the places to fish page
     ui->stackedWidget->setCurrentIndex(startPage);
 }
+
+void View::on_howToPlayButton_clicked()
+{
+    //goes to the how to play page
+    ui->stackedWidget->setCurrentIndex(helpMenuPage);
+}
+
+
+void View::on_goToMainMenuPageButton_clicked()
+{
+    //goes to the main menu page
+    ui->stackedWidget->setCurrentIndex(startMenuPage);
+}
+

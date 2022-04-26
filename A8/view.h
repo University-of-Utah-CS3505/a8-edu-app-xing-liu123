@@ -115,6 +115,10 @@ private slots:
     //start game button
     void on_startGameButton_clicked();
 
+    void on_howToPlayButton_clicked();
+
+    void on_goToMainMenuPageButton_clicked();
+
 private:
     Ui::View *ui;
     QTimer * time;
@@ -125,6 +129,7 @@ private:
     int const quizPage = 3;
     int const journalPage = 4;
     int const startMenuPage = 5;
+    int const helpMenuPage = 6;
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
     void displayJournalLabels(QString info, QString fishPic, int fishNum);
     int journalPageNum = 0;
