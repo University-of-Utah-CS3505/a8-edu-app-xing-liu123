@@ -103,6 +103,12 @@ View::View(Model &model,  QWidget *parent)
     ui->startGameButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
     ui->howToPlayButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
 
+    //set fishing buttons to transparent
+    ui->smoothWaterButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
+    ui->saltWaterButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
+    ui->freshWaterButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
+
+
     // Set journal images
     QPixmap journalBackPix;
     journalBackPix.load("://backgrounds/journalBackv4.png");
@@ -126,6 +132,11 @@ View::View(Model &model,  QWidget *parent)
     //congrats close button
     ui->closeCongratsButton->setEnabled(false);
     ui->closeCongratsButton->setVisible(false);
+
+    //setup labels
+    ui->riverLabel->setStyleSheet("border-image: url(:/buttons/Button_SmoothWater_Locked.png)");
+    ui->seaLabel->setStyleSheet("border-image: url(:/buttons/Button_SeaWater_Locked.png)");
+    ui->pondLabel->setStyleSheet("border-image: url(:/buttons/Button_FreshWater.png)");
 
     //Connections to set up first
     connect(this,
@@ -962,10 +973,12 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         // unlocks the next level here
         if(waterType == 'p'){
             ui->smoothWaterButton->setEnabled(true);
+            ui->riverLabel->setStyleSheet("border-image: url(:/buttons/Button_SmoothWater.png)");
         }
         else if(waterType =='r')
         {
             ui->saltWaterButton->setEnabled(true);
+            ui->seaLabel->setStyleSheet("border-image: url(:/buttons/Button_SeaWater.png)");
         }
     }
 

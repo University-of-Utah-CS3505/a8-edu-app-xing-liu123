@@ -58,7 +58,7 @@ Model::~Model(){
  */
 void Model::setUpWorld(QString water){
     //Set up the type of water being navigated
-    if(water.contains("Ocean"))
+    if(water.contains("Sea"))
         waterType = TypeOfWater::TOW_SeaWater;
     if(water.contains("Pond"))
         waterType = TypeOfWater::TOW_PondWater;
