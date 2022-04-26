@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -1352,6 +1352,11 @@ color: white;</string>
         <height>51</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Berlin Sans FB</family>
+       </font>
+      </property>
       <property name="text">
        <string>how to play</string>
       </property>
@@ -1409,7 +1414,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>

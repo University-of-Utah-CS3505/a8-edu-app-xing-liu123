@@ -12,9 +12,6 @@
 #include <iostream>
 #include <QCloseEvent>
 #include <QPropertyAnimation>
-
-
-// Uncomment this when working on audios
 #include <QMediaPlayer>
 #include <QAudioOutput>
 #include <QSoundEffect>
@@ -31,37 +28,38 @@ public:
     View(Model &model, QWidget *parent = nullptr);
     ~View();
 
+    //Mouse events
     void mouseMoveEvent(QMouseEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
 
 signals:
-    // Uncomment this when working on audios
-    void updateMainMenuMusicButton(QString str);
-
-    void newPositiontValue(int height, int width);
     void updateWorld(QString water);
+    void resetWorld();
     void shootSpear(int x, int y);
     void sendPosition(int x, int y);
-    void resetWorld();
-
-    //answer
-    void checkUserAnswer(QString question, QString answer);
+    void newPositiontValue(int height, int width);
     void getJournal(int pageNum);
+    void checkUserAnswer(QString question, QString answer);
+    void updateMainMenuMusicButton(QString str);
 
 private slots:
-    // Uncomment this when working on audios
+    //Music
     void playBGM(QMediaPlayer::MediaStatus status);
     void pressMusicButton();
+    void playHitSoundEffect();
+    void playShootSoundEffect();
 
+    //Fish
     void displayFish1(int x1, int y1, int x2, int y2);
     void displayFish2(int x1, int y1, int x2, int y2);
     void displayFish3(int x1, int y1, int x2, int y2);
     void displaySpear(int x1, int y1, int x2, int y2);
+
+    //Spear
     void updateSpearLabel(QPixmap map);
     void resetSpearLabel(QPixmap map);
-    void playHitSoundEffect();
-    void playShootSoundEffect();
 
+    //Quuiz and Info windows
     void setUpQuiz(QString question, QString answer, QString randAnswer1,
                    QString randAnswer2, QString randAnswer3,
                    QString fishPic, QString fishName);
@@ -69,60 +67,52 @@ private slots:
                    QString q3, QString a3, QString q4, QString a4,
                    QString fishName, QString fishPic);
 
+    //Choosing water
     void on_startButton_clicked();
     void on_freshWaterButton_clicked();
     void on_smoothWaterButton_clicked();
     void on_saltWaterButton_clicked();
 
-    //correct answer
+    //Correct answer
     void on_answerButton1_clicked();
     void on_answerButton2_clicked();
     void on_answerButton3_clicked();
+    void on_answ1Button_4_clicked();
     void showResult(bool result, QString Answer);
 
-    //display on Journal
+    // Journal
+    void on_journalButton_clicked();
+    void on_journalNextButton_clicked();
+    void on_journalPrevButton_clicked();    
+    void on_journalKeepFishingButton_clicked();
     void setUpJournal(QVector<QString> info);
     void updateNextLevelProgress(int progess, QChar waterType);
 
-    //updates next spear progress bar
-    void updateNextSpearProgress(int currentProgress);
-
-    void on_journalButton_clicked();
-
-    void on_journalNextButton_clicked();
-
-    void on_journalPrevButton_clicked();
-
+    //Moving to different windows
     void on_return2FishButton_clicked();
-
     void on_return2MenuButton_clicked();
-    void on_journalKeepFishingButton_clicked();
-
     void on_quizBackFishButton_clicked();
+    void on_infoBackButton_clicked();  
 
-    void on_infoBackButton_clicked();
-
+    //Action Buttons
+    void on_startGameButton_clicked();
+    void on_howToPlayButton_clicked();
+    void on_goToMainMenuPageButton_clicked();
     void on_closeCongratsButton_clicked();
-
-    void on_answ1Button_4_clicked();
 
     //Set up count down
     void displayCountDown(QString time);
-
+    //updates next spear progress bar
+    void updateNextSpearProgress(int currentProgress);
     //Check before closing
     void closeEvent(QCloseEvent *event);
-
-    //start game button
-    void on_startGameButton_clicked();
-
-    void on_howToPlayButton_clicked();
-
-    void on_goToMainMenuPageButton_clicked();
 
 private:
     Ui::View *ui;
     QTimer * time;
     QImage spearImage;
+
+    // Pages (Widget) Number
     int const startPage = 0;
     int const fishingPage = 1;
     int const infoPage = 2;
@@ -130,13 +120,14 @@ private:
     int const journalPage = 4;
     int const startMenuPage = 5;
     int const helpMenuPage = 6;
-    void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
-    void displayJournalLabels(QString info, QString fishPic, int fishNum);
-    int journalPageNum = 0;
-    void setButtonQuizVisibility(QString answ);
-    void disableQuizButtons();
 
-    // Uncomment this when working on audios
+    // Progress for levels
+    int pondProgess = 0;
+    int riverProgess = 0;
+    int seaProgess = 0;
+
+    // Number of the current page in the journal
+    int journalPageNum = 0;
 
     // Audio parameters
     const float32 audioVolumn = 0.2f;
@@ -156,10 +147,14 @@ private:
     QPropertyAnimation *fishAnimation3;
     QPropertyAnimation *spearAnimation;
 
-    //progress for levels
-    int pondProgess = 0;
-    int riverProgess = 0;
-    int seaProgess = 0;
+    // Helper methods
+    void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
+    void displayJournalLabels(QString info, QString fishPic, int fishNum);
+    void setButtonQuizVisibility(QString answ);
+    void disableQuizButtons();
+
+
+
 
 };
 #endif // VIEW_H

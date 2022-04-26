@@ -294,7 +294,6 @@ void Model::updateSpear(){
 }
 
 
-
 /**
  * @brief Model::shotSpear
  * shot the spear based on the position clicked by the player

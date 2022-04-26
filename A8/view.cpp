@@ -7,7 +7,6 @@ View::View(Model &model,  QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::View)
 {
-
     ui->setupUi(this);
     this->setMouseTracking(true);
 
@@ -96,10 +95,11 @@ View::View(Model &model,  QWidget *parent)
     ui->startGameButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
     ui->howToPlayButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
 
-    // Set journal images
+    // Set journal
     QPixmap journalBackPix;
     journalBackPix.load("://backgrounds/journalBackv4.png");
     ui->journalBackgroundLabel->setPixmap(journalBackPix.scaled(800,580));
+    ui->journalPrevButton->setEnabled(false);
 
     // set image for the spear
     QPixmap spearPix;
@@ -666,13 +666,10 @@ void View::setUpJournal(QVector<QString> info){
             displayJournalLabels("", ":/unknownFish.png", fishCounter);
             fishCounter++;
         }
-        //TEST this
-        //if(info[i] != "uncached"){
         else{
             fishPic = info[i];
             i++;
             int qNum = 0;
-            QString tempString;
             QVector<QString> oneFishInfo;
             //Store the answers information of ONE of the fish
             for(int j = i; j < i+4; j++){
@@ -791,8 +788,12 @@ void View::on_journalButton_clicked()
  */
 void View::on_journalNextButton_clicked()
 {
-    if(journalPageNum<2)
+    if(journalPageNum<2){
         journalPageNum++;
+        ui->journalPrevButton->setEnabled(true);
+    }
+    if(journalPageNum == 2)
+        ui->journalNextButton->setEnabled(false);
     emit getJournal(journalPageNum);
 }
 
@@ -802,8 +803,12 @@ void View::on_journalNextButton_clicked()
  */
 void View::on_journalPrevButton_clicked()
 {
-    if(journalPageNum>0)
+    if(journalPageNum>0){
         journalPageNum--;
+        ui->journalNextButton->setEnabled(true);
+    }
+    if(journalPageNum == 0)
+        ui->journalPrevButton->setEnabled(false);
     emit getJournal(journalPageNum);
 }
 

@@ -1,12 +1,11 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include <QObject>
 #include <Box2D/Box2D.h>
-//#include <QAudio>
+#include "hitlistener.h"
+#include <QObject>
 #include <QTimer>
 #include <QMap>
-#include "hitlistener.h"
 #include <QImage>
 #include <QPixmap>
 #include <QVector>
@@ -143,15 +142,11 @@ private:
     QMultiMap<QString, QMap<QString, QString> > fishQA;
     QString getRandFish(int randNum);
     void loadInfoQ();
-    //void compareAnswers();
 
     //TESTING Variable: slots for Info and quiz
     int currInfo = 0;
     int currQuiz = 0;
     int qNum = 0;
-
-
-
 };
 
 #endif // MODEL_H
