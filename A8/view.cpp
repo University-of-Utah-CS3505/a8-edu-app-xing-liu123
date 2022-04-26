@@ -70,7 +70,7 @@ View::View(Model &model,  QWidget *parent)
     shootEffect->setVolume(0.25f);
 
     hitEffect = new QSoundEffect;
-    hitEffect->setSource(QUrl::fromLocalFile(":/hit.wav"));
+    hitEffect->setSource(QUrl::fromLocalFile(":/hit2.wav"));
     hitEffect->setVolume(0.25f);
 
     /*
