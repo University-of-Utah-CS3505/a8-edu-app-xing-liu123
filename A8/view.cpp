@@ -1,7 +1,14 @@
+/**
+ * Team: BAGJL
+ * Students: Brittney Morales, Adriana Salazar, Xing Liu, Jinwen Lei, Gonzalo Tello
+ * Course: CS3505
+ * Date: April 26, 2022
+ *
+ **/
+
 #include "view.h"
 #include "model.h"
 #include "ui_view.h"
-#include <QMessageBox>
 
 View::View(Model &model,  QWidget *parent)
     : QMainWindow(parent)
@@ -42,33 +49,33 @@ View::View(Model &model,  QWidget *parent)
 
     // Animation
     fishAnimation1 = new QPropertyAnimation(ui->fish1Label,"pos");
-    fishAnimation1->setDuration(25);
+    fishAnimation1->setDuration(interval);
 
     fishAnimation2 = new QPropertyAnimation(ui->fish2Label,"pos");
-    fishAnimation2->setDuration(25);
+    fishAnimation2->setDuration(interval);
 
     fishAnimation3 = new QPropertyAnimation(ui->fish3Label,"pos");
-    fishAnimation3->setDuration(25);
+    fishAnimation3->setDuration(interval);
 
     spearAnimation = new QPropertyAnimation(ui->spearLabel,"pos");
-    spearAnimation->setDuration(25);
+    spearAnimation->setDuration(interval);
 
     // Background music
     bgmPlayer = new QMediaPlayer;
     bgmOutput = new QAudioOutput;
 
-    bgmOutput->setVolume(audioVolumn);
+    bgmOutput->setVolume(sound);
     bgmPlayer->setAudioOutput(bgmOutput);
     bgmPlayer->setSource(QUrl("qrc:/bgm.mp3"));
 
     // Sound effects
     shootEffect = new QSoundEffect;
     shootEffect->setSource(QUrl::fromLocalFile(":/shoot.WAV"));
-    shootEffect->setVolume(0.25f);
+    shootEffect->setVolume(sound);
 
     hitEffect = new QSoundEffect;
     hitEffect->setSource(QUrl::fromLocalFile(":/hit2.wav"));
-    hitEffect->setVolume(0.25f);
+    hitEffect->setVolume(sound);
 
     /*
      * Audio connections
@@ -95,7 +102,14 @@ View::View(Model &model,  QWidget *parent)
     ui->startGameButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
     ui->howToPlayButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
 
-    // Set journal
+
+    //set fishing buttons to transparent
+    ui->smoothWaterButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
+    ui->saltWaterButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
+    ui->freshWaterButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
+
+
+    //Journal
     QPixmap journalBackPix;
     journalBackPix.load("://backgrounds/journalBackv4.png");
     ui->journalBackgroundLabel->setPixmap(journalBackPix.scaled(800,580));
@@ -115,11 +129,15 @@ View::View(Model &model,  QWidget *parent)
     QPixmap worldCongratsLabel;
     worldCongratsLabel.load("://backgrounds/newWorldCelebrate.png");
     ui->congratsLabel->setPixmap(worldCongratsLabel.scaled(ui->congratsLabel->width(), ui->congratsLabel->height()));
-    //  ui->congratsLabel->setText("Congrats you have unlocked the River region.");
 
     //congrats close button
     ui->closeCongratsButton->setEnabled(false);
     ui->closeCongratsButton->setVisible(false);
+
+    //setup labels
+    ui->riverLabel->setStyleSheet("border-image: url(:/buttons/Button_SmoothWater_Locked.png)");
+    ui->seaLabel->setStyleSheet("border-image: url(:/buttons/Button_SeaWater_Locked.png)");
+    ui->pondLabel->setStyleSheet("border-image: url(:/buttons/Button_FreshWater.png)");
 
     //Connections to set up first
     connect(this,
@@ -561,8 +579,6 @@ void View::setUpQuiz(QString question, QString answer, QString randAnswer1,
 
     //setVisible button
     ui->quizBackFishButton->setVisible(false);
-
-
 }
 
 /**
@@ -902,7 +918,6 @@ void View::showResult(bool result, QString answer){
 }
 
 
-
 // Uncomment this when working on audios
 /**
  * @brief View::playBGM
@@ -922,13 +937,19 @@ void View::playBGM(QMediaPlayer::MediaStatus status){
  * It also displays the message to the user to show if mosic is on or off.
  */
 void View::pressMusicButton(){
-    if(bgmPlayer->playbackState() == QMediaPlayer::PlayingState){
-        bgmPlayer->stop();
+    if(soundOn){
+        soundOn = false;
         emit updateMainMenuMusicButton("Music: off");
+        bgmOutput->setVolume(0.0f);
+        hitEffect->setVolume(0.0f);
+        shootEffect->setVolume(0.0f);
     }
     else{
-        bgmPlayer->play();
+        soundOn = true;
         emit updateMainMenuMusicButton("Music: on");
+        bgmOutput->setVolume(sound);
+        hitEffect->setVolume(sound);
+        shootEffect->setVolume(sound);
     }
 }
 
@@ -958,10 +979,12 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         // unlocks the next level here
         if(waterType == 'p'){
             ui->smoothWaterButton->setEnabled(true);
+            ui->riverLabel->setStyleSheet("border-image: url(:/buttons/Button_SmoothWater.png)");
         }
         else if(waterType =='r')
         {
             ui->saltWaterButton->setEnabled(true);
+            ui->seaLabel->setStyleSheet("border-image: url(:/buttons/Button_SeaWater.png)");
         }
     }
 
@@ -1068,21 +1091,28 @@ void View::closeEvent(QCloseEvent *event){
     }
 }
 
+/**
+ * @brief View::on_startGameButton_clicked
+ * goes to the places to fish page
+ */
 void View::on_startGameButton_clicked(){
-    // goes to the places to fish page
     ui->stackedWidget->setCurrentIndex(startPage);
 }
-
+/**
+ * @brief View::on_howToPlayButton_clicked
+ * goes to the how to play page
+ */
 void View::on_howToPlayButton_clicked()
 {
-    //goes to the how to play page
     ui->stackedWidget->setCurrentIndex(helpMenuPage);
 }
 
-
+/**
+ * @brief View::on_goToMainMenuPageButton_clicked
+ * goes to the main menu page
+ */
 void View::on_goToMainMenuPageButton_clicked()
 {
-    //goes to the main menu page
     ui->stackedWidget->setCurrentIndex(startMenuPage);
 }
 

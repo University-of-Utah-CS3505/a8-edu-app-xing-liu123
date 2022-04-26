@@ -209,7 +209,7 @@ What is my Name?: Surgeonfish
 Where can you find me?: Throughout the western Atlantic Ocean, the Caribbean Sea, and the Gulf of Mexico.
 How big can I get?: 12 in
 Am I an endangered species?: No
-ActualImagefilepath :/fishPics/NH-Icon-surgeonfish.png
+ActualImagefilepath :/fishPics/surgeonfish.png
 PixelatedImagefilepath :/fishPics/NH-Icon-surgeonfish.png
 Rarity:Rare
 

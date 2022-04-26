@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -46,7 +46,10 @@
        </rect>
       </property>
       <property name="text">
-       <string>Fresh Water</string>
+       <string>Pond</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="smoothWaterButton">
@@ -55,14 +58,17 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>20</y>
+        <x>160</x>
+        <y>40</y>
         <width>161</width>
         <height>71</height>
        </rect>
       </property>
       <property name="text">
-       <string>Smooth Water</string>
+       <string>River</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="saltWaterButton">
@@ -72,13 +78,16 @@
       <property name="geometry">
        <rect>
         <x>600</x>
-        <y>330</y>
+        <y>300</y>
         <width>161</width>
         <height>81</height>
        </rect>
       </property>
       <property name="text">
-       <string>Salt Water</string>
+       <string>Sea</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
@@ -129,12 +138,54 @@
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="riverLabel">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>30</y>
+        <width>181</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="seaLabel">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>290</y>
+        <width>181</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pondLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>300</y>
+        <width>181</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <zorder>mainMenuBackgroundImageLabel</zorder>
+     <zorder>pondLabel</zorder>
      <zorder>freshWaterButton</zorder>
-     <zorder>smoothWaterButton</zorder>
-     <zorder>saltWaterButton</zorder>
      <zorder>label_3</zorder>
      <zorder>mainMenuMucisButton</zorder>
+     <zorder>riverLabel</zorder>
+     <zorder>seaLabel</zorder>
+     <zorder>smoothWaterButton</zorder>
+     <zorder>saltWaterButton</zorder>
     </widget>
     <widget class="QWidget" name="FishingPage">
      <property name="mouseTracking">
@@ -1352,11 +1403,6 @@ color: white;</string>
         <height>51</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <family>Berlin Sans FB</family>
-       </font>
-      </property>
       <property name="text">
        <string>how to play</string>
       </property>
@@ -1414,7 +1460,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

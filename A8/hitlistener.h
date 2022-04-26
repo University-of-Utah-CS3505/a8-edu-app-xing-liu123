@@ -1,6 +1,14 @@
 #ifndef HITLISTENER_H
 #define HITLISTENER_H
 
+/**
+ * Team: BAGJL
+ * Students: Brittney Morales, Adriana Salazar, Xing Liu, Jinwen Lei, Gonzalo Tello
+ * Course: CS3505
+ * Date: April 26, 2022
+ *
+ **/
+
 #include <Box2D/Box2D.h>
 #include <QObject>
 #include <vector>

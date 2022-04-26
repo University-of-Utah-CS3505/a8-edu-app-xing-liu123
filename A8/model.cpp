@@ -1,6 +1,12 @@
+/**
+ * Team: BAGJL
+ * Students: Brittney Morales, Adriana Salazar, Xing Liu, Jinwen Lei, Gonzalo Tello
+ * Course: CS3505
+ * Date: April 26, 2022
+ *
+ **/
+
 #include "model.h"
-#include <QFile>
-#include <QTextStream>
 
 Model::Model(QObject *parent)
     : QObject{parent}
@@ -52,11 +58,11 @@ Model::~Model(){
  */
 void Model::setUpWorld(QString water){
     //Set up the type of water being navigated
-    if(water.contains("Salt"))
+    if(water.contains("Sea"))
         waterType = TypeOfWater::TOW_SeaWater;
-    if(water.contains("Fresh"))
+    if(water.contains("Pond"))
         waterType = TypeOfWater::TOW_PondWater;
-    if(water.contains("Smooth"))
+    if(water.contains("River"))
         waterType = TypeOfWater::TOW_RiverWater;
 
     // Define the gravity vector to 0 (Since the fishe should not be falling)

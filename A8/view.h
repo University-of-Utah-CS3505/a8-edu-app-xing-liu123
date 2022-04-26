@@ -1,6 +1,14 @@
 #ifndef VIEW_H
 #define VIEW_H
 
+/**
+ * Team: BAGJL
+ * Students: Brittney Morales, Adriana Salazar, Xing Liu, Jinwen Lei, Gonzalo Tello
+ * Course: CS3505
+ * Date: April 26, 2022
+ *
+ **/
+
 #include <QMainWindow>
 #include <Box2D/Box2D.h>
 #include <QTimer>
@@ -12,6 +20,8 @@
 #include <iostream>
 #include <QCloseEvent>
 #include <QPropertyAnimation>
+#include <QApplication>
+#include <QMessageBox>
 #include <QMediaPlayer>
 #include <QAudioOutput>
 #include <QSoundEffect>
@@ -131,6 +141,12 @@ private:
 
     // Audio parameters
     const float32 audioVolumn = 0.2f;
+
+    //Sound
+    bool soundOn = true;
+    float const sound = 0.25f;
+    int const interval = 25;
+
 
     // Background music
     QMediaPlayer *bgmPlayer;
