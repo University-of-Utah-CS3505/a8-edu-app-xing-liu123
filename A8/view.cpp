@@ -13,8 +13,6 @@ View::View(Model &model,  QWidget *parent)
     ui->setupUi(this);
     this->setMouseTracking(true);
 
-
-
     /*
      * Set quiz buttons to be unvisibles
     **/
@@ -43,14 +41,37 @@ View::View(Model &model,  QWidget *parent)
     **/
 
     // Uncomment this when working on audios
+
+
+    // Animation
+    fishAnimation1 = new QPropertyAnimation(ui->fish1Label,"pos");
+    fishAnimation1->setDuration(25);
+
+    fishAnimation2 = new QPropertyAnimation(ui->fish2Label,"pos");
+    fishAnimation2->setDuration(25);
+
+    fishAnimation3 = new QPropertyAnimation(ui->fish3Label,"pos");
+    fishAnimation3->setDuration(25);
+
+    spearAnimation = new QPropertyAnimation(ui->spearLabel,"pos");
+    spearAnimation->setDuration(25);
+
     // Background music
+    bgmPlayer = new QMediaPlayer;
+    bgmOutput = new QAudioOutput;
+
     bgmOutput->setVolume(audioVolumn);
     bgmPlayer->setAudioOutput(bgmOutput);
-    bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+    bgmPlayer->setSource(QUrl("qrc:/bgm.mp3"));
 
     // Sound effects
-    SE_ShootSpear.setVolume(audioVolumn);
-    SE_ShootSpear.setSource(QUrl("qrc:/ShootSpear.mp3"));
+    shootEffect = new QSoundEffect;
+    shootEffect->setSource(QUrl::fromLocalFile(":/shoot.WAV"));
+    shootEffect->setVolume(0.25f);
+
+    hitEffect = new QSoundEffect;
+    hitEffect->setSource(QUrl::fromLocalFile(":/hit.wav"));
+    hitEffect->setVolume(0.25f);
 
     /*
      * Audio connections
@@ -143,6 +164,14 @@ View::View(Model &model,  QWidget *parent)
             &Model::resetSpear,
             this,
             &View::resetSpearLabel);
+    connect(&model,
+            &Model::sendSoundEffect,
+            this,
+            &View::playHitSoundEffect);
+    connect(&model,
+            &Model::sendShootEffect,
+            this,
+            &View::playShootSoundEffect);
 
     //Connection to Catch, Quiz and info window
     connect(ui->catchButton,
@@ -238,6 +267,14 @@ View::~View()
     // Uncomment this when working on audios
     delete bgmPlayer;
     delete bgmOutput;
+    delete shootEffect;
+    delete hitEffect;
+
+    // delete animations
+    delete fishAnimation1;
+    delete fishAnimation2;
+    delete fishAnimation3;
+    delete spearAnimation;
 }
 
 /**
@@ -260,12 +297,10 @@ void View::on_startButton_clicked()
  * @param y2 - y of the final position
  */
 void View::displayFish1(int x1, int y1, int x2, int y2){
-    QPropertyAnimation *animation = new QPropertyAnimation(ui->fish1Label,"pos");
-    animation->setDuration(25);
-    animation->setStartValue(QPoint(x1,y1));
-    animation->setEndValue(QPoint(x2,y2));
-    animation->setEasingCurve(QEasingCurve::Linear);
-    animation->start();
+    fishAnimation1->setStartValue(QPoint(x1,y1));
+    fishAnimation1->setEndValue(QPoint(x2,y2));
+    fishAnimation1->setEasingCurve(QEasingCurve::Linear);
+    fishAnimation1->start();
 }
 
 /**
@@ -277,12 +312,10 @@ void View::displayFish1(int x1, int y1, int x2, int y2){
  * @param y2 - y of the final position
  */
 void View::displayFish2(int x1, int y1, int x2, int y2){
-    QPropertyAnimation *animation = new QPropertyAnimation(ui->fish2Label,"pos");
-    animation->setDuration(25);
-    animation->setStartValue(QPoint(x1,y1));
-    animation->setEndValue(QPoint(x2,y2));
-    animation->setEasingCurve(QEasingCurve::Linear);
-    animation->start();
+    fishAnimation2->setStartValue(QPoint(x1,y1));
+    fishAnimation2->setEndValue(QPoint(x2,y2));
+    fishAnimation2->setEasingCurve(QEasingCurve::Linear);
+    fishAnimation2->start();
 }
 
 /**
@@ -294,12 +327,10 @@ void View::displayFish2(int x1, int y1, int x2, int y2){
  * @param y2 - y of the final position
  */
 void View::displayFish3(int x1, int y1, int x2, int y2){
-    QPropertyAnimation *animation = new QPropertyAnimation(ui->fish3Label,"pos");
-    animation->setDuration(25);
-    animation->setStartValue(QPoint(x1,y1));
-    animation->setEndValue(QPoint(x2,y2));
-    animation->setEasingCurve(QEasingCurve::Linear);
-    animation->start();
+    fishAnimation3->setStartValue(QPoint(x1,y1));
+    fishAnimation3->setEndValue(QPoint(x2,y2));
+    fishAnimation3->setEasingCurve(QEasingCurve::Linear);
+    fishAnimation3->start();
 }
 
 
@@ -312,12 +343,10 @@ void View::displayFish3(int x1, int y1, int x2, int y2){
  * @param y2 - y of the final position
  */
 void View::displaySpear(int x1, int y1, int x2, int y2){
-    QPropertyAnimation *animation = new QPropertyAnimation(ui->spearLabel,"pos");
-    animation->setDuration(25);
-    animation->setStartValue(QPoint(x1,y1));
-    animation->setEndValue(QPoint(x2,y2));
-    animation->setEasingCurve(QEasingCurve::Linear);
-    animation->start();
+    spearAnimation->setStartValue(QPoint(x1,y1));
+    spearAnimation->setEndValue(QPoint(x2,y2));
+    spearAnimation->setEasingCurve(QEasingCurve::Linear);
+    spearAnimation->start();
 }
 
 
@@ -348,7 +377,7 @@ void View::updateSpearLabel(QPixmap map){
 
 /**
  * @brief View::resetSpearLabel
- * Reset the spear label when going back to the fishing page
+ * Reset the spear label when going back to the fishing page.
  * @param map - QPixmap sent from the model
  */
 void View::resetSpearLabel(QPixmap map){
@@ -360,15 +389,30 @@ void View::resetSpearLabel(QPixmap map){
 
 /**
  * @brief View::mousePressEvent
- * Send a signal to shot the spear
+ * Send a signal to shot the spear.
  * @param event
  */
 void View::mousePressEvent(QMouseEvent *event){
-    if(ui->stackedWidget->currentIndex() == fishingPage){
+    if(ui->stackedWidget->currentIndex() == fishingPage){ 
         QPoint point = event->pos();
-        SE_ShootSpear.play();
         emit shootSpear(point.x(), point.y());
     }
+}
+
+/**
+ * @brief View::playHitSoundEffect
+ * play the sound effect when hitting
+ */
+void View::playHitSoundEffect(){
+    hitEffect->play();
+}
+
+/**
+ * @brief View::playShootSoundEffect
+ * play the sound effect when shooting
+ */
+void View::playShootSoundEffect(){
+    shootEffect->play();
 }
 
 /**
@@ -380,9 +424,13 @@ void View::on_freshWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(fishingPage);
 
+    mapNumber = 1;
+
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Pond.png");
     ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+
+    bgmPlayer->setSource(QUrl("qrc:/pond.mp3"));
 
     emit updateWorld(ui->freshWaterButton->text());
 
@@ -399,9 +447,13 @@ void View::on_smoothWaterButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(fishingPage);
 
+    mapNumber = 2;
+
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_River.png");
     ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+
+    bgmPlayer->setSource(QUrl("qrc:/river.mp3"));
 
     emit updateWorld(ui->smoothWaterButton->text());
 
@@ -421,6 +473,11 @@ void View::on_saltWaterButton_clicked()
     QPixmap backgroundPix;
     backgroundPix.load(":/Background_Ocean.png");
     ui->fishingBackgroundImageLabel->setPixmap(backgroundPix.scaled(800,570));
+
+    mapNumber = 3;
+
+    bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+
 
     emit updateWorld(ui->saltWaterButton->text());
 
@@ -698,6 +755,17 @@ void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
 
 void View::on_journalKeepFishingButton_clicked()
 {
+    switch(mapNumber){
+        case 1:
+            bgmPlayer->setSource(QUrl("qrc:/pond.mp3"));
+            break;
+        case 2:
+            bgmPlayer->setSource(QUrl("qrc:/river.mp3"));
+            break;
+        case 3:
+            bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+            break;
+    }
     emit resetWorld();
     ui->stackedWidget->setCurrentIndex(fishingPage);
 }
@@ -705,6 +773,7 @@ void View::on_journalKeepFishingButton_clicked()
 
 void View::on_journalButton_clicked()
 {
+    bgmPlayer->setSource(QUrl("qrc:/bgm.mp3"));
     ui->stackedWidget->setCurrentIndex(journalPage);
     emit getJournal(journalPageNum);
 }
@@ -787,10 +856,8 @@ void View::playBGM(QMediaPlayer::MediaStatus status){
     if (bgmPlayer->hasAudio()){
         bgmPlayer->play();
     }
-    else{
-        std::cout << "No media found" << std::endl;
-    }
 }
+
 void View::pressMusicButton(){
     if(bgmPlayer->playbackState() == QMediaPlayer::PlayingState){
         bgmPlayer->stop();
@@ -845,16 +912,28 @@ void View::updateNextSpearProgress(int progress){
 
 
 
-
 void View::on_return2FishButton_clicked()
 {
+    switch(mapNumber){
+        case 1:
+            bgmPlayer->setSource(QUrl("qrc:/pond.mp3"));
+            break;
+        case 2:
+            bgmPlayer->setSource(QUrl("qrc:/river.mp3"));
+            break;
+        case 3:
+            bgmPlayer->setSource(QUrl("qrc:/Waves.mp3"));
+            break;
+    }
     ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
 
 void View::on_return2MenuButton_clicked()
 {
+    bgmPlayer->setSource(QUrl("qrc:/bgm.mp3"));
     ui->stackedWidget->setCurrentIndex(startPage);
+
 }
 
 

@@ -56,18 +56,7 @@ void HitListener::BeginContact(b2Contact* contact) {
     // spear
     void* fixtureUserDataB = contact->GetFixtureB()->GetUserData();
 
-    // if the fixture is an object and that object is fish 1
-    if(contact->GetFixtureA() != nullptr && (int)(size_t) fixtureUserDataA == 1){
-        std::cout << "hit fish 1" << std::endl;
-    }
-    // if the fixture is an object and that object is fish 2
-    if(contact->GetFixtureA() != nullptr && (int)(size_t) fixtureUserDataA == 2){
-        std::cout << "hit fish 2" << std::endl;
-    }
-    // if the fixture is an object and that object is fish 3
-    if(contact->GetFixtureA() != nullptr && (int)(size_t) fixtureUserDataA == 3){
-        std::cout << "hit fish 3" << std::endl;
-    }
     destroy = true;
+
     emit sendCollision();
 }
