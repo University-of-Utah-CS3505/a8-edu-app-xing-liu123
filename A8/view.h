@@ -77,7 +77,7 @@ private slots:
     void showResult(bool result, QString Answer);
 
     //display on Journal
-    void setUpJournal(QVector<QString> info, QVector<QString> questions);
+    void setUpJournal(QVector<QString> info);
     void updateNextLevelProgress(int progess, QChar waterType);
 
     //updates next spear progress bar

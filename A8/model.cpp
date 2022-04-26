@@ -719,7 +719,7 @@ void Model::getFish(){
 
         //if it is then check how many times it has been catched
         //and get the %4 num to get the questionString
-        int questionNum = catchedFish.indexOf(currFish) % 4; //returns 0,1,2,3
+        int questionNum = rand() % 4; //returns 0,1,2,3
         //update the value
 
         //Get the question and aswer
@@ -966,6 +966,12 @@ void Model::getTestQuizInfo(){
 }
 
 //************* Journal set **********************
+/**
+ * @brief Model::getJouralInfo
+ * Based on the page we are currently at, we send the infromation
+ * of the fish that belong to the pond, river or sea
+ * @param page
+ */
 void Model::getJouralInfo(int page){
     QVector<QString> info;
     QString pageStr;
@@ -993,9 +999,18 @@ void Model::getJouralInfo(int page){
         setJournalVector(seaFish, info, page%1);
     }
 
-    emit updateJournal(info, questions);
+    emit updateJournal(info);
 }
 
+/**
+ * @brief Model::setJournalVector
+ * Helper method, that iterates through all the information of the fish,
+ * based on the vector array given though the parameter to construct the
+ * vector of the fishes that belong in the journal for that spefiic page.
+ * @param fish
+ * @param info
+ * @param page
+ */
 void Model::setJournalVector(QVector<QString> fish, QVector<QString> &info, int page){
 
     //TODO: Change to not have repeated code
@@ -1016,23 +1031,6 @@ void Model::setJournalVector(QVector<QString> fish, QVector<QString> &info, int 
             }
         }
     }
-    //else, sent info of last five fish in list
-//    else{
-//        for(int i = 5; i <10; i++){
-//            //Check if the user has catch it
-//            if(catchedFish.contains(fish[i])){
-//                //Picture of Fish
-//                info.push_back(fishQA.value(fish[i]).value("PixelatedImagefilepath"));
-//                for(int j = 0; j < 4; j++){
-//                    info.push_back(fishQA.value(fish[i]).value(questions[j]));
-//                }
-//            }
-//            //If it has not been catch send a message
-//            else{
-//                info.push_back("uncached");
-//            }
-//        }
-//    }
 
 }
 

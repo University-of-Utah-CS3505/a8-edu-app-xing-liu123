@@ -37,7 +37,7 @@ signals:
                            QString q3, QString a3, QString q4, QString a4,
                            QString fishName, QString fishPic);
 
-   void updateJournal(QVector<QString> info, QVector<QString> questions);
+   void updateJournal(QVector<QString> info);
 
 
     void sendSpearLabel(QPixmap map);

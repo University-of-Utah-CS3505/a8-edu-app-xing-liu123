@@ -557,7 +557,7 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
     ui->infoA3Label->setText(a3);
     ui->infoA4Label->setText(a4);
 
-     //Display the fish picture
+    //Display the fish picture
     QPixmap pix;
     pix.load(fishPic);
     ui->inforFishPicLabel->setPixmap(pix.scaled(ui->inforFishPicLabel->width(), ui->inforFishPicLabel->height()));
@@ -572,7 +572,7 @@ void View::setUpInfo(QString q1,QString a1, QString q2, QString a2,
  * @param info
  * @param questions
  */
-void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
+void View::setUpJournal(QVector<QString> info){
 
     int fishCounter = 1; //Counter to keep track of which fish we are currently at
     QString fishPic;
@@ -603,10 +603,6 @@ void View::setUpJournal(QVector<QString> info, QVector<QString> questions){
                 //infoInLabel += questions[qNum] + info[j] + "\n";
                 infoInLabel += info[j] + "\n"; //pos delete
                 oneFishInfo.push_back(info[j]);
-//                if (j < fPar)
-//                    std::cout << "fpar" << infoInLabel.toStdString() << std::endl;
-//                if (j >= fPar && j < sPar)
-//                    std::cout << "spar" << infoInLabel.toStdString() << std::endl;
                 qNum++;
             }
 
@@ -681,21 +677,30 @@ void View::displayJournalLabels(QString info, QString fishPic, int fishNum){
     }
 }
 
-
+/**
+ * @brief View::on_journalKeepFishingButton_clicked
+ * It resets the world and goes back from journal to the fishing window
+ */
 void View::on_journalKeepFishingButton_clicked()
 {
     emit resetWorld();
     ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
-
+/**
+ * @brief View::on_journalButton_clicked
+ * It does to the journal wodget and call for the model to set the infromation
+ */
 void View::on_journalButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(journalPage);
     emit getJournal(journalPageNum);
 }
 
-
+/**
+ * @brief View::on_journalNextButton_clicked
+ * It moves to the next page of the journal window
+ */
 void View::on_journalNextButton_clicked()
 {
     if(journalPageNum<2)
@@ -703,7 +708,10 @@ void View::on_journalNextButton_clicked()
     emit getJournal(journalPageNum);
 }
 
-
+/**
+ * @brief View::on_journalPrevButton_clicked
+ * It mobes to the previous page of the journal window
+ */
 void View::on_journalPrevButton_clicked()
 {
     if(journalPageNum>0)
@@ -712,24 +720,35 @@ void View::on_journalPrevButton_clicked()
 }
 
 //**********************************************************
-
 //Answer Buttons
+/**
+ * @brief View::on_answerButton1_clicked
+ * It send to the model the answer that was in button 1
+ */
 void View::on_answerButton1_clicked(){
-
     QString question = ui->quizQ1Label->text();
     QString answer = ui->answ1Button->text();
     emit checkUserAnswer(question,answer);
     //disable buttons after selecting once
     disableQuizButtons();
 }
-void View::on_answerButton2_clicked(){
 
+/**
+ * @brief View::on_answerButton2_clicked
+ * It send to the model the answer that was in button 2
+ */
+void View::on_answerButton2_clicked(){
     QString question = ui->quizQ1Label->text();
     QString answer = ui->answ1Button_2->text();
     emit checkUserAnswer(question,answer);
     //disable buttons after selecting once
     disableQuizButtons();
 }
+
+/**
+ * @brief View::on_answerButton3_clicked
+ * It send to the model the answer that was in button 3
+ */
 void View::on_answerButton3_clicked(){
     QString question = ui->quizQ1Label->text();
     QString answer = ui->answ1Button_3->text();
@@ -738,7 +757,10 @@ void View::on_answerButton3_clicked(){
     disableQuizButtons();
 }
 
-
+/**
+ * @brief View::on_answ1Button_4_clicked
+ * It send to the model the answer that was in button 4
+ */
 void View::on_answ1Button_4_clicked()
 {
     QString question = ui->quizQ1Label->text();
@@ -748,6 +770,10 @@ void View::on_answ1Button_4_clicked()
     disableQuizButtons();
 }
 
+/**
+ * @brief View::disableQuizButtons
+ * Helper method that disable the buttons when an asnwer button is selected
+ */
 void View::disableQuizButtons(){
     //disable buttons after selecting once
     ui->answ1Button->setEnabled(false);
@@ -756,7 +782,13 @@ void View::disableQuizButtons(){
     ui->answ1Button_4->setEnabled(false);
 }
 
-
+/**
+ * @brief View::showResult
+ * It displays a message to the quiz window stating if the user was right
+ * or wrong and it adds the correct answer
+ * @param result
+ * @param answer
+ */
 void View::showResult(bool result, QString answer){
     if(result)
         ui->resultLabel->setText("You are Correct! \n The answer is: \n" + answer);
@@ -769,6 +801,11 @@ void View::showResult(bool result, QString answer){
 
 
 // Uncomment this when working on audios
+/**
+ * @brief View::playBGM
+ * It plays the music
+ * @param status
+ */
 void View::playBGM(QMediaPlayer::MediaStatus status){
     if (bgmPlayer->hasAudio()){
         bgmPlayer->play();
@@ -777,6 +814,12 @@ void View::playBGM(QMediaPlayer::MediaStatus status){
         std::cout << "No media found" << std::endl;
     }
 }
+
+/**
+ * @brief View::pressMusicButton
+ * It plays the music or it stops the music from being played
+ * It also displays the message to the user to show if mosic is on or off.
+ */
 void View::pressMusicButton(){
     if(bgmPlayer->playbackState() == QMediaPlayer::PlayingState){
         bgmPlayer->stop();
@@ -788,7 +831,13 @@ void View::pressMusicButton(){
     }
 }
 
-
+/**
+ * @brief View::updateNextLevelProgress
+ * Based on the number of fish catched, it progresses the level
+ * bar and when finish it displays a message to the user.
+ * @param progress
+ * @param waterType
+ */
 void View::updateNextLevelProgress(int progress, QChar waterType){
     //updated progress bar for nextlevel
     ui->progressBar2NextLevel->setValue(progress);
@@ -807,9 +856,7 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
 
         //TODO unlock the next level here
         if(waterType == 'p'){
-
             ui->smoothWaterButton->setEnabled(true);
-
         }
         else if(waterType =='r')
         {
@@ -825,39 +872,60 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         riverProgess = progress;
 }
 
+/**
+ * @brief View::updateNextSpearProgress
+ * It sets the value of the spear bar based on the number
+ * of correct questions answered
+ * @param progress
+ */
 void View::updateNextSpearProgress(int progress){
     ui->progressBar2GetNewSpear->setValue(progress);
 }
 
-
-
-
+/**
+ * @brief View::on_return2FishButton_clicked
+ * It moves back from the current window to the fishing window.
+ */
 void View::on_return2FishButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
-
+/**
+ * @brief View::on_return2MenuButton_clicked
+ * It moves to from the fishing window to the menu window
+ * (Where user can choose the water)
+ */
 void View::on_return2MenuButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(startPage);
 }
 
-
+/**
+ * @brief View::on_quizBackFishButton_clicked
+ * It moves from the quiz window to the fishing window and it resets the world.
+ */
 void View::on_quizBackFishButton_clicked()
 {
     emit resetWorld();
     ui->stackedWidget->setCurrentIndex(fishingPage);
+    ui->countDownLabel->setText("10");
 }
 
-
+/**
+ * @brief View::on_infoBackButton_clicked
+ * It moves from the information window to the fishing window and it resets the world.
+ */
 void View::on_infoBackButton_clicked()
 {
     emit resetWorld();
     ui->stackedWidget->setCurrentIndex(fishingPage);
 }
 
-
+/**
+ * @brief View::on_closeCongratsButton_clicked
+ * It makes the labels with the congradulation message invisible
+ */
 void View::on_closeCongratsButton_clicked()
 {
     ui->congratsLabel->setVisible(false);
