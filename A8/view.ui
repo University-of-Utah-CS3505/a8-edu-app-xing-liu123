@@ -46,7 +46,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Pond</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="smoothWaterButton">
@@ -62,7 +62,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>River</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="saltWaterButton">
@@ -78,7 +78,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Ocean</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
@@ -1409,7 +1409,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>37</height>
     </rect>
    </property>
   </widget>
