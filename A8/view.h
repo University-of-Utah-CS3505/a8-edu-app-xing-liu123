@@ -108,6 +108,9 @@ private slots:
     //Check before closing
     void closeEvent(QCloseEvent *event);
 
+    //start game button
+    void on_startGameButton_clicked();
+
 private:
     Ui::View *ui;
     QTimer * time;
@@ -117,6 +120,7 @@ private:
     int const infoPage = 2;
     int const quizPage = 3;
     int const journalPage = 4;
+    int const startMenuPage = 5;
     void setUpAnswers(QString answer, QString randAnswer1, QString randAnswer2);
     void displayJournalLabels(QString info, QString fishPic, int fishNum);
     int journalPageNum = 0;

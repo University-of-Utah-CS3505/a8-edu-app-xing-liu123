@@ -68,6 +68,14 @@ View::View(Model &model,  QWidget *parent)
     ui->fish2Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
     ui->fish3Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
 
+    // Set menu image
+    QPixmap mainBackPix;
+    mainBackPix.load(":/Background_StartMenu.png");
+    ui->mainMenuLabel->setPixmap(mainBackPix.scaled(800,580));
+
+    //set startbutton to transparent
+    ui->startGameButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
+
     // Set journal images
     QPixmap journalBackPix;
     journalBackPix.load("://backgrounds/journalBackv4.png");
@@ -79,7 +87,7 @@ View::View(Model &model,  QWidget *parent)
     ui->spearLabel->setPixmap(spearPix.scaled(ui->spearLabel->width(), ui->spearLabel->height()));
 
     //Set up the initial Widget
-    ui->stackedWidget->setCurrentIndex(startPage);
+    ui->stackedWidget->setCurrentIndex(startMenuPage);
     time = new QTimer(this);
 
     //Congrats label
@@ -213,6 +221,12 @@ View::View(Model &model,  QWidget *parent)
             &Model::updateNextSpearProgress,
             this,
             &View::updateNextSpearProgress);
+
+    //Conncection with Startgamebutton
+    connect(ui->startGameButton,
+            &QPushButton::clicked,
+            this,
+            &View::on_startGameButton_clicked);
 }
 
 
@@ -883,4 +897,8 @@ void View::closeEvent(QCloseEvent *event){
     else{
         event->accept();
     }
+}
+
+void View::on_startGameButton_clicked(){
+    ui->stackedWidget->setCurrentIndex(startPage);
 }

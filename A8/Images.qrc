@@ -116,5 +116,6 @@
         <file>backgrounds/journalBackv3.png</file>
         <file>backgrounds/journalBackv4.png</file>
         <file>backgrounds/Background_Cloud.png</file>
+        <file>Background_StartMenu.png</file>
     </qresource>
 </RCC>
