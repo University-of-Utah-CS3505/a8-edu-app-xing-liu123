@@ -23,6 +23,7 @@ public:
 signals:
     void sendCollision();
 
+
 };
 
 #endif // HITLISTENER_H

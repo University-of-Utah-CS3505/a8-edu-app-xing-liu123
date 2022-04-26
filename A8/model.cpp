@@ -296,6 +296,7 @@ void Model::shotSpear(int x, int y){
     }
 
     isShot = true;
+    emit sendShootEffect();
 
     float velocityX = 0;
     float velocityY = 0;
@@ -696,6 +697,7 @@ void Model::loadInfoQ(){
  * on weather is going to the quiz or the information page.
  */
 void Model::getFish(){
+    emit sendSoundEffect();
 
     //Get the fish
     int randNum = rand()%10;    

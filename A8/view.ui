@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -1293,6 +1293,97 @@ color: white;</string>
      <zorder>journalNextButton</zorder>
      <zorder>journalPageLabel</zorder>
     </widget>
+    <widget class="QWidget" name="StartMenuPage">
+     <widget class="QLabel" name="mainMenuLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>570</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="startGameButton">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>300</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>start game</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="howToPlayButton">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>350</y>
+        <width>211</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>how to play</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="HowToPlayPage">
+     <widget class="QLabel" name="howToPlayLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>570</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>background for image</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>771</width>
+        <height>561</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;How To Play : &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Once you have clicked on a location (pond, river, sea) you will see a boat in the middle of the screen and a spear. &lt;br/&gt;The spear will follow your mouse, and you can shoot it with a left click on the mouse. &lt;br/&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;The Goal :&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;&lt;br/&gt;Your objective is to unlock all the locations on our map, by catch fishes with your spear and learn about the&lt;br/&gt;fish(s) you catch. &lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;More information : &lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;&lt;br/&gt;You will see two progress bars : progress towards a better spear and progress towards unlocking the next &lt;br/&gt;location.&lt;br/&gt;&lt;br/&gt;To unlock a new spear: you need to answer 10 questions correctly. With each new spear, it will move faster and &lt;br/&gt;increase your odds of catching a unique fish.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;&lt;br/&gt;To unlock the next location: you need to catch 5 different fishes in that location.&lt;br/&gt;&lt;br/&gt;If you ever wish to review the information of your caught fish{s) you can click on our Journal button, and you will see&lt;br/&gt;all the information about the fish(s) you have caught. If you haven't caught a perciular fish, it will display a ? on that&lt;br/&gt;fish. &lt;br/&gt;&lt;br/&gt;To make our game more challenging, the fishes in each location has a rank. Common, Rare and Legendary. To&lt;br/&gt;increase your odds of catching a Rare or Legendary, we as the developers recommend trying to upgrade your Spear. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goToMainMenuPageButton">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>10</y>
+        <width>171</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Return to the Main Menu</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1301,7 +1392,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

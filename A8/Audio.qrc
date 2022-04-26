@@ -1,7 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>Waves.mp3</file>
-        <file>Water_Churning.mp3</file>
-        <file>ShootSpear.mp3</file>
+        <file>hit.wav</file>
+        <file>shoot.WAV</file>
+        <file>pond.mp3</file>
+        <file>river.mp3</file>
+        <file>bgm.mp3</file>
+        <file>hit2.wav</file>
     </qresource>
 </RCC>

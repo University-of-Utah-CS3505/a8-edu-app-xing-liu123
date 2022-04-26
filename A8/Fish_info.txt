@@ -46,7 +46,7 @@ Where can you find me?: Worldwide
 How big can I get?: 1.6 in.
 Am I an endangered species?: No
 ActualImagefilepath :/fishPics/Killifish.jfif
-PixelatedImagefilepath  :/fishPics/NH-Icon-killifish.png
+PixelatedImagefilepath :/fishPics/NH-Icon-killifish.png
 Rarity:Common
 
 Tadpole
