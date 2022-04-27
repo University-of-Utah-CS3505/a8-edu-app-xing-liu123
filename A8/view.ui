@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -106,7 +106,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Select were would you like to navegate!</string>
+       <string>Select were would you like to navigate!</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -450,7 +450,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Congratulations! You have caught a</string>
+       <string>Congratulations! You caught a</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1460,7 +1460,7 @@ color: white;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>
