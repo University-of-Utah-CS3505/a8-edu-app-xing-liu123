@@ -24,6 +24,11 @@ Model::Model(QObject *parent)
     correctAnswForProgBar = 0;
     quizTimeCounter =10;
 
+    // Define the gravity vector to 0 (Since the fishe should not be falling)
+    b2Vec2 gravity(0.0f, 0.0f);
+    // Construct a world object, which will hold and simulate the rigid bodies.
+    world = new b2World(gravity);
+
     connect(timer,
             &QTimer::timeout,
             this,
