@@ -972,7 +972,9 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
         ui->closeCongratsButton->setVisible(true);
         if(waterType == 's')
         {
-            ui->congratsLabel->setText("Congrats you made it to the end of the level. \n We hope to release more levels soon. \n Keep up catching the fish and fill in the journal :D");
+            QPixmap finishedWorldCelebrateLabel;
+            finishedWorldCelebrateLabel.load("://backgrounds/finishedWorldCelebrate.png");
+            ui->congratsLabel->setPixmap(finishedWorldCelebrateLabel.scaled(ui->congratsLabel->width(), ui->congratsLabel->height()));
         }
         ui->closeCongratsButton->setEnabled(true);
 

@@ -121,5 +121,6 @@
         <file>Background_StartMenu.png</file>
         <file>buttons/Button_SeaWater_Locked.png</file>
         <file>buttons/Button_SmoothWater_Locked.png</file>
+        <file>backgrounds/finishedWorldCelebrate.png</file>
     </qresource>
 </RCC>
