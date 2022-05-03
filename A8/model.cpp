@@ -895,18 +895,23 @@ void Model::checkAnswer(QString question, QString userAnswer){
         if(correctAnsw == 10){
             correctAnswForProgBar = 0;
             updateSpear();
+            emit updateSpearLabel(2);
         }
         else if(correctAnsw == 20){
             correctAnswForProgBar = 0;
             updateSpear();
+            emit updateSpearLabel(3);
+
         }
         else if(correctAnsw == 30){
             correctAnswForProgBar = 0;
             updateSpear();
+            emit updateSpearLabel(4);
         }
         else if(correctAnsw == 40){
             correctAnswForProgBar = 0;
             updateSpear();
+            emit updateSpearLabel(5);
         }
         emit answerResult(true, correctAnswer);
         emit updateNextSpearProgress(correctAnswForProgBar);

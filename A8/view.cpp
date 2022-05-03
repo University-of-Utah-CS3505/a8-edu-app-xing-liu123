@@ -93,10 +93,14 @@ View::View(Model &model,  QWidget *parent)
     ui->fish2Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
     ui->fish3Label->setStyleSheet("border-image: url(://fishShadows/fishShadow.png)");
 
+    ui->unlockWorldLabel->setStyleSheet("border-image: url(://backgrounds/riverUnlockIcon2.png)");
+    ui->unlockSpearLabel->setStyleSheet("border-image: url(://backgrounds/spear2UnlockIcon.png)");
+
     // Set menu image
     QPixmap mainBackPix;
     mainBackPix.load(":/Background_StartMenu.png");
     ui->mainMenuLabel->setPixmap(mainBackPix.scaled(800,580));
+
 
     //set start menut buttons to transparent
     ui->startGameButton->setStyleSheet("QPushButton { background-color: transparent; border: 0px; color: transparent}");
@@ -278,6 +282,13 @@ View::View(Model &model,  QWidget *parent)
             &QPushButton::clicked,
             this,
             &View::on_startGameButton_clicked);
+
+    // Connect spear image update
+    connect(&model,
+            &Model::updateSpearLabel,
+            this,
+            &View::updateUpgradeSpearLabel);
+
 }
 
 
@@ -456,6 +467,9 @@ void View::on_freshWaterButton_clicked()
 
     emit updateWorld(ui->freshWaterButton->text());
 
+    ui->unlockWorldLabel->setStyleSheet("border-image: url(://backgrounds/riverUnlockIcon2.png)");
+
+
     //reset progress bar for next level
     ui->progressBar2NextLevel->setValue(pondProgess);
 }
@@ -478,6 +492,9 @@ void View::on_smoothWaterButton_clicked()
     bgmPlayer->setSource(QUrl("qrc:/river.mp3"));
 
     emit updateWorld(ui->smoothWaterButton->text());
+
+    ui->unlockWorldLabel->setStyleSheet("border-image: url(://backgrounds/seaUnlockIcon.png)");
+
 
     //reset progress bar for next level
     ui->progressBar2NextLevel->setValue(riverProgess);
@@ -975,6 +992,7 @@ void View::updateNextLevelProgress(int progress, QChar waterType){
             QPixmap finishedWorldCelebrateLabel;
             finishedWorldCelebrateLabel.load("://backgrounds/finishedWorldCelebrate.png");
             ui->congratsLabel->setPixmap(finishedWorldCelebrateLabel.scaled(ui->congratsLabel->width(), ui->congratsLabel->height()));
+
         }
         ui->closeCongratsButton->setEnabled(true);
 
@@ -1092,6 +1110,20 @@ void View::closeEvent(QCloseEvent *event){
         event->accept();
     }
 }
+
+void View::updateUpgradeSpearLabel(int spearNumber)
+{
+    switch (spearNumber){
+    case 2:
+        ui->unlockSpearLabel->setStyleSheet("border-image: url(://backgrounds/spear3UnlockIcon.png)");
+        break;
+    case 3:
+        ui->unlockSpearLabel->setStyleSheet("border-image: url(://backgrounds/spear4UnlockIcon.png)");
+        break;
+    }
+
+}
+
 
 /**
  * @brief View::on_startGameButton_clicked

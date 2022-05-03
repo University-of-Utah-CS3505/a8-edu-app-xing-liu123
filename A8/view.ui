@@ -30,7 +30,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="MainMenuPage">
      <property name="mouseTracking">
@@ -259,7 +259,7 @@
       <property name="geometry">
        <rect>
         <x>630</x>
-        <y>80</y>
+        <y>140</y>
         <width>91</width>
         <height>31</height>
        </rect>
@@ -272,7 +272,7 @@
       <property name="geometry">
        <rect>
         <x>630</x>
-        <y>110</y>
+        <y>170</y>
         <width>131</width>
         <height>31</height>
        </rect>
@@ -304,7 +304,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Main Menu</string>
+       <string>Map</string>
       </property>
      </widget>
      <widget class="QLabel" name="fishingBackgroundImageLabel">
@@ -326,8 +326,8 @@
      <widget class="QProgressBar" name="progressBar2NextLevel">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>530</y>
+        <x>660</x>
+        <y>70</y>
         <width>118</width>
         <height>23</height>
        </rect>
@@ -348,8 +348,8 @@
      <widget class="QProgressBar" name="progressBar2GetNewSpear">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>30</y>
+        <x>660</x>
+        <y>20</y>
         <width>118</width>
         <height>23</height>
        </rect>
@@ -359,32 +359,6 @@
       </property>
       <property name="value">
        <number>0</number>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>530</y>
-        <width>161</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Progress to unlock next level</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>30</y>
-        <width>161</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Progess to unlock next spear</string>
       </property>
      </widget>
      <widget class="QLabel" name="congratsLabel">
@@ -416,6 +390,32 @@
        <string>Close</string>
       </property>
      </widget>
+     <widget class="QLabel" name="unlockWorldLabel">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>60</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="unlockSpearLabel">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>0</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <zorder>fishingBackgroundImageLabel</zorder>
      <zorder>fish1Label</zorder>
      <zorder>fish2Label</zorder>
@@ -427,10 +427,10 @@
      <zorder>return2MenuButton</zorder>
      <zorder>progressBar2NextLevel</zorder>
      <zorder>progressBar2GetNewSpear</zorder>
-     <zorder>label_2</zorder>
-     <zorder>label_4</zorder>
      <zorder>congratsLabel</zorder>
      <zorder>closeCongratsButton</zorder>
+     <zorder>unlockWorldLabel</zorder>
+     <zorder>unlockSpearLabel</zorder>
     </widget>
     <widget class="QWidget" name="FishInfoPage">
      <widget class="QLabel" name="CongratsLabel">
@@ -1174,6 +1174,9 @@ color: white;</string>
       <property name="text">
        <string/>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="journalPicLabel_6">
       <property name="geometry">
@@ -1412,19 +1415,6 @@ color: white;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="HowToPlayPage">
-     <widget class="QLabel" name="howToPlayLabel">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>800</width>
-        <height>570</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>background for image</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>

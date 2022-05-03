@@ -68,7 +68,8 @@ signals:
     void updateNextLevelProgress(int currentProgress, QChar waterType);
     void updateNextSpearProgress(int currentProgress);
 
-
+    //update Spear labe
+    void updateSpearLabel(int spearNumber);
 
 
 public slots:

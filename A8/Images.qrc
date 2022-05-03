@@ -122,5 +122,10 @@
         <file>buttons/Button_SeaWater_Locked.png</file>
         <file>buttons/Button_SmoothWater_Locked.png</file>
         <file>backgrounds/finishedWorldCelebrate.png</file>
+        <file>backgrounds/riverUnlockIcon2.png</file>
+        <file>backgrounds/seaUnlockIcon.png</file>
+        <file>backgrounds/spear2UnlockIcon.png</file>
+        <file>backgrounds/spear3UnlockIcon.png</file>
+        <file>backgrounds/spear4UnlockIcon.png</file>
     </qresource>
 </RCC>

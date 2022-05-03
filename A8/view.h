@@ -117,6 +117,10 @@ private slots:
     //Check before closing
     void closeEvent(QCloseEvent *event);
 
+    void updateUpgradeSpearLabel(int spearNumber);
+
+
+
 private:
     Ui::View *ui;
     QTimer * time;
